@@ -4,283 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mariengymnasium Papenburg – Starke Schule. Stark für alle.</title>
-<meta name="description" content="Mariengymnasium Papenburg – Seit 190 Jahren ein Ort der Bildung, Gemeinschaft und Werte im Emsland.">
+<meta name="description" content="Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte im Herzen Papenburgs. Erfahren Sie mehr über unsere Schule.">
 
-<!-- Google Fonts: Cormorant Garamond (Headlines), Inter (Body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
 
-<!-- Lucide Icons -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
 
 <style>
-:root {
-  /* Schul-CI: Marineblau als Hauptfarbe + Gold als Akzent für Tradition */
-  --mg-navy: #0a2540;
-  --mg-navy-deep: #061a2f;
-  --mg-navy-light: #1a3a5c;
-  --mg-blue: #2563a8;
-  --mg-blue-soft: #e8f0fa;
-  --mg-gold: #c9a961;
-  --mg-gold-light: #e8d9b0;
-  --mg-cream: #faf7f2;
-  --mg-white: #ffffff;
-  --mg-gray-50: #f9fafb;
-  --mg-gray-100: #f3f4f6;
-  --mg-gray-200: #e5e7eb;
-  --mg-gray-400: #9ca3af;
-  --mg-gray-600: #4b5563;
-  --mg-gray-800: #1f2937;
-  --mg-text: #1a2332;
-  --mg-text-soft: #4a5568;
-
-  --shadow-sm: 0 1px 2px rgba(10, 37, 64, 0.06);
-  --shadow-md: 0 4px 16px rgba(10, 37, 64, 0.08);
-  --shadow-lg: 0 12px 40px rgba(10, 37, 64, 0.12);
-  --shadow-xl: 0 24px 60px rgba(10, 37, 64, 0.16);
-
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  color: var(--mg-text);
-  line-height: 1.6;
-  background: var(--mg-white);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* ============== TOP BAR ============== */
-.topbar {
-  background: var(--mg-navy-deep);
-  color: rgba(255,255,255,0.85);
-  font-size: 0.82rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
-}
-.topbar-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.topbar-contact {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.topbar-contact a, .topbar-contact span {
-  color: rgba(255,255,255,0.85);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: color 0.2s;
-}
-.topbar-contact a:hover { color: var(--mg-gold); }
-.topbar-socials {
-  display: flex;
-  gap: 0.75rem;
-}
-.topbar-socials a {
-  color: rgba(255,255,255,0.7);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  transition: all 0.2s;
-}
-.topbar-socials a:hover {
-  color: var(--mg-navy-deep);
-  background: var(--mg-gold);
-}
-
-/* ============== HEADER / NAVIGATION ============== */
-.header {
-  background: var(--mg-white);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.3s;
-}
-.header.scrolled { box-shadow: var(--shadow-md); }
-
-.header-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  text-decoration: none;
-  color: var(--mg-navy);
-}
-.logo-img {
-  height: 56px;
-  width: auto;
-  display: block;
-  flex-shrink: 0;
-}
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-.logo-text strong {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--mg-navy);
-  letter-spacing: 0.01em;
-}
-.logo-text small {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mg-gold);
-  font-weight: 600;
-  margin-top: 2px;
-}
-@media (max-width: 640px) {
-  .logo-img { height: 44px; }
-  .logo-text { display: none; }
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.nav-item {
-  position: relative;
-}
-.nav-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.6rem 0.9rem;
-  color: var(--mg-text);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.92rem;
-  border-radius: var(--radius-sm);
-  transition: all 0.2s;
-  cursor: pointer;
-}
-.nav-link:hover, .nav-item:hover .nav-link {
-  color: var(--mg-navy);
-  background: var(--mg-blue-soft);
-}
-.nav-link svg { width: 14px; height: 14px; }
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--mg-white);
-  min-width: 260px;
-  border-top: 3px solid var(--mg-gold);
-  box-shadow: var(--shadow-lg);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
-  padding: 0.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px);
-  transition: all 0.25s ease;
-}
-.nav-item:hover .dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.dropdown a {
-  display: block;
-  padding: 0.6rem 0.9rem;
-  color: var(--mg-text);
-  text-decoration: none;
-  font-size: 0.88rem;
-  border-radius: var(--radius-sm);
-  transition: all 0.15s;
-}
-.dropdown a:hover {
-  background: var(--mg-blue-soft);
-  color: var(--mg-navy);
-  padding-left: 1.2rem;
-}
-.dropdown-section {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--mg-gold);
-  font-weight: 700;
-  padding: 0.6rem 0.9rem 0.3rem;
-}
-
-.cta-btn {
-  background: var(--mg-navy);
-  color: var(--mg-white);
-  padding: 0.7rem 1.4rem;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.25s;
-  border: 2px solid var(--mg-navy);
-}
-.cta-btn:hover {
-  background: var(--mg-gold);
-  border-color: var(--mg-gold);
-  color: var(--mg-navy-deep);
-  transform: translateY(-1px);
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--mg-navy);
-  padding: 0.5rem;
-}
-
-/* ============== HERO ============== */
+/* ============== HOME-SPEZIFISCH ============== */
 .hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 92vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--mg-navy-deep) 0%, var(--mg-navy) 50%, var(--mg-navy-light) 100%);
+  background: var(--mg-navy-deep);
   color: white;
   overflow: hidden;
+  isolation: isolate;
 }
-
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: saturate(0.8);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(0, 31, 48, 0.88) 0%,
+    rgba(0, 49, 73, 0.78) 50%,
+    rgba(26, 72, 102, 0.65) 100%);
+}
 .hero::before {
   content: '';
   position: absolute;
@@ -289,53 +52,38 @@ body {
     radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(37, 99, 168, 0.2) 0%, transparent 50%);
   pointer-events: none;
+  z-index: -1;
 }
-
-/* Subtile geometrische Verzierung */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -50%; right: -20%;
-  width: 80%; height: 200%;
-  background:
-    repeating-linear-gradient(45deg,
-      transparent,
-      transparent 60px,
-      rgba(201, 169, 97, 0.03) 60px,
-      rgba(201, 169, 97, 0.03) 61px);
-  pointer-events: none;
-  transform: rotate(15deg);
-}
-
 .hero-inner {
-  max-width: 1280px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
-  align-items: center;
   width: 100%;
 }
-
-.hero-content { max-width: 640px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero-content { max-width: 700px; }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(201, 169, 97, 0.15);
+  background: rgba(201, 169, 97, 0.12);
   border: 1px solid rgba(201, 169, 97, 0.4);
-  padding: 0.45rem 1rem;
+  padding: 0.5rem 1.1rem;
   border-radius: 100px;
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--mg-gold-light);
   font-weight: 600;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
   animation: fadeInUp 0.8s ease both;
 }
 .hero-badge .dot {
@@ -344,43 +92,32 @@ body {
   border-radius: 50%;
   animation: pulse 2s infinite;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.2); }
-}
 
 .hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   animation: fadeInUp 0.8s 0.1s ease both;
+  color: white;
 }
 .hero h1 em {
   font-style: italic;
-  color: var(--mg-gold);
-  font-weight: 400;
+  font-weight: 800;
   position: relative;
+  display: inline-block;
+  color: white;
 }
 .hero h1 em::after {
   content: '';
   position: absolute;
-  bottom: 4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--mg-gold);
-  opacity: 0.4;
+  bottom: 0.05em; left: -3px; right: -3px;
+  height: 0.35em;
+  background: var(--mg-yellow);
+  z-index: -1;
+  opacity: 0.7;
 }
 
 .hero p.lead {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 2.5rem;
-  max-width: 560px;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 2.75rem;
   animation: fadeInUp 0.8s 0.2s ease both;
 }
 
@@ -391,52 +128,16 @@ body {
   animation: fadeInUp 0.8s 0.3s ease both;
 }
 
-.btn-primary, .btn-secondary {
-  padding: 0.95rem 1.8rem;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: all 0.25s;
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-.btn-primary {
-  background: var(--mg-gold);
-  color: var(--mg-navy-deep);
-  border-color: var(--mg-gold);
-}
-.btn-primary:hover {
-  background: var(--mg-gold-light);
-  border-color: var(--mg-gold-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201, 169, 97, 0.3);
-}
-.btn-secondary {
-  background: transparent;
-  color: white;
-  border-color: rgba(255,255,255,0.4);
-}
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: white;
-}
-
-.hero-visual {
-  position: relative;
-  animation: fadeInUp 1s 0.4s ease both;
-}
 .hero-card {
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 2.25rem;
   position: relative;
   overflow: hidden;
+  animation: fadeInUp 1s 0.4s ease both;
 }
 .hero-card::before {
   content: '';
@@ -446,503 +147,355 @@ body {
   background: linear-gradient(90deg, transparent, var(--mg-gold), transparent);
 }
 .hero-card-title {
-  font-size: 0.78rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--mg-gold);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-.hero-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.7rem;
-  font-weight: 600;
-  margin-bottom: 1.25rem;
-  line-height: 1.2;
-}
-.anmeldung-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.anmeldung-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.92rem;
-}
-.anmeldung-list li:last-child { border-bottom: none; }
-.anmeldung-list .day {
-  font-weight: 600;
-  color: white;
-}
-.anmeldung-list .time {
-  color: var(--mg-gold-light);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-.hero-stat strong {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--mg-gold);
-  display: block;
-  font-weight: 600;
-}
-.hero-stat span {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============== INFO BAR ============== */
-.info-bar {
-  background: var(--mg-cream);
-  padding: 2.5rem 0;
-  border-bottom: 1px solid var(--mg-gray-200);
-}
-.info-bar-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-.info-item-icon {
-  width: 44px; height: 44px;
-  background: var(--mg-navy);
-  color: var(--mg-gold);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.info-item-icon svg { width: 22px; height: 22px; }
-.info-item h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: var(--mg-navy);
-}
-.info-item p {
-  font-size: 0.85rem;
-  color: var(--mg-text-soft);
-  line-height: 1.5;
-}
-
-/* ============== SECTIONS ============== */
-section {
-  padding: 6rem 0;
-}
-.section-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.section-header {
-  margin-bottom: 4rem;
-  text-align: center;
-}
-.section-eyebrow {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--mg-gold);
   font-weight: 700;
-  margin-bottom: 0.75rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.section-eyebrow::before, .section-eyebrow::after {
-  content: '';
-  width: 30px; height: 1px;
-  background: var(--mg-gold);
-  opacity: 0.5;
-}
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 500;
-  line-height: 1.1;
-  color: var(--mg-navy);
   margin-bottom: 1rem;
-  letter-spacing: -0.01em;
 }
-.section-title em {
-  font-style: italic;
-  color: var(--mg-gold);
+.hero-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
-.section-subtitle {
-  font-size: 1.1rem;
-  color: var(--mg-text-soft);
-  max-width: 640px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ============== NEWS / SCHULNEWS ============== */
-.news-section {
-  background: var(--mg-cream);
-  position: relative;
-}
-.news-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--mg-gold), transparent);
-}
-.news-controls {
+.anmeldung-list { list-style: none; }
+.anmeldung-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.92rem;
+}
+.anmeldung-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.anmeldung-list .day { font-weight: 500; color: white; }
+.anmeldung-list .time {
+  color: var(--mg-gold-light);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--mg-gold);
+  display: block;
+  font-weight: 600;
+  line-height: 1;
+}
+.hero-stat span {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  animation: fadeInUp 1.2s 0.6s ease both;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 169, 97, 0.6));
+  animation: scrollLine 2s infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============== INTRO / EDITORIAL ============== */
+.intro {
+  background: var(--mg-paper);
+  position: relative;
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: center;
+}
+.intro-image {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.intro-image::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 60%; height: 60%;
+  border: 2px solid var(--mg-gold);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+.intro-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.intro-content .display-2 { margin-bottom: 1.5rem; }
+.intro-content .lead { margin-bottom: 1.5rem; }
+.intro-quote {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--mg-navy);
+  line-height: 1.4;
+  border-left: 3px solid var(--mg-gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+.intro-quote-attribution {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mg-text-soft);
+  margin-top: 0.75rem;
+  display: block;
+}
+
+/* ============== PILLARS / GRID ============== */
+.pillars {
+  background: var(--mg-cream);
+  position: relative;
+}
+.pillars::before, .pillars::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--mg-gold-light), transparent);
+}
+.pillars::before { top: 0; }
+.pillars::after { bottom: 0; }
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.pillar {
+  background: white;
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--mg-gray-100);
+}
+.pillar:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--mg-gold-light);
+}
+.pillar-num {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 500;
+  color: var(--mg-gold);
+  line-height: 1;
+  opacity: 0.3;
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  transition: all 0.4s;
+}
+.pillar:hover .pillar-num { opacity: 1; transform: scale(1.05); }
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.pillar p {
+  color: var(--mg-text-soft);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+.pillar-link {
+  color: var(--mg-navy);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.25s;
+}
+.pillar-link svg { width: 14px; height: 14px; }
+.pillar:hover .pillar-link { gap: 0.7rem; color: var(--mg-gold-deep); }
+
+/* ============== FEATURED IMAGE GRID (Schulleben Vorschau) ============== */
+.gallery-section {
+  background: var(--mg-paper);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 240px 240px;
   gap: 1rem;
 }
-.news-filter {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.filter-btn {
-  background: white;
-  border: 1px solid var(--mg-gray-200);
-  padding: 0.5rem 1.1rem;
-  border-radius: 100px;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--mg-text-soft);
+.gallery-item:nth-child(1) { grid-row: span 2; grid-column: span 2; }
+.gallery-item:nth-child(2) { grid-row: span 1; grid-column: span 1; }
+.gallery-item:nth-child(3) { grid-row: span 1; grid-column: span 1; }
+.gallery-item:nth-child(4) { grid-row: span 1; grid-column: span 1; }
+.gallery-item:nth-child(5) { grid-row: span 1; grid-column: span 1; }
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   cursor: pointer;
-  transition: all 0.2s;
 }
-.filter-btn:hover {
-  border-color: var(--mg-navy);
-  color: var(--mg-navy);
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
 }
-.filter-btn.active {
-  background: var(--mg-navy);
-  border-color: var(--mg-navy);
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 37, 64, 0.85) 0%, rgba(10, 37, 64, 0) 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
   color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-overlay h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.gallery-item-overlay span {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mg-gold-light);
+  display: block;
+  margin-bottom: 0.3rem;
 }
 
-.news-grid {
+/* ============== NEWS PREVIEW ============== */
+.news-preview {
+  background: var(--mg-cream);
+  position: relative;
+}
+.news-grid-home {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1.4fr 1fr 1fr;
   gap: 1.5rem;
 }
-
 .news-card {
   background: white;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.35s ease;
-  display: flex;
-  flex-direction: column;
   cursor: pointer;
+  transition: all 0.35s ease;
   border: 1px solid var(--mg-gray-100);
-  position: relative;
 }
 .news-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--mg-gold);
+  border-color: var(--mg-gold-light);
 }
-
-.news-card-featured {
-  grid-row: 1 / 3;
-  grid-column: 1 / 2;
-}
-.news-card-featured .news-image {
-  height: 360px;
-}
-.news-card-featured .news-content {
-  padding: 2rem;
-}
-.news-card-featured h3 {
-  font-size: 1.7rem;
-  line-height: 1.25;
-}
-.news-card-featured .news-excerpt {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+.news-card-img {
+  aspect-ratio: 16/10;
   overflow: hidden;
-}
-
-.news-image {
-  height: 180px;
-  background: linear-gradient(135deg, var(--mg-navy) 0%, var(--mg-navy-light) 100%);
   position: relative;
-  overflow: hidden;
 }
-.news-image-placeholder {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: rgba(201, 169, 97, 0.3);
-}
-.news-image-placeholder svg { width: 64px; height: 64px; }
-.news-image img {
+.news-card-img img {
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
-.news-card:hover .news-image img { transform: scale(1.05); }
-
-.news-category {
+.news-card:hover .news-card-img img { transform: scale(1.05); }
+.news-card-cat {
   position: absolute;
   top: 1rem; left: 1rem;
   background: var(--mg-gold);
   color: var(--mg-navy-deep);
   padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.72rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  z-index: 2;
 }
-
-.news-content {
-  padding: 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.news-meta {
-  display: flex;
-  gap: 1rem;
+.news-card-body { padding: 1.5rem; }
+.news-card-meta {
   font-size: 0.78rem;
   color: var(--mg-text-soft);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.8rem;
 }
-.news-meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.news-meta svg { width: 13px; height: 13px; }
-
 .news-card h3 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: 1.35rem;
+  line-height: 1.25;
   color: var(--mg-navy);
   margin-bottom: 0.65rem;
+  font-weight: 600;
 }
-.news-excerpt {
-  font-size: 0.9rem;
+.news-card.featured h3 { font-size: 1.7rem; }
+.news-card.featured .news-card-img { aspect-ratio: 4/3; }
+.news-card p {
   color: var(--mg-text-soft);
+  font-size: 0.92rem;
   line-height: 1.6;
-  flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.news-link {
-  margin-top: 1rem;
-  color: var(--mg-navy);
-  font-weight: 600;
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: gap 0.2s;
-}
-.news-card:hover .news-link { gap: 0.7rem; color: var(--mg-gold); }
 
-.news-empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 4rem 2rem;
-  color: var(--mg-text-soft);
-}
-
-.news-load-more {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-/* ============== MODAL für News-Vollansicht ============== */
-.news-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 26, 47, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 2000;
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 2rem;
-  overflow-y: auto;
-}
-.news-modal.active { display: flex; animation: modalFade 0.3s ease; }
-@keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
-
-.news-modal-content {
-  background: white;
-  max-width: 800px;
-  width: 100%;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-  margin: auto 0;
-  animation: modalSlide 0.4s ease;
-}
-@keyframes modalSlide {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.news-modal-close {
-  position: absolute;
-  top: 1rem; right: 1rem;
-  width: 40px; height: 40px;
-  background: rgba(255,255,255,0.95);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  z-index: 10;
-  color: var(--mg-navy);
-  transition: all 0.2s;
-}
-.news-modal-close:hover { background: var(--mg-gold); transform: rotate(90deg); }
-
-.news-modal-image {
-  height: 320px;
-  background: linear-gradient(135deg, var(--mg-navy), var(--mg-navy-light));
-  position: relative;
-}
-.news-modal-image img { width: 100%; height: 100%; object-fit: cover; }
-
-.news-modal-body {
-  padding: 2.5rem;
-}
-.news-modal-body h2 {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--mg-navy);
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-.news-modal-body .news-meta { margin-bottom: 1.5rem; }
-.news-modal-body .news-text {
-  color: var(--mg-text);
-  line-height: 1.8;
-  font-size: 1rem;
-}
-.news-modal-body .news-text p { margin-bottom: 1rem; }
-.news-modal-body .news-text strong { color: var(--mg-navy); }
-
-/* ============== FEATURES / SCHULPROFIL ============== */
-.features-section {
-  background: white;
-}
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-.feature-card {
-  padding: 2.5rem 2rem;
-  text-align: left;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: var(--radius-lg);
-  transition: all 0.3s ease;
-  background: white;
-  position: relative;
-  overflow: hidden;
-}
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 0;
-  height: 3px;
-  background: var(--mg-gold);
-  transition: width 0.4s ease;
-}
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--mg-gold);
-}
-.feature-card:hover::before { width: 100%; }
-
-.feature-icon {
-  width: 60px; height: 60px;
-  background: var(--mg-blue-soft);
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 1.5rem;
-  color: var(--mg-navy);
-  transition: all 0.3s;
-}
-.feature-card:hover .feature-icon {
-  background: var(--mg-navy);
-  color: var(--mg-gold);
-}
-.feature-icon svg { width: 28px; height: 28px; }
-
-.feature-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--mg-navy);
-  margin-bottom: 0.75rem;
-}
-.feature-card p {
-  color: var(--mg-text-soft);
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-/* ============== JUBILÄUM / 190 JAHRE ============== */
-.jubilee-section {
+/* ============== JUBILEE ============== */
+.jubilee {
   background: linear-gradient(135deg, var(--mg-navy-deep) 0%, var(--mg-navy) 100%);
   color: white;
   position: relative;
   overflow: hidden;
 }
-.jubilee-section::before {
+.jubilee::before {
   content: '190';
   position: absolute;
   font-family: var(--font-display);
-  font-size: 30rem;
+  font-size: 32rem;
   font-weight: 600;
   color: rgba(201, 169, 97, 0.04);
   right: -3rem;
@@ -951,28 +504,16 @@ section {
   line-height: 1;
   pointer-events: none;
 }
-.jubilee-inner {
+.jubilee-grid {
   position: relative;
   z-index: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 5rem;
   align-items: center;
 }
-.jubilee-content h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4vw, 3.6rem);
-  font-weight: 500;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-.jubilee-content h2 em { color: var(--mg-gold); font-style: italic; }
-.jubilee-content p {
-  color: rgba(255,255,255,0.85);
-  line-height: 1.8;
-  margin-bottom: 1.25rem;
-  font-size: 1.05rem;
-}
+.jubilee h2 { color: white; margin-bottom: 1.5rem; }
+.jubilee p { color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.05rem; }
 .timeline {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.1);
@@ -983,7 +524,7 @@ section {
 .timeline::before {
   content: '';
   position: absolute;
-  top: 0; left: 30px; bottom: 0;
+  top: 2rem; left: 30px; bottom: 2rem;
   width: 1px;
   background: rgba(201, 169, 97, 0.3);
 }
@@ -992,10 +533,11 @@ section {
   gap: 1.5rem;
   padding: 1rem 0;
   position: relative;
+  align-items: flex-start;
 }
 .timeline-year {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--mg-gold);
   flex-shrink: 0;
@@ -1005,245 +547,42 @@ section {
   background: var(--mg-navy);
   padding-right: 0.5rem;
 }
-.timeline-text { color: rgba(255,255,255,0.85); }
+.timeline-text { color: rgba(255,255,255,0.85); padding-top: 0.3rem; }
 .timeline-text strong { color: white; display: block; margin-bottom: 0.2rem; }
 
-/* ============== CTA BANNER ============== */
+/* ============== CTA ============== */
 .cta-banner {
-  background: var(--mg-cream);
+  background: var(--mg-cream-warm);
   text-align: center;
-  padding: 5rem 0;
   position: relative;
+  overflow: hidden;
 }
-.cta-banner-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.cta-banner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500;
-  color: var(--mg-navy);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-.cta-banner h2 em { color: var(--mg-gold); font-style: italic; }
-.cta-banner p {
-  color: var(--mg-text-soft);
-  font-size: 1.1rem;
-  margin-bottom: 2.5rem;
-  line-height: 1.7;
-}
-.cta-banner .btn-primary {
-  background: var(--mg-navy);
-  color: white;
-  border-color: var(--mg-navy);
-}
-.cta-banner .btn-primary:hover {
-  background: var(--mg-gold);
-  border-color: var(--mg-gold);
-  color: var(--mg-navy-deep);
-}
+.cta-banner-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.cta-banner h2 { color: var(--mg-navy); margin-bottom: 1rem; }
+.cta-banner p { color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-/* ============== FOOTER ============== */
-.footer {
-  background: var(--mg-navy-deep);
-  color: rgba(255,255,255,0.75);
-  padding: 5rem 0 2rem;
-  position: relative;
-}
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--mg-gold), transparent);
-}
-.footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-.footer-brand h4 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: white;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-.footer-brand p {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  max-width: 320px;
-}
-.footer-socials {
-  display: flex;
-  gap: 0.75rem;
-}
-.footer-socials a {
-  width: 40px; height: 40px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: rgba(255,255,255,0.8);
-  transition: all 0.25s;
-}
-.footer-socials a:hover {
-  background: var(--mg-gold);
-  border-color: var(--mg-gold);
-  color: var(--mg-navy-deep);
-  transform: translateY(-2px);
-}
-.footer-col h5 {
-  color: var(--mg-gold);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 1.25rem;
-  font-weight: 700;
-}
-.footer-col ul { list-style: none; }
-.footer-col ul li { margin-bottom: 0.6rem; }
-.footer-col ul a {
-  color: rgba(255,255,255,0.75);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-.footer-col ul a:hover { color: var(--mg-gold); }
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-size: 0.85rem;
-}
-.footer-bottom a {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  margin-left: 1.5rem;
-  transition: color 0.2s;
-}
-.footer-bottom a:hover { color: var(--mg-gold); }
-
-/* ============== MOBILE NAV ============== */
-.mobile-nav {
-  position: fixed;
-  top: 0; right: -100%;
-  width: 100%; max-width: 380px;
-  height: 100vh;
-  background: white;
-  z-index: 1500;
-  transition: right 0.35s ease;
-  overflow-y: auto;
-  box-shadow: var(--shadow-xl);
-}
-.mobile-nav.active { right: 0; }
-.mobile-nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 37, 64, 0.6);
-  z-index: 1400;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
-}
-.mobile-nav-overlay.active { opacity: 1; visibility: visible; }
-.mobile-nav-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--mg-gray-200);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.mobile-nav-list {
-  list-style: none;
-  padding: 1rem 0;
-}
-.mobile-nav-list > li { border-bottom: 1px solid var(--mg-gray-100); }
-.mobile-nav-list > li > a, .mobile-nav-list > li > button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  color: var(--mg-text);
-  text-decoration: none;
-  font-weight: 500;
-  width: 100%;
-  background: none;
-  border: none;
-  font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: left;
-}
-.mobile-submenu {
-  list-style: none;
-  background: var(--mg-gray-50);
-  display: none;
-}
-.mobile-submenu.open { display: block; }
-.mobile-submenu li a {
-  display: block;
-  padding: 0.75rem 1.5rem 0.75rem 2.5rem;
-  color: var(--mg-text-soft);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-.mobile-submenu li a:hover { background: var(--mg-blue-soft); color: var(--mg-navy); }
-
-/* ============== RESPONSIVE ============== */
 @media (max-width: 1024px) {
-  .nav { display: none; }
-  .menu-toggle { display: block; }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
-  .info-bar-inner { grid-template-columns: repeat(2, 1fr); }
-  .news-grid { grid-template-columns: 1fr 1fr; }
-  .news-card-featured { grid-row: auto; grid-column: 1 / -1; }
-  .news-card-featured .news-image { height: 280px; }
-  .features-grid { grid-template-columns: 1fr; }
-  .jubilee-inner { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .pillar-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 200px 200px 200px; }
+  .gallery-item:nth-child(1) { grid-row: span 1; grid-column: span 2; }
+  .news-grid-home { grid-template-columns: 1fr; }
+  .jubilee-grid { grid-template-columns: 1fr; gap: 3rem; }
 }
 @media (max-width: 640px) {
-  .header-inner { padding: 1rem; }
-  .topbar-inner { padding: 0 1rem; font-size: 0.75rem; }
-  .topbar-contact { gap: 0.75rem; }
-  .section-inner { padding: 0 1.25rem; }
-  section { padding: 4rem 0; }
-  .hero { min-height: 78vh; }
+  .hero { min-height: 80vh; }
   .hero-inner { padding: 3rem 1.25rem; }
-  .info-bar-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-  .news-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
-  .footer-bottom a { margin-left: 0; margin-right: 1rem; }
-  .news-modal { padding: 0; }
-  .news-modal-content { border-radius: 0; min-height: 100vh; }
-  .news-modal-body { padding: 1.5rem; }
-  .news-modal-body h2 { font-size: 1.6rem; }
-  .cta-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
+  .gallery-item:nth-child(1) { grid-column: span 1; }
 }
 </style>
 </head>
 <body>
 
-<!-- ============== TOP BAR ============== -->
+<!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-contact">
@@ -1259,13 +598,12 @@ section {
   </div>
 </div>
 
-<!-- ============== HEADER ============== -->
+<!-- HEADER -->
 <header class="header" id="header">
   <div class="header-inner">
-    <a href="#" class="logo" aria-label="Mariengymnasium Papenburg Startseite">
-      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png" 
-           alt="Mariengymnasium Papenburg Logo" 
-           class="logo-img"
+    <a href="index.html" class="logo" aria-label="Mariengymnasium Papenburg Startseite">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
            onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
       <div class="logo-text">
         <strong>Mariengymnasium</strong>
@@ -1274,62 +612,15 @@ section {
     </a>
 
     <nav class="nav" aria-label="Hauptnavigation">
-      <div class="nav-item">
-        <a class="nav-link">Schulgemeinschaft <i data-lucide="chevron-down"></i></a>
-        <div class="dropdown">
-          <div class="dropdown-section">Schulprofil</div>
-          <a href="#">Schulprogramm</a>
-          <a href="#">Geschichte des MG</a>
-          <a href="#">Schulleitung</a>
-          <a href="#">Kollegium</a>
-          <a href="#">Mitarbeiter/innen</a>
-          <div class="dropdown-section">Gremien</div>
-          <a href="#">Schülervertretung</a>
-          <a href="#">Schulelternrat</a>
-          <a href="#">Verein der Ehemaligen</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="#news">Aktuelles</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link">Unterricht <i data-lucide="chevron-down"></i></a>
-        <div class="dropdown">
-          <a href="#">Zeiten und Regelungen</a>
-          <a href="#">Fächer</a>
-          <a href="#">Unterstufe (Kl. 5–6)</a>
-          <a href="#">Mittelstufe (Kl. 7–10)</a>
-          <a href="#">Oberstufe (Kl. 11–13)</a>
-          <a href="#">Berufsorientierung</a>
-          <a href="#">Terminkalender</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link">Schulleben <i data-lucide="chevron-down"></i></a>
-        <div class="dropdown">
-          <a href="#">Arbeitsgemeinschaften</a>
-          <a href="#">Schülerzeitung</a>
-          <a href="#">Wettbewerbe</a>
-          <a href="#">Projekte</a>
-          <a href="#">Austauschprogramme</a>
-          <a href="#">Beratungsteam</a>
-          <a href="#">Bibliothek</a>
-          <a href="#">Cafeteria</a>
-          <a href="#">Schulpastoral</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link">Anmeldung <i data-lucide="chevron-down"></i></a>
-        <div class="dropdown">
-          <a href="#">zur 5. Klasse</a>
-          <a href="#">Online-Anmeldung</a>
-          <a href="#">zur gymnasialen Oberstufe</a>
-        </div>
-      </div>
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
     </nav>
 
-    <a href="#anmeldung" class="cta-btn">
-      <i data-lucide="user-plus"></i> Anmelden
+    <a href="anmeldung.html" class="cta-btn">
+      <i data-lucide="user-plus"></i> <span>Jetzt anmelden</span>
     </a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">
@@ -1338,94 +629,56 @@ section {
   </div>
 </header>
 
-<!-- ============== MOBILE NAV ============== -->
+<!-- MOBILE NAV -->
 <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 <aside class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-header">
-    <strong style="font-family: var(--font-display); color: var(--mg-navy); font-size: 1.2rem;">Menü</strong>
+    <strong>Menü</strong>
     <button id="mobileClose" style="background:none; border:none; cursor:pointer; color: var(--mg-navy);">
       <i data-lucide="x" style="width:24px; height:24px"></i>
     </button>
   </div>
   <ul class="mobile-nav-list">
-    <li>
-      <button onclick="this.nextElementSibling.classList.toggle('open')">
-        Schulgemeinschaft <i data-lucide="chevron-down" style="width:16px;height:16px"></i>
-      </button>
-      <ul class="mobile-submenu">
-        <li><a href="#">Schulprogramm</a></li>
-        <li><a href="#">Geschichte des MG</a></li>
-        <li><a href="#">Schulleitung</a></li>
-        <li><a href="#">Kollegium</a></li>
-      </ul>
-    </li>
-    <li><a href="#news">Aktuelles</a></li>
-    <li>
-      <button onclick="this.nextElementSibling.classList.toggle('open')">
-        Unterricht <i data-lucide="chevron-down" style="width:16px;height:16px"></i>
-      </button>
-      <ul class="mobile-submenu">
-        <li><a href="#">Zeiten und Regelungen</a></li>
-        <li><a href="#">Fächer</a></li>
-        <li><a href="#">Unterstufe (Kl. 5–6)</a></li>
-        <li><a href="#">Mittelstufe (Kl. 7–10)</a></li>
-        <li><a href="#">Oberstufe (Kl. 11–13)</a></li>
-      </ul>
-    </li>
-    <li>
-      <button onclick="this.nextElementSibling.classList.toggle('open')">
-        Schulleben <i data-lucide="chevron-down" style="width:16px;height:16px"></i>
-      </button>
-      <ul class="mobile-submenu">
-        <li><a href="#">AGs</a></li>
-        <li><a href="#">Schülerzeitung</a></li>
-        <li><a href="#">Wettbewerbe</a></li>
-        <li><a href="#">Projekte</a></li>
-        <li><a href="#">Austauschprogramme</a></li>
-      </ul>
-    </li>
-    <li>
-      <button onclick="this.nextElementSibling.classList.toggle('open')">
-        Anmeldung <i data-lucide="chevron-down" style="width:16px;height:16px"></i>
-      </button>
-      <ul class="mobile-submenu">
-        <li><a href="#">zur 5. Klasse</a></li>
-        <li><a href="#">Online-Anmeldung</a></li>
-        <li><a href="#">zur Oberstufe</a></li>
-      </ul>
-    </li>
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
   </ul>
 </aside>
 
-<!-- ============== HERO ============== -->
-<section class="hero" id="home">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80"
+         alt="Schule – atmosphärisches Hintergrundbild">
+  </div>
   <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span> 190 Jahre Mariengymnasium</div>
-      <h1>Starke Schule.<br>Stark <em>für alle.</em></h1>
-      <p class="lead">
-        Seit 1835 stehen wir für Bildung, Gemeinschaft und Werte im Herzen Papenburgs. 
-        Miteinander gestalten wir eine Schulgemeinschaft, in der junge Menschen ihre Persönlichkeit, 
-        ihre Stärken und ihren Weg in die Zukunft entfalten können.
-      </p>
-      <div class="hero-actions">
-        <a href="#anmeldung" class="btn-primary">
-          <i data-lucide="arrow-right"></i> Anmeldung 2026/27
-        </a>
-        <a href="#schule" class="btn-secondary">
-          <i data-lucide="play-circle"></i> Schule entdecken
-        </a>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> 190 Jahre Mariengymnasium</div>
+        <h1 class="display-1">Starke Schule.<br>Stark <em>für alle.</em></h1>
+        <p class="lead">
+          Seit 1835 gestalten wir Bildung im Herzen Papenburgs. Mit Kopf, Herz und Hand –
+          und einer Schulgemeinschaft, in der Tradition und Aufbruch keine Gegensätze sind.
+        </p>
+        <div class="hero-actions">
+          <a href="anmeldung.html" class="btn btn-primary">
+            Anmeldung 2026/27 <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="schulprofil.html" class="btn btn-light">
+            <i data-lucide="play-circle"></i> Schule entdecken
+          </a>
+        </div>
       </div>
-    </div>
 
-    <div class="hero-visual">
       <div class="hero-card">
         <div class="hero-card-title">Anmeldung Schuljahr 2026/27</div>
         <h3>Klasse 5 – Termine</h3>
         <ul class="anmeldung-list">
-          <li><span class="day">Mittwoch · 18.02.2026</span><span class="time">15 – 18 Uhr</span></li>
-          <li><span class="day">Donnerstag · 19.02.2026</span><span class="time">15 – 18 Uhr</span></li>
-          <li><span class="day">Freitag · 20.02.2026</span><span class="time">15 – 17 Uhr</span></li>
+          <li><span class="day">Mi · 18.02.2026</span><span class="time">15 – 18 Uhr</span></li>
+          <li><span class="day">Do · 19.02.2026</span><span class="time">15 – 18 Uhr</span></li>
+          <li><span class="day">Fr · 20.02.2026</span><span class="time">15 – 17 Uhr</span></li>
         </ul>
         <div class="hero-stats">
           <div class="hero-stat"><strong>190</strong><span>Jahre</span></div>
@@ -1435,207 +688,276 @@ section {
       </div>
     </div>
   </div>
+
+  <div class="hero-scroll">
+    <span>Entdecken</span>
+    <div class="hero-scroll-line"></div>
+  </div>
 </section>
 
-<!-- ============== INFO BAR ============== -->
-<div class="info-bar">
-  <div class="info-bar-inner">
-    <div class="info-item">
-      <div class="info-item-icon"><i data-lucide="graduation-cap"></i></div>
-      <div>
-        <h4>Gymnasiale Bildung</h4>
-        <p>Klassen 5 bis 13 mit modernem Fächerkanon</p>
+<!-- INTRO / EDITORIAL -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-image reveal">
+        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=80"
+             alt="Schülerinnen lernen gemeinsam">
       </div>
-    </div>
-    <div class="info-item">
-      <div class="info-item-icon"><i data-lucide="globe"></i></div>
-      <div>
-        <h4>International</h4>
-        <p>Austausch mit Italien, Spanien und Irland</p>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-item-icon"><i data-lucide="music"></i></div>
-      <div>
-        <h4>Profilklassen</h4>
-        <p>Musik, Technik und Sport ab Klasse 5</p>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-item-icon"><i data-lucide="heart"></i></div>
-      <div>
-        <h4>Werteorientiert</h4>
-        <p>Christliche Tradition trifft moderne Pädagogik</p>
+      <div class="intro-content reveal">
+        <span class="eyebrow">Über uns</span>
+        <h2 class="display-2" style="margin-top: 1rem;">Bildung, die <em>berührt</em> – und prägt.</h2>
+        <p class="lead" style="color: var(--mg-text);">
+          Wir sind kein anonymes Bildungswerk, sondern eine Schulfamilie. Aus christlicher
+          Tradition kommend, mit dem Mut, Bildung neu zu denken – und mit einem klaren Versprechen:
+          Jede*r findet hier den eigenen Weg.
+        </p>
+        <blockquote class="intro-quote">
+          „Miteinander Gemeinschaft gestalten – das ist nicht nur unser Motto, sondern
+          die tägliche Haltung, mit der wir junge Menschen begleiten."
+          <span class="intro-quote-attribution">— Schulgemeinschaft des Mariengymnasiums</span>
+        </blockquote>
+        <a href="schulprofil.html" class="btn btn-outline" style="margin-top: 1rem;">
+          Mehr über uns <i data-lucide="arrow-right"></i>
+        </a>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ============== SCHULNEWS ============== -->
-<section class="news-section" id="news">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Schulnews</div>
-      <h1 class="section-title">Aktuelles <em>rund um das MG</em></h1>
-      <p class="section-subtitle">
-        Erleben Sie unser Schulleben hautnah – Berichte aus dem Unterricht, von Wettbewerben, 
-        Projekten und besonderen Momenten unserer Schulgemeinschaft.
+<!-- PILLARS / DREI SÄULEN -->
+<section class="pillars">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Unser Versprechen</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Drei Säulen, ein <em>Fundament.</em></h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Was uns trägt, was uns prägt – und was wir unseren Schüler*innen mit auf den Weg geben.
       </p>
     </div>
 
-    <div class="news-controls">
-      <div class="news-filter">
-        <button class="filter-btn active" data-filter="all">Alle Beiträge</button>
-        <button class="filter-btn" data-filter="schulleben">Schulleben</button>
-        <button class="filter-btn" data-filter="wettbewerbe">Wettbewerbe</button>
-        <button class="filter-btn" data-filter="kultur">Musik & Kultur</button>
-        <button class="filter-btn" data-filter="sport">Sport</button>
-        <button class="filter-btn" data-filter="austausch">Austausch</button>
-      </div>
-      <div style="font-size: 0.85rem; color: var(--mg-text-soft);">
-        <i data-lucide="filter" style="width:14px;height:14px;display:inline-block;vertical-align:middle"></i>
-        <span id="news-count">0</span> Beiträge
-      </div>
-    </div>
-
-    <div class="news-grid" id="news-grid"></div>
-
-    <div class="news-load-more" id="load-more-wrap">
-      <button class="btn-primary" id="load-more-btn" style="background: var(--mg-navy); color: white; border-color: var(--mg-navy);">
-        <i data-lucide="plus"></i> Weitere Beiträge laden
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- ============== NEWS MODAL ============== -->
-<div class="news-modal" id="newsModal">
-  <div class="news-modal-content">
-    <button class="news-modal-close" id="modalClose"><i data-lucide="x"></i></button>
-    <div class="news-modal-image" id="modalImage"></div>
-    <div class="news-modal-body">
-      <div class="news-meta" id="modalMeta"></div>
-      <h2 id="modalTitle"></h2>
-      <div class="news-text" id="modalText"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ============== FEATURES / SCHULPROFIL ============== -->
-<section class="features-section" id="schule">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Unser Profil</div>
-      <h1 class="section-title">Was uns <em>besonders</em> macht</h1>
-      <p class="section-subtitle">
-        Bildung, die berührt – und prägt. Vier Säulen unseres pädagogischen Konzepts.
-      </p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="users"></i></div>
-        <h3>Gemeinschaft leben</h3>
-        <p>Ein wertschätzendes Miteinander aus Schüler*innen, Lehrkräften und Eltern – getragen von christlichen Werten und der Offenheit für eine vielfältige Welt.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="lightbulb"></i></div>
-        <h3>Stärken entdecken</h3>
-        <p>Profilklassen in Musik, Technik und Sport, dazu zahlreiche AGs, Wettbewerbe und Projekte – jede*r findet hier den eigenen Talentbereich.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="globe-2"></i></div>
-        <h3>Welt erleben</h3>
-        <p>Austauschprogramme nach Mottola (Italien), Albaida (Spanien) und Cork (Irland) eröffnen interkulturelle Perspektiven und Freundschaften fürs Leben.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="trophy"></i></div>
-        <h3>Erfolge feiern</h3>
-        <p>Von Jugend forscht über Mathematik-Olympiade bis zu Schulschach-Landesmeisterschaften – unsere Schüler*innen glänzen auf vielen Bühnen.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="book-open"></i></div>
-        <h3>Tradition mit Zukunft</h3>
-        <p>Seit 1835 begleiten wir junge Menschen auf ihrem Bildungsweg – und gestalten zugleich aktiv den Übergang in die digitale, koedukative Schule von morgen.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="hand-heart"></i></div>
-        <h3>Verantwortung übernehmen</h3>
-        <p>Schulpastoral, Schülerlotsen, Klimamanagerinnen, Beratungsteam – Engagement für sich und andere ist fest im Schulalltag verankert.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== JUBILÄUM 190 JAHRE ============== -->
-<section class="jubilee-section">
-  <div class="section-inner">
-    <div class="jubilee-inner">
-      <div class="jubilee-content">
-        <div class="section-eyebrow" style="color: var(--mg-gold)">Jubiläum 1835 – 2025</div>
-        <h2>190 Jahre <em>Bildung</em><br>im Emsland.</h2>
+    <div class="pillar-grid">
+      <article class="pillar reveal">
+        <div class="pillar-num">01</div>
+        <h3>Bilden mit Tiefgang</h3>
         <p>
-          Aus einer kleinen katholischen Schule für Mädchen ist über fast zwei Jahrhunderte 
-          eine moderne Bildungseinrichtung gewachsen, die heute Mädchen und Jungen aus dem 
+          Unterricht heißt für uns mehr als Stoff. Wir wollen, dass junge Menschen begreifen –
+          sich selbst, ihre Welt, ihre Verantwortung. Mit Profilklassen in Musik, Technik und
+          Sport schaffen wir Raum für individuelle Stärken.
+        </p>
+        <a href="unterricht.html" class="pillar-link">Unterricht entdecken <i data-lucide="arrow-right"></i></a>
+      </article>
+
+      <article class="pillar reveal">
+        <div class="pillar-num">02</div>
+        <h3>Gemeinschaft leben</h3>
+        <p>
+          AGs, Konzerte, Projekte, Schulfeste – Schule ist bei uns ein Ort, an dem man auch
+          jenseits der Klassenräume zu Hause ist. Werte wie Respekt, Achtsamkeit und Solidarität
+          sind nicht nur Worte, sondern gelebte Praxis.
+        </p>
+        <a href="schulleben.html" class="pillar-link">Schulleben entdecken <i data-lucide="arrow-right"></i></a>
+      </article>
+
+      <article class="pillar reveal">
+        <div class="pillar-num">03</div>
+        <h3>Welt eröffnen</h3>
+        <p>
+          Austausche nach Mottola, Albaida und Cork. Wettbewerbe von Jugend forscht bis zur
+          Schulschach-Landesmeisterschaft. Wir öffnen Türen – damit unsere Schüler*innen die
+          Welt nicht nur lernen, sondern erleben.
+        </p>
+        <a href="schulleben.html#austausch" class="pillar-link">Austausch entdecken <i data-lucide="arrow-right"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Schulleben in Bildern</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Was uns <em>ausmacht.</em></h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80" alt="Schulorchester">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Musik</span>
+            <h4>Schulorchester &amp; Chöre</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80" alt="Schach">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Wettbewerbe</span>
+            <h4>Schach &amp; Olympiaden</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1530021232320-687d8e3dba54?auto=format&fit=crop&w=800&q=80" alt="Sport">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Sport</span>
+            <h4>Sportfeste &amp; Turniere</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Austausch">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Austausch</span>
+            <h4>Mottola · Albaida · Cork</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=800&q=80" alt="Naturwissenschaft">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>MINT</span>
+            <h4>Jugend forscht</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="schulleben.html" class="btn btn-outline">Alle Aktivitäten ansehen <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS PREVIEW -->
+<section class="news-preview">
+  <div class="container">
+    <div class="section-header reveal" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <span class="eyebrow">Aus dem Schulleben</span>
+        <h2 class="display-2" style="margin-top: 1rem;">Aktuelles vom <em>MG.</em></h2>
+      </div>
+      <a href="aktuelles.html" class="btn btn-outline">Alle Beiträge <i data-lucide="arrow-right"></i></a>
+    </div>
+
+    <div class="news-grid-home">
+      <article class="news-card featured reveal">
+        <div class="news-card-img">
+          <span class="news-card-cat">Schulleben</span>
+          <img src="https://images.unsplash.com/photo-1551446591-142875a901a1?auto=format&fit=crop&w=1200&q=80" alt="Karneval">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">23.02.2026 · Schulleitung</div>
+          <h3>Rosenmontag: Chaos im Comic-Universum</h3>
+          <p>Am Rosenmontag verwandelte sich das Forum in eine bunte Comic-Welt. Klassen 5 bis 7 feierten gemeinsam ein fröhliches Karnevalsfest voller Kreativität und guter Laune.</p>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <div class="news-card-img">
+          <span class="news-card-cat">Musik</span>
+          <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80" alt="Adventskonzert">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">16.12.2025 · Musikfachschaft</div>
+          <h3>Adventskonzert in St. Antonius</h3>
+          <p>Eine volle Kirche, warmes Licht, gespannte Stille – und dann die ersten Töne. 300 Zuhörer erlebten ein bewegendes Programm.</p>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <div class="news-card-img">
+          <span class="news-card-cat">Wettbewerb</span>
+          <img src="https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=800&q=80" alt="Schach">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">10.11.2025 · Schach-AG</div>
+          <h3>2. Schachnacht am MG</h3>
+          <p>Eine spannende Nacht voller witziger Schachvarianten und kleiner Überraschungen mit 25 Schüler*innen.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- JUBILEE -->
+<section class="jubilee">
+  <div class="container">
+    <div class="jubilee-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="color: var(--mg-gold);">1835 — 2025</span>
+        <h2 class="display-2" style="margin-top: 1rem;">190 Jahre <em>Bildung</em><br>im Emsland.</h2>
+        <p>
+          Aus einer kleinen katholischen Schule für Mädchen ist über fast zwei Jahrhunderte
+          eine moderne Bildungseinrichtung gewachsen, die heute Mädchen und Jungen aus dem
           gesamten nördlichen Emsland willkommen heißt.
         </p>
         <p>
-          Unser Jubiläum feiern wir mit Schulfest, Konzerten, Vortragsabenden und einem 
-          Ehemaligentreffen – und blicken zugleich nach vorn: Welche Bildung braucht die 
+          Unser Jubiläumsjahr feiern wir mit Schulfest, Konzerten, Vortragsabenden und einem
+          Ehemaligentreffen – und blicken zugleich nach vorn: Welche Bildung braucht die
           Generation, die unsere Welt von morgen prägen wird?
         </p>
+        <a href="schulprofil.html" class="btn btn-primary" style="margin-top: 1.5rem;">
+          Zur Schulgeschichte <i data-lucide="arrow-right"></i>
+        </a>
       </div>
-      <div class="timeline">
+
+      <div class="timeline reveal">
         <div class="timeline-item">
           <div class="timeline-year">1835</div>
           <div class="timeline-text"><strong>Gründung</strong>der Schule unter dem Schutz des Marien-Patroziniums</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">1925</div>
-          <div class="timeline-text"><strong>Anerkennung</strong>als Lyzeum mit umfassendem Bildungsauftrag</div>
+          <div class="timeline-text"><strong>Lyzeum</strong>– Anerkennung mit umfassendem Bildungsauftrag</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">1985</div>
-          <div class="timeline-text"><strong>150-jähriges Jubiläum</strong>mit großem Festakt der Schulgemeinschaft</div>
+          <div class="timeline-text"><strong>150 Jahre</strong>Festakt der Schulgemeinschaft</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">2023</div>
-          <div class="timeline-text"><strong>Koedukation</strong>– seit Klasse 5 ist die Schule offen für alle</div>
+          <div class="timeline-text"><strong>Koedukation</strong>seit Klasse 5 offen für alle</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">2025</div>
-          <div class="timeline-text"><strong>190 Jahre</strong>– Jubiläumsjahr mit zahlreichen Festveranstaltungen</div>
+          <div class="timeline-text"><strong>190 Jahre</strong>Jubiläumsjahr mit zahlreichen Festen</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============== CTA BANNER / ANMELDUNG ============== -->
-<section class="cta-banner" id="anmeldung">
-  <div class="cta-banner-inner">
-    <div class="section-eyebrow" style="justify-content: center;">Anmeldung 2026/27</div>
-    <h2>Werden Sie Teil unserer <em>Schulgemeinschaft.</em></h2>
-    <p>
-      Online-Anmeldung für die 5. Klasse und die gymnasiale Oberstufe sind bereits möglich. 
-      Bei Fragen stehen wir Ihnen gern persönlich, telefonisch oder per Mail zur Verfügung.
-    </p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="#" class="btn-primary"><i data-lucide="file-text"></i> Online anmelden</a>
-      <a href="tel:0496194700" class="btn-secondary" style="background: white; border-color: var(--mg-navy); color: var(--mg-navy);">
-        <i data-lucide="phone"></i> 04961 - 94700
-      </a>
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <span class="eyebrow center">Anmeldung 2026/27</span>
+      <h2 class="display-2" style="margin: 1rem 0;">Werden Sie Teil unserer <em>Schulgemeinschaft.</em></h2>
+      <p>
+        Online-Anmeldung für die 5. Klasse und die gymnasiale Oberstufe sind bereits möglich.
+        Bei Fragen stehen wir Ihnen gern persönlich, telefonisch oder per Mail zur Verfügung.
+      </p>
+      <div class="cta-actions">
+        <a href="anmeldung.html" class="btn btn-navy"><i data-lucide="file-text"></i> Online anmelden</a>
+        <a href="tel:0496194700" class="btn btn-outline"><i data-lucide="phone"></i> 04961 - 94700</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============== FOOTER ============== -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
         <h4>Mariengymnasium Papenburg</h4>
-        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – in der Mitte Papenburgs, im Herzen des Emslands.</p>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
@@ -1648,33 +970,30 @@ section {
           <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
           <li><a href="tel:0496194700">04961 - 94700</a></li>
           <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
-          <li><a href="#">Sekretariatszeiten</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Schule</h5>
         <ul>
-          <li><a href="#">Schulprogramm</a></li>
-          <li><a href="#">Geschichte</a></li>
-          <li><a href="#">Schulleitung</a></li>
-          <li><a href="#">Kollegium</a></li>
-          <li><a href="#">Schulgeld</a></li>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Service</h5>
         <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
           <li><a href="#">Terminkalender</a></li>
           <li><a href="#">Vorlagen für Eltern</a></li>
-          <li><a href="#">Anmeldung 5. Klasse</a></li>
-          <li><a href="#">Anmeldung Oberstufe</a></li>
           <li><a href="#">IServ</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
-      <div>
+      <div class="footer-bottom-links">
         <a href="#">Impressum</a>
         <a href="#">Datenschutz</a>
         <a href="#">Kontakt</a>
@@ -1683,375 +1002,7 @@ section {
   </div>
 </footer>
 
-<script>
-// ============== ICONS INITIALISIEREN ==============
-lucide.createIcons();
-
-// ============== HEADER SCROLL ==============
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 30) header.classList.add('scrolled');
-  else header.classList.remove('scrolled');
-});
-
-// ============== MOBILE NAV ==============
-const menuToggle = document.getElementById('menuToggle');
-const mobileNav = document.getElementById('mobileNav');
-const mobileOverlay = document.getElementById('mobileOverlay');
-const mobileClose = document.getElementById('mobileClose');
-
-function openMobile() {
-  mobileNav.classList.add('active');
-  mobileOverlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeMobile() {
-  mobileNav.classList.remove('active');
-  mobileOverlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
-menuToggle.addEventListener('click', openMobile);
-mobileClose.addEventListener('click', closeMobile);
-mobileOverlay.addEventListener('click', closeMobile);
-
-/* ==========================================================================
-   📰 SCHULNEWS — DATENBANK
-   ==========================================================================
-   So fügst du einen NEUEN BEITRAG hinzu:
-   ---------------------------------------------------------------------------
-   1. Kopiere einen bestehenden Block (zwischen den geschweiften Klammern { ... })
-   2. Trage neue Werte ein:
-      - id:        Eine eindeutige Nummer (einfach hochzählen)
-      - date:      Datum im Format "TT.MM.JJJJ"
-      - dateISO:   Datum im Format "JJJJ-MM-TT" (für Sortierung)
-      - category:  Kategorie wie "schulleben", "wettbewerbe", "kultur",
-                   "sport" oder "austausch" (kleingeschrieben!)
-      - categoryLabel: Anzeige-Name der Kategorie (z. B. "Schulleben")
-      - title:     Überschrift des Beitrags
-      - excerpt:   Kurzbeschreibung (wird in der Vorschau gezeigt)
-      - content:   Vollständiger Artikeltext (HTML erlaubt: <p>, <strong>, <em>, <br>)
-      - author:    Verfasser/in (optional, z. B. Lehrkraft-Kürzel)
-      - image:     Bild-URL ODER null (dann wird Platzhalter angezeigt)
-      - featured:  true = großer Beitrag oben links (nur EINER pro Seite)
-   3. Datei abspeichern – fertig!  
-   ⚠ Wichtig: Nach jedem Eintrag MUSS ein Komma stehen (außer beim letzten).
-   ========================================================================== */
-
-const newsData = [
-  {
-    id: 1,
-    date: "23.02.2026",
-    dateISO: "2026-02-23",
-    category: "schulleben",
-    categoryLabel: "Schulleben",
-    title: "Rosenmontag am Mariengymnasium: Chaos im Comic-Universum",
-    excerpt: "Am Rosenmontag verwandelte sich das Forum in eine bunte Comic-Welt. Unter dem Motto „Chaos im Comic-Universum" feierten die Klassen 5 bis 7 ein fröhliches Karnevalsfest voller Kreativität und guter Laune.",
-    content: `<p>Am Rosenmontag verwandelte sich das Forum des Mariengymnasiums Papenburg in eine bunte Comic-Welt. Unter dem Motto <strong>„Chaos im Comic-Universum"</strong> feierten die Schülerinnen und Schüler der Klassen 5 bis 7 gemeinsam ein fröhliches Karnevalsfest voller Kreativität und guter Laune.</p>
-    <p>Ob Superhelden, Manga-Figuren oder selbst erfundene Comic-Charaktere – die fantasievollen Kostüme sorgten für staunende Gesichter. Ein besonderes Highlight war der Kostümwettbewerb, bei dem die originellsten Verkleidungen mit viel Applaus ausgezeichnet wurden. Für zusätzliche Stimmung sorgten Musik, Tanz und kleine Talente aus den Klassen.</p>
-    <p>Organisiert wurde die Feier mit Unterstützung der Lehrkräfte sowie der engagierten Schulgemeinschaft. Der Rosenmontag am Mariengymnasium zeigte einmal mehr: Wenn das Comic-Universum auf die Schule trifft, ist <strong>Chaos garantiert – aber im besten Sinne</strong>.</p>
-    <p>Helau und bis zum nächsten Jahr! 🎭</p>`,
-    author: "Schulleitung",
-    image: null,
-    featured: true
-  },
-  {
-    id: 2,
-    date: "12.02.2026",
-    dateISO: "2026-02-12",
-    category: "schulleben",
-    categoryLabel: "Schulleben",
-    title: "Ausbildung der Verkehrshelferinnen erfolgreich abgeschlossen",
-    excerpt: "25 Schülerinnen haben in diesem Jahr ihre Ausbildung zur Verkehrshelferin am Mariengymnasium erfolgreich abgeschlossen. Damit gibt es nun 126 aktive Schülerlotsen.",
-    content: `<p>In diesem Jahr haben <strong>25 Schülerinnen</strong> ihre Ausbildung zur Verkehrshelferin am Mariengymnasium erfolgreich abgeschlossen. Am Mariengymnasium gibt es damit nun <strong>126 aktive Schülerlotsen</strong>.</p>
-    <p>Die zweitägige Ausbildung begann mit einem theoretischen Teil, in dem den Schülerinnen wichtige Grundlagen zur Verkehrssicherheit vermittelt wurden. Am zweiten Tag konnten die Schülerinnen unter Anleitung des Polizisten Herrn Kammer von der Polizei Papenburg in der praktischen Ausführung am Fußgängerüberweg zeigen, was sie in der theoretischen Ausbildung gelernt haben.</p>
-    <p>Die Verkehrshelferinnen tragen durch den Lotsendienst zu einem verkehrssicheren Umfeld bei.</p>`,
-    author: "WIK",
-    image: null,
-    featured: false
-  },
-  {
-    id: 3,
-    date: "16.12.2025",
-    dateISO: "2025-12-16",
-    category: "kultur",
-    categoryLabel: "Musik & Kultur",
-    title: "Adventskonzert in St. Antonius – Musikalische Einstimmung auf Weihnachten",
-    excerpt: "Eine volle Kirche, warmes Licht, gespannte Stille – und dann die ersten Töne. Rund 300 Zuhörer*innen erlebten ein abwechslungsreiches Programm von Schulchor, Orchester und Musical-AG.",
-    content: `<p>Eine volle St.-Antonius-Kirche, warmes Licht, gespannte Stille – und dann die ersten Töne: Das Adventskonzert des Mariengymnasiums Papenburg bot auch in diesem Jahr eine stimmungsvolle und sehr persönliche Einstimmung auf die Weihnachtszeit. Rund 300 Zuhörerinnen und Zuhörer waren gekommen.</p>
-    <p>Den Auftakt gestaltete das Schulorchester <strong>„Groovin' Chicas"</strong> unter der Leitung von Jonas Gebbeken mit Musik aus Filmwelten. Anschließend setzte die Seminarfach-Band einen nachdenklichen Akzent mit eigenen Bearbeitungen der Coldplay-Songs „Yellow" und „Viva la Vida".</p>
-    <p>Mit viel Ausdruck präsentierte sich anschließend die Musical-AG unter der Leitung von Cordula Schöpper. Auch der Unterstufenchor und das Vereinigte Blechbläserensemble MGGP brachten weihnachtliche Klänge ins Kirchenschiff.</p>
-    <p>Den feierlichen Abschluss bildete die gemeinsame Darbietung der beiden Orchester aus Papenburg und Meppen mit insgesamt <strong>45 Schülerinnen und Schülern</strong>. Langer Applaus und stehende Ovationen waren der verdiente Dank.</p>`,
-    author: "Musikfachschaft",
-    image: null,
-    featured: false
-  },
-  {
-    id: 4,
-    date: "15.12.2025",
-    dateISO: "2025-12-15",
-    category: "schulleben",
-    categoryLabel: "Schulleben",
-    title: "Ein Licht für den Frieden am Mariengymnasium",
-    excerpt: "Am 15. Dezember 2025 erreichte das „Friedenslicht von Bethlehem" das Mariengymnasium Papenburg. Überbracht wurde es von der Pfadfindergemeinschaft 17+4.",
-    content: `<p>Am 15. Dezember 2025 erreichte das <strong>„Friedenslicht von Bethlehem"</strong> das Mariengymnasium Papenburg. Überbracht wurde es von der Pfadfindergemeinschaft <strong>17+4</strong>; stellvertretend kam Simon vom Pfadfinderstamm in die Schule und brachte die kleine Flamme mit großer Bedeutung mit.</p>
-    <p>In einer ruhigen, nachdenklichen Atmosphäre lasen Frau Griep-Raming und einige Schülerinnen Texte vor, die deutlich machten, wie viel Mut es braucht, um aufeinander zuzugehen, sich zu versöhnen, Frieden zu schaffen und zu sich selbst zu stehen. Die Worte gaben dem Licht eine Stimme und luden zum Innehalten ein.</p>
-    <p>Anschließend wurde das Friedenslicht an alle <strong>Klassenkerzen</strong> weitergegeben. So wird seine Botschaft nun in alle Räume des Mariengymnasiums getragen – als stilles Zeichen der Hoffnung, des Miteinanders und des Friedens im Alltag.</p>`,
-    author: "Schulpastoral",
-    image: null,
-    featured: false
-  },
-  {
-    id: 5,
-    date: "28.11.2025",
-    dateISO: "2025-11-28",
-    category: "schulleben",
-    categoryLabel: "Schulleben",
-    title: "Vortragsabend mit Bundespräsident a. D. Christian Wulff",
-    excerpt: "Christian Wulff sprach vor Schüler*innen, Eltern und Lehrkräften über Frieden, Demokratie und Europa – und appellierte an die junge Generation: „Demokratie bleibt nur stark, wenn wir sie stärken."",
-    content: `<p>Am Mariengymnasium Papenburg fand in dieser Woche ein besonderer Vortragsabend statt: Bundespräsident a. D. <strong>Christian Wulff</strong> sprach vor Schülerinnen und Schülern der Oberstufe, Eltern, Lehrkräften sowie zahlreichen Gästen über die großen Themen unserer Zeit – <strong>Frieden, Demokratie und Europa</strong>.</p>
-    <p>Zu Beginn warf Wulff einen Blick auf die vergangenen 80 Jahre – und besonders auf das Emsland. Er erinnerte daran, wie groß der Entwicklungssprung in dieser Region gewesen sei: von jahrzehntelanger materieller Not hin zu Wohlstand und wachsender gesellschaftlicher Teilhabe.</p>
-    <p>Besonders eindringlich wandte sich der ehemalige Bundespräsident an die jungen Zuhörerinnen und Zuhörer. Politik brauche Menschen, die sich einbringen – Menschen mit Haltung, Mut und Verantwortungsbewusstsein. <em>„Nichts ist von alleine gekommen"</em>, betonte Wulff. Und ebenso deutlich warnte er: <em>„Es kann sich alles auch wieder relativ schnell ändern."</em></p>
-    <p>Mit Blick auf die veränderte Medienlandschaft riet Wulff den Jugendlichen dennoch zu klassischem Lesestoff: <em>„Lesen Sie täglich die Tageszeitung. Man erfährt viel über sich selbst."</em></p>
-    <p>Der Abend endete mit langem Applaus und einer zentralen Botschaft: <strong>Demokratie bleibt nur stark, wenn wir sie stärken – miteinander, mutig und mit offenem Blick in die Zukunft.</strong></p>`,
-    author: "Schulleitung",
-    image: null,
-    featured: false
-  },
-  {
-    id: 6,
-    date: "10.11.2025",
-    dateISO: "2025-11-10",
-    category: "wettbewerbe",
-    categoryLabel: "Wettbewerbe",
-    title: "2. Schachnacht am Mariengymnasium",
-    excerpt: "Eine unheimlich spannende Nacht voller witziger Schachvarianten und kleiner Überraschungen. 25 Schüler*innen erlebten gemeinsam mit dem Schachclub Papenburg ein magisches Schachabenteuer.",
-    content: `<p>Was, wenn es in der Schule dunkel wird? Dann spielen wir trotzdem Schach! Eine unheimlich spannende Nacht voller witziger Schachvarianten und kleiner Überraschungen.</p>
-    <p>In Zusammenarbeit mit dem Schachclub Papenburg hat das Mariengymnasium eine Schachnacht der besonderen Art veranstaltet! <strong>25 Schüler und Schülerinnen</strong> aus verschiedenen Schulen erlebten einen Abend, der so spannend und mystisch war wie ein Schachzug, der über das Schicksal eines Spiels entscheidet.</p>
-    <p>Auf dem Programm standen u.a. <strong>Verrücktes Schach</strong> (eine Variante mit besonderen Figuren-Kräften), ein nächtliches Versteckspiel in der düsteren Schule, lustige Mannschaftsspiele und schließlich ein Film über das Schachwunderkind Joshua Waitzkin.</p>
-    <p>Ein großes Dankeschön geht an Schachtrainer Hermann Rogge sowie an die Organisatoren Johanna Wildermann, Nicole Tönjes, Hermann Schmitz und Lothar Siewe.</p>`,
-    author: "Schach-AG",
-    image: null,
-    featured: false
-  },
-  {
-    id: 7,
-    date: "25.09.2025",
-    dateISO: "2025-09-25",
-    category: "sport",
-    categoryLabel: "Sport",
-    title: "STADTRADELN: Mariengymnasium auf dem 3. Platz",
-    excerpt: "Etwa 100 Radelnde der Schulgemeinschaft erradelten gemeinsam 17.583 km – und sicherten sich damit den 3. Platz in der Kategorie Schulen.",
-    content: `<p>In der Zeit vom <strong>30.08. – 19.09.2025</strong> fand das diesjährige STADTRADELN statt. Auch die Schulgemeinschaft des Mariengymnasiums war mit etwa 100 Radelnden dabei.</p>
-    <p>Am Wochenende wurden auf der Nachhaltigkeitsmeile der Stadt Papenburg die besten Radergebnisse geehrt. Die Bürgermeisterin Frau Gattung überreichte den Mariengymnasium-Schülerinnen Ria Feldhaus und Theda Robben die Urkunde für den <strong>dritten Platz</strong> in der Kategorie der Schulen.</p>
-    <p>Wir haben als Schule gemeinsam <strong>17.583 km erradelt</strong> und damit einen großen Beitrag zum Klimaschutz geleistet.</p>`,
-    author: "WIK",
-    image: null,
-    featured: false
-  },
-  {
-    id: 8,
-    date: "06.09.2025",
-    dateISO: "2025-09-06",
-    category: "schulleben",
-    categoryLabel: "Schulleben",
-    title: "190 Jahre Mariengymnasium – Großes Schulfest mit der Schulgemeinschaft",
-    excerpt: "Das Mariengymnasium Papenburg feierte sein 190-jähriges Jubiläum mit einem groß angelegten Schulfest – mit Bungee-Lauf, Bubble Soccer, Kletterwand, Schach und musikalischen Highlights.",
-    content: `<p>Das Mariengymnasium Papenburg blickt stolz auf <strong>190 Jahre Bildungsgeschichte</strong> zurück – und dieses Jubiläum wurde mit einem groß angelegten Schulfest gebührend gefeiert. Bei strahlendem Sonnenschein genossen Schüler*innen, Eltern, Geschwister und Freund*innen das vielfältige Programm.</p>
-    <p>Kulinarische Köstlichkeiten wie Flammkuchen, frisch gebackene Kuchen, Popcorn, Milchshakes und Cocktails verwöhnten die Gäste. In <em>„Grandma's Kitchen"</em> konnten selbstgebackenes Brot und Marmelade erworben werden.</p>
-    <p>Für die nötige Portion Action sorgten Bungeeseil-Lauf und Bubble Soccer. Wer sich an der Kletterwand versuchte, konnte sich nicht nur einen Blick von oben verschaffen, sondern auch die Glocke läuten. Beim Stand der „Papenburger Schachtiger" konnten die Besucher*innen sogar gegen erfahrene Mitglieder des Schachclubs antreten.</p>
-    <p>Musikalisch wurde das Fest durch Schulchor und Schulorchester untermalt. Das Schulfest war nicht nur ein Rückblick auf die vergangenen 190 Jahre, sondern auch ein gelungener Auftakt in das nächste Jahrzehnt des Mariengymnasiums. (siw)</p>`,
-    author: "siw",
-    image: null,
-    featured: false
-  },
-  {
-    id: 9,
-    date: "07.05.2025",
-    dateISO: "2025-05-07",
-    category: "austausch",
-    categoryLabel: "Austausch",
-    title: "Besuch aus Italien im neuen Papenburger Rathaus",
-    excerpt: "Italienische Austauschschüler*innen aus Mottola besuchten gemeinsam mit der Partnerstufe des MG das neue Papenburger Rathaus und wurden von Bürgermeisterin Vanessa Gattung empfangen.",
-    content: `<p>Am Mittwoch, 7. Mai, besuchten italienische Austauschschülerinnen und -schüler zusammen mit der Partnerstufe des Mariengymnasiums das neue Papenburger Rathaus.</p>
-    <p>Bürgermeisterin Vanessa Gattung begrüßte die allererste Austauschklasse im neuen Staffelgeschoss des Verwaltungsgebäudes. In einem Gespräch erhielten die Gäste aus Mottola einen Einblick in die Geschichte der Fehnstadt und das Leben einer Verwaltungschefin.</p>
-    <p><em>„In den aktuellen Zeiten ist es von großer Bedeutung, Kontakte länderübergreifend zu pflegen und andere Kulturen kennenzulernen. Daher möchte ich mich für den Besuch bedanken und das Mariengymnasium für das Engagement loben, den Austausch zu seinen Partnerschulen weiter aufrechtzuerhalten"</em>, fasste Gattung zum Ende des Besuchs zusammen.</p>
-    <p>Die Schülerinnen und Schüler aus Mottola sammeln bis zu ihrer Abreise am Samstag, dem 10. Mai, weiter Eindrücke von Papenburg.</p>`,
-    author: "Austauschkoordination",
-    image: null,
-    featured: false
-  },
-  {
-    id: 10,
-    date: "26.02.2025",
-    dateISO: "2025-02-26",
-    category: "wettbewerbe",
-    categoryLabel: "Wettbewerbe",
-    title: "Schachmannschaften: Drei Bezirksmeistertitel beim Niedersächsischen Schulschach",
-    excerpt: "Beim Bezirksfinale der Region Weser-Ems sicherten sich die Mannschaften des MG in allen drei Wettkampfklassen den ersten Platz – und qualifizierten sich für die Landesmeisterschaften.",
-    content: `<p>Am 26. Februar 2025 fand in Hasbergen das Bezirksfinale der Region Weser-Ems im Niedersächsischen Schulschach-Wettbewerb statt. Insgesamt nahmen <strong>17 Schülerinnen</strong> des Mariengymnasiums an diesem spannenden Turnier teil.</p>
-    <p>In drei verschiedenen Wettkampfklassen konnten Mannschaften des Mariengymnasiums den ersten Platz und somit die Qualifikation für die anstehenden Niedersächsischen Landesmeisterschaften in Hannover sichern.</p>
-    <p><strong>Wettkampfklasse M</strong> (Jahrgang 2004 und jünger): Liv Brinker, Maya Thormann, Felicita Lege und Hannah Niehues. <strong>Wettkampfklasse M3</strong> (Jahrgang 2010): Eva Niehaus, Christine Maiwurm, Mira Fuhrig und Amy Bültjer. <strong>Wettkampfklasse M4</strong> (Jahrgang 2012): Pia Hammer, Hannah Kruse, Emma Schünemann und Emma Belling.</p>
-    <p>Mit großer Anerkennung ist das herausragende ehrenamtliche Engagement von <strong>Hermann Schmitz</strong> zu würdigen, der maßgeblich zum Erfolg unserer Schachspielerinnen beigetragen hat. (SIW)</p>`,
-    author: "SIW",
-    image: null,
-    featured: false
-  }
-];
-
-/* ==========================================================================
-   📰 NEWS-RENDERING & FILTER (NICHT BEARBEITEN)
-   ========================================================================== */
-
-let activeFilter = 'all';
-let visibleCount = 6;
-
-function getFilteredNews() {
-  const sorted = [...newsData].sort((a, b) => new Date(b.dateISO) - new Date(a.dateISO));
-  if (activeFilter === 'all') return sorted;
-  return sorted.filter(n => n.category === activeFilter);
-}
-
-function categoryColor(cat) {
-  const map = {
-    'schulleben': '#2563a8',
-    'wettbewerbe': '#c9a961',
-    'kultur': '#8b5a9f',
-    'sport': '#3a8d5e',
-    'austausch': '#d97757'
-  };
-  return map[cat] || '#0a2540';
-}
-
-function placeholderSVG(category) {
-  const icons = {
-    'schulleben': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-    'wettbewerbe': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
-    'kultur': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
-    'sport': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
-    'austausch': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>'
-  };
-  return icons[category] || icons['schulleben'];
-}
-
-function formatDate(dateStr) {
-  return dateStr;
-}
-
-function renderNews() {
-  const grid = document.getElementById('news-grid');
-  const countEl = document.getElementById('news-count');
-  const loadMoreWrap = document.getElementById('load-more-wrap');
-  const filtered = getFilteredNews();
-
-  countEl.textContent = filtered.length;
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="news-empty">
-      <p style="font-size:1.1rem;margin-bottom:0.5rem;">Keine Beiträge in dieser Kategorie gefunden.</p>
-      <p>Bitte wählen Sie einen anderen Filter.</p>
-    </div>`;
-    loadMoreWrap.style.display = 'none';
-    return;
-  }
-
-  const visible = filtered.slice(0, visibleCount);
-  grid.innerHTML = visible.map((n, idx) => {
-    const isFeatured = n.featured && activeFilter === 'all' && idx === 0;
-    const cardClass = isFeatured ? 'news-card news-card-featured' : 'news-card';
-    const catColor = categoryColor(n.category);
-    const imgContent = n.image
-      ? `<img src="${n.image}" alt="${n.title}">`
-      : `<div class="news-image-placeholder">${placeholderSVG(n.category)}</div>`;
-
-    return `
-      <article class="${cardClass}" data-id="${n.id}" onclick="openNews(${n.id})">
-        <div class="news-image" style="background: linear-gradient(135deg, ${catColor}dd, ${catColor}99);">
-          <span class="news-category" style="background: ${catColor}; color: white;">${n.categoryLabel}</span>
-          ${imgContent}
-        </div>
-        <div class="news-content">
-          <div class="news-meta">
-            <span><i data-lucide="calendar"></i> ${formatDate(n.date)}</span>
-            ${n.author ? `<span><i data-lucide="user"></i> ${n.author}</span>` : ''}
-          </div>
-          <h3>${n.title}</h3>
-          <p class="news-excerpt">${n.excerpt}</p>
-          <span class="news-link">Weiterlesen <i data-lucide="arrow-right"></i></span>
-        </div>
-      </article>
-    `;
-  }).join('');
-
-  // Lade-Button
-  if (filtered.length > visibleCount) {
-    loadMoreWrap.style.display = 'block';
-  } else {
-    loadMoreWrap.style.display = 'none';
-  }
-
-  lucide.createIcons();
-}
-
-function openNews(id) {
-  const n = newsData.find(x => x.id === id);
-  if (!n) return;
-  const modal = document.getElementById('newsModal');
-  const catColor = categoryColor(n.category);
-
-  document.getElementById('modalTitle').textContent = n.title;
-  document.getElementById('modalText').innerHTML = n.content;
-  document.getElementById('modalMeta').innerHTML = `
-    <span style="background:${catColor}; color:white; padding: 0.25rem 0.75rem; border-radius: 4px; font-weight:600; font-size:0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">${n.categoryLabel}</span>
-    <span><i data-lucide="calendar"></i> ${n.date}</span>
-    ${n.author ? `<span><i data-lucide="user"></i> ${n.author}</span>` : ''}
-  `;
-
-  const imgEl = document.getElementById('modalImage');
-  if (n.image) {
-    imgEl.style.background = `linear-gradient(135deg, ${catColor}, ${catColor}aa)`;
-    imgEl.innerHTML = `<img src="${n.image}" alt="${n.title}">`;
-  } else {
-    imgEl.style.background = `linear-gradient(135deg, ${catColor} 0%, ${catColor}88 100%)`;
-    imgEl.innerHTML = `<div style="position:absolute; inset:0; display:grid; place-items:center; color: rgba(255,255,255,0.3);">${placeholderSVG(n.category).replace('width="64" height="64"', '').replace('viewBox="0 0 24 24"', 'viewBox="0 0 24 24" width="80" height="80"')}</div>`;
-  }
-
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  lucide.createIcons();
-}
-
-function closeNewsModal() {
-  document.getElementById('newsModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('modalClose').addEventListener('click', closeNewsModal);
-document.getElementById('newsModal').addEventListener('click', (e) => {
-  if (e.target.id === 'newsModal') closeNewsModal();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeNewsModal();
-});
-
-// Filter
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    visibleCount = 6;
-    renderNews();
-  });
-});
-
-// Load more
-document.getElementById('load-more-btn').addEventListener('click', () => {
-  visibleCount += 6;
-  renderNews();
-});
-
-// Initial render
-renderNews();
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
 </body>
 </html>
