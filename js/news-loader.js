@@ -1,5 +1,9 @@
 (() => {
-  const NEWS_URL = 'news/news.json';
+  // Liest entweder news/news.json (alt) oder news/beitraege/index.json (neu, von Decap)
+  // Fällt automatisch auf das andere zurück, wenn eines fehlt.
+  const NEWS_INDEX_NEW = 'news/beitraege/index.json';
+  const NEWS_LEGACY    = 'news/news.json';
+  const BEITRAG_FOLDER = 'news/beitraege/';
   const PLACEHOLDER_SVG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000"><rect width="1600" height="1000" fill="#003149"/><circle cx="1270" cy="220" r="220" fill="#feea00" opacity=".18"/><text x="120" y="520" fill="#feea00" font-family="Arial" font-size="84" font-weight="700">Aktuelles</text><text x="120" y="620" fill="#fff" font-family="Arial" font-size="42">Mariengymnasium Papenburg</text></svg>`);
 
   let newsData = [];
@@ -17,17 +21,75 @@
   const sortedNews = () => [...newsData].sort((a,b) => dateValue(b) - dateValue(a));
   const imgTag = (item, attrs = '') => `<img src="${escapeHtml(item.bild || PLACEHOLDER_SVG)}" alt="${escapeHtml(item.titel || 'Aktuelles')}" onerror="this.onerror=null;this.src='${PLACEHOLDER_SVG}'" ${attrs}>`;
 
+  // Konvertiert Markdown (von Decap) zu HTML, falls nötig
+  // Sehr einfache Konvertierung – reicht für Absätze, Überschriften, Listen, Fett/Kursiv
+  function markdownToHtml(md) {
+    if (!md) return '';
+    // Schon HTML? Dann unverändert lassen.
+    if (/<(p|h[1-6]|ul|ol|div|article)\b/i.test(md)) return md;
+    let html = String(md);
+    // Überschriften
+    html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^# (.+)$/gm, '<h2>$1</h2>');
+    // Fett, kursiv
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    // Links
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    // Listen
+    html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>[\s\S]+?<\/li>)/g, '<ul>$1</ul>').replace(/<\/ul>\s*<ul>/g, '');
+    // Absätze (Doppelte Zeilenumbrüche)
+    html = html.split(/\n\s*\n/).map(block => {
+      block = block.trim();
+      if (!block) return '';
+      if (/^<(h[1-6]|ul|ol|li|p|div)/i.test(block)) return block;
+      return '<p>' + block.replace(/\n/g, '<br>') + '</p>';
+    }).join('\n');
+    return html;
+  }
+
   async function loadNews() {
+    // Erst neue Struktur (einzelne Dateien + index) versuchen
     try {
-      const res = await fetch(NEWS_URL, { cache: 'no-store' });
+      const idxRes = await fetch(NEWS_INDEX_NEW, { cache: 'no-store' });
+      if (idxRes.ok) {
+        const idx = await idxRes.json();
+        const files = Array.isArray(idx) ? idx : (Array.isArray(idx.beitraege) ? idx.beitraege : []);
+        if (files.length) {
+          // Jeden einzelnen Beitrag laden
+          const items = await Promise.all(files.map(async f => {
+            try {
+              const r = await fetch(BEITRAG_FOLDER + f, { cache: 'no-store' });
+              if (!r.ok) return null;
+              return await r.json();
+            } catch { return null; }
+          }));
+          newsData = items.filter(Boolean).map(item => ({
+            ...item,
+            inhalt: markdownToHtml(item.inhalt)
+          }));
+          return;
+        }
+      }
+    } catch (e) { /* Fallback unten */ }
+
+    // Fallback: alte zentrale news.json
+    try {
+      const res = await fetch(NEWS_LEGACY, { cache: 'no-store' });
       if (!res.ok) throw new Error('news.json konnte nicht geladen werden');
       const data = await res.json();
-      newsData = Array.isArray(data) ? data : (Array.isArray(data.beitraege) ? data.beitraege : []);
+      const items = Array.isArray(data) ? data : (Array.isArray(data.beitraege) ? data.beitraege : []);
+      newsData = items.map(item => ({
+        ...item,
+        inhalt: markdownToHtml(item.inhalt)
+      }));
     } catch (err) {
       console.warn(err);
       newsData = [];
       document.querySelectorAll('#homepage-news, #news-grid, #featured-container').forEach(el => {
-        el.innerHTML = `<div class="empty-state-news"><h3>Aktuelles konnte nicht geladen werden</h3><p>Bitte prüfen: Liegt die Datei <code>news/news.json</code> auf dem Server?</p></div>`;
+        el.innerHTML = `<div class="empty-state-news"><h3>Aktuelles konnte nicht geladen werden</h3><p>Bitte prüfen: Liegt die Datei <code>news/news.json</code> oder <code>news/beitraege/index.json</code> auf dem Server?</p></div>`;
       });
     }
   }
