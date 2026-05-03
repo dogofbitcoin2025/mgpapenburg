@@ -1,0 +1,35 @@
+[
+  {
+    "id": "rosenmontag-2026",
+    "datum": "2026-03-01",
+    "autor": "Schulleitung",
+    "kategorie": "schulleben",
+    "kategorieLabel": "Schulleben",
+    "titel": "Rosenmontag im Comic-Universum",
+    "vorschau": "Das Forum verwandelte sich in eine bunte Comic-Welt. Die Klassen 5 bis 7 feierten ein fröhliches Karnevalsfest.",
+    "bild": "news/bilder/rosenmontag-2026.svg",
+    "inhalt": "<p>Das Forum verwandelte sich in eine bunte Comic-Welt. Mit Kostümen, Musik und guter Laune wurde der Rosenmontag zu einem besonderen Erlebnis für die Klassen 5 bis 7.</p><p>Ein herzliches Dankeschön gilt allen, die diesen Vormittag vorbereitet und begleitet haben.</p>"
+  },
+  {
+    "id": "adventskonzert-2025",
+    "datum": "2025-12-16",
+    "autor": "Musikfachschaft",
+    "kategorie": "kultur",
+    "kategorieLabel": "Kultur",
+    "titel": "Adventskonzert in St. Antonius",
+    "vorschau": "Schulorchester, Chor und Solobeiträge sorgten für einen stimmungsvollen Abend in der Adventszeit.",
+    "bild": "news/bilder/adventskonzert-2025.svg",
+    "inhalt": "<p>Das Adventskonzert gehört zu den musikalischen Höhepunkten des Schuljahres. Auch in diesem Jahr wurde die Kirche St. Antonius mit Musik und besonderer Atmosphäre erfüllt.</p>"
+  },
+  {
+    "id": "schachmeister-2025",
+    "datum": "2025-02-10",
+    "autor": "Schach-AG",
+    "kategorie": "wettbewerbe",
+    "kategorieLabel": "Wettbewerbe",
+    "titel": "Schach-Bezirksmeister in drei Klassen",
+    "vorschau": "Beim Bezirksfinale Weser-Ems sicherte sich das MG den Titel in allen drei Wettkampfklassen.",
+    "bild": "news/bilder/schachmeister-2025.svg",
+    "inhalt": "<p>Unsere Schachteams zeigten beim Bezirksfinale starke Leistungen und konnten sich in mehreren Wettkampfklassen durchsetzen.</p>"
+  }
+]
