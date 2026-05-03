@@ -434,6 +434,181 @@ body { background: var(--mg-paper); }
   .download-tabs { display: grid; grid-template-columns: 1fr 1fr; }
   .download-tab { padding: .72rem .7rem; }
 }
+
+/* OBERSTUFE – transparenter Prozess als modernes Schaubild */
+.upperstage-roadmap {
+  position: relative;
+  max-width: 1180px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+}
+.upperstage-roadmap::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 8%;
+  right: 8%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--mg-yellow), rgba(254,234,0,.35));
+  border-radius: 999px;
+  z-index: 0;
+}
+.roadmap-step {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, #fff 0%, #fffdf0 100%);
+  border: 1px solid var(--mg-gray-200);
+  border-radius: 30px;
+  padding: 1.4rem;
+  box-shadow: 0 18px 45px rgba(0,31,48,.06);
+  min-height: 395px;
+  display: flex;
+  flex-direction: column;
+}
+.roadmap-badge {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  background: var(--mg-blue-deep);
+  color: var(--mg-yellow);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 14px 28px rgba(0,31,48,.18);
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+.roadmap-badge span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.roadmap-badge i,
+.roadmap-badge svg {
+  width: 22px;
+  height: 22px;
+  margin-top: .25rem;
+}
+.roadmap-kicker {
+  display: inline-block;
+  color: var(--mg-text-soft);
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: .45rem;
+}
+.roadmap-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: var(--mg-blue-deep);
+  line-height: 1.15;
+  margin-bottom: .7rem;
+}
+.roadmap-content p {
+  color: var(--mg-text-soft);
+  line-height: 1.52;
+  font-size: .94rem;
+  margin-bottom: .85rem;
+}
+.roadmap-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: .42rem;
+}
+.roadmap-content li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--mg-text);
+  font-size: .86rem;
+  line-height: 1.35;
+}
+.roadmap-content li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--mg-yellow);
+  position: absolute;
+  left: 0;
+  top: .45em;
+}
+.upperstage-explain-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr .85fr .85fr;
+  gap: 1.1rem;
+}
+.upperstage-explain-card {
+  background: #fff;
+  border: 1px solid var(--mg-gray-200);
+  border-radius: 28px;
+  padding: 1.45rem;
+  box-shadow: 0 14px 34px rgba(0,31,48,.05);
+}
+.upperstage-explain-card.highlight-card {
+  background: var(--mg-blue-deep);
+  color: #fff;
+}
+.explain-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: var(--mg-yellow);
+  color: var(--mg-blue-deep);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+}
+.explain-icon svg { width: 25px; height: 25px; stroke-width: 2; }
+.upperstage-explain-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--mg-blue-deep);
+  line-height: 1.2;
+  margin-bottom: .55rem;
+}
+.upperstage-explain-card.highlight-card h3 { color: #fff; }
+.upperstage-explain-card p {
+  color: var(--mg-text-soft);
+  line-height: 1.58;
+  margin: 0;
+  font-size: .94rem;
+}
+.upperstage-explain-card.highlight-card p { color: rgba(255,255,255,.82); }
+.pfach-grid {
+  margin-top: 1.1rem;
+  display: grid;
+  gap: .45rem;
+}
+.pfach-grid span {
+  display: block;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 14px;
+  padding: .55rem .7rem;
+  color: rgba(255,255,255,.9);
+  font-size: .86rem;
+}
+.pfach-grid strong { color: var(--mg-yellow); }
+.process-note { margin-top: 2rem; }
+@media (max-width: 1180px) {
+  .upperstage-roadmap { grid-template-columns: repeat(2, 1fr); }
+  .upperstage-roadmap::before { display: none; }
+  .roadmap-step { min-height: auto; }
+  .upperstage-explain-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .upperstage-roadmap, .upperstage-explain-grid { grid-template-columns: 1fr; }
+  .roadmap-step { padding: 1.15rem; border-radius: 24px; }
+  .roadmap-badge { width: 66px; height: 66px; border-radius: 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -649,57 +824,7 @@ body { background: var(--mg-paper); }
       </div>
 
       <div class="download-list">
-        <article class="download-item" data-stage="oberstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Allgemeines zur Oberstufe</div>
-            <div class="download-desc">Kompakte Übersicht zu Einführungsphase, Qualifikationsphase und Abitur am Mariengymnasium.</div>
-            <div class="download-meta"><span class="download-badge">Oberstufe</span><span class="download-badge">Jg. 11–13</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/oberstufe/allgemeines-zur-oberstufe.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="oberstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Informationen zur Einführungsphase</div>
-            <div class="download-desc">Jahrgang 11 als Brücke zur Qualifikationsphase: Fächer, Fremdsprachen, Bewertungsskala und Sozialpraktikum.</div>
-            <div class="download-meta"><span class="download-badge">Oberstufe</span><span class="download-badge">Jg. 11</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/oberstufe/einfuehrungsphase.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="oberstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Informationen zur Qualifikationsphase</div>
-            <div class="download-desc">Profile, Prüfungsfächer, Seminarfach und Facharbeit in den Jahrgängen 12 und 13.</div>
-            <div class="download-meta"><span class="download-badge">Oberstufe</span><span class="download-badge">Jg. 12–13</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/oberstufe/qualifikationsphase.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="oberstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Informationen zur Abiturprüfung</div>
-            <div class="download-desc">Zulassung, schriftliche und mündliche Prüfungen, Präsentationsprüfung und Nachprüfungsmöglichkeiten.</div>
-            <div class="download-meta"><span class="download-badge">Oberstufe</span><span class="download-badge">Abitur</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/oberstufe/abiturpruefung.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="oberstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulabschlüsse</div>
-            <div class="download-desc">Erweiterter Sekundarabschluss I, schulischer Teil der Fachhochschulreife und Allgemeine Hochschulreife.</div>
-            <div class="download-meta"><span class="download-badge">Oberstufe</span><span class="download-badge">Abschlüsse</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/oberstufe/schulabschluesse.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="unterstufe">
+<article class="download-item" data-stage="unterstufe">
           <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
           <div>
             <div class="download-title">Schulbuchliste Klasse 5</div>
@@ -958,81 +1083,118 @@ body { background: var(--mg-paper); }
 </section>
 
 
-<!-- OBERSTUFE: SCHAUBILD & KOMPAKTE INFORMATIONEN -->
+<!-- OBERSTUFE: TRANSPARENTER PROZESS OHNE PDFS -->
 <section class="section-pad upperstage-section" id="oberstufe-infos">
   <div class="container">
     <div class="intro-copy">
-      <span class="eyebrow center">Oberstufe</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Der Weg zum <em>Abitur.</em></h2>
+      <span class="eyebrow center">Oberstufe transparent</span>
+      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Der Weg durch die <em>Oberstufe.</em></h2>
       <p>
-        Die Oberstufe besteht aus Einführungsphase, Qualifikationsphase und Abiturprüfung. Das neue Schaubild macht die wichtigsten Schritte sichtbar und fasst die Inhalte der bisherigen Oberstufen-Seiten kompakt zusammen.
+        Statt viele einzelne PDF-Seiten zu verstecken, zeigt dieser Bereich den gesamten Prozess von Jahrgang 11 bis zum Abschluss: verständlich, visuell und direkt auf der Seite.
       </p>
     </div>
 
-    <div class="upperstage-flow" aria-label="Schaubild: Weg durch die Oberstufe">
-      <article class="upperstage-step" data-step="11">
-        <h3>Einführungsphase</h3>
-        <p>Jahrgang 11 bildet die Brücke von der Mittelstufe zur Qualifikationsphase – mit Klassenverband, neuen Arbeitsweisen und Orientierung.</p>
+    <div class="upperstage-roadmap" aria-label="Schaubild: Ablauf der gymnasialen Oberstufe">
+      <article class="roadmap-step phase-11">
+        <div class="roadmap-badge"><span>11</span><i data-lucide="compass"></i></div>
+        <div class="roadmap-content">
+          <span class="roadmap-kicker">Einführungsphase</span>
+          <h3>Orientieren & ankommen</h3>
+          <p>Jahrgang 11 bleibt im Klassenverband und führt in Methoden, Operatoren, Medien und Arbeitsweisen der Oberstufe ein.</p>
+          <ul>
+            <li>neue Klassengemeinschaften</li>
+            <li>15-Punkte-Bewertung</li>
+            <li>Fremdsprachenwahl & Beratung</li>
+            <li>Sozialpraktikum</li>
+          </ul>
+        </div>
       </article>
-      <article class="upperstage-step" data-step="12">
-        <h3>Qualifikationsphase I</h3>
-        <p>Start des Kurssystems: Profile, Kurse auf erhöhtem und grundlegendem Niveau sowie Seminarfach prägen den Stundenplan.</p>
+
+      <article class="roadmap-step phase-12">
+        <div class="roadmap-badge"><span>12</span><i data-lucide="route"></i></div>
+        <div class="roadmap-content">
+          <span class="roadmap-kicker">Qualifikationsphase I</span>
+          <h3>Profile & Kurse wählen</h3>
+          <p>In Jahrgang 12 beginnt das Kurssystem. Die Profilwahl setzt den Schwerpunkt für die beiden letzten Schuljahre.</p>
+          <ul>
+            <li>3 Fächer auf erhöhtem Niveau</li>
+            <li>2 weitere Prüfungsfächer</li>
+            <li>Profile: sprachlich, gesellschaftlich, naturwissenschaftlich, musisch-künstlerisch</li>
+            <li>Start des Seminarfachs</li>
+          </ul>
+        </div>
       </article>
-      <article class="upperstage-step" data-step="13">
-        <h3>Qualifikationsphase II</h3>
-        <p>Die Halbjahresergebnisse fließen in die Gesamtqualifikation ein. Beratung und transparente Kursplanung geben Sicherheit.</p>
+
+      <article class="roadmap-step phase-13">
+        <div class="roadmap-badge"><span>13</span><i data-lucide="layers-3"></i></div>
+        <div class="roadmap-content">
+          <span class="roadmap-kicker">Qualifikationsphase II</span>
+          <h3>Leistungen einbringen</h3>
+          <p>Die vier Kurshalbjahre der Qualifikationsphase bilden Block I der Gesamtqualifikation.</p>
+          <ul>
+            <li>32 bis 36 Halbjahresnoten</li>
+            <li>Facharbeit im Seminarfach</li>
+            <li>Beratung zur Zulassung</li>
+            <li>Prüfungsplanung P1 bis P5</li>
+          </ul>
+        </div>
       </article>
-      <article class="upperstage-step" data-step="P1–P5">
-        <h3>Abiturprüfung</h3>
-        <p>Die Prüfungsfächer P1 bis P5 münden in schriftliche und mündliche Prüfungen – transparent vorbereitet und begleitet.</p>
-      </article>
-      <article class="upperstage-step" data-step="✓">
-        <h3>Abschluss</h3>
-        <p>Je nach Verlauf sind der Erweiterte Sekundarabschluss I, der schulische Teil der Fachhochschulreife und das Abitur relevant.</p>
+
+      <article class="roadmap-step phase-abi">
+        <div class="roadmap-badge"><span>ABI</span><i data-lucide="graduation-cap"></i></div>
+        <div class="roadmap-content">
+          <span class="roadmap-kicker">Abiturprüfung</span>
+          <h3>Prüfen & abschließen</h3>
+          <p>Die Abiturprüfung bildet Block II. Sie besteht aus vier schriftlichen Prüfungen und einer mündlichen Prüfung.</p>
+          <ul>
+            <li>P1 bis P4: schriftlich</li>
+            <li>P5: mündlich oder Präsentationsprüfung</li>
+            <li>Nachprüfungsmöglichkeiten</li>
+            <li>Allgemeine Hochschulreife</li>
+          </ul>
+        </div>
       </article>
     </div>
 
-    <div class="upperstage-grid">
-      <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="map"></i></div>
-        <div>
-          <h3>Allgemeines</h3>
-          <p>Jahrgang 11 führt in Methoden, Operatoren, Medien und Arbeitsfelder der Oberstufe ein. In den Jahrgängen 12 und 13 folgt der Unterricht im Kurssystem.</p>
-          <ul><li>Jg. 11 als Brückenjahr</li><li>Qualifikationsphase mit Profil- und Kurswahl</li><li>Prüfungsfächer P1 bis P5</li></ul>
+    <div class="upperstage-explain-grid">
+      <article class="upperstage-explain-card highlight-card">
+        <div class="explain-icon"><i data-lucide="git-branch"></i></div>
+        <h3>Wie hängen P1 bis P5 zusammen?</h3>
+        <p>Die drei Fächer auf erhöhtem Niveau bilden P1, P2 und P3. Dazu kommen zwei weitere Prüfungsfächer auf grundlegendem Niveau: P4 und P5.</p>
+        <div class="pfach-grid" aria-label="Prüfungsfächer P1 bis P5">
+          <span><strong>P1</strong> schriftlich · erhöht</span>
+          <span><strong>P2</strong> schriftlich · erhöht</span>
+          <span><strong>P3</strong> schriftlich · erhöht</span>
+          <span><strong>P4</strong> schriftlich · grundlegend</span>
+          <span><strong>P5</strong> mündlich · grundlegend</span>
         </div>
       </article>
-      <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="book-open-check"></i></div>
-        <div>
-          <h3>Einführungsphase</h3>
-          <p>Die Klassen werden in der Regel neu zusammengesetzt. Englisch bleibt Pflichtfremdsprache; fortgeführte oder neu beginnende Fremdsprachen sind wichtige Wahlbausteine.</p>
-          <ul><li>neue Klassengemeinschaften</li><li>Bewertung mit 15-Punkte-System</li><li>Sozialpraktikum in Jahrgang 11</li></ul>
-        </div>
+
+      <article class="upperstage-explain-card">
+        <div class="explain-icon"><i data-lucide="book-open-check"></i></div>
+        <h3>Was ist in Jahrgang 11 wichtig?</h3>
+        <p>Die Einführungsphase bereitet fachlich und methodisch auf die Qualifikationsphase vor. Besonders wichtig sind Fremdsprachen, das Punktesystem und die Versetzung.</p>
       </article>
-      <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="workflow"></i></div>
-        <div>
-          <h3>Qualifikationsphase</h3>
-          <p>Die Schülerinnen und Schüler wählen drei Kurse auf erhöhtem Niveau und zwei weitere Prüfungsfächer. Regelmäßig angeboten werden sprachliche, gesellschaftswissenschaftliche, naturwissenschaftliche und musisch-künstlerische Profile.</p>
-          <ul><li>drei Fächer auf erhöhtem Niveau</li><li>fünf Prüfungsfächer insgesamt</li><li>Seminarfach und Facharbeit</li></ul>
-        </div>
+
+      <article class="upperstage-explain-card">
+        <div class="explain-icon"><i data-lucide="shapes"></i></div>
+        <h3>Was passiert in Jahrgang 12/13?</h3>
+        <p>Die Schülerinnen und Schüler arbeiten im Kurssystem. Die Ergebnisse der vier Halbjahre fließen in die Gesamtqualifikation ein.</p>
       </article>
-      <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="badge-check"></i></div>
-        <div>
-          <h3>Abitur & Abschlüsse</h3>
-          <p>Die Zulassung erfolgt nach vier Kurshalbjahren. Das Abitur setzt sich aus den Leistungen der Qualifikationsphase und den Prüfungsergebnissen zusammen.</p>
-          <ul><li>32 bis 36 Halbjahresnoten</li><li>schriftliche und mündliche Prüfungen</li><li>Fachhochschulreife und Allgemeine Hochschulreife</li></ul>
-        </div>
+
+      <article class="upperstage-explain-card">
+        <div class="explain-icon"><i data-lucide="award"></i></div>
+        <h3>Welche Abschlüsse sind möglich?</h3>
+        <p>Der Erweiterte Sekundarabschluss I steht am Ende von Klasse 10. In der Qualifikationsphase können der schulische Teil der Fachhochschulreife und am Ende das Abitur erreicht werden.</p>
       </article>
     </div>
 
-    <div class="upperstage-note">
+    <div class="upperstage-note process-note">
       <div>
-        <h3>Alle Oberstufen-Materialien gesammelt</h3>
-        <p>Die PDF-Dateien werden lokal im Ordner <strong>downloads/oberstufe/</strong> gepflegt. So bleibt die Seite übersichtlich und die Materialien lassen sich später einfach austauschen.</p>
+        <h3>Transparenz statt Dokumenten-Dschungel</h3>
+        <p>Die zentralen Informationen zur Oberstufe stehen direkt auf dieser Seite. Im Download-Center bleiben nur Materialien, die wirklich als Datei benötigt werden, zum Beispiel Schulbuchlisten.</p>
       </div>
-      <a href="#downloads" class="download-btn" data-filter-link="oberstufe"><i data-lucide="download"></i> Oberstufen-Downloads</a>
+      <a href="#downloads" class="download-btn" data-filter-link="oberstufe"><i data-lucide="download"></i> Schulbuchliste ansehen</a>
     </div>
   </div>
 </section>
