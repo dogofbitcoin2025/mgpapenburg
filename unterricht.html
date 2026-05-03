@@ -29,25 +29,31 @@ body { background: var(--mg-paper); }
   z-index: 12;
 }
 .quick-jump-inner {
-  max-width: var(--max-content);
+  width: min(100%, 1480px);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 3vw, 2rem);
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 }
 .quick-card {
   background: #fff;
   border: 1px solid var(--mg-gray-200);
   border-radius: 22px;
-  padding: 1.25rem;
+  padding: 1.15rem 1.2rem;
   text-decoration: none;
   color: var(--mg-navy);
   box-shadow: 0 18px 45px rgba(0, 31, 48, 0.12);
   display: flex;
   align-items: center;
-  gap: .9rem;
+  gap: .95rem;
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  overflow: visible;
+  min-width: 0;
+}
+.quick-card > span:last-child {
+  min-width: 0;
+  line-height: 1.25;
 }
 .quick-card:hover { transform: translateY(-4px); border-color: var(--mg-gold); box-shadow: 0 24px 58px rgba(0, 31, 48, 0.16); }
 .quick-card-icon {
@@ -61,8 +67,16 @@ body { background: var(--mg-paper); }
 }
 .quick-card-icon svg { width: 22px; height: 22px; }
 .quick-card-icon img, .stage-card-icon img, .philosophy-icon img, .download-file-icon img, .mobility-intro-icon img, .mobility-card-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.quick-card strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1rem; }
+.quick-card strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(.95rem, 1.05vw, 1.08rem);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 .quick-card span { display: block; font-size: .82rem; color: var(--mg-text-soft); margin-top: .15rem; }
+.quick-card-icon { flex: 0 0 auto; }
 
 .section-pad { padding: 5.5rem 0; }
 .section-pad.tight { padding-top: 4rem; }
@@ -494,18 +508,18 @@ body { background: var(--mg-paper); }
 .mobility-list li { position: relative; padding-left: 1rem; color: var(--mg-text); font-size: .92rem; line-height: 1.45; }
 .mobility-list li::before { content: ''; width: 6px; height: 6px; border-radius: 999px; background: var(--mg-yellow); position: absolute; left: 0; top: .55em; }
 .mobility-link { margin-top: auto; align-self: flex-start; }
-@media (max-width: 1100px) { .quick-jump-inner { grid-template-columns: repeat(3, 1fr); } .mobility-shell { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .quick-jump-inner { grid-template-columns: repeat(2, minmax(240px, 1fr)); } .mobility-shell { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .mobility-cards { grid-template-columns: 1fr; } }
 
 @media (max-width: 1024px) {
-  .quick-jump-inner { grid-template-columns: repeat(2, 1fr); }
+ .quick-jump-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stage-columns { grid-template-columns: 1fr; }
   .stage-card { max-width: 760px; margin: 0 auto; width: 100%; }
   .philosophy-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   .page-hero.compact-hero { min-height: 390px; }
-  .quick-jump-inner { grid-template-columns: 1fr; padding: 0 1rem; }
+ .quick-jump-inner { grid-template-columns: 1fr; padding: 0 1rem; }
   .section-pad { padding: 4rem 0; }
   .stage-card-head, .stage-card-body { padding-left: 1.25rem; padding-right: 1.25rem; }
   .download-item { grid-template-columns: 46px 1fr; align-items: start; }
