@@ -99,15 +99,42 @@
 .bso-date span { color: var(--mg-text-soft); font-size: 0.86rem; }
 .bso-materials { background: white; }
 .bso-material-card {
-  background: var(--mg-paper); border: 1px solid var(--mg-gray-200); border-radius: var(--radius-lg); padding: 1.4rem;
-  display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+  background: var(--mg-paper);
+  border: 1px solid var(--mg-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.35rem;
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
-.bso-material-card h3 { color: var(--mg-blue); font-size: 1.05rem; margin-bottom: 0.25rem; }
-.bso-material-card p { color: var(--mg-text-soft); font-size: 0.92rem; }
+.bso-material-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(254,234,0,0.9);
+  box-shadow: var(--shadow-md);
+}
+.bso-material-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--mg-yellow);
+  color: var(--mg-blue-deep);
+  display: grid;
+  place-items: center;
+}
+.bso-material-icon svg { width: 24px; height: 24px; }
+.bso-material-card h3 { color: var(--mg-blue); font-size: 1.05rem; margin-bottom: 0.25rem; line-height: 1.25; }
+.bso-material-card p { color: var(--mg-text-soft); font-size: 0.92rem; line-height: 1.45; }
 .bso-material-list { display: grid; gap: 1rem; margin-top: 2rem; }
 @media (max-width: 1050px) { .bso-timeline { grid-template-columns: repeat(2, 1fr); } .bso-timeline::before { display: none; } .bso-date-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 760px) { .bso-grid, .bso-contact-panel { grid-template-columns: 1fr; } .bso-info-card { grid-template-columns: 1fr; } .bso-timeline { grid-template-columns: 1fr; } .bso-date-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 520px) { .bso-date-grid { grid-template-columns: 1fr; } .bso-material-card { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 520px) {
+  .bso-date-grid { grid-template-columns: 1fr; }
+  .bso-material-card { grid-template-columns: 44px 1fr; align-items: flex-start; }
+  .bso-material-card .btn { grid-column: 1 / -1; width: 100%; justify-content: center; }
+  .bso-material-icon { width: 44px; height: 44px; border-radius: 14px; }
+}
 .btn-disabled { opacity: 0.58; cursor: not-allowed; pointer-events: none; }
 </style>
 </head>
@@ -313,14 +340,67 @@
 <section class="bso-materials" id="materialien">
   <div class="container">
     <div class="section-header reveal">
-      <span class="eyebrow">Materialien</span>
-      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Downloads zur <em>Orientierung.</em></h2>
-      <p class="lead">Die Materialien liegen lokal im Ordner <code>downloads/berufsorientierung/</code>. Lege die PDFs dort mit exakt diesen Dateinamen ab.</p>
+      <span class="eyebrow">Tipps &amp; Materialien</span>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Downloads zur <em>Berufsberatung.</em></h2>
+      <p class="lead">Alle Materialien werden lokal im Ordner <code>downloads/berufsorientierung/</code> abgelegt. So bleibt die neue Seite unabhängig von der alten Homepage.</p>
     </div>
     <div class="bso-material-list reveal">
-      <div class="bso-material-card"><div><h3>Check deinen Lerntyp</h3><p>Selbsterkundung und Reflexion für die Oberstufe.</p></div><span class="btn btn-outline btn-disabled">PDF lokal ablegen</span></div>
-      <div class="bso-material-card"><div><h3>Anmeldebogen Berufsberatung</h3><p>Formular für die individuelle Beratung.</p></div><span class="btn btn-outline btn-disabled">PDF lokal ablegen</span></div>
-      <div class="bso-material-card"><div><h3>Tipps & Hilfen im Internet</h3><p>Hilfreiche Rechercheangebote zur Studien- und Berufswahl.</p></div><span class="btn btn-outline btn-disabled">PDF lokal ablegen</span></div>
+      <a class="bso-material-card" href="downloads/berufsorientierung/tipps-und-hilfen-im-internet.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>Tipps & Hilfen im Internet</h3>
+          <p>Hilfreiche Rechercheangebote zur Studien- und Berufswahl.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
+      <a class="bso-material-card" href="downloads/berufsorientierung/anmeldebogen-berufsberatung.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>Anmeldebogen Berufsberatung</h3>
+          <p>Formular für die individuelle Beratung durch die Berufsberatung.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
+      <a class="bso-material-card" href="downloads/berufsorientierung/praesentation-einstieg-berufsberatung-klasse-10.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>Präsentation Einstieg Berufsberatung in den 10. Klassen</h3>
+          <p>Einführung in die Berufsorientierung für Jahrgang 10.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
+      <a class="bso-material-card" href="downloads/berufsorientierung/rom-berlin-paris-uni-fh-ausbildung-jg11.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>„Rom Berlin Paris – Uni FH Ausbildung“ in den 11. Klassen</h3>
+          <p>Material zur Orientierung in Jahrgang 11: Wege, Möglichkeiten und Entscheidungen.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
+      <a class="bso-material-card" href="downloads/berufsorientierung/angebote-elternabend-jahrgang-11.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>Vorstellung der Angebote auf Elternabend im Jahrgang 11</h3>
+          <p>Überblick für Eltern zu Angeboten, Beratung und Orientierung in Jahrgang 11.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
+      <a class="bso-material-card" href="downloads/berufsorientierung/wege-nach-dem-abitur-jahrgang-12.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>Wege nach dem Abitur am Mariengymnasium im Jahrgang 12</h3>
+          <p>Material zur Studien- und Berufsorientierung in Jahrgang 12.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
+      <a class="bso-material-card" href="downloads/berufsorientierung/sftb-studium-jahrgang-13.pdf" download>
+        <div class="bso-material-icon"><i data-lucide="file-down"></i></div>
+        <div>
+          <h3>Überlegungen zum Studium / Angebot SFTB im Jahrgang 13</h3>
+          <p>Informationen zum Studienfeldbezogenen Beratungstest und zur Studienwahl.</p>
+        </div>
+        <span class="btn btn-outline">PDF herunterladen</span>
+      </a>
     </div>
   </div>
 </section>
