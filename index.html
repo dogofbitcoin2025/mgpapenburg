@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariengymnasium Papenburg – Starke Schule. Stark für alle.</title>
+<meta name="description" content="Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte im Herzen Papenburgs. Erfahren Sie mehr über unsere Schule.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ============== HOME-SPEZIFISCH ============== */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background: var(--mg-navy-deep);
+  color: white;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: saturate(0.8);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(6, 26, 47, 0.85) 0%,
+    rgba(10, 37, 64, 0.75) 50%,
+    rgba(26, 58, 92, 0.65) 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(37, 99, 168, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero-content { max-width: 700px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(201, 169, 97, 0.12);
+  border: 1px solid rgba(201, 169, 97, 0.4);
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mg-gold-light);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease both;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--mg-gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  margin-bottom: 1.75rem;
+  animation: fadeInUp 0.8s 0.1s ease both;
+  color: white;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--mg-gold);
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 6px; left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--mg-gold);
+  opacity: 0.35;
+}
+
+.hero p.lead {
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 2.75rem;
+  animation: fadeInUp 0.8s 0.2s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s 0.3s ease both;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s 0.4s ease both;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--mg-gold), transparent);
+}
+.hero-card-title {
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mg-gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.hero-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+.anmeldung-list { list-style: none; }
+.anmeldung-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.92rem;
+}
+.anmeldung-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.anmeldung-list .day { font-weight: 500; color: white; }
+.anmeldung-list .time {
+  color: var(--mg-gold-light);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--mg-gold);
+  display: block;
+  font-weight: 600;
+  line-height: 1;
+}
+.hero-stat span {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  animation: fadeInUp 1.2s 0.6s ease both;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 169, 97, 0.6));
+  animation: scrollLine 2s infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============== INTRO / EDITORIAL ============== */
+.intro {
+  background: var(--mg-paper);
+  position: relative;
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: center;
+}
+.intro-image {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.intro-image::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 60%; height: 60%;
+  border: 2px solid var(--mg-gold);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+.intro-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.intro-content .display-2 { margin-bottom: 1.5rem; }
+.intro-content .lead { margin-bottom: 1.5rem; }
+.intro-quote {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--mg-navy);
+  line-height: 1.4;
+  border-left: 3px solid var(--mg-gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+.intro-quote-attribution {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mg-text-soft);
+  margin-top: 0.75rem;
+  display: block;
+}
+
+/* ============== PILLARS / GRID ============== */
+.pillars {
+  background: var(--mg-cream);
+  position: relative;
+}
+.pillars::before, .pillars::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--mg-gold-light), transparent);
+}
+.pillars::before { top: 0; }
+.pillars::after { bottom: 0; }
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.pillar {
+  background: white;
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--mg-gray-100);
+}
+.pillar:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--mg-gold-light);
+}
+.pillar-num {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 500;
+  color: var(--mg-gold);
+  line-height: 1;
+  opacity: 0.3;
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  transition: all 0.4s;
+}
+.pillar:hover .pillar-num { opacity: 1; transform: scale(1.05); }
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.pillar p {
+  color: var(--mg-text-soft);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+.pillar-link {
+  color: var(--mg-navy);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.25s;
+}
+.pillar-link svg { width: 14px; height: 14px; }
+.pillar:hover .pillar-link { gap: 0.7rem; color: var(--mg-gold-deep); }
+
+/* ============== FEATURED IMAGE GRID (Schulleben Vorschau) ============== */
+.gallery-section {
+  background: var(--mg-paper);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 240px 240px;
+  gap: 1rem;
+}
+.gallery-item:nth-child(1) { grid-row: span 2; grid-column: span 2; }
+.gallery-item:nth-child(2) { grid-row: span 1; grid-column: span 1; }
+.gallery-item:nth-child(3) { grid-row: span 1; grid-column: span 1; }
+.gallery-item:nth-child(4) { grid-row: span 1; grid-column: span 1; }
+.gallery-item:nth-child(5) { grid-row: span 1; grid-column: span 1; }
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 37, 64, 0.85) 0%, rgba(10, 37, 64, 0) 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-overlay h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.gallery-item-overlay span {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mg-gold-light);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* ============== NEWS PREVIEW ============== */
+.news-preview {
+  background: var(--mg-cream);
+  position: relative;
+}
+.news-grid-home {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 1.5rem;
+}
+.news-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  border: 1px solid var(--mg-gray-100);
+}
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--mg-gold-light);
+}
+.news-card-img {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+.news-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.news-card:hover .news-card-img img { transform: scale(1.05); }
+.news-card-cat {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  background: var(--mg-gold);
+  color: var(--mg-navy-deep);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.news-card-body { padding: 1.5rem; }
+.news-card-meta {
+  font-size: 0.78rem;
+  color: var(--mg-text-soft);
+  margin-bottom: 0.8rem;
+}
+.news-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--mg-navy);
+  margin-bottom: 0.65rem;
+  font-weight: 600;
+}
+.news-card.featured h3 { font-size: 1.7rem; }
+.news-card.featured .news-card-img { aspect-ratio: 4/3; }
+.news-card p {
+  color: var(--mg-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============== JUBILEE ============== */
+.jubilee {
+  background: linear-gradient(135deg, var(--mg-navy-deep) 0%, var(--mg-navy) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.jubilee::before {
+  content: '190';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 32rem;
+  font-weight: 600;
+  color: rgba(201, 169, 97, 0.04);
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+  pointer-events: none;
+}
+.jubilee-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.jubilee h2 { color: white; margin-bottom: 1.5rem; }
+.jubilee p { color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.05rem; }
+.timeline {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 2rem; left: 30px; bottom: 2rem;
+  width: 1px;
+  background: rgba(201, 169, 97, 0.3);
+}
+.timeline-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  position: relative;
+  align-items: flex-start;
+}
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--mg-gold);
+  flex-shrink: 0;
+  width: 80px;
+  position: relative;
+  z-index: 2;
+  background: var(--mg-navy);
+  padding-right: 0.5rem;
+}
+.timeline-text { color: rgba(255,255,255,0.85); padding-top: 0.3rem; }
+.timeline-text strong { color: white; display: block; margin-bottom: 0.2rem; }
+
+/* ============== CTA ============== */
+.cta-banner {
+  background: var(--mg-cream-warm);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.cta-banner h2 { color: var(--mg-navy); margin-bottom: 1rem; }
+.cta-banner p { color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .pillar-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 200px 200px 200px; }
+  .gallery-item:nth-child(1) { grid-row: span 1; grid-column: span 2; }
+  .news-grid-home { grid-template-columns: 1fr; }
+  .jubilee-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 640px) {
+  .hero { min-height: 80vh; }
+  .hero-inner { padding: 3rem 1.25rem; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
+  .gallery-item:nth-child(1) { grid-column: span 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="Mariengymnasium Papenburg Startseite">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
+           onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
+      <div class="logo-text">
+        <strong>Mariengymnasium</strong>
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+
+    <a href="anmeldung.html" class="cta-btn">
+      <i data-lucide="user-plus"></i> <span>Jetzt anmelden</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">
+      <i data-lucide="menu" style="width:28px; height:28px"></i>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none; border:none; cursor:pointer; color: var(--mg-navy);">
+      <i data-lucide="x" style="width:24px; height:24px"></i>
+    </button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80"
+         alt="Schule – atmosphärisches Hintergrundbild">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> 190 Jahre Mariengymnasium</div>
+        <h1 class="display-1">Starke Schule.<br>Stark <em>für alle.</em></h1>
+        <p class="lead">
+          Seit 1835 gestalten wir Bildung im Herzen Papenburgs. Mit Kopf, Herz und Hand –
+          und einer Schulgemeinschaft, in der Tradition und Aufbruch keine Gegensätze sind.
+        </p>
+        <div class="hero-actions">
+          <a href="anmeldung.html" class="btn btn-primary">
+            Anmeldung 2026/27 <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="schulprofil.html" class="btn btn-light">
+            <i data-lucide="play-circle"></i> Schule entdecken
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-title">Anmeldung Schuljahr 2026/27</div>
+        <h3>Klasse 5 – Termine</h3>
+        <ul class="anmeldung-list">
+          <li><span class="day">Mi · 18.02.2026</span><span class="time">15 – 18 Uhr</span></li>
+          <li><span class="day">Do · 19.02.2026</span><span class="time">15 – 18 Uhr</span></li>
+          <li><span class="day">Fr · 20.02.2026</span><span class="time">15 – 17 Uhr</span></li>
+        </ul>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>190</strong><span>Jahre</span></div>
+          <div class="hero-stat"><strong>700+</strong><span>Schüler*innen</span></div>
+          <div class="hero-stat"><strong>4</strong><span>Austausche</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Entdecken</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO / EDITORIAL -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-image reveal">
+        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=80"
+             alt="Schülerinnen lernen gemeinsam">
+      </div>
+      <div class="intro-content reveal">
+        <span class="eyebrow">Über uns</span>
+        <h2 class="display-2" style="margin-top: 1rem;">Bildung, die <em>berührt</em> – und prägt.</h2>
+        <p class="lead" style="color: var(--mg-text);">
+          Wir sind kein anonymes Bildungswerk, sondern eine Schulfamilie. Aus christlicher
+          Tradition kommend, mit dem Mut, Bildung neu zu denken – und mit einem klaren Versprechen:
+          Jede*r findet hier den eigenen Weg.
+        </p>
+        <blockquote class="intro-quote">
+          „Miteinander Gemeinschaft gestalten – das ist nicht nur unser Motto, sondern
+          die tägliche Haltung, mit der wir junge Menschen begleiten."
+          <span class="intro-quote-attribution">— Schulgemeinschaft des Mariengymnasiums</span>
+        </blockquote>
+        <a href="schulprofil.html" class="btn btn-outline" style="margin-top: 1rem;">
+          Mehr über uns <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS / DREI SÄULEN -->
+<section class="pillars">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Unser Versprechen</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Drei Säulen, ein <em>Fundament.</em></h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Was uns trägt, was uns prägt – und was wir unseren Schüler*innen mit auf den Weg geben.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <article class="pillar reveal">
+        <div class="pillar-num">01</div>
+        <h3>Bilden mit Tiefgang</h3>
+        <p>
+          Unterricht heißt für uns mehr als Stoff. Wir wollen, dass junge Menschen begreifen –
+          sich selbst, ihre Welt, ihre Verantwortung. Mit Profilklassen in Musik, Technik und
+          Sport schaffen wir Raum für individuelle Stärken.
+        </p>
+        <a href="unterricht.html" class="pillar-link">Unterricht entdecken <i data-lucide="arrow-right"></i></a>
+      </article>
+
+      <article class="pillar reveal">
+        <div class="pillar-num">02</div>
+        <h3>Gemeinschaft leben</h3>
+        <p>
+          AGs, Konzerte, Projekte, Schulfeste – Schule ist bei uns ein Ort, an dem man auch
+          jenseits der Klassenräume zu Hause ist. Werte wie Respekt, Achtsamkeit und Solidarität
+          sind nicht nur Worte, sondern gelebte Praxis.
+        </p>
+        <a href="schulleben.html" class="pillar-link">Schulleben entdecken <i data-lucide="arrow-right"></i></a>
+      </article>
+
+      <article class="pillar reveal">
+        <div class="pillar-num">03</div>
+        <h3>Welt eröffnen</h3>
+        <p>
+          Austausche nach Mottola, Albaida und Cork. Wettbewerbe von Jugend forscht bis zur
+          Schulschach-Landesmeisterschaft. Wir öffnen Türen – damit unsere Schüler*innen die
+          Welt nicht nur lernen, sondern erleben.
+        </p>
+        <a href="schulleben.html#austausch" class="pillar-link">Austausch entdecken <i data-lucide="arrow-right"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Schulleben in Bildern</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Was uns <em>ausmacht.</em></h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80" alt="Schulorchester">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Musik</span>
+            <h4>Schulorchester &amp; Chöre</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80" alt="Schach">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Wettbewerbe</span>
+            <h4>Schach &amp; Olympiaden</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1530021232320-687d8e3dba54?auto=format&fit=crop&w=800&q=80" alt="Sport">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Sport</span>
+            <h4>Sportfeste &amp; Turniere</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Austausch">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>Austausch</span>
+            <h4>Mottola · Albaida · Cork</h4>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=800&q=80" alt="Naturwissenschaft">
+        <div class="gallery-item-overlay">
+          <div>
+            <span>MINT</span>
+            <h4>Jugend forscht</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="schulleben.html" class="btn btn-outline">Alle Aktivitäten ansehen <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS PREVIEW -->
+<section class="news-preview">
+  <div class="container">
+    <div class="section-header reveal" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <span class="eyebrow">Aus dem Schulleben</span>
+        <h2 class="display-2" style="margin-top: 1rem;">Aktuelles vom <em>MG.</em></h2>
+      </div>
+      <a href="aktuelles.html" class="btn btn-outline">Alle Beiträge <i data-lucide="arrow-right"></i></a>
+    </div>
+
+    <div class="news-grid-home">
+      <article class="news-card featured reveal">
+        <div class="news-card-img">
+          <span class="news-card-cat">Schulleben</span>
+          <img src="https://images.unsplash.com/photo-1551446591-142875a901a1?auto=format&fit=crop&w=1200&q=80" alt="Karneval">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">23.02.2026 · Schulleitung</div>
+          <h3>Rosenmontag: Chaos im Comic-Universum</h3>
+          <p>Am Rosenmontag verwandelte sich das Forum in eine bunte Comic-Welt. Klassen 5 bis 7 feierten gemeinsam ein fröhliches Karnevalsfest voller Kreativität und guter Laune.</p>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <div class="news-card-img">
+          <span class="news-card-cat">Musik</span>
+          <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80" alt="Adventskonzert">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">16.12.2025 · Musikfachschaft</div>
+          <h3>Adventskonzert in St. Antonius</h3>
+          <p>Eine volle Kirche, warmes Licht, gespannte Stille – und dann die ersten Töne. 300 Zuhörer erlebten ein bewegendes Programm.</p>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <div class="news-card-img">
+          <span class="news-card-cat">Wettbewerb</span>
+          <img src="https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=800&q=80" alt="Schach">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">10.11.2025 · Schach-AG</div>
+          <h3>2. Schachnacht am MG</h3>
+          <p>Eine spannende Nacht voller witziger Schachvarianten und kleiner Überraschungen mit 25 Schüler*innen.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- JUBILEE -->
+<section class="jubilee">
+  <div class="container">
+    <div class="jubilee-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="color: var(--mg-gold);">1835 — 2025</span>
+        <h2 class="display-2" style="margin-top: 1rem;">190 Jahre <em>Bildung</em><br>im Emsland.</h2>
+        <p>
+          Aus einer kleinen katholischen Schule für Mädchen ist über fast zwei Jahrhunderte
+          eine moderne Bildungseinrichtung gewachsen, die heute Mädchen und Jungen aus dem
+          gesamten nördlichen Emsland willkommen heißt.
+        </p>
+        <p>
+          Unser Jubiläumsjahr feiern wir mit Schulfest, Konzerten, Vortragsabenden und einem
+          Ehemaligentreffen – und blicken zugleich nach vorn: Welche Bildung braucht die
+          Generation, die unsere Welt von morgen prägen wird?
+        </p>
+        <a href="schulprofil.html" class="btn btn-primary" style="margin-top: 1.5rem;">
+          Zur Schulgeschichte <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-year">1835</div>
+          <div class="timeline-text"><strong>Gründung</strong>der Schule unter dem Schutz des Marien-Patroziniums</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1925</div>
+          <div class="timeline-text"><strong>Lyzeum</strong>– Anerkennung mit umfassendem Bildungsauftrag</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1985</div>
+          <div class="timeline-text"><strong>150 Jahre</strong>Festakt der Schulgemeinschaft</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-text"><strong>Koedukation</strong>seit Klasse 5 offen für alle</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-text"><strong>190 Jahre</strong>Jubiläumsjahr mit zahlreichen Festen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <span class="eyebrow center">Anmeldung 2026/27</span>
+      <h2 class="display-2" style="margin: 1rem 0;">Werden Sie Teil unserer <em>Schulgemeinschaft.</em></h2>
+      <p>
+        Online-Anmeldung für die 5. Klasse und die gymnasiale Oberstufe sind bereits möglich.
+        Bei Fragen stehen wir Ihnen gern persönlich, telefonisch oder per Mail zur Verfügung.
+      </p>
+      <div class="cta-actions">
+        <a href="anmeldung.html" class="btn btn-navy"><i data-lucide="file-text"></i> Online anmelden</a>
+        <a href="tel:0496194700" class="btn btn-outline"><i data-lucide="phone"></i> 04961 - 94700</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="#">Terminkalender</a></li>
+          <li><a href="#">Vorlagen für Eltern</a></li>
+          <li><a href="#">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>
