@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz – Mariengymnasium Papenburg</title>
+<meta name="description" content="Datenschutzerklärung des Mariengymnasiums Papenburg.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.legal-content { background: var(--mg-paper); padding: 4rem 0 6rem; }
+.legal-grid {
+  display: grid; grid-template-columns: 280px 1fr; gap: 4rem;
+  max-width: var(--max-content); margin: 0 auto; padding: 0 2rem;
+}
+.legal-sidebar { position: sticky; top: 100px; align-self: start; }
+.legal-sidebar h4 {
+  font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--mg-blue); margin-bottom: 1rem; font-weight: 800;
+}
+.legal-toc { list-style: none; padding: 0; border-left: 2px solid var(--mg-gray-200); }
+.legal-toc a {
+  display: block; padding: 0.6rem 1rem; color: var(--mg-text-soft);
+  text-decoration: none; font-size: 0.9rem; transition: all 0.2s;
+  border-left: 2px solid transparent; margin-left: -2px;
+}
+.legal-toc a:hover, .legal-toc a.active {
+  color: var(--mg-blue); border-left-color: var(--mg-yellow); font-weight: 700;
+}
+.legal-main { max-width: var(--max-prose); }
+.legal-main h2 {
+  font-size: 1.5rem; font-weight: 800; color: var(--mg-blue);
+  margin: 2.5rem 0 1rem; letter-spacing: -0.01em;
+}
+.legal-main section:first-child h2 { margin-top: 0; }
+.legal-main p {
+  font-size: 1rem; line-height: 1.75; color: var(--mg-text); margin-bottom: 1rem;
+}
+.legal-main p strong { color: var(--mg-blue); }
+.placeholder-notice {
+  background: #fff9b3;
+  border: 2px dashed var(--mg-yellow-deep);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+.placeholder-notice strong { color: var(--mg-blue-deep); }
+
+@media (max-width: 1024px) {
+  .legal-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .legal-sidebar { position: static; }
+  .legal-toc { display: flex; flex-wrap: wrap; gap: 0.5rem; border-left: none; }
+  .legal-toc a {
+    border-left: none; padding: 0.4rem 0.8rem; background: white;
+    border-radius: 100px; border: 1px solid var(--mg-gray-200);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <div class="logo-text"><small>Papenburg · Seit 1835</small></div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-blue)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Datenschutz</span>
+    </div>
+    <span class="eyebrow">Rechtliches</span>
+    <h1 class="display-1" style="margin-top: 1.25rem;">Datenschutz</h1>
+    <p class="lead">
+      Informationen zur Verarbeitung personenbezogener Daten beim Besuch dieser Website
+      und im schulischen Kontext.
+    </p>
+  </div>
+</section>
+
+<section class="legal-content">
+  <div class="legal-grid">
+    <aside class="legal-sidebar">
+      <h4>Auf dieser Seite</h4>
+      <ul class="legal-toc">
+        <li><a href="#hinweis" class="active">Hinweis</a></li>
+      </ul>
+    </aside>
+
+    <article class="legal-main">
+
+      <section id="hinweis">
+        <h2>Datenschutzerklärung wird ergänzt</h2>
+
+        <div class="placeholder-notice">
+          <p>
+            <strong>📝 Hinweis für den Webmaster:</strong> Diese Seite ist ein Platzhalter.
+            Bitte fügen Sie hier die vollständige Datenschutzerklärung des Mariengymnasiums ein
+            – am besten den Text von der bisherigen Website unter
+            <a href="https://mgpapenburg.de/datenschutz/" target="_blank" rel="noopener">mgpapenburg.de/datenschutz</a>.
+          </p>
+          <p style="margin-top: 1rem;">
+            Die Datenschutzerklärung sollte mindestens enthalten:
+          </p>
+          <ul style="margin: 0.75rem 0 0 1.5rem;">
+            <li>Verantwortliche Stelle</li>
+            <li>Kontaktdaten Datenschutzbeauftragte*r</li>
+            <li>Erfasste Daten beim Website-Besuch (Server-Logs, ggf. Cookies)</li>
+            <li>Rechtsgrundlagen der Verarbeitung</li>
+            <li>Speicherdauer</li>
+            <li>Rechte der Betroffenen (Auskunft, Berichtigung, Löschung etc.)</li>
+            <li>Hinweis auf Beschwerderecht</li>
+            <li>Eingebundene Drittdienste (z. B. OpenStreetMap, Google Fonts, YouTube)</li>
+          </ul>
+        </div>
+
+        <p>
+          Bis zur Veröffentlichung der vollständigen Datenschutzerklärung verweisen wir
+          übergangsweise auf die Datenschutzerklärung der bisherigen Website unter
+          <a href="https://mgpapenburg.de/datenschutz/" target="_blank" rel="noopener" style="color: var(--mg-blue); font-weight: 700;">mgpapenburg.de/datenschutz</a>.
+        </p>
+
+        <p>
+          Bei Fragen zum Datenschutz wenden Sie sich bitte an das Sekretariat unter
+          <a href="mailto:sekretariat@mgpapenburg.de" style="color: var(--mg-blue); font-weight: 700;">sekretariat@mgpapenburg.de</a>
+          oder telefonisch unter <a href="tel:0496194700" style="color: var(--mg-blue); font-weight: 700;">04961 - 94700</a>.
+        </p>
+      </section>
+
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="terminkalender.html">Terminkalender</a></li>
+          <li><a href="vorlagen.html">Vorlagen für Eltern</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>

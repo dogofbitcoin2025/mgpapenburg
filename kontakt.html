@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt – Mariengymnasium Papenburg</title>
+<meta name="description" content="Kontakt zum Mariengymnasium Papenburg – Sekretariat, Schulleitung, Anschrift und Anfahrt.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.contact-section { padding: 4rem 0; background: var(--mg-paper); }
+.contact-section.alt { background: var(--mg-cream); }
+
+/* Hauptkontakt-Karte */
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 2rem;
+  align-items: stretch;
+}
+.contact-info-card {
+  background: var(--mg-blue);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--mg-yellow);
+}
+.contact-info-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.contact-info-card .lead {
+  color: rgba(255,255,255,0.85);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+.contact-detail {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.contact-detail:last-child { border-bottom: none; }
+.contact-detail-icon {
+  width: 44px; height: 44px;
+  background: rgba(254, 234, 0, 0.15);
+  color: var(--mg-yellow);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.contact-detail-icon svg { width: 20px; height: 20px; }
+.contact-detail-label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mg-yellow);
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+.contact-detail-value {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: white;
+}
+.contact-detail-value a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+.contact-detail-value a:hover { color: var(--mg-yellow); }
+.contact-detail-value small {
+  display: block;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* Karte */
+.contact-map-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--mg-blue-soft);
+  position: relative;
+  min-height: 480px;
+}
+.contact-map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  position: absolute;
+  inset: 0;
+}
+
+/* Ansprechpartner-Bereiche */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: var(--max-content);
+  margin: 2rem auto 0;
+  padding: 0 2rem;
+}
+.dept-card {
+  background: white;
+  border: 1px solid var(--mg-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: all 0.3s;
+  position: relative;
+}
+.dept-card:hover {
+  border-color: var(--mg-yellow);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.dept-card-tag {
+  display: inline-block;
+  background: var(--mg-yellow);
+  color: var(--mg-blue-deep);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+.dept-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin-bottom: 0.5rem;
+}
+.dept-card p {
+  font-size: 0.92rem;
+  color: var(--mg-text-soft);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.dept-card-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mg-gray-200);
+}
+.dept-card-contact a {
+  color: var(--mg-blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dept-card-contact a:hover { color: var(--mg-yellow-deep); }
+.dept-card-contact a svg { width: 14px; height: 14px; color: var(--mg-blue); }
+
+/* Anfahrtshinweise */
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: var(--max-content);
+  margin: 2rem auto 0;
+  padding: 0 2rem;
+}
+.travel-card {
+  text-align: center;
+  padding: 1.75rem;
+}
+.travel-icon {
+  width: 60px; height: 60px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-blue);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem;
+}
+.travel-icon svg { width: 28px; height: 28px; }
+.travel-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin-bottom: 0.5rem;
+}
+.travel-card p {
+  font-size: 0.9rem;
+  color: var(--mg-text-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .contact-main-grid { grid-template-columns: 1fr; }
+  .contact-map-wrap { min-height: 380px; }
+  .dept-grid { grid-template-columns: 1fr; }
+  .travel-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <div class="logo-text"><small>Papenburg · Seit 1835</small></div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-blue)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Kontakt</span>
+    </div>
+    <span class="eyebrow">Schreiben Sie uns</span>
+    <h1 class="display-1" style="margin-top: 1.25rem;">So <em>erreichen</em> Sie uns.</h1>
+    <p class="lead">
+      Sekretariat, Schulleitung, Beratungsteam – wir sind für Sie da.
+      Per Telefon, E-Mail oder im persönlichen Gespräch im Schulgebäude.
+    </p>
+  </div>
+</section>
+
+<!-- HAUPTKONTAKT + KARTE -->
+<section class="contact-section">
+  <div class="contact-main-grid">
+
+    <div class="contact-info-card">
+      <h2>Mariengymnasium Papenburg</h2>
+      <p class="lead">Sekretariat, allgemeine Anfragen, Anmeldungen.</p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i data-lucide="map-pin"></i></div>
+        <div>
+          <span class="contact-detail-label">Anschrift</span>
+          <div class="contact-detail-value">
+            Am Stadtpark 29/31<br>26871 Papenburg
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i data-lucide="phone"></i></div>
+        <div>
+          <span class="contact-detail-label">Telefon</span>
+          <div class="contact-detail-value">
+            <a href="tel:0496194700">04961 - 94700</a>
+            <small>Telefax: 04961 - 947030</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i data-lucide="mail"></i></div>
+        <div>
+          <span class="contact-detail-label">E-Mail</span>
+          <div class="contact-detail-value">
+            <a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a><br>
+            <a href="mailto:schule@mgpapenburg.de">schule@mgpapenburg.de</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i data-lucide="clock"></i></div>
+        <div>
+          <span class="contact-detail-label">Öffnungszeiten Sekretariat</span>
+          <div class="contact-detail-value">
+            Während der Schulzeit:<br>Mo–Fr · 7:30 – 15:00 Uhr
+            <small>In den Ferien eingeschränkte Erreichbarkeit – bitte vorab telefonisch erfragen.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-map-wrap">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=7.395%2C53.072%2C7.408%2C53.078&amp;layer=mapnik&amp;marker=53.075%2C7.4015"
+        title="Standort Mariengymnasium Papenburg"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- ANSPRECHPARTNER NACH BEREICH -->
+<section class="contact-section alt">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow center">Direkt zum richtigen Bereich</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Wer ist <em>zuständig</em>?</h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Damit Ihre Anfrage gleich bei der richtigen Person ankommt, finden Sie hier
+        eine Übersicht der Bereiche und ihrer Ansprechpartner*innen.
+      </p>
+    </div>
+
+    <div class="dept-grid">
+      <div class="dept-card">
+        <span class="dept-card-tag">Allgemein</span>
+        <h3>Sekretariat</h3>
+        <p>Erste Anlaufstelle für alle organisatorischen Anliegen, Anmeldungen, Bescheinigungen und allgemeine Fragen.</p>
+        <div class="dept-card-contact">
+          <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+          <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <span class="dept-card-tag">Schulleitung</span>
+        <h3>Michael Bloemer</h3>
+        <p>Schulleiter. Für übergeordnete Anliegen und strategische Fragen rund um die Schulentwicklung.</p>
+        <div class="dept-card-contact">
+          <a href="mailto:schule@mgpapenburg.de"><i data-lucide="mail"></i> schule@mgpapenburg.de</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <span class="dept-card-tag">Sek. II</span>
+        <h3>Kathrin Schlarmann</h3>
+        <p>Koordinatorin der Sek. II. Erste Adresse für Fragen zur Einführungs-, Qualifikations- und Abiturphase.</p>
+        <div class="dept-card-contact">
+          <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> Über das Sekretariat</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <span class="dept-card-tag">Sek. I</span>
+        <h3>Lothar Siewe</h3>
+        <p>Koordinator der Sek. I. Für AGs, Wegweiserinnen und Projekte der Jahrgänge 5 bis 10.</p>
+        <div class="dept-card-contact">
+          <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> Über das Sekretariat</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <span class="dept-card-tag">Anmeldung</span>
+        <h3>Stefanie Kuhlemann</h3>
+        <p>Anmeldungen zur Klasse 11 / Oberstufe – Terminvereinbarung jederzeit möglich.</p>
+        <div class="dept-card-contact">
+          <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+          <a href="mailto:stefanie.kuhlemann@iserv-mgpapenburg.de"><i data-lucide="mail"></i> stefanie.kuhlemann@…</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <span class="dept-card-tag">Schulträger</span>
+        <h3>Schulstiftung im Bistum Osnabrück</h3>
+        <p>Anfragen zum Schulgeld, zu Stipendien, Schulgeldermäßigung und Trägerschaft.</p>
+        <div class="dept-card-contact">
+          <a href="tel:0541318363"><i data-lucide="phone"></i> 0541 318-363</a>
+          <a href="mailto:schulstiftung@bistum-os.de"><i data-lucide="mail"></i> schulstiftung@bistum-os.de</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANFAHRT -->
+<section class="contact-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow center">Anfahrt</span>
+      <h2 class="display-2" style="margin-top: 1rem;">So finden Sie zu uns.</h2>
+    </div>
+    <div class="travel-grid">
+      <div class="travel-card">
+        <div class="travel-icon"><i data-lucide="car"></i></div>
+        <h4>Mit dem Auto</h4>
+        <p>Von der A31 Abfahrt Papenburg, Richtung Innenstadt. Kostenlose Parkplätze direkt vor dem Schulgebäude und am Stadtpark.</p>
+      </div>
+      <div class="travel-card">
+        <div class="travel-icon"><i data-lucide="bus"></i></div>
+        <h4>Mit Bus &amp; Bahn</h4>
+        <p>Bahnhof Papenburg in ca. 15 Minuten Fußweg. Mehrere Buslinien halten in unmittelbarer Nähe der Schule.</p>
+      </div>
+      <div class="travel-card">
+        <div class="travel-icon"><i data-lucide="bike"></i></div>
+        <h4>Mit dem Fahrrad</h4>
+        <p>Überdachte Fahrradstellplätze auf dem Schulgelände. Das Mariengymnasium ist Stadtradel-Botschafter Papenburgs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="terminkalender.html">Terminkalender</a></li>
+          <li><a href="vorlagen.html">Vorlagen für Eltern</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>
