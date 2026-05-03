@@ -28,268 +28,159 @@ body.home-page .menu-toggle { color: white; }
 .bistum-logo {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: auto;
-  height: auto;
-  padding: clamp(0.42rem, 0.65vw, 0.72rem) clamp(0.68rem, 1vw, 1rem);
-  border-radius: 18px;
-  background: rgba(255,255,255,0.96);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+  gap: 0.6rem;
+  color: white;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  margin-right: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
 }
-.bistum-logo:hover {
-  transform: translateY(-1px);
-  background: #ffffff;
-  box-shadow: 0 14px 34px rgba(0,0,0,0.20);
+.bistum-logo:hover { background: rgba(255,255,255,0.06); }
+.bistum-logo svg.bistum-icon {
+  width: 36px; height: 36px;
+  color: var(--mg-yellow);
 }
-.bistum-logo-img {
-  display: block;
-  height: clamp(38px, 3.25vw, 54px);
-  width: auto;
-  max-width: clamp(150px, 13vw, 220px);
-  object-fit: contain;
+.bistum-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
-.logo {
-  display: inline-flex;
+.bistum-logo-text small {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.bistum-logo-text strong {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: white;
+}
+.header-right {
+  display: flex;
   align-items: center;
-  flex: 0 0 auto;
-  min-width: 0;
-  width: auto;
-  line-height: 0;
-}
-.logo-img {
-  display: block;
-  height: clamp(64px, 5.35vw, 88px);
-  width: auto;
-  max-width: none;
-  object-fit: contain;
-  object-position: left center;
-}
-.header-inner {
-  min-height: clamp(88px, 7.2vw, 112px);
+  gap: 0.5rem;
 }
 @media (max-width: 768px) {
-  .bistum-logo { padding: 0.36rem 0.52rem; border-radius: 14px; }
-  .bistum-logo-img { height: 34px; max-width: 140px; }
-  .logo-img { height: 58px; }
-  .header-inner { min-height: 78px; }
-}
-@media (max-width: 430px) {
-  .bistum-logo { padding: 0.28rem 0.42rem; }
-  .bistum-logo-img { height: 28px; max-width: 112px; }
-  .logo-img { height: 48px; }
+  .bistum-logo-text { display: none; }
 }
 
-/* HERO – Premium-Header: vollflächiges Aquarell, CI-Blau, runde organische Wellen */
+/* HERO */
 .hero-new {
   position: relative;
+  background: var(--mg-cream);
+  padding: 5rem 0 8rem;
   overflow: hidden;
-  min-height: clamp(620px, 76svh, 880px);
-  padding: clamp(5.2rem, 7vw, 7.8rem) 0 clamp(7rem, 10vw, 10rem);
-  background: var(--mg-blue-deep);
-  isolation: isolate;
-}
-.hero-new::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -4;
-  background-image: url('images/schule-aquarell.jpg');
-  background-size: cover;
-  background-position: 58% 48%;
-  background-repeat: no-repeat;
-  filter: saturate(1.08) contrast(1.03) brightness(1.02);
-  transform: scale(1.025);
-}
-.hero-new::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-  background:
-    radial-gradient(ellipse at 16% 40%, rgba(0,49,74,0.92) 0%, rgba(0,49,74,0.78) 31%, rgba(0,49,74,0.36) 56%, rgba(0,49,74,0.04) 78%, transparent 100%),
-    linear-gradient(90deg, rgba(0,31,48,0.90) 0%, rgba(0,49,74,0.72) 32%, rgba(0,49,74,0.26) 57%, rgba(255,255,255,0.02) 100%),
-    linear-gradient(180deg, rgba(0,31,48,0.12) 0%, rgba(0,31,48,0.00) 45%, rgba(0,31,48,0.34) 100%);
+  min-height: 700px;
 }
 .hero-decor {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 2;
-}
-.hero-glow {
-  position: absolute;
-  width: clamp(420px, 42vw, 760px);
-  height: clamp(420px, 42vw, 760px);
-  top: clamp(90px, 12vw, 150px);
-  left: clamp(-250px, -10vw, -110px);
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(254,234,0,0.22) 0%, rgba(254,234,0,0.08) 34%, transparent 70%);
-  filter: blur(2px);
-  opacity: 0.9;
-}
-.hero-sun-mark {
-  position: absolute;
-  top: clamp(78px, 11vw, 150px);
-  right: clamp(-80px, -2vw, 20px);
-  width: clamp(230px, 24vw, 420px);
-  height: clamp(230px, 24vw, 420px);
-  border: clamp(14px, 1.6vw, 26px) solid rgba(254,234,0,0.34);
-  border-radius: 50%;
-  opacity: 0.55;
-}
-.hero-sun-mark::after {
-  content: '';
-  position: absolute;
-  inset: 18%;
-  border: 2px solid rgba(254,234,0,0.28);
-  border-radius: 50%;
 }
 .wave-top {
   position: absolute;
-  top: clamp(42px, 6vw, 92px);
-  left: clamp(-140px, -5vw, -45px);
-  width: clamp(520px, 43vw, 820px);
-  height: 120px;
-  opacity: 0.75;
+  top: 60px;
+  left: -50px;
+  width: 540px;
+  height: 90px;
+  opacity: 0.85;
 }
 .dots-tl {
   position: absolute;
-  top: clamp(120px, 16vw, 190px);
-  left: clamp(26px, 5vw, 82px);
-  width: 120px;
-  height: 90px;
-  background-image: radial-gradient(circle, var(--mg-yellow) 1.7px, transparent 1.8px);
-  background-size: 15px 15px;
-  opacity: 0.58;
+  top: 130px;
+  left: 60px;
+  width: 100px;
+  height: 80px;
+  background-image: radial-gradient(circle, var(--mg-yellow) 1.5px, transparent 1.6px);
+  background-size: 14px 14px;
+  opacity: 0.55;
 }
 .dots-bm {
   position: absolute;
-  bottom: clamp(150px, 16vw, 220px);
-  left: clamp(45%, 51vw, 58%);
-  width: 150px;
-  height: 66px;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 60px;
   background-image: radial-gradient(circle, var(--mg-yellow) 1.5px, transparent 1.6px);
   background-size: 14px 14px;
-  opacity: 0.30;
+  opacity: 0.45;
 }
 .hero-wave-bottom {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
+  left: 0; right: 0; bottom: 0;
   width: 100%;
-  height: clamp(170px, 16vw, 260px);
-  z-index: 4;
-  display: block;
+  height: 140px;
+  background: var(--mg-blue-deep);
+  clip-path: polygon(0 70%, 25% 50%, 55% 75%, 75% 55%, 100% 70%, 100% 100%, 0 100%);
 }
 .hero-wave-yellow {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(120px, 12vw, 190px);
+  left: 0; right: 0; bottom: 100px;
   width: 100%;
-  height: clamp(54px, 5vw, 76px);
-  z-index: 5;
-  opacity: 0.9;
+  z-index: 2;
+  pointer-events: none;
 }
 .hero-grid {
   position: relative;
-  z-index: 6;
+  z-index: 5;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
-  min-height: clamp(420px, 49vh, 590px);
-  display: flex;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   align-items: center;
 }
-.hero-text {
-  width: min(650px, 52vw);
-  position: relative;
-  padding: clamp(1.8rem, 3.2vw, 3rem);
-  border-left: 7px solid var(--mg-yellow);
-  border-radius: 0 32px 32px 0;
-  background:
-    linear-gradient(135deg, rgba(0,49,74,0.94) 0%, rgba(0,49,74,0.82) 57%, rgba(0,49,74,0.60) 100%);
-  box-shadow: 0 32px 90px rgba(0, 31, 48, 0.32), inset 0 1px 0 rgba(255,255,255,0.10);
-  backdrop-filter: blur(4px);
-}
-.hero-text::before {
-  content: '';
-  position: absolute;
-  inset: 14px 14px 14px auto;
-  width: 3px;
-  border-radius: 20px;
-  background: rgba(254,234,0,0.36);
-}
-.hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--mg-yellow);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.hero-kicker::before {
-  content: '';
-  width: 34px;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--mg-yellow);
-}
+.hero-text { padding-right: 2rem; }
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2.7rem, 5.3vw, 5.3rem);
-  line-height: 0.99;
-  letter-spacing: -0.045em;
-  color: white;
-  margin-bottom: 1.25rem;
-  text-wrap: balance;
+  font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--mg-blue);
+  margin-bottom: 1.5rem;
 }
 .hero-headline .accent-yellow {
-  color: var(--mg-yellow);
+  color: var(--mg-yellow-deep);
   display: block;
 }
 .hero-subline {
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
-  color: rgba(255,255,255,0.9);
+  font-size: 1.1rem;
+  color: var(--mg-text);
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  max-width: 510px;
+  margin-bottom: 0.8rem;
   position: relative;
-  padding-bottom: 1.15rem;
+  padding-bottom: 1.25rem;
 }
-.hero-subline strong { color: white; font-weight: 800; }
 .hero-subline::after {
   content: '';
   display: block;
-  width: 84px;
-  height: 4px;
+  width: 60px;
+  height: 3px;
   background: var(--mg-yellow);
   margin-top: 1rem;
-  border-radius: 999px;
 }
 .hero-ctas {
   display: flex;
   gap: 1rem;
-  margin-top: 1.45rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 .btn-dark {
-  background: var(--mg-yellow);
-  color: var(--mg-blue-deep);
-  border: 2px solid var(--mg-yellow);
+  background: var(--mg-blue-deep);
+  color: white;
+  border: 2px solid var(--mg-blue-deep);
   padding: 0.95rem 1.6rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.92rem;
   display: inline-flex;
   align-items: center;
@@ -297,20 +188,20 @@ body.home-page .menu-toggle { color: white; }
   transition: all 0.25s;
 }
 .btn-dark:hover {
-  background: white;
-  border-color: white;
+  background: var(--mg-blue);
+  border-color: var(--mg-blue);
   transform: translateY(-2px);
 }
 .btn-dark svg { width: 16px; height: 16px; transition: transform 0.25s; }
 .btn-dark:hover svg { transform: translateX(3px); }
 .btn-ghost {
-  background: rgba(255,255,255,0.08);
-  color: white;
-  border: 2px solid rgba(255,255,255,0.78);
+  background: transparent;
+  color: var(--mg-blue-deep);
+  border: 2px solid var(--mg-blue-deep);
   padding: 0.95rem 1.6rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.92rem;
   display: inline-flex;
   align-items: center;
@@ -318,14 +209,31 @@ body.home-page .menu-toggle { color: white; }
   transition: all 0.25s;
 }
 .btn-ghost:hover {
-  background: white;
-  border-color: white;
-  color: var(--mg-blue-deep);
+  background: var(--mg-blue-deep);
+  color: white;
   transform: translateY(-2px);
 }
 .btn-ghost svg { width: 16px; height: 16px; transition: transform 0.25s; }
 .btn-ghost:hover svg { transform: translateX(3px); }
-.hero-visual { display: none; }
+
+.hero-visual {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #f0f4f8 0%, #fafaf7 100%);
+  overflow: hidden;
+  box-shadow:
+    0 4px 12px rgba(0, 49, 73, 0.06),
+    0 18px 48px rgba(0, 49, 73, 0.12);
+}
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
 /* WERTE-SÄULEN */
 .values-strip {
   background: var(--mg-blue-deep);
@@ -648,207 +556,28 @@ body.home-page .menu-toggle { color: white; }
 }
 
 @media (max-width: 1024px) {
-  .hero-new { min-height: clamp(560px, 74svh, 780px); }
-  .hero-new::before { background-position: 61% center; }
-  .hero-new::after {
-    background:
-      radial-gradient(ellipse at 14% 40%, rgba(0,49,74,0.93) 0%, rgba(0,49,74,0.80) 38%, rgba(0,49,74,0.28) 72%, transparent 100%),
-      linear-gradient(90deg, rgba(0,31,48,0.88) 0%, rgba(0,49,74,0.58) 50%, rgba(255,255,255,0.03) 100%);
-  }
-  .hero-text { width: min(610px, 72vw); }
-  .hero-sun-mark { right: -150px; opacity: 0.42; }
+  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-text { padding-right: 0; }
+  .hero-visual { max-width: 600px; margin: 0 auto; }
   .values-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; }
   .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
   .intro-image { max-width: 480px; aspect-ratio: 5/4; }
   .news-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 760px) {
-  .hero-new {
-    min-height: 660px;
-    padding: 3.8rem 0 8.3rem;
-  }
-  .hero-new::before {
-    background-size: auto 102%;
-    background-position: 62% center;
-    opacity: 0.95;
-  }
-  .hero-new::after {
-    background:
-      linear-gradient(180deg, rgba(0,49,74,0.52) 0%, rgba(0,49,74,0.18) 42%, rgba(0,31,48,0.46) 100%),
-      linear-gradient(90deg, rgba(0,31,48,0.82) 0%, rgba(0,49,74,0.54) 60%, rgba(0,49,74,0.16) 100%);
-  }
-  .hero-grid { align-items: flex-end; min-height: 480px; }
-  .hero-text {
-    width: 100%;
-    padding: 1.45rem;
-    border-left-width: 5px;
-    border-radius: 0 24px 24px 0;
-    background: rgba(0,49,74,0.88);
-  }
-  .hero-kicker { font-size: 0.68rem; letter-spacing: 0.12em; }
-  .hero-kicker::before { width: 24px; }
-  .hero-sun-mark, .wave-top, .dots-tl, .dots-bm { display: none; }
-  .hero-wave-bottom { height: 155px; }
-  .hero-wave-yellow { bottom: 116px; height: 48px; }
-  .hero-headline { font-size: clamp(2.25rem, 11vw, 3.25rem); }
+@media (max-width: 640px) {
+  .hero-new { padding: 3rem 0 7rem; min-height: auto; }
+  .wave-top, .dots-tl, .dots-bm { display: none; }
+  .hero-headline { font-size: 2.4rem; }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .btn-dark, .btn-ghost { justify-content: center; }
   .values-strip-inner { grid-template-columns: 1fr; }
   .news-grid { grid-template-columns: 1fr; }
   .intro-stats { grid-template-columns: 1fr; gap: 1rem; }
 }
-@media (min-width: 1440px) {
-  .hero-new { min-height: 800px; }
-  .hero-new::before { background-position: center 45%; }
-}
-@media (min-width: 1900px) {
-  .hero-new::before { background-size: cover; }
-  .hero-grid { max-width: 1560px; }
-}
 
-
-/* STARTSEITE – verschlankt / Webdesign-Update */
-.quick-access {
-  background: var(--mg-blue-deep);
-  padding: 0 0 4rem;
-  margin-top: -1px;
-  position: relative;
-  z-index: 8;
-}
-.quick-access-grid {
-  max-width: var(--max-content);
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-.quick-card {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 18px;
-  color: white;
-  text-decoration: none;
-  padding: 1.25rem;
-  min-height: 132px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
-}
-.quick-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255,255,255,0.13);
-  border-color: var(--mg-yellow);
-}
-.quick-card i { color: var(--mg-yellow); width: 25px; height: 25px; }
-.quick-card strong {
-  font-family: var(--font-display);
-  font-size: 1.08rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.quick-card span {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.45;
-}
-.home-compact {
-  padding: clamp(4rem, 7vw, 7rem) 0;
-  background: white;
-}
-.home-compact-grid {
-  max-width: var(--max-content);
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
-}
-.home-compact-copy {
-  position: sticky;
-  top: 120px;
-}
-.home-compact-copy h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.1rem, 4vw, 3.45rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  color: var(--mg-blue);
-  font-weight: 800;
-  margin: 0.9rem 0 1.25rem;
-}
-.home-compact-copy h2 em {
-  color: var(--mg-blue-deep);
-  font-style: italic;
-  text-decoration: underline;
-  text-decoration-color: var(--mg-yellow);
-  text-decoration-thickness: 0.22em;
-  text-underline-offset: -0.08em;
-}
-.home-compact-copy p {
-  color: var(--mg-text-soft);
-  font-size: 1.05rem;
-  line-height: 1.75;
-  max-width: 560px;
-}
-.home-proof-grid {
-  display: grid;
-  gap: 1rem;
-}
-.home-proof-card {
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 22px;
-  padding: clamp(1.25rem, 2vw, 1.8rem);
-  background: linear-gradient(135deg, #fff 0%, var(--mg-blue-paper) 100%);
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 1.1rem;
-  align-items: start;
-}
-.home-proof-icon {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--mg-blue);
-  color: var(--mg-yellow);
-  display: grid;
-  place-items: center;
-}
-.home-proof-icon i { width: 24px; height: 24px; }
-.home-proof-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.18rem;
-  color: var(--mg-blue);
-  font-weight: 800;
-  margin-bottom: 0.35rem;
-}
-.home-proof-card p {
-  color: var(--mg-text-soft);
-  margin: 0;
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-.home-proof-card.featured {
-  background: var(--mg-yellow);
-  border-color: var(--mg-yellow);
-}
-.home-proof-card.featured .home-proof-icon { background: var(--mg-blue-deep); }
-.home-proof-card.featured p, .home-proof-card.featured h3 { color: var(--mg-blue-deep); }
-.news-section.compact-news { padding: clamp(4rem, 7vw, 6rem) 0; }
-.compact-news .news-grid { margin-top: 2.2rem; }
-.cta-banner.slim-cta { padding: clamp(4rem, 7vw, 6rem) 0; }
-@media (max-width: 1024px) {
-  .quick-access-grid { grid-template-columns: repeat(2, 1fr); }
-  .home-compact-grid { grid-template-columns: 1fr; }
-  .home-compact-copy { position: static; }
-}
-@media (max-width: 640px) {
-  .quick-access-grid { grid-template-columns: 1fr; }
-  .quick-card { min-height: 112px; }
-  .home-proof-card { grid-template-columns: 1fr; }
-}
-
+.news-loading { grid-column: 1 / -1; text-align: center; color: var(--mg-text-soft); padding: 2rem; }
+.news-card-img img { width: 100%; height: 100%; object-fit: cover; display:block; }
+.news-card-img-placeholder { background: var(--mg-blue-soft); }
 </style>
 </head>
 <body class="home-page">
@@ -856,7 +585,7 @@ body.home-page .menu-toggle { color: white; }
 <header class="header" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="images/mgp_logo_gelb_rgb.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
     </a>
     <nav class="nav">
       <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
@@ -866,8 +595,14 @@ body.home-page .menu-toggle { color: white; }
       <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
     </nav>
     <div class="header-right">
-      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo" aria-label="Schulstiftung im Bistum Osnabrück">
-        <img src="images/web_schulstiftung_logo_farbe_rgb.png" alt="Schulstiftung im Bistum Osnabrück" class="bistum-logo-img">
+      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo">
+        <svg class="bistum-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M20 5 L20 35 M10 35 L30 35 M14 35 L14 18 L20 12 L26 18 L26 35 M16 22 L24 22 M16 28 L24 28"/>
+        </svg>
+        <div class="bistum-logo-text">
+          <small>Schulstiftung im</small>
+          <strong>BISTUM OSNABRÜCK</strong>
+        </div>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menü">
         <i data-lucide="menu" style="width:28px;height:28px"></i>
@@ -896,31 +631,24 @@ body.home-page .menu-toggle { color: white; }
 
 <section class="hero-new">
   <div class="hero-decor">
-    <div class="hero-glow"></div>
-    <div class="hero-sun-mark"></div>
-    <svg class="wave-top" viewBox="0 0 720 120" fill="none" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M-20 72 C 95 12, 175 12, 288 72 S 488 132, 740 54" stroke="#feea00" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.72"/>
-      <path d="M-20 92 C 115 36, 190 35, 305 91 S 520 139, 740 76" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.28"/>
+    <svg class="wave-top" viewBox="0 0 540 90" fill="none" preserveAspectRatio="none">
+      <path d="M0 45 Q 90 0, 180 45 T 360 45 T 540 45" stroke="#feea00" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
     </svg>
     <div class="dots-tl"></div>
     <div class="dots-bm"></div>
-    <svg class="hero-wave-yellow" viewBox="0 0 1440 72" fill="none" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M-10 39 C 170 4, 279 5, 445 39 C 610 72, 710 72, 875 38 C 1044 3, 1168 1, 1450 34" stroke="#feea00" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.86"/>
+    <svg class="hero-wave-yellow" viewBox="0 0 1440 50" fill="none" preserveAspectRatio="none">
+      <path d="M0 25 Q 240 0, 480 25 T 960 25 T 1440 25" stroke="#feea00" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
     </svg>
-    <svg class="hero-wave-bottom" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 118 C 150 58, 291 55, 438 109 C 613 174, 742 197, 918 127 C 1093 58, 1224 76, 1440 138 L1440 260 L0 260 Z" fill="#003149"/>
-      <path d="M0 152 C 165 102, 326 96, 500 145 C 682 196, 818 201, 1005 151 C 1185 103, 1304 113, 1440 154 L1440 260 L0 260 Z" fill="#002435" opacity="0.55"/>
-    </svg>
+    <div class="hero-wave-bottom"></div>
   </div>
 
   <div class="hero-grid">
     <div class="hero-text">
-      <div class="hero-kicker">Mariengymnasium Papenburg</div>
       <h1 class="hero-headline">
         Gemeinsam<br>lernen.
         <span class="accent-yellow">Zukunft<br>gestalten.</span>
       </h1>
-      <p class="hero-subline">Bildung mit <strong>Herz</strong> und <strong>Vision</strong>.</p>
+      <p class="hero-subline">Bildung mit Herz und Vision.</p>
       <div class="hero-ctas">
         <a href="schulprofil.html" class="btn-dark">Unsere Schule <i data-lucide="arrow-right"></i></a>
         <a href="anmeldung.html" class="btn-ghost">Anmeldung <i data-lucide="arrow-right"></i></a>
@@ -962,128 +690,48 @@ body.home-page .menu-toggle { color: white; }
   </div>
 </section>
 
-
-<section class="quick-access" aria-label="Schnellzugriffe">
-  <div class="quick-access-grid">
-    <a href="anmeldung.html" class="quick-card">
-      <i data-lucide="clipboard-list"></i>
-      <strong>Anmeldung</strong>
-      <span>Termine, Unterlagen und Online-Anmeldung.</span>
-    </a>
-    <a href="aktuelles.html" class="quick-card">
-      <i data-lucide="newspaper"></i>
-      <strong>Aktuelles</strong>
-      <span>Neuigkeiten aus Unterricht und Schulleben.</span>
-    </a>
-    <a href="terminkalender.html" class="quick-card">
-      <i data-lucide="calendar-days"></i>
-      <strong>Termine</strong>
-      <span>Wichtige Daten des Schuljahres.</span>
-    </a>
-    <a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener" class="quick-card">
-      <i data-lucide="log-in"></i>
-      <strong>IServ</strong>
-      <span>Direkt zum Schulportal.</span>
-    </a>
-  </div>
-</section>
-
-<section class="home-compact">
-  <div class="home-compact-grid">
-    <div class="home-compact-copy">
-      <span class="eyebrow">Kurz vorgestellt</span>
-      <h2>Eine Schule, die <em>Persönlichkeit</em> stärkt.</h2>
+<section class="intro-section">
+  <div class="intro-grid">
+    <div class="intro-text">
+      <span class="eyebrow">Seit 1835</span>
+      <h2>Bildung, die <em>Persönlichkeit</em> formt.</h2>
       <p>
-        Das Mariengymnasium Papenburg verbindet gymnasiale Bildung mit christlichen Werten,
-        persönlicher Begleitung und einer lebendigen Schulgemeinschaft – seit 1835 im Herzen Papenburgs.
+        Das Mariengymnasium Papenburg ist ein katholisches Gymnasium in Trägerschaft
+        der Schulstiftung im Bistum Osnabrück. Seit 1835 gestalten wir Bildung im
+        Herzen des Emslands – mit Anspruch, Wertschätzung und einer lebendigen
+        Schulgemeinschaft.
       </p>
-      <div class="hero-ctas" style="margin-top:1.6rem">
-        <a href="schulprofil.html" class="btn btn-primary">Schulprofil ansehen <i data-lucide="arrow-right"></i></a>
-        <a href="kontakt.html" class="btn btn-outline">Kontakt <i data-lucide="phone"></i></a>
+      <p>
+        Seit dem Schuljahr 2023/24 sind wir im Jahrgang 5 offen für Mädchen und Jungen.
+        Aus einer traditionsreichen Mädchenschule wird ein Ort für alle, die mit Kopf,
+        Herz und Hand lernen wollen.
+      </p>
+      <div class="intro-stats">
+        <div class="intro-stat"><strong>190</strong><span>Jahre Tradition</span></div>
+        <div class="intro-stat"><strong>700+</strong><span>Schüler*innen</span></div>
+        <div class="intro-stat"><strong>4</strong><span>Partnerschulen</span></div>
       </div>
     </div>
-    <div class="home-proof-grid">
-      <article class="home-proof-card featured">
-        <div class="home-proof-icon"><i data-lucide="heart-handshake"></i></div>
-        <div>
-          <h3>Gemeinschaft mit Haltung</h3>
-          <p>Wir lernen miteinander, übernehmen Verantwortung und gestalten Schule als Ort der Wertschätzung.</p>
-        </div>
-      </article>
-      <article class="home-proof-card">
-        <div class="home-proof-icon"><i data-lucide="book-open-check"></i></div>
-        <div>
-          <h3>Gymnasiale Bildung klar strukturiert</h3>
-          <p>Unterricht, Förderung und Schullaufbahn sind übersichtlich gebündelt – von Klasse 5 bis zum Abitur.</p>
-        </div>
-      </article>
-      <article class="home-proof-card">
-        <div class="home-proof-icon"><i data-lucide="sparkles"></i></div>
-        <div>
-          <h3>Talente entdecken</h3>
-          <p>Musik, Sport, Wettbewerbe, Austausch und Projekte geben Raum, eigene Stärken sichtbar zu machen.</p>
-        </div>
-      </article>
-      <article class="home-proof-card">
-        <div class="home-proof-icon"><i data-lucide="map-pin"></i></div>
-        <div>
-          <h3>Mitten in Papenburg</h3>
-          <p>Gut erreichbar, traditionsreich und zugleich offen für neue Ideen, digitale Lernwege und moderne Schulentwicklung.</p>
-        </div>
-      </article>
+    <div class="intro-image">
+      <div class="intro-image-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21V12h6v9"/></svg>
+      </div>
+      <div class="intro-image-stoerer">
+        190 JAHRE<br><strong>MARIENGYMNASIUM</strong>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="news-section compact-news">
+<section class="news-section" id="aktuelles-kurz">
   <div class="container">
     <div class="section-header center">
       <span class="eyebrow center">Aktuelles</span>
-      <h2 class="display-2" style="margin-top: 1rem;">Das Wichtigste auf einen Blick.</h2>
+      <h2 class="display-2" style="margin-top: 1rem;">Aus dem <em>Schulleben</em>.</h2>
+      <p class="lead" style="margin: 1rem auto 0; max-width: 680px;">Die neuesten Beiträge werden automatisch aus <code>news/news.json</code> geladen.</p>
     </div>
-    <div class="news-grid">
-      <a href="aktuelles.html" class="news-card">
-        <div class="news-card-img">
-          <span class="news-card-cat">Schulleben</span>
-          <div class="news-card-img-placeholder">
-            <i data-lucide="party-popper" style="width:48px;height:48px"></i>
-          </div>
-        </div>
-        <div class="news-card-body">
-          <span class="news-card-date">Aktuell</span>
-          <h3>Rosenmontag: Chaos im Comic-Universum</h3>
-          <p>Kreativ, bunt und gemeinschaftlich: Die Klassen 5 bis 7 feierten im Forum ein fröhliches Karnevalsfest.</p>
-          <span class="news-card-link">Weiterlesen <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
-        </div>
-      </a>
-      <a href="aktuelles.html" class="news-card">
-        <div class="news-card-img">
-          <span class="news-card-cat">Musik</span>
-          <div class="news-card-img-placeholder">
-            <i data-lucide="music" style="width:48px;height:48px"></i>
-          </div>
-        </div>
-        <div class="news-card-body">
-          <span class="news-card-date">Rückblick</span>
-          <h3>Adventskonzert in St. Antonius</h3>
-          <p>Schulorchester, Chor und Oberstufenband sorgten für einen stimmungsvollen Abend in besonderer Atmosphäre.</p>
-          <span class="news-card-link">Weiterlesen <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
-        </div>
-      </a>
-      <a href="aktuelles.html" class="news-card">
-        <div class="news-card-img">
-          <span class="news-card-cat">Wettbewerb</span>
-          <div class="news-card-img-placeholder">
-            <i data-lucide="trophy" style="width:48px;height:48px"></i>
-          </div>
-        </div>
-        <div class="news-card-body">
-          <span class="news-card-date">Erfolg</span>
-          <h3>Starke Leistungen bei Wettbewerben</h3>
-          <p>Schülerinnen und Schüler des MG zeigen regelmäßig, was in ihnen steckt – fachlich, kreativ und sportlich.</p>
-          <span class="news-card-link">Weiterlesen <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
-        </div>
-      </a>
+    <div class="news-grid" id="homepage-news" data-news-home="3">
+      <div class="news-loading">Aktuelle Beiträge werden geladen …</div>
     </div>
     <div class="news-section-cta">
       <a href="aktuelles.html" class="btn btn-outline">Alle Beiträge ansehen <i data-lucide="arrow-right"></i></a>
@@ -1091,15 +739,16 @@ body.home-page .menu-toggle { color: white; }
   </div>
 </section>
 
-<section class="cta-banner slim-cta">
+<section class="cta-banner">
   <div class="cta-banner-inner">
     <span class="eyebrow center" style="color: var(--mg-yellow);">Anmeldung Schuljahr 2026/27</span>
-    <h2 style="margin-top: 1rem;">Der nächste Schritt zur <em>MG-Familie</em>.</h2>
+    <h2 style="margin-top: 1rem;">Werden Sie Teil der <em>MG-Familie</em>.</h2>
     <p>
-      Klasse 5: 18.–20. Februar 2026. Alle Termine, Unterlagen und Informationen zur Anmeldung finden Sie gebündelt auf einer Seite.
+      18.–20. Februar 2026 · Anmeldungen für Klasse 5 und Klasse 11 ·
+      Termine, Unterlagen und Online-Formular auf einen Blick.
     </p>
     <div class="cta-banner-btns">
-      <a href="anmeldung.html" class="btn-yellow">Zur Anmeldung <i data-lucide="arrow-right"></i></a>
+      <a href="anmeldung.html" class="btn-yellow">Jetzt anmelden <i data-lucide="arrow-right"></i></a>
       <a href="kontakt.html" class="btn btn-light">Kontakt aufnehmen <i data-lucide="phone"></i></a>
     </div>
   </div>
@@ -1114,6 +763,7 @@ body.home-page .menu-toggle { color: white; }
         <div class="footer-socials">
           <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1156,5 +806,6 @@ body.home-page .menu-toggle { color: white; }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/news-loader.js"></script>
 </body>
 </html>

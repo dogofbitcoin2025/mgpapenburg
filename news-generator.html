@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News-Generator – Mariengymnasium Papenburg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#003149;--yellow:#feea00;--soft:#f6f7f8;--text:#1f2937;--muted:#667085;}
+*{box-sizing:border-box}body{margin:0;font-family:'Open Sans',Arial,sans-serif;background:var(--soft);color:var(--text)}
+header{background:var(--blue);color:white;padding:2rem}header h1{margin:.4rem 0 0;font-size:clamp(2rem,5vw,3.4rem);line-height:1}header span{color:var(--yellow);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+main{max-width:1180px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}.card{background:white;border:1px solid #e5e7eb;border-radius:22px;padding:1.5rem;box-shadow:0 14px 40px rgba(0,0,0,.06)}
+label{display:block;font-weight:800;color:var(--blue);margin:.9rem 0 .35rem}input,select,textarea{width:100%;padding:.9rem 1rem;border:1px solid #d0d5dd;border-radius:12px;font:inherit}textarea{min-height:120px;resize:vertical}.hint{color:var(--muted);font-size:.9rem;line-height:1.55}button{border:0;background:var(--yellow);color:var(--blue);padding:1rem 1.2rem;border-radius:12px;font-weight:800;cursor:pointer;margin-top:1rem}pre{white-space:pre-wrap;background:#061d2b;color:#fff;padding:1rem;border-radius:14px;min-height:300px;overflow:auto}.copy{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}.ok{color:#12805c;font-weight:800}.warning{background:#fff8cc;border-left:6px solid var(--yellow);padding:1rem;border-radius:12px;margin-bottom:1rem}@media(max-width:900px){main{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><span>Aktuelles pflegen</span><h1>News-Generator</h1><p>Formular ausfüllen, JSON-Block kopieren, oben in <strong>news/news.json</strong> einfügen.</p></header>
+<main>
+<section class="card">
+  <div class="warning"><strong>Wichtig:</strong> Das Bild vorher in <code>news/bilder/</code> legen. Dateinamen klein, ohne Leerzeichen und Umlaute.</div>
+  <label>Titel</label><input id="titel" placeholder="z. B. Rosenmontag im Comic-Universum">
+  <label>Datum</label><input id="datum" type="date">
+  <label>Autor / Fachschaft</label><input id="autor" placeholder="z. B. Schulleitung">
+  <label>Kategorie</label><select id="kategorie"><option value="schulleben">Schulleben</option><option value="wettbewerbe">Wettbewerbe</option><option value="kultur">Kultur</option><option value="sport">Sport</option><option value="austausch">Austausch</option></select>
+  <label>Bild-Dateiname</label><input id="bild" placeholder="z. B. rosenmontag-2026.jpg">
+  <p class="hint">Der Generator macht daraus automatisch: <code>news/bilder/dein-bild.jpg</code></p>
+  <label>Kurztext für Karten</label><textarea id="vorschau" placeholder="1–2 kurze Sätze für die Übersicht"></textarea>
+  <label>Langer Beitrag</label><textarea id="inhalt" placeholder="Absätze einfach mit Leerzeilen trennen"></textarea>
+  <button id="generate">JSON-Block erstellen</button>
+</section>
+<section class="card">
+  <h2>Fertiger JSON-Block</h2>
+  <p class="hint">Diesen Block kopierst du in <code>news/news.json</code>. Neue Beiträge immer ganz oben einfügen.</p>
+  <pre id="output">Noch kein Beitrag erstellt.</pre>
+  <div class="copy"><button id="copy">Kopieren</button><span id="status"></span></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function slugify(s){return (s||'beitrag').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function esc(s){return String(s||'').trim()}
+function paragraphs(s){return esc(s).split(/
+\s*
+/).filter(Boolean).map(p=>'<p>'+p.replace(/
+/g,'<br>')+'</p>').join('')}
+function catLabel(v){return {schulleben:'Schulleben',wettbewerbe:'Wettbewerbe',kultur:'Kultur',sport:'Sport',austausch:'Austausch'}[v]||'Aktuelles'}
+$('generate').addEventListener('click',()=>{
+ const titel=esc($('titel').value), datum=esc($('datum').value), kat=$('kategorie').value;
+ const file=esc($('bild').value);
+ const obj={id:(datum?datum+'-':'')+slugify(titel),datum,autor:esc($('autor').value),kategorie:kat,kategorieLabel:catLabel(kat),titel,vorschau:esc($('vorschau').value),bild:file?'news/bilder/'+file:'',inhalt:paragraphs($('inhalt').value)||'<p></p>'};
+ $('output').textContent=JSON.stringify(obj,null,2);
+ $('status').textContent='';
+});
+$('copy').addEventListener('click',async()=>{await navigator.clipboard.writeText($('output').textContent);$('status').textContent='Kopiert!';$('status').className='ok';});
+</script>
+</body>
+</html>
