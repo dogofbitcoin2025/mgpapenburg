@@ -4,359 +4,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aktuelles – Mariengymnasium Papenburg</title>
-<meta name="description" content="Aktuelle Nachrichten, Berichte und Termine aus dem Schulleben des Mariengymnasiums Papenburg.">
+<meta name="description" content="Aktuelle Beiträge, Bilder und Nachrichten aus dem Schulleben des Mariengymnasiums Papenburg.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-
 <style>
-/* AKTUELLES-SPEZIFISCH */
-.search-bar-wrap {
-  background: rgba(253, 251, 247, 0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--mg-gray-200);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 1.75rem 0;
-}
-.search-bar-inner {
-  max-width: var(--max-content);
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1.5rem;
-  align-items: center;
-}
-.search-input { position: relative; display: flex; align-items: center; }
-.search-input svg {
-  position: absolute;
-  left: 1.25rem;
-  width: 18px; height: 18px;
-  color: var(--mg-text-soft);
-  pointer-events: none;
-}
-.search-input input {
-  width: 100%;
-  padding: 0.95rem 1.25rem 0.95rem 3.25rem;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 100px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  background: white;
-  transition: all 0.2s;
-}
-.search-input input:focus {
-  outline: none;
-  border-color: var(--mg-gold);
-  box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.1);
-}
-.filter-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.filter-pill {
-  background: white;
-  border: 1px solid var(--mg-gray-200);
-  padding: 0.6rem 1.2rem;
-  border-radius: 100px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--mg-text-soft);
-  cursor: pointer;
-  transition: all 0.25s;
-  white-space: nowrap;
-}
-.filter-pill:hover { border-color: var(--mg-navy); color: var(--mg-navy); }
-.filter-pill.active {
-  background: var(--mg-navy);
-  border-color: var(--mg-navy);
-  color: white;
-}
-
-/* Featured */
-.featured-news { background: var(--mg-paper); padding: 4rem 0 1rem; }
-.featured-card {
-  background: white;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--mg-gray-100);
-  transition: all 0.4s ease;
-  cursor: pointer;
-  position: relative;
-}
-.featured-card:hover {
-  box-shadow: var(--shadow-xl);
-  border-color: var(--mg-gold-light);
-}
-.featured-card-image {
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  position: relative;
-}
-.featured-card-image img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s;
-}
-.featured-card:hover .featured-card-image img { transform: scale(1.04); }
-.featured-card-image::before {
-  content: 'Aktueller Beitrag';
-  position: absolute;
-  top: 1.5rem; left: 1.5rem;
-  background: var(--mg-gold);
-  color: var(--mg-navy-deep);
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
-  z-index: 2;
-}
-.featured-card-body {
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.featured-card-meta {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mg-gold-deep);
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-.featured-card-meta span { color: var(--mg-text-soft); }
-.featured-card-body h2 {
-  font-family: var(--font-display);
-  font-size: 2.3rem;
-  font-weight: 600;
-  color: var(--mg-navy);
-  line-height: 1.15;
-  margin-bottom: 1.25rem;
-}
-.featured-card-body p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--mg-text-soft);
-  margin-bottom: 1.75rem;
-}
-
-/* Archive Grid */
-.news-archive { background: var(--mg-paper); padding: 3rem 0 5rem; }
-.news-grid-archive {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-.news-card-archive {
-  background: white;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--mg-gray-100);
-  transition: all 0.35s ease;
-  cursor: pointer;
-}
-.news-card-archive:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--mg-gold-light);
-}
-.news-card-archive-img {
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  position: relative;
-}
-.news-card-archive-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s;
-}
-.news-card-archive:hover .news-card-archive-img img { transform: scale(1.06); }
-.news-card-archive-cat {
-  position: absolute;
-  top: 1rem; left: 1rem;
-  padding: 0.3rem 0.85rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: white;
-}
-.news-card-archive-cat.schulleben { background: #2563a8; }
-.news-card-archive-cat.wettbewerbe { background: #c9a961; color: var(--mg-navy-deep); }
-.news-card-archive-cat.kultur { background: #8b5a9f; }
-.news-card-archive-cat.sport { background: #2d9b6f; }
-.news-card-archive-cat.austausch { background: #d97757; }
-.news-card-archive-body { padding: 1.75rem; }
-.news-card-archive-meta {
-  font-size: 0.78rem;
-  color: var(--mg-text-soft);
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-}
-.news-card-archive-body h3 {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  line-height: 1.25;
-  color: var(--mg-navy);
-  margin-bottom: 0.7rem;
-  font-weight: 600;
-}
-.news-card-archive-body p {
-  color: var(--mg-text-soft);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-.news-card-archive-link {
-  color: var(--mg-navy);
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: gap 0.2s;
-}
-.news-card-archive-link svg { width: 14px; height: 14px; }
-.news-card-archive:hover .news-card-archive-link { gap: 0.6rem; color: var(--mg-gold-deep); }
-
-/* Modal */
-.news-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 3rem 1.5rem;
-  background: rgba(10, 37, 64, 0.7);
-  backdrop-filter: blur(8px);
-  overflow-y: auto;
-}
-.news-modal.active { display: flex; animation: fadeIn 0.25s ease; }
-.news-modal-inner {
-  background: white;
-  max-width: 800px;
-  width: 100%;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  position: relative;
-  animation: fadeInUp 0.4s ease;
-}
-.news-modal-close {
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  width: 44px; height: 44px;
-  background: rgba(255,255,255,0.95);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  z-index: 10;
-  color: var(--mg-navy);
-  transition: all 0.2s;
-}
-.news-modal-close:hover { background: var(--mg-gold); color: var(--mg-navy-deep); transform: scale(1.05); }
-.news-modal-img { aspect-ratio: 16/9; overflow: hidden; }
-.news-modal-img img { width: 100%; height: 100%; object-fit: cover; }
-.news-modal-body { padding: 3rem; }
-.news-modal-meta {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mg-gold-deep);
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-.news-modal-body h2 {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--mg-navy);
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-}
-.news-modal-body p {
-  font-size: 1.02rem;
-  line-height: 1.85;
-  color: var(--mg-text);
-  margin-bottom: 1.25rem;
-}
-
-/* Empty State */
-.empty-state-news {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 5rem 2rem;
-  color: var(--mg-text-soft);
-}
-.empty-state-news svg {
-  width: 56px; height: 56px;
-  color: var(--mg-gray-300);
-  margin: 0 auto 1.25rem;
-}
-.empty-state-news h3 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  color: var(--mg-navy);
-  margin-bottom: 0.5rem;
-}
-
-@media (max-width: 1024px) {
-  .featured-card { grid-template-columns: 1fr; }
-  .featured-card-body { padding: 2rem; }
-  .featured-card-body h2 { font-size: 1.7rem; }
-  .news-grid-archive { grid-template-columns: repeat(2, 1fr); }
-  .search-bar-inner { grid-template-columns: 1fr; }
-  .news-modal-body { padding: 2rem; }
-}
-@media (max-width: 640px) {
-  .news-grid-archive { grid-template-columns: 1fr; }
-  .news-modal { padding: 0; }
-  .news-modal-inner { border-radius: 0; min-height: 100vh; }
-}
+body.news-page .header { background: var(--mg-blue-deep); border-bottom: none; }
+body.news-page .header.scrolled { background: var(--mg-blue-deep); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+body.news-page .nav-link { color: rgba(255,255,255,0.85); }
+body.news-page .nav-link:hover, body.news-page .nav-link.active { color: white; }
+body.news-page .menu-toggle { color: white; }
+.bistum-logo { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; width:auto; height:auto; padding:clamp(0.42rem,0.65vw,0.72rem) clamp(0.68rem,1vw,1rem); border-radius:18px; background:rgba(255,255,255,0.96); box-shadow:0 10px 28px rgba(0,0,0,0.16); text-decoration:none; transition:transform .2s, box-shadow .2s, background .2s; }
+.bistum-logo:hover { transform:translateY(-1px); background:#fff; box-shadow:0 14px 34px rgba(0,0,0,0.20); }
+.bistum-logo-img { display:block; height:clamp(38px,3.25vw,54px); width:auto; max-width:clamp(150px,13vw,220px); object-fit:contain; }
+.logo { display:inline-flex; align-items:center; flex:0 0 auto; min-width:0; width:auto; line-height:0; }
+.logo-img { display:block; height:clamp(64px,5.35vw,88px); width:auto; max-width:none; object-fit:contain; object-position:left center; }
+.header-inner { min-height:clamp(88px,7.2vw,112px); }
+.news-hero { position:relative; overflow:hidden; background:var(--mg-blue-deep); color:white; padding:clamp(5rem,9vw,7rem) 0 clamp(4rem,7vw,5.5rem); isolation:isolate; }
+.news-hero::before { content:''; position:absolute; inset:0; z-index:-2; background: radial-gradient(circle at 85% 22%, rgba(254,234,0,.18), transparent 34%), radial-gradient(circle at 10% 90%, rgba(255,255,255,.08), transparent 32%), linear-gradient(135deg, rgba(0,49,74,.98), rgba(0,31,48,.98)); }
+.news-hero::after { content:''; position:absolute; right:-90px; top:-120px; width:360px; height:360px; border:22px solid rgba(254,234,0,.22); border-radius:50%; z-index:-1; }
+.news-hero-inner { max-width:var(--max-width); margin:0 auto; padding:0 2rem; }
+.news-hero .eyebrow { color:var(--mg-yellow); }
+.news-hero .eyebrow::before { background:var(--mg-yellow); }
+.news-hero h1 { color:white; margin:1.25rem 0 1rem; max-width:900px; }
+.news-hero h1 em::after { background:var(--mg-yellow); opacity:.55; }
+.news-hero .lead { color:rgba(255,255,255,.86); max-width:760px; }
+.news-archive { background:var(--mg-paper); padding:clamp(4rem,7vw,6rem) 0; }
+.news-tools { display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; margin:0 0 2rem; }
+.news-filters { display:flex; gap:.65rem; flex-wrap:wrap; }
+.filter-pill { border:1px solid var(--mg-gray-200); background:#fff; color:var(--mg-text-soft); padding:.72rem 1rem; border-radius:999px; font-weight:800; cursor:pointer; transition:all .2s; }
+.filter-pill.active, .filter-pill:hover { background:var(--mg-blue-deep); border-color:var(--mg-blue-deep); color:white; }
+.news-search { min-width:min(360px,100%); flex:0 1 360px; }
+.news-search input { width:100%; border:1px solid var(--mg-gray-200); border-radius:999px; padding:.82rem 1rem; font:inherit; color:var(--mg-blue); outline:none; background:white; }
+.news-search input:focus { border-color:var(--mg-yellow); box-shadow:0 0 0 4px rgba(254,234,0,.18); }
+#featured-section { margin-bottom:2rem; }
+.featured-card { display:grid; grid-template-columns:1.05fr 1fr; gap:0; overflow:hidden; background:white; border:1px solid var(--mg-gray-200); border-radius:var(--radius-lg); box-shadow:var(--shadow-lg); cursor:pointer; }
+.featured-card-image { min-height:360px; background:var(--mg-blue-soft); }
+.featured-card-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.featured-card-body { padding:clamp(1.8rem,4vw,3rem); display:flex; flex-direction:column; justify-content:center; }
+.featured-card-meta, .news-card-archive-meta { color:var(--mg-text-soft); font-size:.84rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.7rem; }
+.featured-card h2 { font-family:var(--font-display); color:var(--mg-blue); font-size:clamp(1.7rem,3vw,2.7rem); line-height:1.1; margin-bottom:1rem; }
+.featured-card p { color:var(--mg-text-soft); line-height:1.7; font-size:1.05rem; }
+.news-archive-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.4rem; }
+.news-card-archive { background:white; border:1px solid var(--mg-gray-200); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:transform .25s, box-shadow .25s, border-color .25s; }
+.news-card-archive:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--mg-yellow); }
+.news-card-archive-img { aspect-ratio:16/10; position:relative; background:var(--mg-blue-soft); overflow:hidden; }
+.news-card-archive-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.news-card-archive-cat { position:absolute; top:1rem; left:1rem; background:var(--mg-yellow); color:var(--mg-blue-deep); padding:.32rem .7rem; border-radius:5px; font-size:.68rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.news-card-archive-body { padding:1.4rem; }
+.news-card-archive h3 { font-family:var(--font-display); color:var(--mg-blue); font-size:1.2rem; line-height:1.25; margin-bottom:.65rem; }
+.news-card-archive p { color:var(--mg-text-soft); line-height:1.55; font-size:.95rem; }
+.news-card-archive-link { margin-top:1rem; display:inline-flex; align-items:center; gap:.35rem; color:var(--mg-blue); font-weight:800; font-size:.9rem; }
+.empty-state-news, .news-loading { grid-column:1/-1; text-align:center; background:white; border:1px solid var(--mg-gray-200); border-radius:var(--radius-lg); padding:2rem; color:var(--mg-text-soft); }
+.empty-state-news svg { width:42px; height:42px; color:var(--mg-yellow); margin-bottom:.8rem; }
+.news-modal { position:fixed; inset:0; z-index:9999; background:rgba(0,31,48,.72); display:none; align-items:center; justify-content:center; padding:2rem; }
+.news-modal.open { display:flex; }
+.news-modal-card { width:min(980px,100%); max-height:90vh; overflow:auto; background:white; border-radius:var(--radius-lg); box-shadow:0 30px 90px rgba(0,0,0,.35); position:relative; }
+.news-modal-close { position:absolute; top:1rem; right:1rem; width:44px; height:44px; border:none; border-radius:50%; background:var(--mg-blue-deep); color:white; cursor:pointer; display:grid; place-items:center; z-index:2; }
+.news-modal-img { width:100%; aspect-ratio:16/7; object-fit:cover; display:block; background:var(--mg-blue-soft); }
+.news-modal-body { padding:clamp(1.6rem,4vw,3rem); }
+.news-modal-meta { color:var(--mg-text-soft); font-size:.86rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-bottom:.8rem; }
+.news-modal-body h2 { font-family:var(--font-display); color:var(--mg-blue); font-size:clamp(1.7rem,3vw,2.55rem); line-height:1.12; margin-bottom:1.2rem; }
+.news-modal-content { color:var(--mg-text); line-height:1.8; font-size:1.05rem; }
+.news-modal-content p { margin-bottom:1rem; }
+@media (max-width:960px) { .featured-card { grid-template-columns:1fr; } .featured-card-image { min-height:260px; } .news-archive-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px) { .logo-img { height:48px; } .bistum-logo-img { height:28px; max-width:112px; } .news-tools { display:block; } .news-search { margin-top:1rem; } .news-archive-grid { grid-template-columns:1fr; } .news-modal { padding:1rem; } }
 </style>
 </head>
-<body>
-
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-contact">
-      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
-      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
-      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
-    </div>
-    <div class="topbar-socials">
-      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
-    </div>
-  </div>
-</div>
-
-<!-- HEADER -->
+<body class="news-page">
 <header class="header" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
-      <div class="logo-text">
-        <small>Papenburg · Seit 1835</small>
-      </div>
+      <img src="images/mgp_logo_gelb_rgb.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
     </a>
     <nav class="nav">
       <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
@@ -365,17 +86,24 @@
       <div class="nav-item"><a href="aktuelles.html" class="nav-link active">Aktuelles</a></div>
       <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
     </nav>
-    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+    <div class="header-right">
+      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo" aria-label="Schulstiftung im Bistum Osnabrück">
+        <img src="images/web_schulstiftung_logo_farbe_rgb.png" alt="Schulstiftung im Bistum Osnabrück" class="bistum-logo-img">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü">
+        <i data-lucide="menu" style="width:28px;height:28px"></i>
+      </button>
+    </div>
   </div>
 </header>
 
-<!-- MOBILE NAV -->
 <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 <aside class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-header">
     <strong>Menü</strong>
-    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-blue)">
+      <i data-lucide="x" style="width:24px;height:24px"></i>
+    </button>
   </div>
   <ul class="mobile-nav-list">
     <li><a href="schulprofil.html">Schulprofil</a></li>
@@ -383,72 +111,57 @@
     <li><a href="schulleben.html">Schulleben</a></li>
     <li><a href="aktuelles.html">Aktuelles</a></li>
     <li><a href="anmeldung.html">Anmeldung</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
   </ul>
 </aside>
-
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-inner">
+<section class="news-hero">
+  <div class="news-hero-inner">
     <div class="breadcrumbs">
-      <a href="index.html">Startseite</a>
-      <span class="sep">/</span>
-      <span>Aktuelles</span>
+      <a href="index.html">Startseite</a><span class="sep">/</span><span>Aktuelles</span>
     </div>
-    <span class="eyebrow">Aus dem Schulleben</span>
-    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Aktu<em>elles.</em></h1>
-    <p class="lead">
-      Berichte, Erlebnisse und Geschichten aus unserem Schulalltag – frisch aus
-      dem Mariengymnasium und seinen Klassenzimmern, Konzertsälen und Sporthallen.
-    </p>
+    <span class="eyebrow">Aktuelles</span>
+    <h1 class="display-1">Neues aus dem <em>Schulleben.</em></h1>
+    <p class="lead">Beiträge, Bilder und Nachrichten werden zentral über <code>news/news.json</code> gepflegt und hier automatisch angezeigt.</p>
   </div>
 </section>
 
-<!-- SEARCH & FILTER BAR -->
-<div class="search-bar-wrap">
-  <div class="search-bar-inner">
-    <div class="search-input">
-      <i data-lucide="search"></i>
-      <input type="text" id="searchInput" placeholder="Beiträge durchsuchen …">
-    </div>
-    <div class="filter-pills">
-      <button class="filter-pill active" data-cat="all">Alle</button>
-      <button class="filter-pill" data-cat="schulleben">Schulleben</button>
-      <button class="filter-pill" data-cat="wettbewerbe">Wettbewerbe</button>
-      <button class="filter-pill" data-cat="kultur">Kultur</button>
-      <button class="filter-pill" data-cat="sport">Sport</button>
-      <button class="filter-pill" data-cat="austausch">Austausch</button>
-    </div>
-  </div>
-</div>
-
-<!-- FEATURED -->
-<section class="featured-news" id="featured-section">
-  <div class="container-narrow">
-    <div id="featured-container"></div>
-  </div>
-</section>
-
-<!-- ARCHIVE GRID -->
 <section class="news-archive">
   <div class="container">
-    <div class="news-grid-archive" id="news-grid"></div>
+    <div class="news-tools">
+      <div class="news-filters" aria-label="Beiträge filtern">
+        <button class="filter-pill active" data-cat="all">Alle</button>
+        <button class="filter-pill" data-cat="schulleben">Schulleben</button>
+        <button class="filter-pill" data-cat="unterricht">Unterricht</button>
+        <button class="filter-pill" data-cat="musik">Musik</button>
+        <button class="filter-pill" data-cat="wettbewerb">Wettbewerb</button>
+        <button class="filter-pill" data-cat="termine">Termine</button>
+      </div>
+      <label class="news-search" aria-label="Beiträge durchsuchen">
+        <input id="searchInput" type="search" placeholder="Beiträge suchen …">
+      </label>
+    </div>
+
+    <div id="featured-section">
+      <div id="featured-container"></div>
+    </div>
+
+    <div class="news-archive-grid" id="news-grid">
+      <div class="news-loading">Aktuelle Beiträge werden geladen …</div>
+    </div>
   </div>
 </section>
 
-<!-- MODAL -->
-<div class="news-modal" id="newsModal">
-  <div class="news-modal-inner">
-    <button class="news-modal-close" id="modalClose" aria-label="Schließen"><i data-lucide="x"></i></button>
-    <div class="news-modal-img"><img id="modalImg" src="" alt=""></div>
+<div class="news-modal" id="newsModal" aria-hidden="true">
+  <article class="news-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="news-modal-close" id="modalClose" aria-label="Beitrag schließen"><i data-lucide="x"></i></button>
+    <img class="news-modal-img" id="modalImg" src="" alt="">
     <div class="news-modal-body">
       <div class="news-modal-meta" id="modalMeta"></div>
       <h2 id="modalTitle"></h2>
-      <div id="modalContent"></div>
+      <div class="news-modal-content" id="modalContent"></div>
     </div>
-  </div>
+  </article>
 </div>
-
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-grid">
@@ -458,13 +171,12 @@
         <div class="footer-socials">
           <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
         </div>
       </div>
       <div class="footer-col">
         <h5>Kontakt</h5>
         <ul>
-          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
           <li><a href="tel:0496194700">04961 - 94700</a></li>
           <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
         </ul>
@@ -482,16 +194,18 @@
         <h5>Service</h5>
         <ul>
           <li><a href="anmeldung.html">Anmeldung</a></li>
-          <li><a href="#">Terminkalender</a></li>
-          <li><a href="#">Vorlagen für Eltern</a></li>
-          <li><a href="#">IServ</a></li>
+          <li><a href="terminkalender.html">Terminkalender</a></li>
+          <li><a href="vorlagen.html">Vorlagen für Eltern</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
       <div class="footer-bottom-links">
-        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
       </div>
     </div>
   </div>
