@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schulprofil – Mariengymnasium Papenburg</title>
+<meta name="description" content="Schulprogramm, Geschichte und Schulleitung des Mariengymnasiums Papenburg – seit 1835 ein Ort der Bildung im Emsland.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* SCHULPROFIL-SPEZIFISCH */
+
+/* Tab Navigation */
+.tab-nav {
+  background: var(--mg-paper);
+  border-bottom: 1px solid var(--mg-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-top: -1px;
+}
+.tab-nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-nav-inner::-webkit-scrollbar { display: none; }
+.tab-nav a {
+  padding: 1.25rem 0.25rem;
+  color: var(--mg-text-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-nav a:hover { color: var(--mg-navy); }
+.tab-nav a.active {
+  color: var(--mg-navy);
+  border-bottom-color: var(--mg-gold);
+}
+
+/* Editorial Section */
+.editorial {
+  background: var(--mg-paper);
+}
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+.editorial-image-stack {
+  position: relative;
+}
+.editorial-image-main {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.editorial-image-main img { width: 100%; height: 100%; object-fit: cover; }
+.editorial-image-stack::before {
+  content: '';
+  position: absolute;
+  bottom: -24px; left: -24px;
+  width: 50%; height: 70%;
+  border: 2px solid var(--mg-gold);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+.editorial-content > * + * { margin-top: 1.25rem; }
+.editorial-content h2 { color: var(--mg-navy); }
+.editorial-content p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--mg-text);
+}
+.editorial-content p.lead { font-size: 1.2rem; color: var(--mg-text); font-weight: 400; }
+
+/* Drop-Cap erste Zeile */
+.editorial-content p.dropcap::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 600;
+  color: var(--mg-gold);
+  float: left;
+  line-height: 0.9;
+  margin: 0.3rem 0.6rem 0 0;
+}
+
+/* Werte-Grid */
+.values {
+  background: var(--mg-cream);
+  position: relative;
+}
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.value-item {
+  background: white;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-100);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: all 0.3s;
+}
+.value-item:hover {
+  border-color: var(--mg-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.value-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-navy);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.value-icon svg { width: 26px; height: 26px; }
+.value-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.5rem;
+}
+.value-item p {
+  color: var(--mg-text-soft);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+/* Geschichte Timeline (visuell) */
+.history {
+  background: var(--mg-paper);
+}
+.history-timeline {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.history-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    transparent,
+    var(--mg-gold) 5%,
+    var(--mg-gold) 95%,
+    transparent);
+  transform: translateX(-50%);
+}
+.history-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 0;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+.history-event:last-child { margin-bottom: 0; }
+.history-dot {
+  grid-column: 2;
+  width: 18px; height: 18px;
+  background: var(--mg-gold);
+  border: 4px solid var(--mg-paper);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
+}
+.history-content {
+  padding: 2rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-100);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+}
+.history-content:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--mg-gold-light);
+}
+.history-event:nth-child(odd) .history-content { grid-column: 1; }
+.history-event:nth-child(even) .history-content { grid-column: 3; }
+.history-year {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--mg-gold);
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+.history-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.5rem;
+}
+.history-content p {
+  color: var(--mg-text-soft);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+/* Schulleitung */
+.leadership {
+  background: var(--mg-cream);
+}
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.leader-card {
+  text-align: center;
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-100);
+  transition: all 0.3s;
+}
+.leader-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--mg-gold-light);
+  box-shadow: var(--shadow-lg);
+}
+.leader-photo {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  border: 3px solid var(--mg-cream);
+  box-shadow: 0 0 0 1px var(--mg-gold-light);
+  position: relative;
+}
+.leader-photo img { width: 100%; height: 100%; object-fit: cover; }
+.leader-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.3rem;
+}
+.leader-role {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mg-gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: block;
+}
+.leader-bio {
+  font-size: 0.92rem;
+  color: var(--mg-text-soft);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.leader-contact {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.leader-contact a {
+  width: 36px; height: 36px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-navy);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.leader-contact a:hover { background: var(--mg-navy); color: var(--mg-gold); }
+.leader-contact i { width: 16px; height: 16px; }
+
+/* Stats Banner */
+.stats-banner {
+  background: linear-gradient(135deg, var(--mg-navy-deep), var(--mg-navy));
+  color: white;
+  padding: 5rem 0;
+  text-align: center;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.stat-item strong {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 600;
+  color: var(--mg-gold);
+  display: block;
+  line-height: 1;
+}
+.stat-item span {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-top: 0.6rem;
+  display: block;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .editorial-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .value-grid { grid-template-columns: 1fr; }
+  .leadership-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+  .history-timeline::before { left: 24px; }
+  .history-event { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .history-dot { grid-column: 1; }
+  .history-event:nth-child(odd) .history-content,
+  .history-event:nth-child(even) .history-content { grid-column: 2; }
+}
+@media (max-width: 640px) {
+  .stat-item strong { font-size: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
+           onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
+      <div class="logo-text">
+        <strong>Mariengymnasium</strong>
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link active">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Schulprofil</span>
+    </div>
+    <span class="eyebrow">Wer wir sind</span>
+    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Schul<em>profil.</em></h1>
+    <p class="lead">
+      Eine Schule, die mehr ist als ein Gebäude. Eine Gemeinschaft, die mehr ist als
+      ein Stundenplan. Lernen Sie uns kennen – unsere Werte, unsere Geschichte,
+      unsere Menschen.
+    </p>
+  </div>
+</section>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="#leitbild">Leitbild</a>
+    <a href="#werte">Unsere Werte</a>
+    <a href="#geschichte">Geschichte</a>
+    <a href="#leitung">Schulleitung</a>
+    <a href="#zahlen">MG in Zahlen</a>
+  </div>
+</nav>
+
+<!-- LEITBILD / EDITORIAL -->
+<section class="editorial" id="leitbild">
+  <div class="container">
+    <div class="editorial-grid">
+      <div class="editorial-image-stack reveal">
+        <div class="editorial-image-main">
+          <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1000&q=80"
+               alt="Bibliothek mit Büchern und Licht">
+        </div>
+      </div>
+      <div class="editorial-content reveal">
+        <span class="eyebrow">Unser Leitbild</span>
+        <h2 class="display-2">Miteinander <em>Gemeinschaft</em> gestalten.</h2>
+        <p class="lead">
+          „Starke Schule – Stark für alle." Mehr als ein Slogan: ein tägliches Versprechen
+          an unsere Schüler*innen, an ihre Familien und an unsere Region.
+        </p>
+        <p class="dropcap">
+          Das Mariengymnasium Papenburg ist eine Schule mit klarem Profil: katholisch
+          geprägt, weltoffen, leistungsorientiert und gemeinschaftlich. Wir glauben,
+          dass Bildung mehr bedeutet, als Wissen zu vermitteln. Bildung heißt für uns,
+          junge Menschen darin zu stärken, ihren eigenen Weg zu finden – mit kritischem
+          Denken, mit innerer Haltung, mit Verantwortung für sich und andere.
+        </p>
+        <p>
+          Wir tun das aus einer christlichen Tradition heraus, die seit 1835 unsere
+          Schule prägt. Und wir tun das in einer Welt, die sich rasant wandelt –
+          mit Mut, mit Offenheit, und mit dem festen Glauben, dass Bildung Brücken baut:
+          zwischen Menschen, zwischen Kulturen, zwischen Vergangenheit und Zukunft.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WERTE -->
+<section class="values" id="werte">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Was uns trägt</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Unsere <em>Werte.</em></h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Sechs Grundüberzeugungen, die unseren Schulalltag prägen – im Klassenzimmer,
+        im Lehrerzimmer und in der Begegnung mit Familien.
+      </p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-item reveal">
+        <div class="value-icon"><i data-lucide="heart"></i></div>
+        <div>
+          <h3>Wertschätzung</h3>
+          <p>Wir begegnen einander auf Augenhöhe – Schüler*innen, Lehrkräfte, Eltern. Jede Stimme zählt, jeder Mensch wird gesehen.</p>
+        </div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon"><i data-lucide="target"></i></div>
+        <div>
+          <h3>Anspruch</h3>
+          <p>Wir setzen hohe Maßstäbe an Lernen und Leistung – und unterstützen jede*n dabei, das eigene Potenzial zu entfalten.</p>
+        </div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon"><i data-lucide="globe"></i></div>
+        <div>
+          <h3>Weltoffenheit</h3>
+          <p>Austauschprogramme, internationale Projekte, kulturelle Vielfalt: Wir öffnen Horizonte und feiern, was uns verbindet.</p>
+        </div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon"><i data-lucide="church"></i></div>
+        <div>
+          <h3>Christliche Tradition</h3>
+          <p>Aus dem katholischen Erbe schöpfen wir Werte wie Nächstenliebe, Gerechtigkeit und Solidarität – ohne Engstirnigkeit.</p>
+        </div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon"><i data-lucide="leaf"></i></div>
+        <div>
+          <h3>Verantwortung</h3>
+          <p>Schöpfung bewahren, Demokratie stärken, Mitmenschen achten: Verantwortung ist bei uns kein Schulfach – sondern Haltung.</p>
+        </div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon"><i data-lucide="sparkles"></i></div>
+        <div>
+          <h3>Kreativität</h3>
+          <p>In Musik, Kunst, Sprachen und MINT geben wir Raum für eigene Ideen, eigene Stimmen, eigene Wege – auch jenseits des Lehrplans.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GESCHICHTE -->
+<section class="history" id="geschichte">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">1835 — heute</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Eine Schule mit <em>Geschichte.</em></h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Fast zwei Jahrhunderte Bildungsgeschichte – fest verwurzelt im Emsland,
+        offen für jede Veränderung der Zeit.
+      </p>
+    </div>
+
+    <div class="history-timeline">
+      <div class="history-event reveal">
+        <div class="history-dot"></div>
+        <div class="history-content">
+          <div class="history-year">1835</div>
+          <h3>Die Gründung</h3>
+          <p>Unter dem Schutz des Marien-Patroziniums entsteht in Papenburg eine kleine katholische Mädchenschule – getragen von der Idee, dass Bildung allen offen stehen muss.</p>
+        </div>
+      </div>
+      <div class="history-event reveal">
+        <div class="history-dot"></div>
+        <div class="history-content">
+          <div class="history-year">1925</div>
+          <h3>Anerkennung als Lyzeum</h3>
+          <p>Mit der staatlichen Anerkennung als Lyzeum erhält die Schule einen umfassenden Bildungsauftrag. Erste Generationen junger Frauen bereiten sich hier auf höhere Bildungswege vor.</p>
+        </div>
+      </div>
+      <div class="history-event reveal">
+        <div class="history-dot"></div>
+        <div class="history-content">
+          <div class="history-year">1985</div>
+          <h3>150 Jahre MG</h3>
+          <p>Mit einem großen Festakt feiert die Schulgemeinschaft das 150-jährige Bestehen. Das Mariengymnasium hat sich längst als feste Bildungsinstitution im nördlichen Emsland etabliert.</p>
+        </div>
+      </div>
+      <div class="history-event reveal">
+        <div class="history-dot"></div>
+        <div class="history-content">
+          <div class="history-year">2023</div>
+          <h3>Öffnung zur Koedukation</h3>
+          <p>Ein historischer Schritt: Erstmals seit der Gründung werden ab Klasse 5 auch Jungen aufgenommen. Aus der Mädchenschule wird ein Gymnasium für alle – ohne ihre Geschichte zu verleugnen.</p>
+        </div>
+      </div>
+      <div class="history-event reveal">
+        <div class="history-dot"></div>
+        <div class="history-content">
+          <div class="history-year">2025</div>
+          <h3>190 Jahre Jubiläum</h3>
+          <p>Mit Schulfest, Konzerten, Vortragsabenden und dem großen Ehemaligentreffen feiern wir 190 Jahre Bildungsgeschichte – und blicken zugleich nach vorn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZAHLEN -->
+<section class="stats-banner" id="zahlen">
+  <div class="container">
+    <div class="section-header center reveal" style="margin-bottom: 3rem;">
+      <span class="eyebrow center" style="color: var(--mg-gold);">Das MG in Zahlen</span>
+      <h2 class="display-2" style="margin-top: 1rem; color: white;">Zahlen, die <em>erzählen.</em></h2>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-item">
+        <strong>190</strong>
+        <span>Jahre Tradition</span>
+      </div>
+      <div class="stat-item">
+        <strong>700+</strong>
+        <span>Schüler*innen</span>
+      </div>
+      <div class="stat-item">
+        <strong>60+</strong>
+        <span>Lehrkräfte</span>
+      </div>
+      <div class="stat-item">
+        <strong>40+</strong>
+        <span>AGs und Projekte</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEITUNG -->
+<section class="leadership" id="leitung">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Schulleitung</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Die Menschen <em>hinter</em> dem MG.</h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Eine engagierte Schulleitung, die ansprechbar bleibt – für Schüler*innen,
+        Eltern und Kolleg*innen.
+      </p>
+    </div>
+
+    <div class="leadership-grid">
+      <div class="leader-card reveal">
+        <div class="leader-photo">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Schulleiter">
+        </div>
+        <h3>Michael Bloemer</h3>
+        <span class="leader-role">Schulleiter</span>
+        <p class="leader-bio">
+          Verantwortet die Schulleitung des Mariengymnasiums und steht für eine Bildung,
+          die Anspruch und Wertschätzung verbindet.
+        </p>
+        <div class="leader-contact">
+          <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i></a>
+          <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i></a>
+        </div>
+      </div>
+
+      <div class="leader-card reveal">
+        <div class="leader-photo">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Stv. Schulleitung">
+        </div>
+        <h3>Arne Fuchs</h3>
+        <span class="leader-role">Stellv. Schulleiter</span>
+        <p class="leader-bio">
+          Gestaltet die pädagogische Weiterentwicklung der Schule mit und ist
+          Ansprechpartner für viele schulische Anliegen.
+        </p>
+        <div class="leader-contact">
+          <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i></a>
+          <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i></a>
+        </div>
+      </div>
+
+      <div class="leader-card reveal">
+        <div class="leader-photo">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Oberstufenkoordination">
+        </div>
+        <h3>Kathrin Schlarmann</h3>
+        <span class="leader-role">Oberstufenkoordination</span>
+        <p class="leader-bio">
+          Begleitet die Schüler*innen durch Einführungs-, Qualifikations- und Abiturphase.
+          Erste Adresse für alle Fragen rund um die Sek. II.
+        </p>
+        <div class="leader-contact">
+          <a href="mailto:stefanie.kuhlemann@iserv-mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i></a>
+          <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" style="background: var(--mg-cream-warm);">
+  <div class="container">
+    <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+      <span class="eyebrow center">Noch Fragen?</span>
+      <h2 class="display-2" style="margin: 1rem 0; color: var(--mg-navy);">Lernen Sie uns <em>persönlich</em> kennen.</h2>
+      <p style="color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7;">
+        Vereinbaren Sie einen persönlichen Termin oder besuchen Sie unseren Schnuppertag.
+        Wir freuen uns darauf, Sie kennenzulernen.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="anmeldung.html" class="btn btn-navy"><i data-lucide="calendar"></i> Schnuppertag</a>
+        <a href="tel:0496194700" class="btn btn-outline"><i data-lucide="phone"></i> 04961 - 94700</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="#">Terminkalender</a></li>
+          <li><a href="#">Vorlagen für Eltern</a></li>
+          <li><a href="#">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+// Tab Nav active state on scroll
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.tab-nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const activeLink = document.querySelector(`.tab-nav a[href="#${entry.target.id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+});
+</script>
+</body>
+</html>
