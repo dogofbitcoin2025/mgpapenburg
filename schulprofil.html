@@ -174,52 +174,54 @@
   font-size: 0.95rem;
 }
 
-/* Geschichte Timeline (visuell) */
+/* Geschichte Timeline – kompakt und schlank */
 .history {
   background: var(--mg-paper);
 }
 .history-timeline {
   position: relative;
-  max-width: 920px;
-  margin: 0 auto;
+  max-width: 1080px;
+  margin: 3.2rem auto 0;
 }
 .history-timeline::before {
   content: '';
   position: absolute;
-  top: 0; bottom: 0;
+  top: 22px;
+  bottom: 22px;
   left: 50%;
   width: 2px;
   background: linear-gradient(to bottom,
     transparent,
-    var(--mg-gold) 5%,
-    var(--mg-gold) 95%,
+    var(--mg-gold) 9%,
+    var(--mg-gold) 91%,
     transparent);
   transform: translateX(-50%);
 }
 .history-event {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 80px 1fr;
+  grid-template-columns: 1fr 52px 1fr;
   gap: 0;
-  margin-bottom: 4rem;
-  align-items: center;
+  margin-bottom: 1.6rem;
+  align-items: start;
 }
 .history-event:last-child { margin-bottom: 0; }
 .history-dot {
   grid-column: 2;
-  width: 18px; height: 18px;
+  width: 14px;
+  height: 14px;
   background: var(--mg-gold);
-  border: 4px solid var(--mg-paper);
+  border: 3px solid var(--mg-paper);
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 1.35rem auto 0;
   position: relative;
   z-index: 2;
-  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.16);
 }
 .history-content {
-  padding: 2rem;
+  padding: 1.45rem 1.65rem;
   background: white;
-  border-radius: var(--radius-lg);
+  border-radius: 22px;
   border: 1px solid var(--mg-gray-100);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s;
@@ -232,23 +234,23 @@
 .history-event:nth-child(even) .history-content { grid-column: 3; }
 .history-year {
   font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--mg-gold);
+  font-size: clamp(2rem, 3.1vw, 2.8rem);
+  font-weight: 800;
+  color: var(--mg-yellow);
   line-height: 1;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.55rem;
 }
 .history-content h3 {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.26rem;
+  font-weight: 800;
   color: var(--mg-navy);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 .history-content p {
   color: var(--mg-text-soft);
-  line-height: 1.65;
-  font-size: 0.95rem;
+  line-height: 1.55;
+  font-size: 0.93rem;
 }
 
 /* Schulleitung */
@@ -511,9 +513,10 @@
   .leader-photo-large { aspect-ratio: 16/10; max-height: 320px; }
   .leadership-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-  .history-timeline::before { left: 24px; }
-  .history-event { grid-template-columns: 60px 1fr; gap: 1rem; }
-  .history-dot { grid-column: 1; }
+  .history-timeline { max-width: 760px; }
+  .history-timeline::before { left: 21px; top: 18px; bottom: 18px; }
+  .history-event { grid-template-columns: 44px 1fr; gap: 0.85rem; margin-bottom: 1.15rem; }
+  .history-dot { grid-column: 1; margin-top: 1.25rem; }
   .history-event:nth-child(odd) .history-content,
   .history-event:nth-child(even) .history-content { grid-column: 2; }
 }
