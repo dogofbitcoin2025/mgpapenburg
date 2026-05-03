@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berufs- und Studienorientierung – Mariengymnasium Papenburg</title>
+<meta name="description" content="Berufs- und Studienorientierung am Mariengymnasium Papenburg: transparenter Weg von Klasse 10 bis 13, Beratung, Sprechstunde und Materialien.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.bso-page-hero {
+  background: linear-gradient(135deg, rgba(0,49,74,0.98), rgba(0,31,48,0.98));
+  color: white;
+  padding: clamp(5rem, 10vw, 7rem) 0 clamp(4rem, 8vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.bso-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 28%, rgba(254,234,0,0.13), transparent 33%),
+    linear-gradient(120deg, rgba(255,255,255,0.05), transparent 38%);
+}
+.bso-page-hero-inner { position: relative; z-index: 2; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+.bso-page-hero .eyebrow { color: var(--mg-yellow); }
+.bso-page-hero .eyebrow::before { background: var(--mg-yellow); }
+.bso-page-hero h1 { color: white; margin: 1.25rem 0 1.5rem; max-width: 920px; }
+.bso-page-hero h1 em::after { background: var(--mg-yellow); opacity: 0.55; }
+.bso-page-hero .lead { color: rgba(255,255,255,0.88); max-width: 760px; }
+.bso-quicknav {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem;
+}
+.bso-quicknav a {
+  color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.26);
+  padding: 0.7rem 1rem; border-radius: 999px; font-weight: 800; font-size: 0.86rem;
+  background: rgba(255,255,255,0.08);
+}
+.bso-quicknav a:hover { background: var(--mg-yellow); color: var(--mg-blue-deep); border-color: var(--mg-yellow); }
+.bso-process { background: var(--mg-paper); }
+.bso-timeline {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; position: relative; margin-top: 3rem;
+}
+.bso-timeline::before {
+  content: ''; position: absolute; left: 10%; right: 10%; top: 42px; height: 3px;
+  background: var(--mg-yellow); opacity: 0.9;
+}
+.bso-year {
+  position: relative; z-index: 2; background: white; border: 1px solid var(--mg-gray-200);
+  border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); min-height: 315px;
+}
+.bso-badge {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--mg-blue-deep); color: var(--mg-yellow);
+  display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem;
+  margin-bottom: 1.2rem; border: 4px solid white; box-shadow: 0 0 0 2px rgba(254,234,0,0.45);
+}
+.bso-year h3 { color: var(--mg-blue); font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin-bottom: 0.7rem; }
+.bso-year p { color: var(--mg-text-soft); line-height: 1.6; font-size: 0.94rem; }
+.bso-year ul { margin: 1rem 0 0; padding-left: 1.2rem; color: var(--mg-text); line-height: 1.55; font-size: 0.92rem; }
+.bso-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+.bso-info-card {
+  background: white; border: 1px solid var(--mg-gray-200); border-radius: var(--radius-lg); padding: 2rem;
+  box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 64px 1fr; gap: 1.2rem; align-items: start;
+}
+.bso-icon {
+  width: 64px; height: 64px; border-radius: 20px; background: var(--mg-yellow); color: var(--mg-blue-deep);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.bso-icon svg { width: 30px; height: 30px; }
+.bso-info-card h3 { color: var(--mg-blue); font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; }
+.bso-info-card p, .bso-info-card li { color: var(--mg-text-soft); line-height: 1.65; }
+.bso-info-card ul { padding-left: 1.2rem; margin-top: 0.7rem; }
+.bso-counseling { background: white; }
+.bso-contact-panel {
+  background: linear-gradient(135deg, var(--mg-blue-deep), var(--mg-blue)); color: white; border-radius: var(--radius-lg);
+  padding: clamp(2rem, 4vw, 3rem); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+  box-shadow: var(--shadow-lg);
+}
+.bso-contact-panel h2 { color: white; margin: 0.9rem 0 1rem; }
+.bso-contact-panel h2 em::after { background: var(--mg-yellow); opacity: 0.55; }
+.bso-contact-panel p { color: rgba(255,255,255,0.86); line-height: 1.75; }
+.bso-contact-list { display: grid; gap: 0.85rem; }
+.bso-contact-item {
+  display: flex; gap: 0.8rem; align-items: flex-start; background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); padding: 1rem;
+}
+.bso-contact-item svg { color: var(--mg-yellow); width: 21px; height: 21px; flex: 0 0 auto; }
+.bso-contact-item a { color: white; font-weight: 800; text-decoration: none; }
+.bso-contact-item a:hover { color: var(--mg-yellow); }
+.bso-dates { background: var(--mg-cream); }
+.bso-date-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2rem; }
+.bso-date { background: white; border: 1px solid var(--mg-gray-200); border-radius: var(--radius-md); padding: 1.1rem; text-align: center; box-shadow: var(--shadow-sm); }
+.bso-date strong { display: block; font-family: var(--font-display); color: var(--mg-blue); font-size: 1.25rem; margin-bottom: 0.2rem; }
+.bso-date span { color: var(--mg-text-soft); font-size: 0.86rem; }
+.bso-materials { background: white; }
+.bso-material-card {
+  background: var(--mg-paper); border: 1px solid var(--mg-gray-200); border-radius: var(--radius-lg); padding: 1.4rem;
+  display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+}
+.bso-material-card h3 { color: var(--mg-blue); font-size: 1.05rem; margin-bottom: 0.25rem; }
+.bso-material-card p { color: var(--mg-text-soft); font-size: 0.92rem; }
+.bso-material-list { display: grid; gap: 1rem; margin-top: 2rem; }
+@media (max-width: 1050px) { .bso-timeline { grid-template-columns: repeat(2, 1fr); } .bso-timeline::before { display: none; } .bso-date-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .bso-grid, .bso-contact-panel { grid-template-columns: 1fr; } .bso-info-card { grid-template-columns: 1fr; } .bso-timeline { grid-template-columns: 1fr; } .bso-date-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .bso-date-grid { grid-template-columns: 1fr; } .bso-material-card { align-items: flex-start; flex-direction: column; } }
+.btn-disabled { opacity: 0.58; cursor: not-allowed; pointer-events: none; }
+</style>
+</head>
+<body>
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/mgp_logo_gelb_rgb.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link active">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+
+<!-- PAGE HERO -->
+<section class="bso-page-hero">
+  <div class="bso-page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a><span class="sep">/</span>
+      <a href="unterricht.html">Unterricht</a><span class="sep">/</span>
+      <span>Berufs- und Studienorientierung</span>
+    </div>
+    <span class="eyebrow">Orientierung von Klasse 10 bis 13</span>
+    <h1 class="display-1">Berufs- und <em>Studienorientierung.</em></h1>
+    <p class="lead">
+      Wir begleiten Schüler*innen dabei, eigene Stärken zu erkennen, Berufsfelder kennenzulernen
+      und den Übergang nach dem Abitur bewusst zu planen.
+    </p>
+    <div class="bso-quicknav" aria-label="Schnellnavigation">
+      <a href="#jahrgaenge">Jahrgänge 10–13</a>
+      <a href="#beratung">Berufsberatung</a>
+      <a href="#sprechstunde">Sprechstunde</a>
+      <a href="#materialien">Materialien</a>
+    </div>
+  </div>
+</section>
+
+<section class="bso-process" id="jahrgaenge">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Der rote Faden</span>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Von Klasse 10 bis zum <em>Abitur.</em></h2>
+      <p class="lead">Die Berufs- und Studienorientierung wächst mit: erst erkunden, dann ausprobieren, anschließend vertiefen und entscheiden.</p>
+    </div>
+    <div class="bso-timeline reveal">
+      <article class="bso-year">
+        <div class="bso-badge">10</div>
+        <h3>Erste Orientierung</h3>
+        <p>Die Agentur für Arbeit gibt einen Überblick über Wege nach der Schule und kommende Schritte.</p>
+        <ul>
+          <li>Einführung Berufsorientierung</li>
+          <li>zweiwöchiges Betriebspraktikum</li>
+          <li>realistischer Blick in den Arbeitsalltag</li>
+        </ul>
+      </article>
+      <article class="bso-year">
+        <div class="bso-badge">11</div>
+        <h3>Stärken erkennen</h3>
+        <p>Selbsterkundung, Check-U und konkrete Recherche helfen, Interessen und Möglichkeiten abzugleichen.</p>
+        <ul>
+          <li>eine BSO-Stunde im Stundenplan</li>
+          <li>Berufsinformationsbörse Emsland</li>
+          <li>außerschulische Lernorte</li>
+        </ul>
+      </article>
+      <article class="bso-year">
+        <div class="bso-badge">12</div>
+        <h3>Wege vergleichen</h3>
+        <p>Der Blick weitet sich auf Studium, Ausbildung, duale Studiengänge und Überbrückungsmöglichkeiten.</p>
+        <ul>
+          <li>Vortrag „Abitur und was dann?“</li>
+          <li>Studien- und Berufsinfotag</li>
+          <li>Einblicke durch Hochschulen und Firmen</li>
+        </ul>
+      </article>
+      <article class="bso-year">
+        <div class="bso-badge">13</div>
+        <h3>Entscheidung vorbereiten</h3>
+        <p>Jetzt geht es um Studienzulassung, Studiengangsuche, Beratung und tragfähige Entscheidungen.</p>
+        <ul>
+          <li>Vortrag der Arbeitsagentur</li>
+          <li>Studienfeldbezogener Beratungstest</li>
+          <li>Hochschulinformationstage</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bso-counseling" id="beratung">
+  <div class="container">
+    <div class="bso-contact-panel reveal">
+      <div>
+        <span class="eyebrow">Berufsberatung</span>
+        <h2 class="display-2">Persönliche <em>Beratung.</em></h2>
+        <p>
+          Hans-Josef Voß von der Agentur für Arbeit begleitet die Berufs- und Studienberatung am Mariengymnasium.
+          Möglich sind Einzelberatung, Gruppenberatung, Unterstützung bei Studiengangsuche, Ausbildung, dualem Studium,
+          Überbrückungsmöglichkeiten und Bewerbungsverfahren.
+        </p>
+      </div>
+      <div class="bso-contact-list">
+        <div class="bso-contact-item"><i data-lucide="user-round"></i><div><strong>Hans-Josef Voß</strong><br><span>Berufsberater der Agentur für Arbeit Papenburg und Sögel</span></div></div>
+        <div class="bso-contact-item"><i data-lucide="phone"></i><div><strong>Telefon</strong><br><a href="tel:08004555500">0800 4 5555 00</a></div></div>
+        <div class="bso-contact-item"><i data-lucide="mail"></i><div><strong>E-Mail</strong><br><a href="mailto:Papenburg.Berufsberatung@arbeitsagentur.de">Papenburg.Berufsberatung@arbeitsagentur.de</a></div></div>
+        <div class="bso-contact-item"><i data-lucide="map-pin"></i><div><strong>Agentur für Arbeit Papenburg</strong><br><span>Am Stadtpark 10, 26871 Papenburg</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bso-dates" id="sprechstunde">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Schulsprechstunde</span>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Beratung direkt in der <em>Schule.</em></h2>
+      <p class="lead">
+        Die Beratung findet grundsätzlich einmal im Monat dienstags statt: von 08:15 bis 12:15 Uhr mit Termin,
+        von 12:15 bis 13:00 Uhr offen für spontane Anliegen. Raum O4 im 1. Stock.
+      </p>
+    </div>
+    <div class="bso-date-grid reveal" aria-label="Sprechstunden-Termine 2026">
+      <div class="bso-date"><strong>04.02.</strong><span>2026</span></div>
+      <div class="bso-date"><strong>10.03.</strong><span>2026</span></div>
+      <div class="bso-date"><strong>14.04.</strong><span>2026</span></div>
+      <div class="bso-date"><strong>19.05.</strong><span>2026</span></div>
+      <div class="bso-date"><strong>16.06.</strong><span>2026</span></div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://eveeno.com/Berufsberatung_Marienymnasium_Papenburg" target="_blank" rel="noopener" class="btn btn-navy">Termin online buchen <i data-lucide="external-link"></i></a>
+      <a href="mailto:Papenburg.Berufsberatung@arbeitsagentur.de" class="btn btn-outline">Termin per Mail anfragen <i data-lucide="mail"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="bso-process">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Angebote</span>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Was die Beratung <em>leistet.</em></h2>
+    </div>
+    <div class="bso-grid reveal">
+      <article class="bso-info-card">
+        <div class="bso-icon"><i data-lucide="search-check"></i></div>
+        <div><h3>Orientieren</h3><p>Unterrichtsangebote, Tests, Gespräche und Recherche helfen, Interessen, Stärken und passende Berufsfelder zu erkennen.</p></div>
+      </article>
+      <article class="bso-info-card">
+        <div class="bso-icon"><i data-lucide="route"></i></div>
+        <div><h3>Wege planen</h3><p>Studium, Ausbildung, duales Studium, FSJ, BFD oder andere Übergänge werden vergleichbar und planbar gemacht.</p></div>
+      </article>
+      <article class="bso-info-card">
+        <div class="bso-icon"><i data-lucide="file-check-2"></i></div>
+        <div><h3>Bewerben</h3><p>Tipps zu Bewerbungen, Vorstellungsgesprächen, Auswahlverfahren und Anforderungen der Arbeitswelt.</p></div>
+      </article>
+      <article class="bso-info-card">
+        <div class="bso-icon"><i data-lucide="users-round"></i></div>
+        <div><h3>Beraten</h3><p>Einzelberatung mit oder ohne Eltern, Gruppenberatung und Unterstützung bei konkreten Fragen zur Zukunft nach dem Abitur.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bso-materials" id="materialien">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Materialien</span>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Downloads zur <em>Orientierung.</em></h2>
+      <p class="lead">Die Materialien liegen lokal im Ordner <code>downloads/berufsorientierung/</code>. Lege die PDFs dort mit exakt diesen Dateinamen ab.</p>
+    </div>
+    <div class="bso-material-list reveal">
+      <div class="bso-material-card"><div><h3>Check deinen Lerntyp</h3><p>Selbsterkundung und Reflexion für die Oberstufe.</p></div><span class="btn btn-outline btn-disabled">PDF lokal ablegen</span></div>
+      <div class="bso-material-card"><div><h3>Anmeldebogen Berufsberatung</h3><p>Formular für die individuelle Beratung.</p></div><span class="btn btn-outline btn-disabled">PDF lokal ablegen</span></div>
+      <div class="bso-material-card"><div><h3>Tipps & Hilfen im Internet</h3><p>Hilfreiche Rechercheangebote zur Studien- und Berufswahl.</p></div><span class="btn btn-outline btn-disabled">PDF lokal ablegen</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+// Stage Tabs
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.stage-tab');
+  const contents = document.querySelectorAll('.stage-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const stage = tab.dataset.stage;
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('stage-' + stage).classList.add('active');
+      // Scroll to tabs (smooth)
+      tab.closest('.stage-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+</script>
+</body>
+</html>

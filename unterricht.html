@@ -12,682 +12,324 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-/* UNTERRICHT – schlanke 3-Säulen-Seite mit Download-Center */
-body { background: var(--mg-paper); }
+/* UNTERRICHT-SPEZIFISCH */
 
-.page-hero.compact-hero {
-  min-height: 430px;
-  background:
-    linear-gradient(90deg, rgba(0,49,74,0.96) 0%, rgba(0,49,74,0.84) 43%, rgba(0,49,74,0.35) 72%, rgba(0,49,74,0.18) 100%),
-    url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
-}
-.page-hero.compact-hero .lead { max-width: 760px; }
-
-.quick-jump {
-  margin-top: -3.1rem;
-  position: relative;
-  z-index: 12;
-}
-.quick-jump-inner {
-  max-width: var(--max-content);
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-}
-.quick-card {
-  background: #fff;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 22px;
-  padding: 1.25rem;
-  text-decoration: none;
-  color: var(--mg-navy);
-  box-shadow: 0 18px 45px rgba(0, 31, 48, 0.12);
+/* Stage Tabs */
+.stage-section { background: var(--mg-paper); padding-top: 0; }
+.stage-tabs {
   display: flex;
-  align-items: center;
-  gap: .9rem;
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-.quick-card:hover { transform: translateY(-4px); border-color: var(--mg-gold); box-shadow: 0 24px 58px rgba(0, 31, 48, 0.16); }
-.quick-card-icon {
-  width: 48px; height: 48px;
-  border-radius: 16px;
-  background: var(--mg-yellow);
-  color: var(--mg-blue-deep);
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-}
-.quick-card-icon svg { width: 22px; height: 22px; }
-.quick-card-icon img, .stage-card-icon img, .philosophy-icon img, .download-file-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.quick-card strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1rem; }
-.quick-card span { display: block; font-size: .82rem; color: var(--mg-text-soft); margin-top: .15rem; }
-
-.section-pad { padding: 5.5rem 0; }
-.section-pad.tight { padding-top: 4rem; }
-.intro-copy {
+  justify-content: center;
+  gap: 0;
+  margin: -3rem auto 4rem;
   max-width: 900px;
-  margin: 0 auto 3rem;
-  text-align: center;
-}
-.intro-copy p { color: var(--mg-text-soft); font-size: 1.08rem; line-height: 1.75; margin-top: 1rem; }
-
-.stage-columns {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.4rem;
-  margin-top: 2.5rem;
-}
-.stage-card {
-  background: #fff;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-lg);
   border: 1px solid var(--mg-gray-200);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 18px 46px rgba(0,31,48,.08);
   position: relative;
+  z-index: 10;
+}
+.stage-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1.25rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--mg-text-soft);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all 0.3s;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-}
-.stage-card::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 7px;
-  background: var(--mg-yellow);
-}
-.stage-card-head {
-  padding: 2rem 2rem 1.35rem;
-  background: linear-gradient(180deg, rgba(0,49,74,.05), rgba(255,255,255,0));
-}
-.stage-card-icon {
-  width: 64px; height: 64px;
-  border-radius: 22px;
-  background: var(--mg-blue-deep);
-  color: var(--mg-yellow);
-  display: grid;
-  place-items: center;
-  margin-bottom: 1.2rem;
-}
-.stage-card-icon svg { width: 28px; height: 28px; }
-.stage-card h2 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--mg-blue-deep);
-  font-size: clamp(1.65rem, 2.2vw, 2.15rem);
-  letter-spacing: -.025em;
-  margin-bottom: .35rem;
-}
-.stage-range {
-  display: inline-flex;
-  background: var(--mg-yellow);
-  color: var(--mg-blue-deep);
-  font-weight: 800;
-  font-size: .78rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  padding: .35rem .65rem;
-  border-radius: 8px;
-}
-.stage-card-body { padding: 0 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
-.stage-card-body p { color: var(--mg-text-soft); line-height: 1.65; margin: 1rem 0 1.25rem; }
-.stage-list { list-style: none; margin: 0 0 1.65rem; padding: 0; display: grid; gap: .65rem; }
-.stage-list li { display: flex; gap: .55rem; align-items: flex-start; color: var(--mg-text); font-size: .94rem; line-height: 1.45; }
-.stage-list li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--mg-yellow); margin-top: .48rem; flex: 0 0 auto; }
-.stage-card-actions { margin-top: auto; display: flex; gap: .7rem; flex-wrap: wrap; }
-.stage-link {
-  display: inline-flex;
   align-items: center;
-  gap: .5rem;
-  text-decoration: none;
-  font-weight: 800;
-  color: var(--mg-blue-deep);
-  border-bottom: 3px solid var(--mg-yellow);
-  padding-bottom: .15rem;
+  gap: 0.3rem;
 }
-.stage-link svg { width: 16px; height: 16px; }
+.stage-tab:hover { color: var(--mg-navy); background: var(--mg-cream); }
+.stage-tab.active {
+  background: var(--mg-navy);
+  color: white;
+}
+.stage-tab.active .stage-tab-class { color: var(--mg-gold); }
+.stage-tab-name { font-size: 1rem; }
+.stage-tab-class {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--mg-gold);
+  letter-spacing: 0.02em;
+}
 
-.philosophy-section { background: #fff; }
-.philosophy-grid {
+/* Stage Content */
+.stage-content { display: none; }
+.stage-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+.stage-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-top: 2.5rem;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
 }
-.philosophy-card {
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 24px;
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 1rem;
-  align-items: start;
-  background: var(--mg-paper);
+.stage-hero-image {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
 }
-.philosophy-icon {
-  width: 54px; height: 54px; border-radius: 18px;
-  background: var(--mg-yellow); color: var(--mg-blue-deep);
-  display: grid; place-items: center;
+.stage-hero-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
-.philosophy-icon svg { width: 24px; height: 24px; }
-.philosophy-card h3 { color: var(--mg-blue-deep); font-family: var(--font-display); font-weight: 800; margin-bottom: .35rem; }
-.philosophy-card p { color: var(--mg-text-soft); line-height: 1.55; font-size: .95rem; margin: 0; }
+.stage-hero-image::after {
+  content: attr(data-class);
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: rgba(255,255,255,0.95);
+  color: var(--mg-navy);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.stage-hero-content h2 { color: var(--mg-navy); margin-bottom: 1.5rem; }
+.stage-hero-content .lead { font-size: 1.15rem; color: var(--mg-text); margin-bottom: 1.5rem; }
+.stage-hero-content p { font-size: 1.02rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1rem; }
 
-.download-section { background: var(--mg-cream); }
-.download-shell {
-  background: #fff;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 30px;
-  padding: clamp(1.2rem, 2.4vw, 2rem);
-  box-shadow: 0 18px 46px rgba(0,31,48,.08);
+/* Feature Bar */
+.feature-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 5rem;
 }
-.download-tabs {
+.feature-item {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-100);
   display: flex;
-  gap: .7rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.4rem;
-  padding-bottom: 1.2rem;
-  border-bottom: 1px solid var(--mg-gray-200);
+  gap: 1.25rem;
+  transition: all 0.3s;
 }
-.download-tab {
-  border: 1px solid var(--mg-gray-200);
-  background: var(--mg-paper);
-  color: var(--mg-blue-deep);
-  font-family: inherit;
-  font-weight: 800;
-  border-radius: 999px;
-  padding: .75rem 1rem;
+.feature-item:hover {
+  border-color: var(--mg-gold-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.feature-item-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-navy);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+}
+.feature-item-icon svg { width: 22px; height: 22px; }
+.feature-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.4rem;
+}
+.feature-item p { color: var(--mg-text-soft); line-height: 1.55; font-size: 0.92rem; }
+
+/* Profile Cards (Profilklassen) */
+.profiles {
+  margin-bottom: 5rem;
+}
+.profiles-header { margin-bottom: 2.5rem; }
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.profile-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
   cursor: pointer;
-  transition: all .2s ease;
 }
-.download-tab:hover, .download-tab.active { background: var(--mg-blue-deep); color: #fff; border-color: var(--mg-blue-deep); }
-.download-list { display: grid; gap: .8rem; }
-.download-item {
-  display: grid;
-  grid-template-columns: 54px 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 20px;
-  background: #fff;
-  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+.profile-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
 }
-.download-item:hover { border-color: var(--mg-yellow); transform: translateY(-2px); background: #fffef4; }
-.download-file-icon {
-  width: 54px; height: 54px;
-  border-radius: 17px;
-  background: var(--mg-blue-deep);
-  color: var(--mg-yellow);
-  display: grid;
-  place-items: center;
-}
-.download-file-icon svg { width: 24px; height: 24px; }
-.download-title { font-family: var(--font-display); color: var(--mg-blue-deep); font-weight: 800; font-size: 1.03rem; margin-bottom: .15rem; }
-.download-desc { color: var(--mg-text-soft); font-size: .9rem; line-height: 1.45; }
-.download-meta { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .45rem; }
-.download-badge { font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: var(--mg-gray-100); color: var(--mg-text-soft); padding: .25rem .5rem; border-radius: 999px; }
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  padding: .72rem 1rem;
-  border-radius: 14px;
-  background: var(--mg-yellow);
-  color: var(--mg-blue-deep);
-  text-decoration: none;
-  font-weight: 800;
-  white-space: nowrap;
-}
-.download-btn svg { width: 16px; height: 16px; }
-.download-note { margin-top: 1rem; color: var(--mg-text-soft); font-size: .88rem; line-height: 1.5; }
-.language-box { margin-top: 3rem; display: grid; grid-template-columns: .95fr 1.05fr; gap: 2rem; align-items: stretch; }
-.language-card, .classleaders-card { background: #fff; border: 1px solid var(--mg-gray-200); border-radius: 28px; padding: clamp(1.5rem, 3vw, 2.4rem); box-shadow: var(--shadow-sm); }
-.language-card { background: linear-gradient(135deg, #fff 0%, #fffef4 100%); border-left: 7px solid var(--mg-yellow); }
-.language-card h3, .classleaders-card h3 { font-family: var(--font-display); font-weight: 800; color: var(--mg-blue-deep); font-size: clamp(1.35rem, 2vw, 1.75rem); margin-bottom: .75rem; letter-spacing: -.015em; }
-.language-card p, .classleaders-card p { color: var(--mg-text-soft); line-height: 1.65; margin-bottom: 1rem; }
-.language-steps { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .7rem; }
-.language-steps li { display: grid; grid-template-columns: 72px 1fr; gap: .8rem; align-items: center; color: var(--mg-text); font-size: .95rem; }
-.language-steps strong { color: var(--mg-blue-deep); font-weight: 800; }
-.language-tag { display: inline-flex; justify-content: center; align-items: center; background: var(--mg-blue-deep); color: var(--mg-yellow); border-radius: 999px; padding: .28rem .65rem; font-weight: 800; font-size: .78rem; }
-.classleaders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; margin-top: 1.25rem; }
-.classleader-mini { border: 1px solid var(--mg-gray-200); border-radius: 18px; padding: 1rem; background: var(--mg-cream); }
-.classleader-mini h4 { font-family: var(--font-display); color: var(--mg-blue-deep); font-weight: 800; font-size: 1.05rem; margin-bottom: .5rem; }
-.classleader-mini p { font-size: .86rem; line-height: 1.45; margin: .25rem 0 0; color: var(--mg-text-soft); }
-.classleader-mini strong { color: var(--mg-text); font-weight: 800; }
-
-/* OBERSTUFE – visuelles Schaubild und kompakte Info-Karten */
-.upperstage-section { background: #fff; }
-.upperstage-flow {
-  margin: 3rem auto 2.2rem;
-  max-width: 1160px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  position: relative;
-}
-.upperstage-step {
-  position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #fffef4 100%);
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 26px;
-  padding: 1.35rem 1rem 1.2rem;
-  box-shadow: 0 16px 40px rgba(0,31,48,.08);
-  min-height: 190px;
-}
-.upperstage-step::before {
-  content: attr(data-step);
-  width: 44px; height: 44px;
-  border-radius: 999px;
-  background: var(--mg-blue-deep);
-  color: var(--mg-yellow);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-family: var(--font-display);
-  font-size: .95rem;
-  letter-spacing: -.02em;
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-.upperstage-step[data-step="P1–P5"]::before {
-  content: 'Abi';
-  font-size: .82rem;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-}
-.upperstage-step:not(:last-child)::after {
-  content: '';
+.profile-card:hover img { transform: scale(1.05); }
+.profile-card-content {
   position: absolute;
-  top: 34px;
-  right: -1.08rem;
-  width: 1.15rem;
-  height: 3px;
-  background: var(--mg-yellow);
-  z-index: 2;
-}
-.upperstage-step h3 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--mg-blue-deep);
-  font-size: 1.05rem;
-  line-height: 1.2;
-  margin-bottom: .5rem;
-}
-.upperstage-step p {
-  color: var(--mg-text-soft);
-  font-size: .88rem;
-  line-height: 1.5;
-  margin: 0;
-}
-.upperstage-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  margin-top: 2rem;
-}
-.upperstage-info {
-  background: var(--mg-paper);
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 26px;
-  padding: clamp(1.35rem, 2.5vw, 2rem);
-  display: grid;
-  grid-template-columns: 62px 1fr;
-  gap: 1.1rem;
-  align-items: start;
-}
-.upperstage-icon {
-  width: 62px; height: 62px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--mg-blue-deep);
-  border: 2px solid var(--mg-yellow);
-  box-shadow: 0 10px 22px rgba(0,31,48,.08);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  position: relative;
-}
-.upperstage-icon::after {
-  content: '';
-  position: absolute;
-  inset: 7px;
-  border-radius: 999px;
-  background: rgba(254,234,0,.16);
-  z-index: 0;
-}
-.upperstage-icon svg { width: 27px; height: 27px; position: relative; z-index: 1; stroke-width: 1.9; }
-.upperstage-info h3 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--mg-blue-deep);
-  margin-bottom: .45rem;
-  letter-spacing: -.01em;
-}
-.upperstage-info p { color: var(--mg-text-soft); line-height: 1.6; margin: 0 0 .9rem; }
-.upperstage-info ul { margin: 0; padding-left: 1.1rem; color: var(--mg-text); line-height: 1.55; font-size: .94rem; }
-.upperstage-note {
-  margin-top: 2rem;
-  border-radius: 26px;
-  background: var(--mg-blue-deep);
-  color: #fff;
-  padding: clamp(1.5rem, 3vw, 2.3rem);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1.5rem;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-.upperstage-note::after {
-  content: '';
-  position: absolute;
-  right: -42px; top: -48px;
-  width: 170px; height: 170px;
-  border: 18px solid rgba(254,234,0,.28);
-  border-radius: 50%;
-}
-.upperstage-note h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.55rem; margin-bottom: .35rem; }
-.upperstage-note p { color: rgba(255,255,255,.82); margin: 0; line-height: 1.6; }
-.upperstage-note .download-btn { position: relative; z-index: 2; }
-@media (max-width: 1024px) { .upperstage-flow { grid-template-columns: 1fr; } .upperstage-step { min-height: auto; } .upperstage-step:not(:last-child)::after { left: 31px; right: auto; top: auto; bottom: -1.08rem; width: 3px; height: 1.15rem; } }
-@media (max-width: 820px) { .upperstage-grid { grid-template-columns: 1fr; } .upperstage-note { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .upperstage-info { grid-template-columns: 1fr; } }
-
-@media (max-width: 940px) { .language-box { grid-template-columns: 1fr; } .classleaders-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .classleaders-grid { grid-template-columns: 1fr; } .language-steps li { grid-template-columns: 64px 1fr; } }
-
-.subjects-compact { background: var(--mg-paper); }
-.subject-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .7rem;
-  justify-content: center;
-  max-width: 1020px;
-  margin: 2rem auto 0;
-}
-.subject-pill {
-  background: #fff;
-  padding: .72rem .95rem;
-  border-radius: 999px;
-  border: 1px solid var(--mg-gray-200);
-  color: var(--mg-text);
-  font-weight: 700;
-  font-size: .9rem;
-}
-
-
-/* CURRICULUM MOBILITÄT */
-.mobility-section { background: #fff; }
-.mobility-shell {
-  display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap: 1.5rem;
-  align-items: stretch;
-  margin-top: 2.5rem;
-}
-.mobility-intro-card {
-  border-radius: 30px;
-  background: var(--mg-blue-deep);
-  color: #fff;
-  padding: clamp(1.6rem, 3vw, 2.5rem);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 18px 46px rgba(0,31,48,.14);
-}
-.mobility-intro-card::after {
-  content: '';
-  position: absolute;
-  right: -56px;
-  bottom: -56px;
-  width: 190px;
-  height: 190px;
-  border: 22px solid rgba(254,234,0,.24);
-  border-radius: 999px;
-}
-.mobility-intro-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 22px;
-  background: var(--mg-yellow);
-  color: var(--mg-blue-deep);
-  display: grid;
-  place-items: center;
-  margin-bottom: 1.2rem;
-}
-.mobility-intro-icon svg { width: 32px; height: 32px; }
-.mobility-intro-card h3 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(1.45rem, 2.2vw, 2rem);
-  line-height: 1.15;
-  margin-bottom: .75rem;
-}
-.mobility-intro-card p { color: rgba(255,255,255,.84); line-height: 1.65; margin: 0; position: relative; z-index: 1; }
-.mobility-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.mobility-card {
-  background: var(--mg-paper);
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 28px;
-  padding: clamp(1.35rem, 2.5vw, 2rem);
-  box-shadow: 0 14px 34px rgba(0,31,48,.06);
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(10, 37, 64, 0.95) 0%,
+    rgba(10, 37, 64, 0.6) 40%,
+    rgba(10, 37, 64, 0) 70%);
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  justify-content: flex-end;
+  padding: 2rem;
+  color: white;
 }
-.mobility-card-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
-  background: #fff;
-  color: var(--mg-blue-deep);
-  border: 2px solid var(--mg-yellow);
-  display: grid;
-  place-items: center;
-  margin-bottom: 1rem;
+.profile-card-content .eyebrow {
+  color: var(--mg-gold-light);
+  margin-bottom: 0.75rem;
+  font-size: 0.7rem;
 }
-.mobility-card-icon svg { width: 28px; height: 28px; }
-.mobility-card h3 { font-family: var(--font-display); font-weight: 800; color: var(--mg-blue-deep); margin-bottom: .55rem; }
-.mobility-card p { color: var(--mg-text-soft); line-height: 1.58; margin: 0 0 1rem; }
-.mobility-list { list-style: none; padding: 0; margin: .2rem 0 1.25rem; display: grid; gap: .5rem; }
-.mobility-list li { position: relative; padding-left: 1rem; color: var(--mg-text); font-size: .92rem; line-height: 1.45; }
-.mobility-list li::before { content: ''; width: 6px; height: 6px; border-radius: 999px; background: var(--mg-yellow); position: absolute; left: 0; top: .55em; }
-.mobility-link { margin-top: auto; align-self: flex-start; }
-@media (max-width: 1100px) { .quick-jump-inner { grid-template-columns: repeat(3, 1fr); } .mobility-shell { grid-template-columns: 1fr; } }
-@media (max-width: 760px) { .mobility-cards { grid-template-columns: 1fr; } }
+.profile-card-content .eyebrow::before { background: var(--mg-gold); }
+.profile-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.profile-card p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease;
+}
+.profile-card:hover p { max-height: 100px; margin-top: 0.6rem; }
 
-@media (max-width: 1024px) {
-  .quick-jump-inner { grid-template-columns: repeat(2, 1fr); }
-  .stage-columns { grid-template-columns: 1fr; }
-  .stage-card { max-width: 760px; margin: 0 auto; width: 100%; }
-  .philosophy-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 700px) {
-  .page-hero.compact-hero { min-height: 390px; }
-  .quick-jump-inner { grid-template-columns: 1fr; padding: 0 1rem; }
-  .section-pad { padding: 4rem 0; }
-  .stage-card-head, .stage-card-body { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .download-item { grid-template-columns: 46px 1fr; align-items: start; }
-  .download-file-icon { width: 46px; height: 46px; border-radius: 14px; }
-  .download-btn { grid-column: 1 / -1; justify-content: center; }
-  .download-tabs { display: grid; grid-template-columns: 1fr 1fr; }
-  .download-tab { padding: .72rem .7rem; }
-}
-
-/* OBERSTUFE – transparenter Prozess als modernes Schaubild */
-.upperstage-roadmap {
-  position: relative;
-  max-width: 1180px;
-  margin: 3rem auto 0;
+/* Subjects Grid */
+.subjects-section { background: var(--mg-cream); padding: 5rem 0; }
+.subject-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.1rem;
+  gap: 1rem;
 }
-.upperstage-roadmap::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 8%;
-  right: 8%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--mg-yellow), rgba(254,234,0,.35));
-  border-radius: 999px;
-  z-index: 0;
-}
-.roadmap-step {
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(180deg, #fff 0%, #fffdf0 100%);
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 30px;
-  padding: 1.4rem;
-  box-shadow: 0 18px 45px rgba(0,31,48,.06);
-  min-height: 395px;
-  display: flex;
-  flex-direction: column;
-}
-.roadmap-badge {
-  width: 76px;
-  height: 76px;
-  border-radius: 24px;
-  background: var(--mg-blue-deep);
-  color: var(--mg-yellow);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 14px 28px rgba(0,31,48,.18);
-  margin-bottom: 1.2rem;
-  position: relative;
-}
-.roadmap-badge span {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.3rem;
-  line-height: 1;
-}
-.roadmap-badge i,
-.roadmap-badge svg {
-  width: 22px;
-  height: 22px;
-  margin-top: .25rem;
-}
-.roadmap-kicker {
-  display: inline-block;
-  color: var(--mg-text-soft);
-  font-size: .72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  margin-bottom: .45rem;
-}
-.roadmap-content h3 {
-  font-family: var(--font-display);
-  font-size: 1.32rem;
-  font-weight: 800;
-  color: var(--mg-blue-deep);
-  line-height: 1.15;
-  margin-bottom: .7rem;
-}
-.roadmap-content p {
-  color: var(--mg-text-soft);
-  line-height: 1.52;
-  font-size: .94rem;
-  margin-bottom: .85rem;
-}
-.roadmap-content ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: .42rem;
-}
-.roadmap-content li {
-  position: relative;
-  padding-left: 1rem;
+.subject-pill {
+  background: white;
+  padding: 1.25rem 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.9rem;
   color: var(--mg-text);
-  font-size: .86rem;
-  line-height: 1.35;
+  border: 1px solid var(--mg-gray-100);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
-.roadmap-content li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--mg-yellow);
-  position: absolute;
-  left: 0;
-  top: .45em;
+.subject-pill:hover {
+  border-color: var(--mg-gold);
+  color: var(--mg-navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
-.upperstage-explain-grid {
-  margin-top: 2rem;
+.subject-pill svg { width: 16px; height: 16px; color: var(--mg-gold); }
+
+/* Schedule */
+.schedule-section { padding: 5rem 0; background: var(--mg-paper); }
+.schedule-grid {
   display: grid;
-  grid-template-columns: 1.15fr .85fr .85fr .85fr;
-  gap: 1.1rem;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
-.upperstage-explain-card {
-  background: #fff;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: 28px;
-  padding: 1.45rem;
-  box-shadow: 0 14px 34px rgba(0,31,48,.05);
+.schedule-table {
+  width: 100%;
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--mg-gray-100);
 }
-.upperstage-explain-card.highlight-card {
-  background: var(--mg-blue-deep);
-  color: #fff;
+.schedule-table table { width: 100%; border-collapse: collapse; }
+.schedule-table th {
+  background: var(--mg-navy);
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
 }
-.explain-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 18px;
-  background: var(--mg-yellow);
-  color: var(--mg-blue-deep);
-  display: grid;
-  place-items: center;
-  margin-bottom: 1rem;
+.schedule-table th:first-child { color: var(--mg-gold); }
+.schedule-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--mg-gray-100);
+  font-size: 0.95rem;
 }
-.explain-icon svg { width: 25px; height: 25px; stroke-width: 2; }
-.upperstage-explain-card h3 {
+.schedule-table td:first-child {
   font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--mg-blue-deep);
-  line-height: 1.2;
-  margin-bottom: .55rem;
+  font-weight: 600;
+  color: var(--mg-gold-deep);
+  font-size: 1.05rem;
 }
-.upperstage-explain-card.highlight-card h3 { color: #fff; }
-.upperstage-explain-card p {
-  color: var(--mg-text-soft);
-  line-height: 1.58;
-  margin: 0;
-  font-size: .94rem;
+.schedule-table tr:last-child td { border-bottom: none; }
+.schedule-table tr.break td { background: var(--mg-cream); color: var(--mg-text-soft); font-style: italic; font-size: 0.85rem; }
+
+@media (max-width: 1024px) {
+  .stage-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  .feature-bar { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .subject-grid { grid-template-columns: repeat(2, 1fr); }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .stage-tabs { flex-wrap: wrap; }
+  .stage-tab { flex: 1 1 calc(50% - 0.25rem); padding: 0.85rem 1rem; }
+  .stage-tab-name { font-size: 0.88rem; }
+  .stage-tabs { margin: -2rem auto 3rem; }
 }
-.upperstage-explain-card.highlight-card p { color: rgba(255,255,255,.82); }
-.pfach-grid {
-  margin-top: 1.1rem;
+@media (max-width: 640px) {
+  .stage-tab { flex: 1 1 100%; }
+}
+
+
+/* Berufsorientierung Teaser */
+.bso-teaser-section { background: white; padding: clamp(4rem, 7vw, 6rem) 0; }
+.bso-teaser {
   display: grid;
-  gap: .45rem;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: linear-gradient(135deg, var(--mg-blue-deep), var(--mg-blue));
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 4vw, 3.6rem);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
-.pfach-grid span {
-  display: block;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 14px;
-  padding: .55rem .7rem;
-  color: rgba(255,255,255,.9);
-  font-size: .86rem;
+.bso-teaser::before {
+  content: '';
+  position: absolute;
+  right: -120px;
+  top: -140px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254,234,0,0.18), transparent 65%);
 }
-.pfach-grid strong { color: var(--mg-yellow); }
-.process-note { margin-top: 2rem; }
-@media (max-width: 1180px) {
-  .upperstage-roadmap { grid-template-columns: repeat(2, 1fr); }
-  .upperstage-roadmap::before { display: none; }
-  .roadmap-step { min-height: auto; }
-  .upperstage-explain-grid { grid-template-columns: 1fr 1fr; }
+.bso-teaser-content { position: relative; z-index: 2; }
+.bso-teaser .eyebrow { color: var(--mg-yellow); }
+.bso-teaser .eyebrow::before { background: var(--mg-yellow); }
+.bso-teaser h2 { color: white; margin: 1rem 0 1rem; }
+.bso-teaser h2 em::after { background: var(--mg-yellow); opacity: 0.55; }
+.bso-teaser p { color: rgba(255,255,255,0.84); font-size: 1.05rem; line-height: 1.75; max-width: 640px; }
+.bso-mini-steps { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.bso-mini-step {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  backdrop-filter: blur(6px);
 }
-@media (max-width: 680px) {
-  .upperstage-roadmap, .upperstage-explain-grid { grid-template-columns: 1fr; }
-  .roadmap-step { padding: 1.15rem; border-radius: 24px; }
-  .roadmap-badge { width: 66px; height: 66px; border-radius: 20px; }
-}
+.bso-mini-step strong { display: block; color: var(--mg-yellow); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 0.25rem; }
+.bso-mini-step span { color: rgba(255,255,255,0.86); font-size: 0.88rem; line-height: 1.4; }
+@media (max-width: 900px) { .bso-teaser { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .bso-mini-steps { grid-template-columns: 1fr; } }
 
 </style>
 </head>
@@ -704,7 +346,6 @@ body { background: var(--mg-paper); }
     <div class="topbar-socials">
       <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
       <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
     </div>
   </div>
 </div>
@@ -744,7 +385,7 @@ body { background: var(--mg-paper); }
 </aside>
 
 <!-- PAGE HERO -->
-<section class="page-hero compact-hero">
+<section class="page-hero">
   <div class="page-hero-inner">
     <div class="breadcrumbs">
       <a href="index.html">Startseite</a>
@@ -754,597 +395,315 @@ body { background: var(--mg-paper); }
     <span class="eyebrow">Lernen am MG</span>
     <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Unter<em>richt.</em></h1>
     <p class="lead">
-      Drei klare Wege durch die Schulzeit: Unterstufe, Mittelstufe und Oberstufe –
-      übersichtlich begleitet mit allen wichtigen Materialien zum Download.
+      Von der ersten Stunde in Klasse 5 bis zur Abiturprüfung in Klasse 13 –
+      neun Jahre Bildung, die Persönlichkeit formt und Türen öffnet.
     </p>
   </div>
 </section>
 
-<!-- SCHNELLZUGRIFFE -->
-<section class="quick-jump" aria-label="Schnellzugriffe Unterricht">
-  <div class="quick-jump-inner">
-    <a href="#unterstufe" class="quick-card">
-      <span class="quick-card-icon"><img src="images/icon-unterstufe.svg" alt="" aria-hidden="true"></span>
-      <span><strong>Unterstufe</strong><span>Klasse 5–6</span></span>
-    </a>
-    <a href="#mittelstufe" class="quick-card">
-      <span class="quick-card-icon"><img src="images/icon-mittelstufe.svg" alt="" aria-hidden="true"></span>
-      <span><strong>Mittelstufe</strong><span>Klasse 7–10</span></span>
-    </a>
-    <a href="#oberstufe" class="quick-card">
-      <span class="quick-card-icon"><img src="images/icon-oberstufe.svg" alt="" aria-hidden="true"></span>
-      <span><strong>Oberstufe</strong><span>Jahrgänge 11–13</span></span>
-    </a>
-    <a href="#curriculum-mobilitaet" class="quick-card">
-      <span class="quick-card-icon"><i data-lucide="traffic-cone"></i></span>
-      <span><strong>Mobilität</strong><span>Lotsen & Abgefahren</span></span>
-    </a>
-    <a href="#downloads" class="quick-card">
-      <span class="quick-card-icon"><img src="images/icon-downloads.svg" alt="" aria-hidden="true"></span>
-      <span><strong>Downloads</strong><span>Materialien & Formulare</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- DREI SÄULEN -->
-<section class="section-pad tight">
+<!-- STAGES MIT TAB-SYSTEM -->
+<section class="stage-section">
   <div class="container">
-    <div class="intro-copy">
-      <span class="eyebrow center">Übersichtlich von Klasse 5 bis 13</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Drei Säulen. <em>Ein Weg</em> zum Abitur.</h2>
-      <p>
-        Eltern und Schüler*innen finden hier schnell den passenden Bereich: kurze Orientierung,
-        zentrale Informationen und die wichtigsten Materialien gebündelt an einem Ort.
-      </p>
+    <!-- Tab Buttons -->
+    <div class="stage-tabs">
+      <button class="stage-tab active" data-stage="unterstufe">
+        <span class="stage-tab-name">Unterstufe</span>
+        <span class="stage-tab-class">Klasse 5 – 6</span>
+      </button>
+      <button class="stage-tab" data-stage="mittelstufe">
+        <span class="stage-tab-name">Mittelstufe</span>
+        <span class="stage-tab-class">Klasse 7 – 10</span>
+      </button>
+      <button class="stage-tab" data-stage="oberstufe">
+        <span class="stage-tab-name">Oberstufe</span>
+        <span class="stage-tab-class">Klasse 11 – 13</span>
+      </button>
     </div>
 
-    <div class="stage-columns">
-      <article class="stage-card" id="unterstufe">
-        <div class="stage-card-head">
-          <div class="stage-card-icon"><img src="images/icon-unterstufe.svg" alt="" aria-hidden="true"></div>
-          <span class="stage-range">Klasse 5–6</span>
-          <h2>Unterstufe</h2>
+    <!-- UNTERSTUFE -->
+    <div class="stage-content active" id="stage-unterstufe">
+      <div class="stage-hero">
+        <div class="stage-hero-image" data-class="Klasse 5–6">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+               alt="Junge Schüler*innen lernen gemeinsam">
         </div>
-        <div class="stage-card-body">
-          <p>Ankommen, Orientierung finden und Schritt für Schritt sicher am Gymnasium werden.</p>
-          <ul class="stage-list">
-            <li>Übergang von der Grundschule begleiten</li>
-            <li>Methoden lernen und Klassengemeinschaft stärken</li>
-            <li>Profilangebote kennenlernen und Lernmethoden festigen</li>
-          </ul>
-          <div class="stage-card-actions">
-            <a href="#downloads" class="stage-link" data-filter-link="unterstufe">Materialien anzeigen <i data-lucide="arrow-right"></i></a>
-            <a href="#zweite-fremdsprache" class="stage-link">2. Fremdsprache <i data-lucide="arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="stage-card" id="mittelstufe">
-        <div class="stage-card-head">
-          <div class="stage-card-icon"><img src="images/icon-mittelstufe.svg" alt="" aria-hidden="true"></div>
-          <span class="stage-range">Klasse 7–10</span>
-          <h2>Mittelstufe</h2>
-        </div>
-        <div class="stage-card-body">
-          <p>Fachliche Vertiefung, persönliche Entwicklung und Orientierung für die weitere Schullaufbahn.</p>
-          <ul class="stage-list">
-            <li>Wahlbereiche, dritte Fremdsprache und individuelle Schwerpunkte</li>
-            <li>Betriebspraktikum in Klasse 10</li>
-            <li>Austausch, Projekte und Vorbereitung auf die Oberstufe</li>
-          </ul>
-          <div class="stage-card-actions">
-            <a href="#downloads" class="stage-link" data-filter-link="mittelstufe">Materialien anzeigen <i data-lucide="arrow-right"></i></a>
-            <a href="#mittelstufe-infos" class="stage-link">Infos Mittelstufe <i data-lucide="arrow-right"></i></a>
-            <a href="#curriculum-mobilitaet" class="stage-link">Curriculum Mobilität <i data-lucide="arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="stage-card" id="oberstufe">
-        <div class="stage-card-head">
-          <div class="stage-card-icon"><img src="images/icon-oberstufe.svg" alt="" aria-hidden="true"></div>
-          <span class="stage-range">Jg. 11–13</span>
-          <h2>Oberstufe</h2>
-        </div>
-        <div class="stage-card-body">
-          <p>Einführungsphase, Qualifikationsphase und Abitur – klar beraten und gut organisiert.</p>
-          <ul class="stage-list">
-            <li>Kurswahlen und Schwerpunktsetzung</li>
-            <li>Seminarfach, Klausuren und Abiturvorbereitung</li>
-            <li>Studien- und Berufsorientierung</li>
-          </ul>
-          <div class="stage-card-actions">
-            <a href="#oberstufe-infos" class="stage-link">Oberstufe verstehen <i data-lucide="arrow-right"></i></a>
-            <a href="#downloads" class="stage-link" data-filter-link="oberstufe">Materialien anzeigen <i data-lucide="arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- UNTERRICHTSVERSTÄNDNIS -->
-<section class="section-pad philosophy-section">
-  <div class="container">
-    <div class="intro-copy" style="margin-bottom: 0;">
-      <span class="eyebrow center">Unser Unterrichtsverständnis</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Fordern, fördern, <em>begleiten.</em></h2>
-    </div>
-    <div class="philosophy-grid">
-      <div class="philosophy-card">
-        <div class="philosophy-icon"><img src="images/icon-potenziale.svg" alt="" aria-hidden="true"></div>
-        <div><h3>Potenziale entfalten</h3><p>Wir verbinden fachlichen Anspruch mit persönlicher Begleitung und ermutigen Schüler*innen, eigene Stärken zu entdecken.</p></div>
-      </div>
-      <div class="philosophy-card">
-        <div class="philosophy-icon"><img src="images/icon-gemeinschaft.svg" alt="" aria-hidden="true"></div>
-        <div><h3>Gemeinschaft stärken</h3><p>Lernen gelingt dort, wo Vertrauen, Verantwortung und ein wertschätzendes Miteinander den Schulalltag prägen.</p></div>
-      </div>
-      <div class="philosophy-card">
-        <div class="philosophy-icon"><img src="images/icon-methoden.svg" alt="" aria-hidden="true"></div>
-        <div><h3>Methoden sichern</h3><p>Von Lernorganisation bis Präsentation: Wir bauen Fähigkeiten auf, die weit über einzelne Fächer hinaus wichtig sind.</p></div>
-      </div>
-      <div class="philosophy-card">
-        <div class="philosophy-icon"><img src="images/icon-uebergaenge.svg" alt="" aria-hidden="true"></div>
-        <div><h3>Übergänge gestalten</h3><p>Ob Klasse 5, Mittelstufe oder Oberstufe: Wir machen die nächsten Schritte transparent und geben Orientierung.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DOWNLOAD-CENTER -->
-<section class="section-pad download-section" id="downloads">
-  <div class="container">
-    <div class="intro-copy">
-      <span class="eyebrow center">Materialien</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Download-<em>Center.</em></h2>
-      <p>Alle wichtigen Dokumente nach Schulstufe sortiert. Neue Dateien können später einfach ergänzt oder ausgetauscht werden.</p>
-    </div>
-
-    <div class="download-shell">
-      <div class="download-tabs" role="tablist" aria-label="Download-Filter">
-        <button class="download-tab active" data-filter="alle" type="button">Alle</button>
-        <button class="download-tab" data-filter="unterstufe" type="button">Unterstufe</button>
-        <button class="download-tab" data-filter="mittelstufe" type="button">Mittelstufe</button>
-        <button class="download-tab" data-filter="oberstufe" type="button">Oberstufe</button>
-      </div>
-
-      <div class="download-list">
-<article class="download-item" data-stage="unterstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 5</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26. Die Bücher der Klassen 5 & 6 sind in der entgeltlichen Ausleihe enthalten.</div>
-            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Klasse 5</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/unterstufe/schulbuchliste-klasse-5.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="unterstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 6</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26 mit den benötigten Lehrwerken für Klasse 6.</div>
-            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Klasse 6</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/unterstufe/schulbuchliste-klasse-6.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="unterstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 5 – selbst anschaffen</div>
-            <div class="download-desc">Bücher und Arbeitshefte, die nicht in der Lernmittelausleihe enthalten sind und selbst angeschafft werden müssen.</div>
-            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Klasse 5</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/unterstufe/schulbuecher-selber-anschaffen.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="unterstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Unterrichtsmaterialien Klasse 5</div>
-            <div class="download-desc">Übersicht über Hefte, Schnellhefter, Einlegeblätter und weitere fachspezifische Materialien für Jahrgang 5.</div>
-            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Klasse 5</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/unterstufe/unterrichtsmaterialien-klasse-5.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="unterstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Infos zur 2. Fremdsprache</div>
-            <div class="download-desc">Informationen zur Wahl von Französisch, Latein oder Spanisch ab Klasse 6.</div>
-            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Klasse 6</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/unterstufe/infos-zur-2-fremdsprache.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 7</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26. Die Bücher der Klassen 7–10 sind in der entgeltlichen Ausleihe enthalten.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Klasse 7</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/schulbuchliste-klasse-7.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 8</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26 mit den benötigten Lehrwerken für Klasse 8.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Klasse 8</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/schulbuchliste-klasse-8.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 9</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26 mit den benötigten Lehrwerken für Klasse 9.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Klasse 9</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/schulbuchliste-klasse-9.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 10</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26 mit den benötigten Lehrwerken für Klasse 10.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Klasse 10</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/schulbuchliste-klasse-10.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Unterrichtsmaterialien Klassen 7–10</div>
-            <div class="download-desc">Materialübersicht für die Mittelstufe mit Hinweisen zu Heften, Schnellheftern und fachspezifischem Material.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Klassen 7–10</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/unterrichtsmaterialien-klassen-7-10.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Betriebspraktikum Klasse 10</div>
-            <div class="download-desc">Informationen zum berufsorientierenden Praktikum in Jahrgang 10: Zeitraum, Ziele und Hinweise zur Praktikumsstelle.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Klasse 10</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/betriebspraktikum-klasse-10.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Wahl 3. Fremdsprache</div>
-            <div class="download-desc">Informationen zum Wahlangebot der neu beginnenden dritten Fremdsprache mit Französisch, Latein oder Spanisch.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Wahlangebot</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/wahl-3-fremdsprache.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-
-
-
-        <article class="download-item" data-stage="oberstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Schulbuchliste Klasse 11</div>
-            <div class="download-desc">Neue Schulbuchliste für das Schuljahr 2025/26. Die Bücher der Klasse 11 sind in der entgeltlichen Ausleihe enthalten.</div>
-            <div class="download-meta"><span class="download-badge">Oberstufe</span><span class="download-badge">Klasse 11</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/oberstufe/schulbuchliste-klasse-11.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="unterstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Notenpapier</div>
-            <div class="download-desc">Vorlage für Musikunterricht und häusliches Üben.</div>
-            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Musik</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/unterstufe/mariengymnasium-notenpapier.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-
-        <article class="download-item" data-stage="mittelstufe">
-          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
-          <div>
-            <div class="download-title">Notenpapier</div>
-            <div class="download-desc">Vorlage für Musikunterricht und häusliches Üben.</div>
-            <div class="download-meta"><span class="download-badge">Mittelstufe</span><span class="download-badge">Musik</span><span class="download-badge">PDF</span></div>
-          </div>
-          <a href="downloads/mittelstufe/mariengymnasium-notenpapier.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
-        </article>
-      </div>
-
-      <p class="download-note">
-        Hinweis: Die Materialien werden lokal im Ordner <strong>downloads</strong> gepflegt: Unterstufe in <strong>downloads/unterstufe/</strong>, Mittelstufe in <strong>downloads/mittelstufe/</strong> und Oberstufe in <strong>downloads/oberstufe/</strong>.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- 2. FREMDSPRACHE & KLASSENLEITUNGEN -->
-<section class="section-pad" id="zweite-fremdsprache">
-  <div class="container">
-    <div class="intro-copy">
-      <span class="eyebrow center">Unterstufe</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Orientierung für <em>Klasse 5–6.</em></h2>
-      <p>
-        Die wichtigsten Informationen zur zweiten Fremdsprache und zu den Klassenleitungen sind direkt hier sichtbar – kurz, übersichtlich und ohne lange Suche.
-      </p>
-    </div>
-
-    <div class="language-box">
-      <article class="language-card">
-        <h3>Infos zur 2. Fremdsprache</h3>
-        <p>
-          In Klasse 5 wird Englisch als erste Fremdsprache fortgeführt. In Klasse 6 wählen die Schülerinnen und Schüler ihre zweite Fremdsprache: Französisch, Latein oder Spanisch.
-        </p>
-        <ul class="language-steps">
-          <li><span class="language-tag">Kl. 5</span><span><strong>Englisch</strong> wird als erste Fremdsprache fortgeführt.</span></li>
-          <li><span class="language-tag">Kl. 6</span><span>Wahl der zweiten Fremdsprache: <strong>Französisch, Latein oder Spanisch</strong>.</span></li>
-          <li><span class="language-tag">Kl. 7</span><span>Bilingualer Unterricht in <strong>Erdkunde oder Biologie</strong> ist möglich.</span></li>
-          <li><span class="language-tag">Kl. 11</span><span>Eine neue Fremdsprache kann abhängig vom Bedarf begonnen werden.</span></li>
-        </ul>
-      </article>
-
-      <article class="classleaders-card" id="klassenleitungen">
-        <h3>Klassenleitungen 5–6</h3>
-        <p>Die Klassenleitungen der Unterstufe auf einen Blick.</p>
-        <div class="classleaders-grid">
-          <div class="classleader-mini"><h4>Klasse 5a</h4><p><strong>Klassenlehrerin:</strong> Fr. Hömmen</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Veenhuis</p></div>
-          <div class="classleader-mini"><h4>Klasse 5b</h4><p><strong>Klassenlehrer:</strong> Hr. Preut</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Geesmann</p></div>
-          <div class="classleader-mini"><h4>Klasse 5c</h4><p><strong>Klassenlehrer:</strong> Hr. Wessels</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Cloppenburg</p></div>
-          <div class="classleader-mini"><h4>Klasse 6a</h4><p><strong>Klassenlehrerin:</strong> Fr. Kassens-Hesener</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Körte</p></div>
-          <div class="classleader-mini"><h4>Klasse 6b</h4><p><strong>Klassenlehrerin:</strong> Fr. M. Kröger</p><p><strong>Co-Klassenlehrer:</strong> Hr. Gebbeken</p></div>
-          <div class="classleader-mini"><h4>Klasse 6c</h4><p><strong>Klassenlehrerin:</strong> Fr. Hauschke</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Wiepking</p></div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- MITTELSTUFE: PRAKTIKUM, 3. FREMDSPRACHE & KLASSENLEITUNGEN -->
-<section class="section-pad" id="mittelstufe-infos">
-  <div class="container">
-    <div class="intro-copy">
-      <span class="eyebrow center">Mittelstufe</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Orientierung für <em>Klasse 7–10.</em></h2>
-      <p>
-        Praktikum, Sprachenwahl und Klassenleitungen sind hier kompakt gebündelt – damit Eltern und Schüler*innen schnell die wichtigsten Informationen finden.
-      </p>
-    </div>
-
-    <div class="language-box">
-      <article class="language-card">
-        <h3>Betriebspraktikum Klasse 10</h3>
-        <p>
-          Das berufsorientierende Praktikum findet im Jahrgang 10 statt. Die Schülerinnen und Schüler sammeln in einer selbstgesuchten Praktikumsstelle zwei Wochen lang Erfahrungen für die spätere Berufs- oder Studienwahl.
-        </p>
-        <ul class="language-steps">
-          <li><span class="language-tag">Kl. 10</span><span><strong>Zwei Wochen</strong> praktische Einblicke in Betriebe, Verwaltung, Praxen oder andere Berufsfelder.</span></li>
-          <li><span class="language-tag">Ziel</span><span>Orientierung für die spätere <strong>Berufs- und Studienwahl</strong>.</span></li>
-          <li><span class="language-tag">Begleitung</span><span>Die Praktikant*innen werden während des Praktikums schulisch begleitet.</span></li>
-        </ul>
-      </article>
-
-      <article class="language-card">
-        <h3>Wahl 3. Fremdsprache</h3>
-        <p>
-          Als neu beginnende Fremdsprachen bietet das Mariengymnasium Französisch, Latein und Spanisch an. Die Einrichtung eines Kurses ist abhängig von der Nachfrage.
-        </p>
-        <ul class="language-steps">
-          <li><span class="language-tag">Sprachen</span><span><strong>Französisch, Latein oder Spanisch</strong> als neu beginnende Fremdsprache.</span></li>
-          <li><span class="language-tag">Wahl</span><span>Informationen und Wahlunterlagen liegen im Download-Center unter <strong>Mittelstufe</strong>.</span></li>
-          <li><span class="language-tag">Beratung</span><span>Die Wahl sollte nach Beratung und mit Blick auf die weitere Schullaufbahn erfolgen.</span></li>
-        </ul>
-      </article>
-    </div>
-
-    <article class="classleaders-card" id="klassenleitungen-mittelstufe" style="margin-top: 2rem;">
-      <h3>Klassenleitungen 7–10</h3>
-      <p>Die Klassenleitungen der Mittelstufe auf einen Blick.</p>
-      <div class="classleaders-grid">
-        <div class="classleader-mini"><h4>Klasse 7a</h4><p><strong>Klassenlehrerin:</strong> Fr. Pieper</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Runde</p></div>
-        <div class="classleader-mini"><h4>Klasse 7b</h4><p><strong>Klassenlehrerin:</strong> Fr. Grönloh</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Kuhlemann</p></div>
-        <div class="classleader-mini"><h4>Klasse 8a</h4><p><strong>Klassenlehrerin:</strong> Fr. Schleinhege-Buss</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Borchers</p></div>
-        <div class="classleader-mini"><h4>Klasse 8b</h4><p><strong>Klassenlehrerin:</strong> Sr. Sponsalis</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Schöpper</p></div>
-        <div class="classleader-mini"><h4>Klasse 8c</h4><p><strong>Klassenlehrerin:</strong> Fr. N. Kröger</p><p><strong>Co-Klassenlehrer:</strong> Hr. Siewe</p></div>
-        <div class="classleader-mini"><h4>Klasse 9a</h4><p><strong>Klassenlehrer:</strong> Hr. Schultze</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Buskohl</p></div>
-        <div class="classleader-mini"><h4>Klasse 9b</h4><p><strong>Klassenlehrer:</strong> Hr. Fredeweß</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Schlömer</p></div>
-        <div class="classleader-mini"><h4>Klasse 10FLS1</h4><p><strong>Klassenlehrer:</strong> Hr. Kramer</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Dr. de Wall</p></div>
-        <div class="classleader-mini"><h4>Klasse 10FLS2</h4><p><strong>Klassenlehrerin:</strong> Fr. Klaaßen</p><p><strong>Co-Klassenlehrer:</strong> Hr. Wodtke</p></div>
-        <div class="classleader-mini"><h4>Klasse 10FLS3</h4><p><strong>Klassenlehrerin:</strong> Fr. Schmitz</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Reininger</p></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- CURRICULUM MOBILITÄT -->
-<section class="section-pad mobility-section" id="curriculum-mobilitaet">
-  <div class="container">
-    <div class="intro-copy">
-      <span class="eyebrow center">Curriculum Mobilität</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Sicher unterwegs. <em>Verantwortung lernen.</em></h2>
-      <p>
-        Mobilität ist mehr als der Weg zur Schule: Im Unterricht und in Projekten lernen Schüler*innen, aufmerksam, rücksichtsvoll und verantwortungsbewusst am Verkehr teilzunehmen.
-      </p>
-    </div>
-
-    <div class="mobility-shell">
-      <article class="mobility-intro-card">
-        <div class="mobility-intro-icon"><i data-lucide="route"></i></div>
-        <h3>Verkehrserziehung als Teil schulischer Bildung</h3>
-        <p>
-          Das Curriculum Mobilität bündelt Projekte, die Sicherheit, Selbstständigkeit und Verantwortung stärken – besonders dort, wo Schüler*innen täglich unterwegs sind: zu Fuß, mit dem Fahrrad, mit dem Bus oder im Straßenverkehr.
-        </p>
-      </article>
-
-      <div class="mobility-cards">
-        <article class="mobility-card">
-          <div class="mobility-card-icon"><i data-lucide="badge-check"></i></div>
-          <h3>Schülerlotsenausbildung</h3>
-          <p>
-            Schülerlots*innen übernehmen sichtbar Verantwortung für andere und tragen zu einem sicheren Schulweg bei.
+        <div class="stage-hero-content">
+          <span class="eyebrow">Ankommen &amp; Wachsen</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Der erste <em>Schritt</em> aufs Gymnasium.</h2>
+          <p class="lead">
+            In der Unterstufe geht es darum, anzukommen, sich wohlzufühlen und
+            Lernstrategien fürs Gymnasium zu entwickeln.
           </p>
-          <ul class="mobility-list">
-            <li>Verantwortung im Schulalltag übernehmen</li>
-            <li>Regeln, Aufmerksamkeit und Rücksicht einüben</li>
-            <li>Gemeinschaft durch aktives Engagement stärken</li>
-          </ul>
-        </article>
-
-        <article class="mobility-card">
-          <div class="mobility-card-icon"><i data-lucide="triangle-alert"></i></div>
-          <h3>Projekt „Abgefahren“</h3>
           <p>
-            Das Projekt sensibilisiert für Risiken im Straßenverkehr und macht deutlich, warum umsichtiges Verhalten Leben schützen kann.
+            Ein behutsamer Übergang aus der Grundschule, intensive Klassenleitungen,
+            unsere Profilklassen Musik, Technik und Sport sowie die Wahl der zweiten
+            Fremdsprache prägen die ersten beiden Jahre.
           </p>
-          <ul class="mobility-list">
-            <li>Gefahren realistisch einschätzen</li>
-            <li>Konsequenzen riskanten Verhaltens verstehen</li>
-            <li>Sicherheit, Prävention und Verantwortung verbinden</li>
-          </ul>
-        </article>
+        </div>
+      </div>
+
+      <div class="feature-bar">
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="users"></i></div>
+          <div>
+            <h4>Klassenleitungs-Tandem</h4>
+            <p>Zwei Lehrkräfte begleiten die Klasse intensiv durch die ersten Jahre.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="languages"></i></div>
+          <div>
+            <h4>2. Fremdsprache</h4>
+            <p>Wahl ab Klasse 6: Französisch, Latein oder Spanisch nach Eignung.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="map"></i></div>
+          <div>
+            <h4>Schülerlotsen</h4>
+            <p>Sicherheit auf dem Schulweg – ausgebildet von der Polizei.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="profiles">
+        <div class="profiles-header" style="text-align: center;">
+          <span class="eyebrow center">Profilklassen ab Klasse 5</span>
+          <h3 class="display-3" style="margin-top: 1rem; color: var(--mg-navy);">Drei <em>Wege</em>, eine Leidenschaft.</h3>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80" alt="Musik">
+            <div class="profile-card-content">
+              <span class="eyebrow">Profil 01</span>
+              <h3>Musik</h3>
+              <p>Chorklasse mit erweitertem Musikunterricht – musikalische Förderung von der ersten Stunde an.</p>
+            </div>
+          </div>
+          <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=600&q=80" alt="Technik">
+            <div class="profile-card-content">
+              <span class="eyebrow">Profil 02</span>
+              <h3>Technik</h3>
+              <p>Mit „Fit in Technik" Werkstatterfahrung sammeln, eigene Ideen umsetzen und MINT-Talente entdecken.</p>
+            </div>
+          </div>
+          <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1530021232320-687d8e3dba54?auto=format&fit=crop&w=600&q=80" alt="Sport">
+            <div class="profile-card-content">
+              <span class="eyebrow">Profil 03</span>
+              <h3>Sport</h3>
+              <p>Bewegung als Schwerpunkt – mit erweitertem Sportangebot und außerschulischen Kooperationen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MITTELSTUFE -->
+    <div class="stage-content" id="stage-mittelstufe">
+      <div class="stage-hero">
+        <div class="stage-hero-image" data-class="Klasse 7–10">
+          <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80"
+               alt="Mittelstufenschüler*innen im Gespräch">
+        </div>
+        <div class="stage-hero-content">
+          <span class="eyebrow">Vertiefen &amp; Erweitern</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Wachsen mit <em>Anspruch</em> und Tiefe.</h2>
+          <p class="lead">
+            Die Mittelstufe ist die Zeit, in der Persönlichkeit, fachliches Können
+            und Verantwortungsbewusstsein entscheidend reifen.
+          </p>
+          <p>
+            Eine optionale dritte Fremdsprache, das zweiwöchige Betriebspraktikum
+            in Klasse 10, Austauschprogramme und vertiefte fachliche Anforderungen
+            bereiten gezielt auf die Oberstufe vor.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-bar">
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="briefcase"></i></div>
+          <div>
+            <h4>Betriebspraktikum</h4>
+            <p>Zwei Wochen Berufswelt in Klasse 10 – erste Einblicke in mögliche Karrierewege.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="globe-2"></i></div>
+          <div>
+            <h4>Austauschprogramme</h4>
+            <p>Mottola, Albaida, Cork – internationale Begegnungen für Sprache und Horizont.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="languages"></i></div>
+          <div>
+            <h4>3. Fremdsprache</h4>
+            <p>Optional ab Klasse 8 – Spanisch, Französisch oder Latein zur Vertiefung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBERSTUFE -->
+    <div class="stage-content" id="stage-oberstufe">
+      <div class="stage-hero">
+        <div class="stage-hero-image" data-class="Klasse 11–13">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80"
+               alt="Oberstufenschüler*innen im Lernlabor">
+        </div>
+        <div class="stage-hero-content">
+          <span class="eyebrow">Profilieren &amp; Abitur</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Vorbereitung aufs <em>Leben</em>.</h2>
+          <p class="lead">
+            In der Oberstufe gestalten Schüler*innen ihren Bildungsweg zunehmend
+            selbst – und legen das Fundament für Studium und Beruf.
+          </p>
+          <p>
+            Einführungs-, Qualifikations- und Prüfungsphase, individuelle
+            Schwerpunktsetzungen, intensive Beratung durch die Oberstufenkoordination
+            und ein durchdachtes Konzept zur Berufsorientierung machen den Übergang
+            ins Leben nach der Schule planbar und sicher.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-bar">
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="graduation-cap"></i></div>
+          <div>
+            <h4>Einführungsphase</h4>
+            <p>Klasse 11 als Brücke: Methoden, Profile und Kurswahlen vorbereiten.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="trending-up"></i></div>
+          <div>
+            <h4>Qualifikationsphase</h4>
+            <p>Klassen 12 &amp; 13 mit Leistungs- und Grundkursen, Seminarfach und Klausuren.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="award"></i></div>
+          <div>
+            <h4>Abiturprüfung</h4>
+            <p>Vier schriftliche und eine mündliche Prüfung – als Tor zur Hochschule.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- OBERSTUFE: TRANSPARENTER PROZESS OHNE PDFS -->
-<section class="section-pad upperstage-section" id="oberstufe-infos">
+<!-- FÄCHER ÜBERSICHT -->
+<section class="subjects-section">
   <div class="container">
-    <div class="intro-copy">
-      <span class="eyebrow center">Oberstufe transparent</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Der Weg durch die <em>Oberstufe.</em></h2>
-      <p>
-        Statt viele einzelne PDF-Seiten zu verstecken, zeigt dieser Bereich den gesamten Prozess von Jahrgang 11 bis zum Abschluss: verständlich, visuell und direkt auf der Seite.
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Fächerkanon</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Unsere <em>Fächer.</em></h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Vielfalt, die zum Denken einlädt – von den Sprachen bis zu den Naturwissenschaften.
       </p>
     </div>
 
-    <div class="upperstage-roadmap" aria-label="Schaubild: Ablauf der gymnasialen Oberstufe">
-      <article class="roadmap-step phase-11">
-        <div class="roadmap-badge"><span>11</span><i data-lucide="compass"></i></div>
-        <div class="roadmap-content">
-          <span class="roadmap-kicker">Einführungsphase</span>
-          <h3>Orientieren & ankommen</h3>
-          <p>Jahrgang 11 bleibt im Klassenverband und führt in Methoden, Operatoren, Medien und Arbeitsweisen der Oberstufe ein.</p>
-          <ul>
-            <li>neue Klassengemeinschaften</li>
-            <li>15-Punkte-Bewertung</li>
-            <li>Fremdsprachenwahl & Beratung</li>
-            <li>Sozialpraktikum</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="roadmap-step phase-12">
-        <div class="roadmap-badge"><span>12</span><i data-lucide="route"></i></div>
-        <div class="roadmap-content">
-          <span class="roadmap-kicker">Qualifikationsphase I</span>
-          <h3>Profile & Kurse wählen</h3>
-          <p>In Jahrgang 12 beginnt das Kurssystem. Die Profilwahl setzt den Schwerpunkt für die beiden letzten Schuljahre.</p>
-          <ul>
-            <li>3 Fächer auf erhöhtem Niveau</li>
-            <li>2 weitere Prüfungsfächer</li>
-            <li>Profile: sprachlich, gesellschaftlich, naturwissenschaftlich, musisch-künstlerisch</li>
-            <li>Start des Seminarfachs</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="roadmap-step phase-13">
-        <div class="roadmap-badge"><span>13</span><i data-lucide="layers-3"></i></div>
-        <div class="roadmap-content">
-          <span class="roadmap-kicker">Qualifikationsphase II</span>
-          <h3>Leistungen einbringen</h3>
-          <p>Die vier Kurshalbjahre der Qualifikationsphase bilden Block I der Gesamtqualifikation.</p>
-          <ul>
-            <li>32 bis 36 Halbjahresnoten</li>
-            <li>Facharbeit im Seminarfach</li>
-            <li>Beratung zur Zulassung</li>
-            <li>Prüfungsplanung P1 bis P5</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="roadmap-step phase-abi">
-        <div class="roadmap-badge"><span>ABI</span><i data-lucide="graduation-cap"></i></div>
-        <div class="roadmap-content">
-          <span class="roadmap-kicker">Abiturprüfung</span>
-          <h3>Prüfen & abschließen</h3>
-          <p>Die Abiturprüfung bildet Block II. Sie besteht aus vier schriftlichen Prüfungen und einer mündlichen Prüfung.</p>
-          <ul>
-            <li>P1 bis P4: schriftlich</li>
-            <li>P5: mündlich oder Präsentationsprüfung</li>
-            <li>Nachprüfungsmöglichkeiten</li>
-            <li>Allgemeine Hochschulreife</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-
-    <div class="upperstage-explain-grid">
-      <article class="upperstage-explain-card highlight-card">
-        <div class="explain-icon"><i data-lucide="git-branch"></i></div>
-        <h3>Wie hängen P1 bis P5 zusammen?</h3>
-        <p>Die drei Fächer auf erhöhtem Niveau bilden P1, P2 und P3. Dazu kommen zwei weitere Prüfungsfächer auf grundlegendem Niveau: P4 und P5.</p>
-        <div class="pfach-grid" aria-label="Prüfungsfächer P1 bis P5">
-          <span><strong>P1</strong> schriftlich · erhöht</span>
-          <span><strong>P2</strong> schriftlich · erhöht</span>
-          <span><strong>P3</strong> schriftlich · erhöht</span>
-          <span><strong>P4</strong> schriftlich · grundlegend</span>
-          <span><strong>P5</strong> mündlich · grundlegend</span>
-        </div>
-      </article>
-
-      <article class="upperstage-explain-card">
-        <div class="explain-icon"><i data-lucide="book-open-check"></i></div>
-        <h3>Was ist in Jahrgang 11 wichtig?</h3>
-        <p>Die Einführungsphase bereitet fachlich und methodisch auf die Qualifikationsphase vor. Besonders wichtig sind Fremdsprachen, das Punktesystem und die Versetzung.</p>
-      </article>
-
-      <article class="upperstage-explain-card">
-        <div class="explain-icon"><i data-lucide="shapes"></i></div>
-        <h3>Was passiert in Jahrgang 12/13?</h3>
-        <p>Die Schülerinnen und Schüler arbeiten im Kurssystem. Die Ergebnisse der vier Halbjahre fließen in die Gesamtqualifikation ein.</p>
-      </article>
-
-      <article class="upperstage-explain-card">
-        <div class="explain-icon"><i data-lucide="award"></i></div>
-        <h3>Welche Abschlüsse sind möglich?</h3>
-        <p>Der Erweiterte Sekundarabschluss I steht am Ende von Klasse 10. In der Qualifikationsphase können der schulische Teil der Fachhochschulreife und am Ende das Abitur erreicht werden.</p>
-      </article>
-    </div>
-
-    <div class="upperstage-note process-note">
-      <div>
-        <h3>Transparenz statt Dokumenten-Dschungel</h3>
-        <p>Die zentralen Informationen zur Oberstufe stehen direkt auf dieser Seite. Im Download-Center bleiben nur Materialien, die wirklich als Datei benötigt werden, zum Beispiel Schulbuchlisten.</p>
-      </div>
-      <a href="#downloads" class="download-btn" data-filter-link="oberstufe"><i data-lucide="download"></i> Schulbuchliste ansehen</a>
+    <div class="subject-grid">
+      <div class="subject-pill"><i data-lucide="book-open"></i> Deutsch</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Englisch</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Französisch</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Latein</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Spanisch</div>
+      <div class="subject-pill"><i data-lucide="calculator"></i> Mathematik</div>
+      <div class="subject-pill"><i data-lucide="atom"></i> Physik</div>
+      <div class="subject-pill"><i data-lucide="flask-conical"></i> Chemie</div>
+      <div class="subject-pill"><i data-lucide="leaf"></i> Biologie</div>
+      <div class="subject-pill"><i data-lucide="laptop"></i> Informatik</div>
+      <div class="subject-pill"><i data-lucide="map-pin"></i> Erdkunde</div>
+      <div class="subject-pill"><i data-lucide="landmark"></i> Geschichte</div>
+      <div class="subject-pill"><i data-lucide="users"></i> Politik</div>
+      <div class="subject-pill"><i data-lucide="heart"></i> Religion</div>
+      <div class="subject-pill"><i data-lucide="brain"></i> Werte &amp; Normen</div>
+      <div class="subject-pill"><i data-lucide="palette"></i> Kunst</div>
+      <div class="subject-pill"><i data-lucide="music"></i> Musik</div>
+      <div class="subject-pill"><i data-lucide="dumbbell"></i> Sport</div>
+      <div class="subject-pill"><i data-lucide="trending-up"></i> Wirtschaft</div>
+      <div class="subject-pill"><i data-lucide="message-square"></i> Seminarfach</div>
     </div>
   </div>
 </section>
 
-<!-- FÄCHER KOMPAKT -->
-<section class="section-pad subjects-compact">
+
+
+<!-- BERUFS- UND STUDIENORIENTIERUNG TEASER -->
+<section class="bso-teaser-section">
   <div class="container">
-    <div class="intro-copy" style="margin-bottom: 0;">
-      <span class="eyebrow center">Fächer</span>
-      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Vielfalt, die <em>Horizonte öffnet.</em></h2>
+    <div class="bso-teaser reveal">
+      <div class="bso-teaser-content">
+        <span class="eyebrow">Berufs- und Studienorientierung</span>
+        <h2 class="display-2">Den eigenen <em>Weg</em> finden.</h2>
+        <p>
+          Von ersten Einblicken in Klasse 10 über Praktikum, Selbsterkundung und Beratung
+          bis zur Studienwahl in der Oberstufe: Berufs- und Studienorientierung wird am MG
+          als roter Faden durch die Jahrgänge gedacht.
+        </p>
+        <a href="berufs-und-studienorientierung.html" class="btn btn-primary" style="margin-top: 1.4rem;">
+          Zur Orientierung <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+      <div class="bso-mini-steps" aria-label="Überblick Jahrgänge">
+        <div class="bso-mini-step"><strong>10</strong><span>Agentur für Arbeit und Betriebspraktikum</span></div>
+        <div class="bso-mini-step"><strong>11</strong><span>Selbsterkundung, Check-U und feste BSO-Stunde</span></div>
+        <div class="bso-mini-step"><strong>12</strong><span>Vortrag „Abitur und was dann?“ und Infotag</span></div>
+        <div class="bso-mini-step"><strong>13</strong><span>Studienzulassung, Beratungstest und Entscheidung</span></div>
+      </div>
     </div>
-    <div class="subject-cloud">
-      <span class="subject-pill">Deutsch</span><span class="subject-pill">Englisch</span><span class="subject-pill">Französisch</span><span class="subject-pill">Latein</span><span class="subject-pill">Spanisch</span>
-      <span class="subject-pill">Mathematik</span><span class="subject-pill">Physik</span><span class="subject-pill">Chemie</span><span class="subject-pill">Biologie</span><span class="subject-pill">Informatik</span>
-      <span class="subject-pill">Geschichte</span><span class="subject-pill">Erdkunde</span><span class="subject-pill">Politik</span><span class="subject-pill">Religion</span><span class="subject-pill">Kunst</span><span class="subject-pill">Musik</span><span class="subject-pill">Sport</span>
+  </div>
+</section>
+
+<!-- ZEITEN & TAGESABLAUF -->
+<section class="schedule-section">
+  <div class="container">
+    <div class="schedule-grid">
+      <div class="reveal">
+        <span class="eyebrow">Zeiten &amp; Regelungen</span>
+        <h2 class="display-2" style="margin: 1rem 0;">Ein <em>klar</em> strukturierter Tag.</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1.5rem;">
+          Unser Schultag beginnt um 8:05 Uhr und endet spätestens um 15:10 Uhr.
+          Eine 25-minütige Mittagspause bietet Raum für Cafeteria, Bewegung und Austausch.
+          Lange Pausen schaffen Luft zum Durchatmen, kurze Pausen den nötigen Wechsel.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 2rem;">
+          Wir bieten G9 – Abitur nach neun Schuljahren – mit dem klaren Ziel, jungen
+          Menschen Zeit zur Reife zu geben statt sie unter Druck zu setzen.
+        </p>
+        <a href="kontakt.html" class="btn btn-outline">Fragen zu Zeiten &amp; Regelungen <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="schedule-table reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>Stunde</th>
+              <th>Zeit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1.</td><td>08:05 – 08:50</td></tr>
+            <tr><td>2.</td><td>08:50 – 09:35</td></tr>
+            <tr class="break"><td colspan="2">Pause</td></tr>
+            <tr><td>3.</td><td>09:55 – 10:40</td></tr>
+            <tr><td>4.</td><td>10:40 – 11:25</td></tr>
+            <tr class="break"><td colspan="2">Pause</td></tr>
+            <tr><td>5.</td><td>11:45 – 12:30</td></tr>
+            <tr><td>6.</td><td>12:30 – 13:15</td></tr>
+            <tr class="break"><td colspan="2">Mittagspause</td></tr>
+            <tr><td>7.</td><td>13:40 – 14:25</td></tr>
+            <tr><td>8.</td><td>14:25 – 15:10</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
@@ -1353,15 +712,15 @@ body { background: var(--mg-paper); }
 <section class="cta-banner" style="background: var(--mg-cream-warm);">
   <div class="container">
     <div style="max-width: 760px; margin: 0 auto; text-align: center;">
-      <span class="eyebrow center">Fragen zum Unterricht?</span>
-      <h2 class="display-2" style="margin: 1rem 0; color: var(--mg-navy);">Wir helfen gerne <em>weiter.</em></h2>
+      <span class="eyebrow center">Schnuppertag</span>
+      <h2 class="display-2" style="margin: 1rem 0; color: var(--mg-navy);">Unterricht <em>live</em> erleben.</h2>
       <p style="color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7;">
-        Sie suchen ein bestimmtes Material oder haben Fragen zu einer Schulstufe?
-        Kontaktieren Sie uns oder informieren Sie sich direkt zur Anmeldung.
+        Beim Schnuppertag im Januar können Viertklässler*innen drei Schnupperstunden
+        besuchen und unsere Schule kennenlernen.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="kontakt.html" class="btn btn-navy"><i data-lucide="mail"></i> Kontakt aufnehmen</a>
-        <a href="anmeldung.html" class="btn btn-outline">Zur Anmeldung <i data-lucide="arrow-right"></i></a>
+        <a href="anmeldung.html" class="btn btn-navy"><i data-lucide="calendar"></i> Schnuppertag-Termine</a>
+        <a href="schulleben.html" class="btn btn-outline">Schulleben entdecken <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -1377,13 +736,12 @@ body { background: var(--mg-paper); }
         <div class="footer-socials">
           <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
         </div>
       </div>
       <div class="footer-col">
         <h5>Kontakt</h5>
         <ul>
-          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
           <li><a href="tel:0496194700">04961 - 94700</a></li>
           <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
         </ul>
@@ -1401,16 +759,16 @@ body { background: var(--mg-paper); }
         <h5>Service</h5>
         <ul>
           <li><a href="anmeldung.html">Anmeldung</a></li>
-          <li><a href="#">Terminkalender</a></li>
-          <li><a href="#">Vorlagen für Eltern</a></li>
-          <li><a href="#">IServ</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
       <div class="footer-bottom-links">
-        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="kontakt.html">Kontakt</a>
       </div>
     </div>
   </div>
@@ -1419,27 +777,19 @@ body { background: var(--mg-paper); }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
 <script src="js/common.js"></script>
 <script>
+// Stage Tabs
 document.addEventListener('DOMContentLoaded', () => {
-  const filterButtons = document.querySelectorAll('.download-tab');
-  const downloadItems = document.querySelectorAll('.download-item');
-  const filterLinks = document.querySelectorAll('[data-filter-link]');
-
-  function setFilter(filter) {
-    filterButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
-    downloadItems.forEach(item => {
-      const show = filter === 'alle' || item.dataset.stage === filter;
-      item.style.display = show ? 'grid' : 'none';
-    });
-  }
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => setFilter(btn.dataset.filter));
-  });
-
-  filterLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const filter = link.dataset.filterLink;
-      window.setTimeout(() => setFilter(filter), 250);
+  const tabs = document.querySelectorAll('.stage-tab');
+  const contents = document.querySelectorAll('.stage-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const stage = tab.dataset.stage;
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('stage-' + stage).classList.add('active');
+      // Scroll to tabs (smooth)
+      tab.closest('.stage-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 });
