@@ -705,6 +705,150 @@ body.home-page .menu-toggle { color: white; }
   .hero-new::before { background-size: cover; }
   .hero-grid { max-width: 1560px; }
 }
+
+
+/* STARTSEITE – verschlankt / Webdesign-Update */
+.quick-access {
+  background: var(--mg-blue-deep);
+  padding: 0 0 4rem;
+  margin-top: -1px;
+  position: relative;
+  z-index: 8;
+}
+.quick-access-grid {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.quick-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 18px;
+  color: white;
+  text-decoration: none;
+  padding: 1.25rem;
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+.quick-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.13);
+  border-color: var(--mg-yellow);
+}
+.quick-card i { color: var(--mg-yellow); width: 25px; height: 25px; }
+.quick-card strong {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.quick-card span {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.45;
+}
+.home-compact {
+  padding: clamp(4rem, 7vw, 7rem) 0;
+  background: white;
+}
+.home-compact-grid {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.home-compact-copy {
+  position: sticky;
+  top: 120px;
+}
+.home-compact-copy h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4vw, 3.45rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--mg-blue);
+  font-weight: 800;
+  margin: 0.9rem 0 1.25rem;
+}
+.home-compact-copy h2 em {
+  color: var(--mg-blue-deep);
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-color: var(--mg-yellow);
+  text-decoration-thickness: 0.22em;
+  text-underline-offset: -0.08em;
+}
+.home-compact-copy p {
+  color: var(--mg-text-soft);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 560px;
+}
+.home-proof-grid {
+  display: grid;
+  gap: 1rem;
+}
+.home-proof-card {
+  border: 1px solid var(--mg-gray-200);
+  border-radius: 22px;
+  padding: clamp(1.25rem, 2vw, 1.8rem);
+  background: linear-gradient(135deg, #fff 0%, var(--mg-blue-paper) 100%);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.1rem;
+  align-items: start;
+}
+.home-proof-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--mg-blue);
+  color: var(--mg-yellow);
+  display: grid;
+  place-items: center;
+}
+.home-proof-icon i { width: 24px; height: 24px; }
+.home-proof-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  color: var(--mg-blue);
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+.home-proof-card p {
+  color: var(--mg-text-soft);
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+.home-proof-card.featured {
+  background: var(--mg-yellow);
+  border-color: var(--mg-yellow);
+}
+.home-proof-card.featured .home-proof-icon { background: var(--mg-blue-deep); }
+.home-proof-card.featured p, .home-proof-card.featured h3 { color: var(--mg-blue-deep); }
+.news-section.compact-news { padding: clamp(4rem, 7vw, 6rem) 0; }
+.compact-news .news-grid { margin-top: 2.2rem; }
+.cta-banner.slim-cta { padding: clamp(4rem, 7vw, 6rem) 0; }
+@media (max-width: 1024px) {
+  .quick-access-grid { grid-template-columns: repeat(2, 1fr); }
+  .home-compact-grid { grid-template-columns: 1fr; }
+  .home-compact-copy { position: static; }
+}
+@media (max-width: 640px) {
+  .quick-access-grid { grid-template-columns: 1fr; }
+  .quick-card { min-height: 112px; }
+  .home-proof-card { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body class="home-page">
@@ -818,71 +962,111 @@ body.home-page .menu-toggle { color: white; }
   </div>
 </section>
 
-<section class="intro-section">
-  <div class="intro-grid">
-    <div class="intro-text">
-      <span class="eyebrow">Seit 1835</span>
-      <h2>Bildung, die <em>Persönlichkeit</em> formt.</h2>
+
+<section class="quick-access" aria-label="Schnellzugriffe">
+  <div class="quick-access-grid">
+    <a href="anmeldung.html" class="quick-card">
+      <i data-lucide="clipboard-list"></i>
+      <strong>Anmeldung</strong>
+      <span>Termine, Unterlagen und Online-Anmeldung.</span>
+    </a>
+    <a href="aktuelles.html" class="quick-card">
+      <i data-lucide="newspaper"></i>
+      <strong>Aktuelles</strong>
+      <span>Neuigkeiten aus Unterricht und Schulleben.</span>
+    </a>
+    <a href="terminkalender.html" class="quick-card">
+      <i data-lucide="calendar-days"></i>
+      <strong>Termine</strong>
+      <span>Wichtige Daten des Schuljahres.</span>
+    </a>
+    <a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener" class="quick-card">
+      <i data-lucide="log-in"></i>
+      <strong>IServ</strong>
+      <span>Direkt zum Schulportal.</span>
+    </a>
+  </div>
+</section>
+
+<section class="home-compact">
+  <div class="home-compact-grid">
+    <div class="home-compact-copy">
+      <span class="eyebrow">Kurz vorgestellt</span>
+      <h2>Eine Schule, die <em>Persönlichkeit</em> stärkt.</h2>
       <p>
-        Das Mariengymnasium Papenburg ist ein katholisches Gymnasium in Trägerschaft
-        der Schulstiftung im Bistum Osnabrück. Seit 1835 gestalten wir Bildung im
-        Herzen des Emslands – mit Anspruch, Wertschätzung und einer lebendigen
-        Schulgemeinschaft.
+        Das Mariengymnasium Papenburg verbindet gymnasiale Bildung mit christlichen Werten,
+        persönlicher Begleitung und einer lebendigen Schulgemeinschaft – seit 1835 im Herzen Papenburgs.
       </p>
-      <p>
-        Seit dem Schuljahr 2023/24 sind wir im Jahrgang 5 offen für Mädchen und Jungen.
-        Aus einer traditionsreichen Mädchenschule wird ein Ort für alle, die mit Kopf,
-        Herz und Hand lernen wollen.
-      </p>
-      <div class="intro-stats">
-        <div class="intro-stat"><strong>190</strong><span>Jahre Tradition</span></div>
-        <div class="intro-stat"><strong>700+</strong><span>Schüler*innen</span></div>
-        <div class="intro-stat"><strong>4</strong><span>Partnerschulen</span></div>
+      <div class="hero-ctas" style="margin-top:1.6rem">
+        <a href="schulprofil.html" class="btn btn-primary">Schulprofil ansehen <i data-lucide="arrow-right"></i></a>
+        <a href="kontakt.html" class="btn btn-outline">Kontakt <i data-lucide="phone"></i></a>
       </div>
     </div>
-    <div class="intro-image">
-      <div class="intro-image-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21V12h6v9"/></svg>
-      </div>
-      <div class="intro-image-stoerer">
-        190 JAHRE<br><strong>MARIENGYMNASIUM</strong>
-      </div>
+    <div class="home-proof-grid">
+      <article class="home-proof-card featured">
+        <div class="home-proof-icon"><i data-lucide="heart-handshake"></i></div>
+        <div>
+          <h3>Gemeinschaft mit Haltung</h3>
+          <p>Wir lernen miteinander, übernehmen Verantwortung und gestalten Schule als Ort der Wertschätzung.</p>
+        </div>
+      </article>
+      <article class="home-proof-card">
+        <div class="home-proof-icon"><i data-lucide="book-open-check"></i></div>
+        <div>
+          <h3>Gymnasiale Bildung klar strukturiert</h3>
+          <p>Unterricht, Förderung und Schullaufbahn sind übersichtlich gebündelt – von Klasse 5 bis zum Abitur.</p>
+        </div>
+      </article>
+      <article class="home-proof-card">
+        <div class="home-proof-icon"><i data-lucide="sparkles"></i></div>
+        <div>
+          <h3>Talente entdecken</h3>
+          <p>Musik, Sport, Wettbewerbe, Austausch und Projekte geben Raum, eigene Stärken sichtbar zu machen.</p>
+        </div>
+      </article>
+      <article class="home-proof-card">
+        <div class="home-proof-icon"><i data-lucide="map-pin"></i></div>
+        <div>
+          <h3>Mitten in Papenburg</h3>
+          <p>Gut erreichbar, traditionsreich und zugleich offen für neue Ideen, digitale Lernwege und moderne Schulentwicklung.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="news-section">
+<section class="news-section compact-news">
   <div class="container">
     <div class="section-header center">
       <span class="eyebrow center">Aktuelles</span>
-      <h2 class="display-2" style="margin-top: 1rem;">Aus dem <em>Schulleben</em>.</h2>
+      <h2 class="display-2" style="margin-top: 1rem;">Das Wichtigste auf einen Blick.</h2>
     </div>
     <div class="news-grid">
       <a href="aktuelles.html" class="news-card">
         <div class="news-card-img">
           <span class="news-card-cat">Schulleben</span>
           <div class="news-card-img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            <i data-lucide="party-popper" style="width:48px;height:48px"></i>
           </div>
         </div>
         <div class="news-card-body">
-          <span class="news-card-date">März 2026</span>
-          <h3>Rosenmontag im Comic-Universum</h3>
-          <p>Das Forum verwandelte sich am Rosenmontag in eine bunte Comic-Welt – Klassen 5 bis 7 feierten ein fröhliches Karnevalsfest.</p>
+          <span class="news-card-date">Aktuell</span>
+          <h3>Rosenmontag: Chaos im Comic-Universum</h3>
+          <p>Kreativ, bunt und gemeinschaftlich: Die Klassen 5 bis 7 feierten im Forum ein fröhliches Karnevalsfest.</p>
           <span class="news-card-link">Weiterlesen <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
         </div>
       </a>
       <a href="aktuelles.html" class="news-card">
         <div class="news-card-img">
-          <span class="news-card-cat">Konzert</span>
+          <span class="news-card-cat">Musik</span>
           <div class="news-card-img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zM21 16a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <i data-lucide="music" style="width:48px;height:48px"></i>
           </div>
         </div>
         <div class="news-card-body">
-          <span class="news-card-date">Dezember 2025</span>
+          <span class="news-card-date">Rückblick</span>
           <h3>Adventskonzert in St. Antonius</h3>
-          <p>300 Zuhörer*innen erlebten ein stimmungsvolles Konzert mit Schulorchester, Chor und der Seminarfach-Band der Oberstufe.</p>
+          <p>Schulorchester, Chor und Oberstufenband sorgten für einen stimmungsvollen Abend in besonderer Atmosphäre.</p>
           <span class="news-card-link">Weiterlesen <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
         </div>
       </a>
@@ -890,13 +1074,13 @@ body.home-page .menu-toggle { color: white; }
         <div class="news-card-img">
           <span class="news-card-cat">Wettbewerb</span>
           <div class="news-card-img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4.5a2.5 2.5 0 010-5H6M18 9h1.5a2.5 2.5 0 000-5H18M4 22h16M10 14.66V17c0 .55-.47 1.79-1.59 2.55C7.6 20.44 7 21.34 7 22M14 14.66V17c0 .55.47 1.79 1.59 2.55C16.4 20.44 17 21.34 17 22M18 2H6v7a6 6 0 0012 0V2z"/></svg>
+            <i data-lucide="trophy" style="width:48px;height:48px"></i>
           </div>
         </div>
         <div class="news-card-body">
-          <span class="news-card-date">Februar 2025</span>
-          <h3>Schach-Bezirksmeister in 3 Klassen</h3>
-          <p>Beim Bezirksfinale Weser-Ems sicherte sich das MG den Titel in allen drei Wettkampfklassen – ein historischer Erfolg.</p>
+          <span class="news-card-date">Erfolg</span>
+          <h3>Starke Leistungen bei Wettbewerben</h3>
+          <p>Schülerinnen und Schüler des MG zeigen regelmäßig, was in ihnen steckt – fachlich, kreativ und sportlich.</p>
           <span class="news-card-link">Weiterlesen <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
         </div>
       </a>
@@ -907,16 +1091,15 @@ body.home-page .menu-toggle { color: white; }
   </div>
 </section>
 
-<section class="cta-banner">
+<section class="cta-banner slim-cta">
   <div class="cta-banner-inner">
     <span class="eyebrow center" style="color: var(--mg-yellow);">Anmeldung Schuljahr 2026/27</span>
-    <h2 style="margin-top: 1rem;">Werden Sie Teil der <em>MG-Familie</em>.</h2>
+    <h2 style="margin-top: 1rem;">Der nächste Schritt zur <em>MG-Familie</em>.</h2>
     <p>
-      18.–20. Februar 2026 · Anmeldungen für Klasse 5 und Klasse 11 ·
-      Termine, Unterlagen und Online-Formular auf einen Blick.
+      Klasse 5: 18.–20. Februar 2026. Alle Termine, Unterlagen und Informationen zur Anmeldung finden Sie gebündelt auf einer Seite.
     </p>
     <div class="cta-banner-btns">
-      <a href="anmeldung.html" class="btn-yellow">Jetzt anmelden <i data-lucide="arrow-right"></i></a>
+      <a href="anmeldung.html" class="btn-yellow">Zur Anmeldung <i data-lucide="arrow-right"></i></a>
       <a href="kontakt.html" class="btn btn-light">Kontakt aufnehmen <i data-lucide="phone"></i></a>
     </div>
   </div>
@@ -931,7 +1114,6 @@ body.home-page .menu-toggle { color: white; }
         <div class="footer-socials">
           <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
         </div>
       </div>
       <div class="footer-col">
