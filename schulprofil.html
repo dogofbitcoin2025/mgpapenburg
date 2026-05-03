@@ -124,43 +124,14 @@
 }
 .value-icon {
   flex-shrink: 0;
-  width: 76px;
-  height: 76px;
-  border-radius: 24px;
+  width: 56px; height: 56px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-navy);
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #ffffff 0%, #f4f8fb 100%);
-  border: 1px solid rgba(0,49,74,0.08);
-  box-shadow: 0 14px 28px rgba(0,49,74,0.08);
-  position: relative;
-  overflow: visible;
 }
-.value-icon::after {
-  content: '';
-  position: absolute;
-  inset: auto -8px -8px auto;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--mg-gold);
-  opacity: 0.95;
-  z-index: 0;
-}
-.value-icon img {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  position: relative;
-  z-index: 1;
-  display: block;
-}
-.value-item:hover .value-icon {
-  transform: translateY(-2px) rotate(-1deg);
-  box-shadow: 0 18px 34px rgba(0,49,74,0.13);
-}
-.value-item:hover .value-icon::after { transform: scale(1.08); }
-.value-icon,
-.value-icon::after { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.value-icon svg { width: 26px; height: 26px; }
 .value-item h3 {
   font-family: var(--font-display);
   font-size: 1.4rem;
@@ -174,54 +145,52 @@
   font-size: 0.95rem;
 }
 
-/* Geschichte Timeline – kompakt und schlank */
+/* Geschichte Timeline (visuell) */
 .history {
   background: var(--mg-paper);
 }
 .history-timeline {
   position: relative;
-  max-width: 1080px;
-  margin: 3.2rem auto 0;
+  max-width: 920px;
+  margin: 0 auto;
 }
 .history-timeline::before {
   content: '';
   position: absolute;
-  top: 22px;
-  bottom: 22px;
+  top: 0; bottom: 0;
   left: 50%;
   width: 2px;
   background: linear-gradient(to bottom,
     transparent,
-    var(--mg-gold) 9%,
-    var(--mg-gold) 91%,
+    var(--mg-gold) 5%,
+    var(--mg-gold) 95%,
     transparent);
   transform: translateX(-50%);
 }
 .history-event {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 52px 1fr;
+  grid-template-columns: 1fr 80px 1fr;
   gap: 0;
-  margin-bottom: 1.6rem;
-  align-items: start;
+  margin-bottom: 4rem;
+  align-items: center;
 }
 .history-event:last-child { margin-bottom: 0; }
 .history-dot {
   grid-column: 2;
-  width: 14px;
-  height: 14px;
+  width: 18px; height: 18px;
   background: var(--mg-gold);
-  border: 3px solid var(--mg-paper);
+  border: 4px solid var(--mg-paper);
   border-radius: 50%;
-  margin: 1.35rem auto 0;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
-  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.16);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
 }
 .history-content {
-  padding: 1.45rem 1.65rem;
+  padding: 2rem;
   background: white;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--mg-gray-100);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s;
@@ -234,23 +203,23 @@
 .history-event:nth-child(even) .history-content { grid-column: 3; }
 .history-year {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.1vw, 2.8rem);
-  font-weight: 800;
-  color: var(--mg-yellow);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--mg-gold);
   line-height: 1;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.6rem;
 }
 .history-content h3 {
   font-family: var(--font-display);
-  font-size: 1.26rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: var(--mg-navy);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 .history-content p {
   color: var(--mg-text-soft);
-  line-height: 1.55;
-  font-size: 0.93rem;
+  line-height: 1.65;
+  font-size: 0.95rem;
 }
 
 /* Schulleitung */
@@ -258,31 +227,34 @@
   background: var(--mg-cream);
 }
 
-/* Top-Ebene: 2 große Karten für Schulleiter & Stellv. */
+/* Top-Ebene: 2 kompakte Karten für Schulleiter & Stellv. */
 .leadership-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   position: relative;
 }
 .leadership-top::after {
   content: '';
   position: absolute;
-  bottom: -2rem;
+  bottom: -1.8rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
-  height: 2rem;
+  width: 42px;
+  height: 3px;
   background: var(--mg-yellow);
+  border-radius: 999px;
 }
 .leader-card-large {
   background: white;
   border-radius: var(--radius-lg);
   border: 1px solid var(--mg-gray-100);
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 0;
+  grid-template-columns: 128px 1fr;
+  gap: 1.65rem;
+  align-items: start;
+  padding: 1.65rem;
   overflow: hidden;
   transition: all 0.3s;
   position: relative;
@@ -290,23 +262,29 @@
 .leader-card-large::before {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 4px; height: 100%;
-  background: var(--mg-blue);
+  top: 1.65rem; left: 0;
+  width: 4px; height: calc(100% - 3.3rem);
+  background: var(--mg-yellow);
+  border-radius: 0 999px 999px 0;
   transition: background 0.3s;
 }
 .leader-card-large:hover {
   transform: translateY(-4px);
-  border-color: var(--mg-blue);
+  border-color: var(--mg-yellow);
   box-shadow: var(--shadow-lg);
 }
 .leader-card-large:hover::before {
-  background: var(--mg-yellow);
+  background: var(--mg-blue);
 }
 .leader-photo-large {
-  background: var(--mg-blue);
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: var(--mg-blue-soft);
   position: relative;
   overflow: hidden;
+  border: 5px solid #fff;
+  box-shadow: 0 0 0 2px var(--mg-blue), 0 14px 34px rgba(0,49,74,0.14);
 }
 .leader-photo-large img {
   width: 100%; height: 100%;
@@ -314,7 +292,7 @@
   display: block;
 }
 .leader-info {
-  padding: 1.75rem 2rem;
+  padding: 0.1rem 0 0;
 }
 .leader-role-tag {
   display: inline-block;
@@ -433,45 +411,23 @@
   line-height: 1.6;
   margin-bottom: 1.25rem;
 }
-.leader-contact {
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
+
+
+@media (max-width: 620px) {
+  .leader-card-large {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+    padding: 1.5rem;
+  }
+  .leader-card-large::before {
+    top: 0; left: 1.5rem; right: 1.5rem;
+    width: auto; height: 4px;
+    border-radius: 0 0 999px 999px;
+  }
+  .leader-info { padding: 0; }
+  .leader-tasks { text-align: left; }
 }
-.leader-card .leader-contact a {
-  width: 36px; height: 36px;
-  background: var(--mg-blue-soft);
-  color: var(--mg-blue);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.leader-card-large .leader-contact {
-  display: flex;
-  gap: 0.85rem;
-  justify-content: flex-start;
-}
-.leader-card-large .leader-contact a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 1rem;
-  background: var(--mg-blue-soft);
-  color: var(--mg-blue);
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 700;
-  transition: all 0.2s;
-}
-.leader-card .leader-contact a:hover,
-.leader-card-large .leader-contact a:hover {
-  background: var(--mg-blue);
-  color: var(--mg-yellow);
-}
-.leader-contact i { width: 15px; height: 15px; }
 
 /* Stats Banner */
 .stats-banner {
@@ -509,14 +465,13 @@
   .editorial-grid { grid-template-columns: 1fr; gap: 3rem; }
   .value-grid { grid-template-columns: 1fr; }
   .leadership-top { grid-template-columns: 1fr; gap: 1.5rem; }
-  .leader-card-large { grid-template-columns: 1fr; }
-  .leader-photo-large { aspect-ratio: 16/10; max-height: 320px; }
+  .leader-card-large { grid-template-columns: 112px 1fr; gap: 1.35rem; }
+  .leader-photo-large { width: 112px; height: 112px; }
   .leadership-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-  .history-timeline { max-width: 760px; }
-  .history-timeline::before { left: 21px; top: 18px; bottom: 18px; }
-  .history-event { grid-template-columns: 44px 1fr; gap: 0.85rem; margin-bottom: 1.15rem; }
-  .history-dot { grid-column: 1; margin-top: 1.25rem; }
+  .history-timeline::before { left: 24px; }
+  .history-event { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .history-dot { grid-column: 1; }
   .history-event:nth-child(odd) .history-content,
   .history-event:nth-child(even) .history-content { grid-column: 2; }
 }
@@ -612,8 +567,8 @@
     <div class="editorial-grid">
       <div class="editorial-image-stack reveal">
         <div class="editorial-image-main">
-          <img src="images/leitbild-papenburg-christlich.png"
-               alt="Christliche Werte in Papenburg: Kreuz, Kerze und aufgeschlagenes Buch am Kanal">
+          <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1000&q=80"
+               alt="Bibliothek mit Büchern und Licht">
         </div>
       </div>
       <div class="editorial-content reveal">
@@ -655,42 +610,42 @@
 
     <div class="value-grid">
       <div class="value-item reveal">
-        <div class="value-icon"><img src="images/werte-wertschaetzung.svg" alt="" loading="lazy"></div>
+        <div class="value-icon"><i data-lucide="heart"></i></div>
         <div>
           <h3>Wertschätzung</h3>
           <p>Wir begegnen einander auf Augenhöhe – Schüler*innen, Lehrkräfte, Eltern. Jede Stimme zählt, jeder Mensch wird gesehen.</p>
         </div>
       </div>
       <div class="value-item reveal">
-        <div class="value-icon"><img src="images/werte-anspruch.svg" alt="" loading="lazy"></div>
+        <div class="value-icon"><i data-lucide="target"></i></div>
         <div>
           <h3>Anspruch</h3>
           <p>Wir setzen hohe Maßstäbe an Lernen und Leistung – und unterstützen jede*n dabei, das eigene Potenzial zu entfalten.</p>
         </div>
       </div>
       <div class="value-item reveal">
-        <div class="value-icon"><img src="images/werte-weltoffenheit.svg" alt="" loading="lazy"></div>
+        <div class="value-icon"><i data-lucide="globe"></i></div>
         <div>
           <h3>Weltoffenheit</h3>
           <p>Austauschprogramme, internationale Projekte, kulturelle Vielfalt: Wir öffnen Horizonte und feiern, was uns verbindet.</p>
         </div>
       </div>
       <div class="value-item reveal">
-        <div class="value-icon"><img src="images/werte-christliche-tradition.svg" alt="" loading="lazy"></div>
+        <div class="value-icon"><i data-lucide="church"></i></div>
         <div>
           <h3>Christliche Tradition</h3>
           <p>Aus dem katholischen Erbe schöpfen wir Werte wie Nächstenliebe, Gerechtigkeit und Solidarität – ohne Engstirnigkeit.</p>
         </div>
       </div>
       <div class="value-item reveal">
-        <div class="value-icon"><img src="images/werte-verantwortung.svg" alt="" loading="lazy"></div>
+        <div class="value-icon"><i data-lucide="leaf"></i></div>
         <div>
           <h3>Verantwortung</h3>
           <p>Schöpfung bewahren, Demokratie stärken, Mitmenschen achten: Verantwortung ist bei uns kein Schulfach – sondern Haltung.</p>
         </div>
       </div>
       <div class="value-item reveal">
-        <div class="value-icon"><img src="images/werte-kreativitaet.svg" alt="" loading="lazy"></div>
+        <div class="value-icon"><i data-lucide="sparkles"></i></div>
         <div>
           <h3>Kreativität</h3>
           <p>In Musik, Kunst, Sprachen und MINT geben wir Raum für eigene Ideen, eigene Stimmen, eigene Wege – auch jenseits des Lehrplans.</p>
@@ -813,10 +768,6 @@
             <li>Schul- und Unterrichtsentwicklung</li>
             <li>Personalentwicklung</li>
           </ul>
-          <div class="leader-contact">
-            <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i> Mail</a>
-            <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i> Telefon</a>
-          </div>
         </div>
       </div>
 
@@ -834,10 +785,6 @@
             <li>Freiwilligendienste, Referendar*innen</li>
             <li>Schüleraustausch · Anmeldegespräche</li>
           </ul>
-          <div class="leader-contact">
-            <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i> Mail</a>
-            <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i> Telefon</a>
-          </div>
         </div>
       </div>
     </div>
@@ -859,10 +806,6 @@
           Begleitet die Schüler*innen durch Einführungs-, Qualifikations- und Abiturphase.
           Erste Adresse für alle Fragen rund um die Sek. II.
         </p>
-        <div class="leader-contact">
-          <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i></a>
-          <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i></a>
-        </div>
       </div>
 
       <div class="leader-card reveal">
@@ -876,10 +819,6 @@
           Verantwortet AGs, Wegweiserinnen, Projekte der Jahrgänge 5–10
           und die Öffentlichkeitsarbeit der Schule.
         </p>
-        <div class="leader-contact">
-          <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i></a>
-          <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i></a>
-        </div>
       </div>
 
       <div class="leader-card reveal">
@@ -893,10 +832,6 @@
           Stundenplangestaltung, Vertretungs- und Bereitschaftsplan, Zeugnisse Sek. I,
           Übergang Grundschule–Gymnasium.
         </p>
-        <div class="leader-contact">
-          <a href="mailto:sekretariat@mgpapenburg.de" aria-label="E-Mail"><i data-lucide="mail"></i></a>
-          <a href="tel:0496194700" aria-label="Telefon"><i data-lucide="phone"></i></a>
-        </div>
       </div>
     </div>
   </div>
