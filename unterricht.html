@@ -242,6 +242,22 @@ body { background: var(--mg-paper); }
 }
 .download-btn svg { width: 16px; height: 16px; }
 .download-note { margin-top: 1rem; color: var(--mg-text-soft); font-size: .88rem; line-height: 1.5; }
+.language-box { margin-top: 3rem; display: grid; grid-template-columns: .95fr 1.05fr; gap: 2rem; align-items: stretch; }
+.language-card, .classleaders-card { background: #fff; border: 1px solid var(--mg-gray-200); border-radius: 28px; padding: clamp(1.5rem, 3vw, 2.4rem); box-shadow: var(--shadow-sm); }
+.language-card { background: linear-gradient(135deg, #fff 0%, #fffef4 100%); border-left: 7px solid var(--mg-yellow); }
+.language-card h3, .classleaders-card h3 { font-family: var(--font-display); font-weight: 800; color: var(--mg-blue-deep); font-size: clamp(1.35rem, 2vw, 1.75rem); margin-bottom: .75rem; letter-spacing: -.015em; }
+.language-card p, .classleaders-card p { color: var(--mg-text-soft); line-height: 1.65; margin-bottom: 1rem; }
+.language-steps { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .7rem; }
+.language-steps li { display: grid; grid-template-columns: 72px 1fr; gap: .8rem; align-items: center; color: var(--mg-text); font-size: .95rem; }
+.language-steps strong { color: var(--mg-blue-deep); font-weight: 800; }
+.language-tag { display: inline-flex; justify-content: center; align-items: center; background: var(--mg-blue-deep); color: var(--mg-yellow); border-radius: 999px; padding: .28rem .65rem; font-weight: 800; font-size: .78rem; }
+.classleaders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; margin-top: 1.25rem; }
+.classleader-mini { border: 1px solid var(--mg-gray-200); border-radius: 18px; padding: 1rem; background: var(--mg-cream); }
+.classleader-mini h4 { font-family: var(--font-display); color: var(--mg-blue-deep); font-weight: 800; font-size: 1.05rem; margin-bottom: .5rem; }
+.classleader-mini p { font-size: .86rem; line-height: 1.45; margin: .25rem 0 0; color: var(--mg-text-soft); }
+.classleader-mini strong { color: var(--mg-text); font-weight: 800; }
+@media (max-width: 940px) { .language-box { grid-template-columns: 1fr; } .classleaders-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .classleaders-grid { grid-template-columns: 1fr; } .language-steps li { grid-template-columns: 64px 1fr; } }
 
 .subjects-compact { background: var(--mg-paper); }
 .subject-cloud {
@@ -400,6 +416,7 @@ body { background: var(--mg-paper); }
           </ul>
           <div class="stage-card-actions">
             <a href="#downloads" class="stage-link" data-filter-link="unterstufe">Materialien anzeigen <i data-lucide="arrow-right"></i></a>
+            <a href="#zweite-fremdsprache" class="stage-link">2. Fremdsprache <i data-lucide="arrow-right"></i></a>
           </div>
         </div>
       </article>
@@ -531,6 +548,16 @@ body { background: var(--mg-paper); }
           <a href="downloads/unterstufe/unterrichtsmaterialien-klasse-5.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
         </article>
 
+        <article class="download-item" data-stage="unterstufe">
+          <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
+          <div>
+            <div class="download-title">Infos zur 2. Fremdsprache</div>
+            <div class="download-desc">Informationen zur Wahl von Französisch, Latein oder Spanisch ab Klasse 6.</div>
+            <div class="download-meta"><span class="download-badge">Unterstufe</span><span class="download-badge">Klasse 6</span><span class="download-badge">PDF</span></div>
+          </div>
+          <a href="downloads/unterstufe/infos-zur-2-fremdsprache.pdf" download class="download-btn"><i data-lucide="download"></i> Download</a>
+        </article>
+
         <article class="download-item" data-stage="mittelstufe">
           <div class="download-file-icon"><img src="images/icon-pdf.svg" alt="" aria-hidden="true"></div>
           <div>
@@ -617,6 +644,47 @@ body { background: var(--mg-paper); }
       <p class="download-note">
         Hinweis: Die Materialien werden lokal im Ordner <strong>downloads</strong> gepflegt: Unterstufe in <strong>downloads/unterstufe/</strong>, Mittelstufe in <strong>downloads/mittelstufe/</strong> und Oberstufe in <strong>downloads/oberstufe/</strong>.
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. FREMDSPRACHE & KLASSENLEITUNGEN -->
+<section class="section-pad" id="zweite-fremdsprache">
+  <div class="container">
+    <div class="intro-copy">
+      <span class="eyebrow center">Unterstufe</span>
+      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Orientierung für <em>Klasse 5–6.</em></h2>
+      <p>
+        Die wichtigsten Informationen zur zweiten Fremdsprache und zu den Klassenleitungen sind direkt hier sichtbar – kurz, übersichtlich und ohne lange Suche.
+      </p>
+    </div>
+
+    <div class="language-box">
+      <article class="language-card">
+        <h3>Infos zur 2. Fremdsprache</h3>
+        <p>
+          In Klasse 5 wird Englisch als erste Fremdsprache fortgeführt. In Klasse 6 wählen die Schülerinnen und Schüler ihre zweite Fremdsprache: Französisch, Latein oder Spanisch.
+        </p>
+        <ul class="language-steps">
+          <li><span class="language-tag">Kl. 5</span><span><strong>Englisch</strong> wird als erste Fremdsprache fortgeführt.</span></li>
+          <li><span class="language-tag">Kl. 6</span><span>Wahl der zweiten Fremdsprache: <strong>Französisch, Latein oder Spanisch</strong>.</span></li>
+          <li><span class="language-tag">Kl. 7</span><span>Bilingualer Unterricht in <strong>Erdkunde oder Biologie</strong> ist möglich.</span></li>
+          <li><span class="language-tag">Kl. 11</span><span>Eine neue Fremdsprache kann abhängig vom Bedarf begonnen werden.</span></li>
+        </ul>
+      </article>
+
+      <article class="classleaders-card" id="klassenleitungen">
+        <h3>Klassenleitungen 5–6</h3>
+        <p>Die Klassenleitungen der Unterstufe auf einen Blick.</p>
+        <div class="classleaders-grid">
+          <div class="classleader-mini"><h4>Klasse 5a</h4><p><strong>Klassenlehrerin:</strong> Fr. Hömmen</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Veenhuis</p></div>
+          <div class="classleader-mini"><h4>Klasse 5b</h4><p><strong>Klassenlehrer:</strong> Hr. Preut</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Geesmann</p></div>
+          <div class="classleader-mini"><h4>Klasse 5c</h4><p><strong>Klassenlehrer:</strong> Hr. Wessels</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Cloppenburg</p></div>
+          <div class="classleader-mini"><h4>Klasse 6a</h4><p><strong>Klassenlehrerin:</strong> Fr. Kassens-Hesener</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Körte</p></div>
+          <div class="classleader-mini"><h4>Klasse 6b</h4><p><strong>Klassenlehrerin:</strong> Fr. M. Kröger</p><p><strong>Co-Klassenlehrer:</strong> Hr. Gebbeken</p></div>
+          <div class="classleader-mini"><h4>Klasse 6c</h4><p><strong>Klassenlehrerin:</strong> Fr. Hauschke</p><p><strong>Co-Klassenlehrerin:</strong> Fr. Wiepking</p></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
