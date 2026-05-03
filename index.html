@@ -29,9 +29,10 @@ body.home-page .menu-toggle { color: white; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(154px, 12vw, 210px);
-  height: clamp(52px, 4.2vw, 70px);
-  padding: 0.48rem 0.7rem;
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  padding: clamp(0.42rem, 0.65vw, 0.72rem) clamp(0.68rem, 1vw, 1rem);
   border-radius: 18px;
   background: rgba(255,255,255,0.96);
   box-shadow: 0 10px 28px rgba(0,0,0,0.16);
@@ -45,31 +46,40 @@ body.home-page .menu-toggle { color: white; }
 }
 .bistum-logo-img {
   display: block;
-  width: 100%;
-  height: 100%;
+  height: clamp(38px, 3.25vw, 54px);
+  width: auto;
+  max-width: clamp(150px, 13vw, 220px);
   object-fit: contain;
 }
 .logo {
-  min-width: clamp(118px, 11vw, 178px);
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+  width: auto;
+  line-height: 0;
 }
 .logo-img {
-  height: clamp(58px, 5.2vw, 84px);
+  display: block;
+  height: clamp(64px, 5.35vw, 88px);
   width: auto;
-  max-width: clamp(118px, 11vw, 178px);
+  max-width: none;
   object-fit: contain;
   object-position: left center;
 }
 .header-inner {
-  min-height: clamp(84px, 7vw, 108px);
+  min-height: clamp(88px, 7.2vw, 112px);
 }
 @media (max-width: 768px) {
-  .bistum-logo { width: 132px; height: 46px; padding: 0.38rem 0.55rem; border-radius: 14px; }
-  .logo-img { height: 54px; max-width: 124px; }
-  .header-inner { min-height: 76px; }
+  .bistum-logo { padding: 0.36rem 0.52rem; border-radius: 14px; }
+  .bistum-logo-img { height: 34px; max-width: 140px; }
+  .logo-img { height: 58px; }
+  .header-inner { min-height: 78px; }
 }
 @media (max-width: 430px) {
-  .bistum-logo { width: 104px; height: 40px; padding: 0.32rem 0.45rem; }
-  .logo-img { height: 48px; max-width: 108px; }
+  .bistum-logo { padding: 0.28rem 0.42rem; }
+  .bistum-logo-img { height: 28px; max-width: 112px; }
+  .logo-img { height: 48px; }
 }
 
 /* HERO – Premium-Header: vollflächiges Aquarell, CI-Blau, runde organische Wellen */
@@ -702,7 +712,7 @@ body.home-page .menu-toggle { color: white; }
 <header class="header" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="images/Logo-MG-original.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <img src="images/mgp_logo_gelb_rgb.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
     </a>
     <nav class="nav">
       <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
