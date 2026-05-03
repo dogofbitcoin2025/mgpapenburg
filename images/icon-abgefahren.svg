@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Projekt Abgefahren">
+  <rect x="8" y="8" width="80" height="80" rx="24" fill="#003149"/>
+  <rect x="8" y="8" width="80" height="80" rx="24" fill="none" stroke="#feea00" stroke-width="6"/>
+  <path d="M48 22l27 48H21l27-48Z" fill="none" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M48 39v14" stroke="#feea00" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="48" cy="64" r="4" fill="#feea00"/>
+</svg>
