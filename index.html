@@ -68,12 +68,12 @@ body.home-page .menu-toggle { color: white; }
   .bistum-logo-text { display: none; }
 }
 
-/* HERO – Variante Bild 1 + Bild 2 kombiniert: Aquarell vollflächig, links nicht zu weiß */
+/* HERO – Premium-Header: vollflächiges Aquarell, CI-Blau, runde organische Wellen */
 .hero-new {
   position: relative;
   overflow: hidden;
-  min-height: clamp(560px, 68vh, 820px);
-  padding: clamp(4rem, 7vw, 7rem) 0 clamp(7rem, 10vw, 10rem);
+  min-height: clamp(620px, 76svh, 880px);
+  padding: clamp(5.2rem, 7vw, 7.8rem) 0 clamp(7rem, 10vw, 10rem);
   background: var(--mg-blue-deep);
   isolation: isolate;
 }
@@ -81,23 +81,23 @@ body.home-page .menu-toggle { color: white; }
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -3;
+  z-index: -4;
   background-image: url('images/schule-aquarell.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: 58% 48%;
   background-repeat: no-repeat;
-  filter: saturate(1.03) contrast(1.03);
-  transform: scale(1.01);
+  filter: saturate(1.08) contrast(1.03) brightness(1.02);
+  transform: scale(1.025);
 }
 .hero-new::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: -3;
   background:
-    radial-gradient(ellipse at 10% 35%, rgba(0,49,74,0.88) 0%, rgba(0,49,74,0.74) 28%, rgba(0,49,74,0.34) 48%, rgba(0,49,74,0.08) 68%, transparent 100%),
-    linear-gradient(90deg, rgba(0,31,48,0.88) 0%, rgba(0,49,74,0.62) 31%, rgba(255,255,255,0.12) 54%, rgba(255,255,255,0.02) 100%),
-    linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.00) 45%, rgba(0,31,48,0.22) 100%);
+    radial-gradient(ellipse at 16% 40%, rgba(0,49,74,0.92) 0%, rgba(0,49,74,0.78) 31%, rgba(0,49,74,0.36) 56%, rgba(0,49,74,0.04) 78%, transparent 100%),
+    linear-gradient(90deg, rgba(0,31,48,0.90) 0%, rgba(0,49,74,0.72) 32%, rgba(0,49,74,0.26) 57%, rgba(255,255,255,0.02) 100%),
+    linear-gradient(180deg, rgba(0,31,48,0.12) 0%, rgba(0,31,48,0.00) 45%, rgba(0,31,48,0.34) 100%);
 }
 .hero-decor {
   position: absolute;
@@ -106,78 +106,137 @@ body.home-page .menu-toggle { color: white; }
   overflow: hidden;
   z-index: 2;
 }
+.hero-glow {
+  position: absolute;
+  width: clamp(420px, 42vw, 760px);
+  height: clamp(420px, 42vw, 760px);
+  top: clamp(90px, 12vw, 150px);
+  left: clamp(-250px, -10vw, -110px);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(254,234,0,0.22) 0%, rgba(254,234,0,0.08) 34%, transparent 70%);
+  filter: blur(2px);
+  opacity: 0.9;
+}
+.hero-sun-mark {
+  position: absolute;
+  top: clamp(78px, 11vw, 150px);
+  right: clamp(-80px, -2vw, 20px);
+  width: clamp(230px, 24vw, 420px);
+  height: clamp(230px, 24vw, 420px);
+  border: clamp(14px, 1.6vw, 26px) solid rgba(254,234,0,0.34);
+  border-radius: 50%;
+  opacity: 0.55;
+}
+.hero-sun-mark::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border: 2px solid rgba(254,234,0,0.28);
+  border-radius: 50%;
+}
 .wave-top {
   position: absolute;
-  top: clamp(38px, 6vw, 82px);
-  left: clamp(-120px, -4vw, -40px);
-  width: clamp(420px, 40vw, 720px);
-  height: 90px;
-  opacity: 0.55;
+  top: clamp(42px, 6vw, 92px);
+  left: clamp(-140px, -5vw, -45px);
+  width: clamp(520px, 43vw, 820px);
+  height: 120px;
+  opacity: 0.75;
 }
 .dots-tl {
   position: absolute;
-  top: clamp(100px, 16vw, 170px);
-  left: clamp(24px, 5vw, 76px);
-  width: 110px;
-  height: 84px;
+  top: clamp(120px, 16vw, 190px);
+  left: clamp(26px, 5vw, 82px);
+  width: 120px;
+  height: 90px;
   background-image: radial-gradient(circle, var(--mg-yellow) 1.7px, transparent 1.8px);
   background-size: 15px 15px;
-  opacity: 0.65;
+  opacity: 0.58;
 }
 .dots-bm {
   position: absolute;
-  bottom: clamp(165px, 19vw, 230px);
-  left: clamp(42%, 50vw, 54%);
-  width: 140px;
-  height: 60px;
+  bottom: clamp(150px, 16vw, 220px);
+  left: clamp(45%, 51vw, 58%);
+  width: 150px;
+  height: 66px;
   background-image: radial-gradient(circle, var(--mg-yellow) 1.5px, transparent 1.6px);
   background-size: 14px 14px;
-  opacity: 0.38;
+  opacity: 0.30;
 }
 .hero-wave-bottom {
   position: absolute;
-  left: 0; right: 0; bottom: -1px;
+  left: 0;
+  right: 0;
+  bottom: -2px;
   width: 100%;
-  height: clamp(130px, 13vw, 190px);
-  background: var(--mg-blue-deep);
-  clip-path: polygon(0 58%, 16% 48%, 34% 58%, 55% 78%, 73% 54%, 100% 66%, 100% 100%, 0 100%);
+  height: clamp(170px, 16vw, 260px);
+  z-index: 4;
+  display: block;
 }
 .hero-wave-yellow {
   position: absolute;
-  left: 0; right: 0; bottom: clamp(95px, 10vw, 145px);
+  left: 0;
+  right: 0;
+  bottom: clamp(120px, 12vw, 190px);
   width: 100%;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0.85;
+  height: clamp(54px, 5vw, 76px);
+  z-index: 5;
+  opacity: 0.9;
 }
 .hero-grid {
   position: relative;
-  z-index: 5;
+  z-index: 6;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 2.5rem);
-  min-height: clamp(360px, 45vh, 560px);
+  min-height: clamp(420px, 49vh, 590px);
   display: flex;
   align-items: center;
 }
 .hero-text {
-  width: min(620px, 52vw);
-  padding: clamp(1.7rem, 3vw, 2.8rem);
-  border-left: 6px solid var(--mg-yellow);
-  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  width: min(650px, 52vw);
+  position: relative;
+  padding: clamp(1.8rem, 3.2vw, 3rem);
+  border-left: 7px solid var(--mg-yellow);
+  border-radius: 0 32px 32px 0;
   background:
-    linear-gradient(135deg, rgba(0,49,74,0.92) 0%, rgba(0,49,74,0.78) 62%, rgba(0,49,74,0.50) 100%);
-  box-shadow: 0 24px 80px rgba(0, 31, 48, 0.28);
-  backdrop-filter: blur(2px);
+    linear-gradient(135deg, rgba(0,49,74,0.94) 0%, rgba(0,49,74,0.82) 57%, rgba(0,49,74,0.60) 100%);
+  box-shadow: 0 32px 90px rgba(0, 31, 48, 0.32), inset 0 1px 0 rgba(255,255,255,0.10);
+  backdrop-filter: blur(4px);
+}
+.hero-text::before {
+  content: '';
+  position: absolute;
+  inset: 14px 14px 14px auto;
+  width: 3px;
+  border-radius: 20px;
+  background: rgba(254,234,0,0.36);
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--mg-yellow);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.hero-kicker::before {
+  content: '';
+  width: 34px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--mg-yellow);
 }
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2.6rem, 5.4vw, 5.15rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.7rem, 5.3vw, 5.3rem);
+  line-height: 0.99;
+  letter-spacing: -0.045em;
   color: white;
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.25rem;
   text-wrap: balance;
 }
 .hero-headline .accent-yellow {
@@ -185,26 +244,28 @@ body.home-page .menu-toggle { color: white; }
   display: block;
 }
 .hero-subline {
-  font-size: clamp(1rem, 1.35vw, 1.18rem);
-  color: rgba(255,255,255,0.88);
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  color: rgba(255,255,255,0.9);
   font-weight: 600;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
+  max-width: 510px;
   position: relative;
-  padding-bottom: 1.25rem;
+  padding-bottom: 1.15rem;
 }
 .hero-subline strong { color: white; font-weight: 800; }
 .hero-subline::after {
   content: '';
   display: block;
-  width: 72px;
+  width: 84px;
   height: 4px;
   background: var(--mg-yellow);
   margin-top: 1rem;
+  border-radius: 999px;
 }
 .hero-ctas {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1.45rem;
   flex-wrap: wrap;
 }
 .btn-dark {
@@ -231,7 +292,7 @@ body.home-page .menu-toggle { color: white; }
 .btn-ghost {
   background: rgba(255,255,255,0.08);
   color: white;
-  border: 2px solid rgba(255,255,255,0.75);
+  border: 2px solid rgba(255,255,255,0.78);
   padding: 0.95rem 1.6rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
@@ -573,14 +634,15 @@ body.home-page .menu-toggle { color: white; }
 }
 
 @media (max-width: 1024px) {
-  .hero-new { min-height: clamp(540px, 72vh, 760px); }
-  .hero-new::before { background-position: 58% center; }
+  .hero-new { min-height: clamp(560px, 74svh, 780px); }
+  .hero-new::before { background-position: 61% center; }
   .hero-new::after {
     background:
-      radial-gradient(ellipse at 12% 38%, rgba(0,49,74,0.90) 0%, rgba(0,49,74,0.76) 38%, rgba(0,49,74,0.24) 72%, transparent 100%),
-      linear-gradient(90deg, rgba(0,31,48,0.86) 0%, rgba(0,49,74,0.54) 48%, rgba(255,255,255,0.04) 100%);
+      radial-gradient(ellipse at 14% 40%, rgba(0,49,74,0.93) 0%, rgba(0,49,74,0.80) 38%, rgba(0,49,74,0.28) 72%, transparent 100%),
+      linear-gradient(90deg, rgba(0,31,48,0.88) 0%, rgba(0,49,74,0.58) 50%, rgba(255,255,255,0.03) 100%);
   }
-  .hero-text { width: min(590px, 70vw); }
+  .hero-text { width: min(610px, 72vw); }
+  .hero-sun-mark { right: -150px; opacity: 0.42; }
   .values-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; }
   .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
   .intro-image { max-width: 480px; aspect-ratio: 5/4; }
@@ -588,28 +650,32 @@ body.home-page .menu-toggle { color: white; }
 }
 @media (max-width: 760px) {
   .hero-new {
-    min-height: 640px;
-    padding: 3.4rem 0 7.5rem;
+    min-height: 660px;
+    padding: 3.8rem 0 8.3rem;
   }
   .hero-new::before {
-    background-size: auto 100%;
-    background-position: 60% center;
-    opacity: 0.9;
+    background-size: auto 102%;
+    background-position: 62% center;
+    opacity: 0.95;
   }
   .hero-new::after {
     background:
-      linear-gradient(180deg, rgba(0,49,74,0.50) 0%, rgba(0,49,74,0.18) 42%, rgba(0,31,48,0.42) 100%),
-      linear-gradient(90deg, rgba(0,31,48,0.78) 0%, rgba(0,49,74,0.48) 58%, rgba(0,49,74,0.12) 100%);
+      linear-gradient(180deg, rgba(0,49,74,0.52) 0%, rgba(0,49,74,0.18) 42%, rgba(0,31,48,0.46) 100%),
+      linear-gradient(90deg, rgba(0,31,48,0.82) 0%, rgba(0,49,74,0.54) 60%, rgba(0,49,74,0.16) 100%);
   }
-  .hero-grid { align-items: flex-end; min-height: 470px; }
+  .hero-grid { align-items: flex-end; min-height: 480px; }
   .hero-text {
     width: 100%;
-    padding: 1.4rem;
+    padding: 1.45rem;
     border-left-width: 5px;
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    background: rgba(0,49,74,0.86);
+    border-radius: 0 24px 24px 0;
+    background: rgba(0,49,74,0.88);
   }
-  .wave-top, .dots-tl, .dots-bm { display: none; }
+  .hero-kicker { font-size: 0.68rem; letter-spacing: 0.12em; }
+  .hero-kicker::before { width: 24px; }
+  .hero-sun-mark, .wave-top, .dots-tl, .dots-bm { display: none; }
+  .hero-wave-bottom { height: 155px; }
+  .hero-wave-yellow { bottom: 116px; height: 48px; }
   .hero-headline { font-size: clamp(2.25rem, 11vw, 3.25rem); }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .btn-dark, .btn-ghost { justify-content: center; }
@@ -618,8 +684,12 @@ body.home-page .menu-toggle { color: white; }
   .intro-stats { grid-template-columns: 1fr; gap: 1rem; }
 }
 @media (min-width: 1440px) {
-  .hero-new { min-height: 760px; }
-  .hero-new::before { background-position: center 44%; }
+  .hero-new { min-height: 800px; }
+  .hero-new::before { background-position: center 45%; }
+}
+@media (min-width: 1900px) {
+  .hero-new::before { background-size: cover; }
+  .hero-grid { max-width: 1560px; }
 }
 </style>
 </head>
@@ -674,19 +744,26 @@ body.home-page .menu-toggle { color: white; }
 
 <section class="hero-new">
   <div class="hero-decor">
-    <svg class="wave-top" viewBox="0 0 540 90" fill="none" preserveAspectRatio="none">
-      <path d="M0 45 Q 90 0, 180 45 T 360 45 T 540 45" stroke="#feea00" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <div class="hero-glow"></div>
+    <div class="hero-sun-mark"></div>
+    <svg class="wave-top" viewBox="0 0 720 120" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M-20 72 C 95 12, 175 12, 288 72 S 488 132, 740 54" stroke="#feea00" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.72"/>
+      <path d="M-20 92 C 115 36, 190 35, 305 91 S 520 139, 740 76" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.28"/>
     </svg>
     <div class="dots-tl"></div>
     <div class="dots-bm"></div>
-    <svg class="hero-wave-yellow" viewBox="0 0 1440 50" fill="none" preserveAspectRatio="none">
-      <path d="M0 25 Q 240 0, 480 25 T 960 25 T 1440 25" stroke="#feea00" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <svg class="hero-wave-yellow" viewBox="0 0 1440 72" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M-10 39 C 170 4, 279 5, 445 39 C 610 72, 710 72, 875 38 C 1044 3, 1168 1, 1450 34" stroke="#feea00" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.86"/>
     </svg>
-    <div class="hero-wave-bottom"></div>
+    <svg class="hero-wave-bottom" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 118 C 150 58, 291 55, 438 109 C 613 174, 742 197, 918 127 C 1093 58, 1224 76, 1440 138 L1440 260 L0 260 Z" fill="#003149"/>
+      <path d="M0 152 C 165 102, 326 96, 500 145 C 682 196, 818 201, 1005 151 C 1185 103, 1304 113, 1440 154 L1440 260 L0 260 Z" fill="#002435" opacity="0.55"/>
+    </svg>
   </div>
 
   <div class="hero-grid">
     <div class="hero-text">
+      <div class="hero-kicker">Mariengymnasium Papenburg</div>
       <h1 class="hero-headline">
         Gemeinsam<br>lernen.
         <span class="accent-yellow">Zukunft<br>gestalten.</span>
