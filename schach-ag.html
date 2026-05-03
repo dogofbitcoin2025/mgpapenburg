@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schach-AG – Mariengymnasium Papenburg</title>
+<meta name="description" content="Strategisches Denken, mentale Stärke, Turnierpraxis – die Schach-AG des Mariengymnasiums in Kooperation mit dem Schachclub Papenburg.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.detail-meta-bar {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  margin-top: 1.5rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.detail-meta-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  color: rgba(255,255,255,0.85); font-size: 0.9rem;
+}
+.detail-meta-item svg { width: 18px; height: 18px; color: var(--mg-yellow); }
+.detail-meta-item strong { color: white; font-weight: 700; }
+
+.content-section { background: var(--mg-paper); padding: 4rem 0; }
+.content-grid {
+  display: grid; grid-template-columns: 280px 1fr; gap: 4rem;
+  max-width: var(--max-content); margin: 0 auto; padding: 0 2rem;
+}
+.content-sidebar { position: sticky; top: 100px; align-self: start; }
+.content-sidebar h4 {
+  font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--mg-blue); margin-bottom: 1rem; font-weight: 800;
+}
+.toc-list { list-style: none; padding: 0; border-left: 2px solid var(--mg-gray-200); }
+.toc-list a {
+  display: block; padding: 0.6rem 1rem; color: var(--mg-text-soft);
+  text-decoration: none; font-size: 0.9rem; transition: all 0.2s;
+  border-left: 2px solid transparent; margin-left: -2px;
+}
+.toc-list a:hover, .toc-list a.active {
+  color: var(--mg-blue); border-left-color: var(--mg-yellow); font-weight: 700;
+}
+.content-main { max-width: var(--max-prose); }
+.content-main h2 {
+  font-size: 1.75rem; font-weight: 800; color: var(--mg-blue);
+  margin: 2.5rem 0 1rem; letter-spacing: -0.01em;
+}
+.content-main section:first-child h2 { margin-top: 0; }
+.content-main p { font-size: 1.02rem; line-height: 1.8; color: var(--mg-text); margin-bottom: 1.25rem; }
+.content-main p strong { color: var(--mg-blue); font-weight: 700; }
+.content-main ul { margin: 0 0 1.5rem 0; padding: 0 0 0 1.5rem; }
+.content-main li { font-size: 1rem; line-height: 1.7; margin-bottom: 0.5rem; }
+
+.facts-bar {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  margin: 2.5rem 0; background: white; border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-200); overflow: hidden;
+}
+.fact-item { padding: 1.5rem 1rem; text-align: center; border-right: 1px solid var(--mg-gray-200); }
+.fact-item:last-child { border-right: none; }
+.fact-item strong {
+  display: block; font-size: 1.85rem; font-weight: 800;
+  color: var(--mg-blue); line-height: 1; margin-bottom: 0.4rem;
+}
+.fact-item span {
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mg-text-soft); font-weight: 700;
+}
+
+.info-box {
+  background: var(--mg-blue-soft); border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem; margin: 2rem 0;
+  display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: flex-start;
+}
+.info-box-icon {
+  width: 44px; height: 44px; background: var(--mg-blue);
+  color: var(--mg-yellow); border-radius: 50%;
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.info-box-icon svg { width: 22px; height: 22px; }
+.info-box h4 { font-size: 1.15rem; font-weight: 800; color: var(--mg-blue); margin-bottom: 0.4rem; }
+.info-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+.content-image { margin: 2rem 0; border-radius: var(--radius-lg); overflow: hidden; }
+.content-image img { width: 100%; height: auto; display: block; }
+.content-image figcaption {
+  padding: 0.85rem 1rem; background: var(--mg-cream);
+  font-size: 0.85rem; color: var(--mg-text-soft); font-style: italic; text-align: center;
+}
+
+.related-section { background: var(--mg-cream); padding: 4rem 0; border-top: 1px solid var(--mg-gray-200); }
+.related-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  max-width: var(--max-content); margin: 2rem auto 0; padding: 0 2rem;
+}
+.related-card {
+  background: white; border: 1px solid var(--mg-gray-200);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  text-decoration: none; color: inherit; transition: all 0.3s;
+  display: flex; flex-direction: column;
+}
+.related-card:hover { border-color: var(--mg-yellow); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.related-card-tag {
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--mg-text-soft); font-weight: 800; margin-bottom: 0.5rem;
+}
+.related-card h4 { font-size: 1.15rem; font-weight: 800; color: var(--mg-blue); margin-bottom: 0.5rem; }
+.related-card p { font-size: 0.9rem; color: var(--mg-text-soft); line-height: 1.55; margin: 0 0 0.85rem 0; }
+.related-card .arrow {
+  margin-top: auto; color: var(--mg-blue); font-weight: 700;
+  font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;
+}
+
+@media (max-width: 1024px) {
+  .content-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .content-sidebar { position: static; }
+  .toc-list { display: flex; flex-wrap: wrap; gap: 0.5rem; border-left: none; }
+  .toc-list a {
+    border-left: none; padding: 0.4rem 0.8rem; background: white;
+    border-radius: 100px; border: 1px solid var(--mg-gray-200);
+  }
+  .toc-list a.active { background: var(--mg-blue); color: white; border-color: var(--mg-blue); }
+  .related-grid { grid-template-columns: 1fr; }
+  .facts-bar { grid-template-columns: 1fr; }
+  .fact-item { border-right: none; border-bottom: 1px solid var(--mg-gray-200); }
+  .fact-item:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <div class="logo-text"><small>Papenburg · Seit 1835</small></div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link active">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-blue)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <a href="schulleben.html">Schulleben</a>
+      <span class="sep">/</span>
+      <span>Schach-AG</span>
+    </div>
+    <span class="eyebrow">Arbeitsgemeinschaft</span>
+    <h1 class="display-1" style="margin-top: 1.25rem;">Schach <em>am MG</em>.</h1>
+    <p class="lead">
+      Strategisches Denken, mentale Stärke, Turnierpraxis – mit erfahrenen Trainern
+      und in Kooperation mit dem Schachclub Papenburg.
+    </p>
+    <div class="detail-meta-bar">
+      <div class="detail-meta-item"><i data-lucide="calendar"></i> <span>Wöchentlich · ab Klasse 5</span></div>
+      <div class="detail-meta-item"><i data-lucide="user"></i> <span>Trainer: <strong>Hermann Rogge &amp; Hermann Schmitz</strong></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HAUPTINHALT -->
+<section class="content-section">
+  <div class="content-grid">
+    <aside class="content-sidebar">
+      <h4>Auf dieser Seite</h4>
+      <ul class="toc-list" id="toc">
+        <li><a href="#ueber" class="active">Über die AG</a></li>
+        <li><a href="#angebot">Was wir bieten</a></li>
+        <li><a href="#erfolge">Erfolge</a></li>
+        <li><a href="#mitmachen">Mitmachen</a></li>
+      </ul>
+    </aside>
+
+    <article class="content-main">
+      <section id="ueber">
+        <h2>Über die Schach-AG</h2>
+        <p>
+          Schach ist mehr als ein Spiel: Es schult <strong>Konzentration, vorausschauendes Denken
+          und Geduld</strong>. Genau diese Eigenschaften wollen wir in unserer AG fördern – ob
+          beim wöchentlichen Training, bei freundschaftlichen Partien oder bei Turnieren in
+          ganz Niedersachsen.
+        </p>
+        <p>
+          Unsere AG ist offen für alle Schüler*innen ab Klasse 5. Vorkenntnisse sind nicht
+          erforderlich – Anfänger lernen die Grundregeln und entwickeln sich Schritt für
+          Schritt. Fortgeschrittene profitieren vom Training mit erfahrenen Coaches und der
+          engen Kooperation mit dem Schachclub Papenburg.
+        </p>
+      </section>
+
+      <div class="facts-bar">
+        <div class="fact-item"><strong>9</strong><span>Mannschaften</span></div>
+        <div class="fact-item"><strong>3×</strong><span>Bezirksmeister</span></div>
+        <div class="fact-item"><strong>17</strong><span>Spielerinnen 2025</span></div>
+      </div>
+
+      <section id="angebot">
+        <h2>Was wir bieten</h2>
+        <ul>
+          <li><strong>Wöchentliches Training</strong> für alle Spielstärken</li>
+          <li><strong>Turnierteilnahmen</strong> auf Schul-, Bezirks- und Landesebene</li>
+          <li><strong>Schachnacht</strong> einmal im Halbjahr – Spielen bis tief in die Nacht</li>
+          <li><strong>Wettkampfklassen M, M3, M4</strong> für unterschiedliche Altersgruppen</li>
+          <li><strong>Kooperation mit dem Schachclub Papenburg</strong> – professionelles Coaching</li>
+        </ul>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i data-lucide="award"></i></div>
+          <div>
+            <h4>Niedersächsische Landesmeisterschaften</h4>
+            <p>Drei unserer Mannschaften haben sich 2025 für das Landesfinale in Hannover qualifiziert – ein Rekorderfolg.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="erfolge">
+        <h2>Unsere Erfolge</h2>
+        <p>
+          Beim Bezirksfinale 2025 in Hasbergen sicherte sich das Mariengymnasium <strong>in
+          allen drei Wettkampfklassen den ersten Platz</strong>. Das war kein Zufall – mit
+          neun Mannschaften gehörten wir zu den am stärksten vertretenen Schulen der
+          Region Weser-Ems.
+        </p>
+        <p>
+          Besonders stolz sind wir auf den fairen Sportsgeist unserer Spielerinnen: Als die
+          Schule am Roten Berg krankheitsbedingt nicht in voller Mannschaftsstärke antreten
+          konnte, sprang spontan eine MG-Schülerin als Gastspielerin ein – ein beeindruckendes
+          Zeichen für Fairplay.
+        </p>
+      </section>
+
+      <section id="mitmachen">
+        <h2>Mitmachen</h2>
+        <p>
+          Du möchtest einsteigen oder einfach mal vorbeischauen? Komm zur nächsten
+          AG-Stunde oder wende dich direkt an unsere Trainer. Quereinstieg ist
+          jederzeit möglich.
+        </p>
+        <p>
+          Genauere Informationen zu Termin, Raum und aktuellen Aktivitäten erhältst du im
+          Sekretariat oder bei den AG-Leitern.
+        </p>
+      </section>
+    </article>
+  </div>
+</section>
+
+<!-- VERWANDTE SEITEN -->
+<section class="related-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow center">Das könnte Sie auch interessieren</span>
+    </div>
+    <div class="related-grid">
+      <a href="schulleben.html" class="related-card">
+        <span class="related-card-tag">Übersicht</span>
+        <h4>Alle AGs am MG</h4>
+        <p>Von Musical bis Schulsanitäter – das vollständige AG-Angebot.</p>
+        <span class="arrow">Mehr erfahren <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="aktuelles.html" class="related-card">
+        <span class="related-card-tag">Aktuelles</span>
+        <h4>Berichte aus der Schach-AG</h4>
+        <p>Schachnacht, Turniere, Erfolge – alle Beiträge zum Thema.</p>
+        <span class="arrow">Mehr erfahren <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="schulleben.html" class="related-card">
+        <span class="related-card-tag">Wettbewerbe</span>
+        <h4>Andere MINT-Wettbewerbe</h4>
+        <p>Mathematik-Olympiade, Jugend forscht, Känguru und mehr.</p>
+        <span class="arrow">Mehr erfahren <i data-lucide="arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="terminkalender.html">Terminkalender</a></li>
+          <li><a href="vorlagen.html">Vorlagen für Eltern</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.content-main section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  if (sections.length && tocLinks.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => observer.observe(s));
+  }
+});
+</script>
+</body>
+</html>

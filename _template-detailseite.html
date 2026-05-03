@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  UNIVERSAL-TEMPLATE FÜR DETAILSEITEN
+  ============================================================================
+  So nutzen Sie diese Datei:
+  1. Datei kopieren und umbenennen (z. B. "schach-ag.html")
+  2. ALLE [PLATZHALTER] mit eigenem Inhalt ersetzen (Strg+F nach "[")
+  3. Im aktuellen Tab speichern, fertig.
+
+  Pflichtfelder (mindestens diese müssen ausgefüllt werden):
+  - [SEITEN-TITEL] (kommt im Browser-Tab)
+  - [META-BESCHREIBUNG] (max 160 Zeichen, für Google)
+  - [BREADCRUMB-KATEGORIE] (z. B. "Schulleben")
+  - [BREADCRUMB-KATEGORIE-LINK] (z. B. "schulleben.html")
+  - [KATEGORIE] (Eyebrow-Label, z. B. "Arbeitsgemeinschaft")
+  - [HAUPTTITEL] (z. B. "Schach-AG")
+  - [HERVORGEHOBENES-WORT] (innerhalb von <em>...</em> – wird gelb unterstrichen)
+  - [HEADER-BILD-URL] (Bild im Hero-Bereich)
+  - [INTRO-TEXT] (Lead-Absatz unter Headline)
+  - [META-INFO] (z. B. "Wöchentlich · Klasse 5–13")
+
+  Optionale Bausteine — einfach NICHT BENÖTIGTE löschen:
+  - <section class="content-block"> ... </section>
+  -->
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[SEITEN-TITEL] – Mariengymnasium Papenburg</title>
+<meta name="description" content="[META-BESCHREIBUNG]">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ============== DETAIL-SEITEN STYLES (in style.css ggf. später integrieren) ============== */
+.detail-meta-bar {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.detail-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+}
+.detail-meta-item svg {
+  width: 18px; height: 18px;
+  color: var(--mg-yellow);
+}
+.detail-meta-item strong { color: white; font-weight: 700; }
+
+.content-section {
+  background: var(--mg-paper);
+  padding: 4rem 0;
+}
+.content-section.alt {
+  background: var(--mg-cream);
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.content-sidebar {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+.content-sidebar h4 {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mg-blue);
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  border-left: 2px solid var(--mg-gray-200);
+}
+.toc-list li { margin: 0; }
+.toc-list a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--mg-text-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+}
+.toc-list a:hover {
+  color: var(--mg-blue);
+  border-left-color: var(--mg-yellow);
+}
+.toc-list a.active {
+  color: var(--mg-blue);
+  border-left-color: var(--mg-yellow);
+  font-weight: 700;
+}
+
+.content-main {
+  max-width: var(--max-prose);
+}
+.content-main h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin: 2.5rem 0 1rem;
+  letter-spacing: -0.01em;
+}
+.content-main h2:first-child { margin-top: 0; }
+.content-main h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin: 2rem 0 0.75rem;
+}
+.content-main p {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--mg-text);
+  margin-bottom: 1.25rem;
+}
+.content-main p strong { color: var(--mg-blue); font-weight: 700; }
+.content-main ul, .content-main ol {
+  margin: 0 0 1.5rem 0;
+  padding: 0 0 0 1.5rem;
+}
+.content-main li {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  color: var(--mg-text);
+}
+.content-main blockquote {
+  background: var(--mg-cream);
+  border-left: 4px solid var(--mg-yellow);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--mg-text);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+/* Info-Box */
+.info-box {
+  background: var(--mg-blue-soft);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+.info-box-icon {
+  width: 44px; height: 44px;
+  background: var(--mg-blue);
+  color: var(--mg-yellow);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.info-box-icon svg { width: 22px; height: 22px; }
+.info-box h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin-bottom: 0.4rem;
+}
+.info-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+/* Faktenleiste */
+.facts-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 2.5rem 0;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-200);
+  overflow: hidden;
+}
+.fact-item {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-right: 1px solid var(--mg-gray-200);
+}
+.fact-item:last-child { border-right: none; }
+.fact-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.fact-item span {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mg-text-soft);
+  font-weight: 700;
+}
+
+/* Person/Ansprechpartner Block */
+.contact-person-card {
+  background: white;
+  border: 1px solid var(--mg-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+.contact-person-photo {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--mg-blue);
+}
+.contact-person-photo img { width: 100%; height: 100%; object-fit: cover; }
+.contact-person-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin-bottom: 0.25rem;
+}
+.contact-person-role {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mg-text-soft);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.contact-person-card a {
+  color: var(--mg-blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.contact-person-card a:hover { color: var(--mg-yellow-deep); }
+.contact-person-card a svg { width: 14px; height: 14px; }
+
+/* Inline-Bild */
+.content-image {
+  margin: 2rem 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.content-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.content-image figcaption {
+  padding: 0.85rem 1rem;
+  background: var(--mg-cream);
+  font-size: 0.85rem;
+  color: var(--mg-text-soft);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Verwandte Seiten */
+.related-section {
+  background: var(--mg-cream);
+  padding: 4rem 0;
+  border-top: 1px solid var(--mg-gray-200);
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: var(--max-content);
+  margin: 2rem auto 0;
+  padding: 0 2rem;
+}
+.related-card {
+  background: white;
+  border: 1px solid var(--mg-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.related-card:hover {
+  border-color: var(--mg-yellow);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.related-card-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mg-text-soft);
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+.related-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--mg-blue);
+  margin-bottom: 0.5rem;
+}
+.related-card p {
+  font-size: 0.9rem;
+  color: var(--mg-text-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+.related-card .arrow {
+  margin-top: 0.5rem;
+  color: var(--mg-blue);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media (max-width: 1024px) {
+  .content-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .content-sidebar { position: static; }
+  .toc-list { display: flex; flex-wrap: wrap; gap: 0.5rem; border-left: none; }
+  .toc-list a { border-left: none; border-bottom: 2px solid transparent; padding: 0.4rem 0.8rem; background: white; border-radius: 100px; border: 1px solid var(--mg-gray-200); }
+  .toc-list a.active { background: var(--mg-blue); color: white; border-color: var(--mg-blue); }
+  .related-grid { grid-template-columns: 1fr; }
+  .facts-bar { grid-template-columns: 1fr; }
+  .fact-item { border-right: none; border-bottom: 1px solid var(--mg-gray-200); }
+  .fact-item:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== TOPBAR / HEADER (immer gleich – nicht ändern) ========== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <div class="logo-text">
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <!-- HIER ggf. die aktive Seite markieren: nav-link active -->
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-blue)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <a href="[BREADCRUMB-KATEGORIE-LINK]">[BREADCRUMB-KATEGORIE]</a>
+      <span class="sep">/</span>
+      <span>[HAUPTTITEL]</span>
+    </div>
+    <span class="eyebrow">[KATEGORIE]</span>
+    <h1 class="display-1" style="margin-top: 1.25rem;">[HAUPTTITEL-VOR] <em>[HERVORGEHOBENES-WORT]</em>[HAUPTTITEL-NACH]</h1>
+    <p class="lead">[INTRO-TEXT]</p>
+
+    <!-- OPTIONAL: Meta-Leiste (Datum, Ansprechpartner etc.). Wenn nicht gewünscht, einfach löschen -->
+    <div class="detail-meta-bar">
+      <div class="detail-meta-item">
+        <i data-lucide="calendar"></i> <span>[META-INFO]</span>
+      </div>
+      <div class="detail-meta-item">
+        <i data-lucide="user"></i> <span>Ansprechpartner: <strong>[ANSPRECHPARTNER]</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HAUPT-INHALTSBEREICH ========== -->
+<section class="content-section">
+  <div class="content-grid">
+
+    <!-- LINKE SPALTE: Inhaltsverzeichnis (optional – bei kurzen Seiten kann der ganze <aside>-Block gelöscht werden) -->
+    <aside class="content-sidebar">
+      <h4>Auf dieser Seite</h4>
+      <ul class="toc-list" id="toc">
+        <li><a href="#abschnitt-1" class="active">[ABSCHNITT-1-NAME]</a></li>
+        <li><a href="#abschnitt-2">[ABSCHNITT-2-NAME]</a></li>
+        <li><a href="#abschnitt-3">[ABSCHNITT-3-NAME]</a></li>
+      </ul>
+    </aside>
+
+    <!-- RECHTE SPALTE: Hauptinhalt -->
+    <article class="content-main">
+
+      <!-- BAUSTEIN: Erster Abschnitt -->
+      <section id="abschnitt-1">
+        <h2>[ABSCHNITT-1-ÜBERSCHRIFT]</h2>
+        <p>[ERSTER-ABSATZ]</p>
+        <p>[WEITERER-ABSATZ]</p>
+      </section>
+
+      <!-- BAUSTEIN: Faktenleiste (optional – nur einbinden wo sinnvoll) -->
+      <div class="facts-bar">
+        <div class="fact-item">
+          <strong>[ZAHL-1]</strong>
+          <span>[LABEL-1]</span>
+        </div>
+        <div class="fact-item">
+          <strong>[ZAHL-2]</strong>
+          <span>[LABEL-2]</span>
+        </div>
+        <div class="fact-item">
+          <strong>[ZAHL-3]</strong>
+          <span>[LABEL-3]</span>
+        </div>
+      </div>
+
+      <!-- BAUSTEIN: Zweiter Abschnitt -->
+      <section id="abschnitt-2">
+        <h2>[ABSCHNITT-2-ÜBERSCHRIFT]</h2>
+        <p>[ABSATZ-MIT-INHALT]</p>
+        <ul>
+          <li>[LISTENPUNKT]</li>
+          <li>[LISTENPUNKT]</li>
+          <li>[LISTENPUNKT]</li>
+        </ul>
+      </section>
+
+      <!-- BAUSTEIN: Info-Box -->
+      <div class="info-box">
+        <div class="info-box-icon"><i data-lucide="info"></i></div>
+        <div>
+          <h4>[INFO-BOX-TITEL]</h4>
+          <p>[INFO-BOX-INHALT]</p>
+        </div>
+      </div>
+
+      <!-- BAUSTEIN: Inline-Bild mit Bildunterschrift -->
+      <figure class="content-image">
+        <img src="[BILD-URL]" alt="[BILD-BESCHREIBUNG]">
+        <figcaption>[BILDUNTERSCHRIFT]</figcaption>
+      </figure>
+
+      <!-- BAUSTEIN: Zitat -->
+      <blockquote>
+        [ZITAT-TEXT]
+      </blockquote>
+
+      <!-- BAUSTEIN: Dritter Abschnitt -->
+      <section id="abschnitt-3">
+        <h2>[ABSCHNITT-3-ÜBERSCHRIFT]</h2>
+        <p>[ABSATZ-MIT-INHALT]</p>
+      </section>
+
+      <!-- BAUSTEIN: Ansprechpartner-Karte -->
+      <div class="contact-person-card">
+        <div class="contact-person-photo">
+          <img src="[FOTO-URL]" alt="[NAME]">
+        </div>
+        <div>
+          <h4>[NAME]</h4>
+          <span class="contact-person-role">[ROLLE]</span>
+          <a href="mailto:[E-MAIL]"><i data-lucide="mail"></i> [E-MAIL]</a>
+        </div>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+<!-- ========== VERWANDTE SEITEN ========== -->
+<section class="related-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow center">Das könnte Sie auch interessieren</span>
+    </div>
+    <div class="related-grid">
+      <a href="[VERWANDT-1-LINK]" class="related-card">
+        <span class="related-card-tag">[VERWANDT-1-TAG]</span>
+        <h4>[VERWANDT-1-TITEL]</h4>
+        <p>[VERWANDT-1-BESCHREIBUNG]</p>
+        <span class="arrow">Mehr erfahren <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="[VERWANDT-2-LINK]" class="related-card">
+        <span class="related-card-tag">[VERWANDT-2-TAG]</span>
+        <h4>[VERWANDT-2-TITEL]</h4>
+        <p>[VERWANDT-2-BESCHREIBUNG]</p>
+        <span class="arrow">Mehr erfahren <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="[VERWANDT-3-LINK]" class="related-card">
+        <span class="related-card-tag">[VERWANDT-3-TAG]</span>
+        <h4>[VERWANDT-3-TITEL]</h4>
+        <p>[VERWANDT-3-BESCHREIBUNG]</p>
+        <span class="arrow">Mehr erfahren <i data-lucide="arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER (immer gleich – nicht ändern) ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="kontakt.html">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="terminkalender.html">Terminkalender</a></li>
+          <li><a href="vorlagen.html">Vorlagen für Eltern</a></li>
+          <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+// Inhaltsverzeichnis: aktiven Eintrag beim Scrollen highlighten
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.content-main section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  if (sections.length && tocLinks.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => observer.observe(s));
+  }
+});
+</script>
+</body>
+</html>
