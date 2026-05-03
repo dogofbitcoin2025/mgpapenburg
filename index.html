@@ -37,10 +37,9 @@ body.home-page .menu-toggle { color: white; }
   transition: background 0.2s;
 }
 .bistum-logo:hover { background: rgba(255,255,255,0.06); }
-.bistum-logo-img {
-  height: 48px;
-  width: auto;
-  display: block;
+.bistum-logo svg.bistum-icon {
+  width: 36px; height: 36px;
+  color: var(--mg-yellow);
 }
 .bistum-logo-text {
   display: flex;
@@ -66,176 +65,192 @@ body.home-page .menu-toggle { color: white; }
   gap: 0.5rem;
 }
 @media (max-width: 768px) {
-  .bistum-logo { display: none; }
+  .bistum-logo-text { display: none; }
 }
 
-/* HERO – Startseite wie Bild 2: großflächiges Aquarell, CI-Blau/Gelb, klare Textfläche */
+/* HERO – Variante Bild 1 + Bild 2 kombiniert: Aquarell vollflächig, links nicht zu weiß */
 .hero-new {
   position: relative;
-  min-height: clamp(640px, 74vh, 820px);
   overflow: hidden;
-  background: #eef6fb;
-  padding: 0;
+  min-height: clamp(560px, 68vh, 820px);
+  padding: clamp(4rem, 7vw, 7rem) 0 clamp(7rem, 10vw, 10rem);
+  background: var(--mg-blue-deep);
   isolation: isolate;
 }
 .hero-new::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('images/schule-aquarell-header.png');
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
   z-index: -3;
+  background-image: url('images/schule-aquarell.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: saturate(1.03) contrast(1.03);
+  transform: scale(1.01);
 }
 .hero-new::after {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.88) 24%, rgba(255,255,255,0.42) 43%, rgba(255,255,255,0.06) 68%),
-    linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 55%, rgba(0,49,74,0.10) 100%);
   z-index: -2;
+  background:
+    radial-gradient(ellipse at 10% 35%, rgba(0,49,74,0.88) 0%, rgba(0,49,74,0.74) 28%, rgba(0,49,74,0.34) 48%, rgba(0,49,74,0.08) 68%, transparent 100%),
+    linear-gradient(90deg, rgba(0,31,48,0.88) 0%, rgba(0,49,74,0.62) 31%, rgba(255,255,255,0.12) 54%, rgba(255,255,255,0.02) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.00) 45%, rgba(0,31,48,0.22) 100%);
 }
 .hero-decor {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 1;
-}
-.dots-tl {
-  position: absolute;
-  top: 72px;
-  left: 80px;
-  width: 120px;
-  height: 90px;
-  background-image: radial-gradient(circle, var(--mg-yellow) 2px, transparent 2.2px);
-  background-size: 22px 22px;
-  opacity: 0.85;
-}
-.dots-bm {
-  position: absolute;
-  left: 42%;
-  bottom: 150px;
-  width: 120px;
-  height: 78px;
-  background-image: radial-gradient(circle, var(--mg-yellow) 2px, transparent 2.2px);
-  background-size: 22px 22px;
-  opacity: 0.8;
+  z-index: 2;
 }
 .wave-top {
   position: absolute;
-  top: 52px;
-  left: -80px;
-  width: 560px;
-  height: 150px;
-  opacity: 0.85;
+  top: clamp(38px, 6vw, 82px);
+  left: clamp(-120px, -4vw, -40px);
+  width: clamp(420px, 40vw, 720px);
+  height: 90px;
+  opacity: 0.55;
+}
+.dots-tl {
+  position: absolute;
+  top: clamp(100px, 16vw, 170px);
+  left: clamp(24px, 5vw, 76px);
+  width: 110px;
+  height: 84px;
+  background-image: radial-gradient(circle, var(--mg-yellow) 1.7px, transparent 1.8px);
+  background-size: 15px 15px;
+  opacity: 0.65;
+}
+.dots-bm {
+  position: absolute;
+  bottom: clamp(165px, 19vw, 230px);
+  left: clamp(42%, 50vw, 54%);
+  width: 140px;
+  height: 60px;
+  background-image: radial-gradient(circle, var(--mg-yellow) 1.5px, transparent 1.6px);
+  background-size: 14px 14px;
+  opacity: 0.38;
 }
 .hero-wave-bottom {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 178px;
+  left: 0; right: 0; bottom: -1px;
+  width: 100%;
+  height: clamp(130px, 13vw, 190px);
   background: var(--mg-blue-deep);
-  clip-path: polygon(0 55%, 17% 78%, 36% 70%, 55% 82%, 72% 56%, 100% 65%, 100% 100%, 0 100%);
+  clip-path: polygon(0 58%, 16% 48%, 34% 58%, 55% 78%, 73% 54%, 100% 66%, 100% 100%, 0 100%);
 }
 .hero-wave-yellow {
   position: absolute;
-  left: -5%;
-  right: -5%;
-  bottom: 96px;
-  width: 110%;
-  z-index: 2;
-  pointer-events: none;
-}
-.hero-content {
-  position: relative;
+  left: 0; right: 0; bottom: clamp(95px, 10vw, 145px);
+  width: 100%;
   z-index: 3;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.hero-grid {
+  position: relative;
+  z-index: 5;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: clamp(5rem, 8vw, 8rem) 2rem 15rem;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  min-height: clamp(360px, 45vh, 560px);
+  display: flex;
+  align-items: center;
 }
-.hero-kicker {
-  display: inline-block;
-  color: var(--mg-blue);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  margin-bottom: 1.15rem;
+.hero-text {
+  width: min(620px, 52vw);
+  padding: clamp(1.7rem, 3vw, 2.8rem);
+  border-left: 6px solid var(--mg-yellow);
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  background:
+    linear-gradient(135deg, rgba(0,49,74,0.92) 0%, rgba(0,49,74,0.78) 62%, rgba(0,49,74,0.50) 100%);
+  box-shadow: 0 24px 80px rgba(0, 31, 48, 0.28);
+  backdrop-filter: blur(2px);
 }
 .hero-headline {
-  max-width: 620px;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(3.1rem, 6.6vw, 6.7rem);
-  line-height: 0.97;
-  letter-spacing: -0.05em;
-  color: var(--mg-blue);
-  margin-bottom: 1.55rem;
-  text-transform: uppercase;
+  font-size: clamp(2.6rem, 5.4vw, 5.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: white;
+  margin-bottom: 1.35rem;
+  text-wrap: balance;
 }
 .hero-headline .accent-yellow {
   color: var(--mg-yellow);
   display: block;
 }
 .hero-subline {
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  color: var(--mg-blue-deep);
-  font-weight: 400;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  color: rgba(255,255,255,0.88);
+  font-weight: 600;
   margin-bottom: 0.8rem;
   position: relative;
-  padding-bottom: 1.45rem;
+  padding-bottom: 1.25rem;
 }
-.hero-subline strong { font-weight: 800; }
+.hero-subline strong { color: white; font-weight: 800; }
 .hero-subline::after {
   content: '';
   display: block;
-  width: 82px;
-  height: 5px;
+  width: 72px;
+  height: 4px;
   background: var(--mg-yellow);
-  margin-top: 1.2rem;
-  border-radius: 999px;
+  margin-top: 1rem;
 }
 .hero-ctas {
   display: flex;
   gap: 1rem;
-  margin-top: 1.7rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 .btn-dark {
-  background: var(--mg-blue-deep);
-  color: white;
-  border: 2px solid var(--mg-blue-deep);
-  padding: 0.95rem 1.65rem;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-weight: 800;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: all 0.25s;
-}
-.btn-dark:hover { background: var(--mg-blue); transform: translateY(-2px); }
-.btn-ghost {
-  background: rgba(255,255,255,0.68);
+  background: var(--mg-yellow);
   color: var(--mg-blue-deep);
-  border: 2px solid var(--mg-blue-deep);
-  padding: 0.95rem 1.65rem;
+  border: 2px solid var(--mg-yellow);
+  padding: 0.95rem 1.6rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: 800;
+  font-size: 0.92rem;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   transition: all 0.25s;
-  backdrop-filter: blur(8px);
 }
-.btn-ghost:hover { background: var(--mg-blue-deep); color: white; transform: translateY(-2px); }
-.btn-dark svg, .btn-ghost svg { width: 16px; height: 16px; transition: transform 0.25s; }
-.btn-dark:hover svg, .btn-ghost:hover svg { transform: translateX(3px); }
+.btn-dark:hover {
+  background: white;
+  border-color: white;
+  transform: translateY(-2px);
+}
+.btn-dark svg { width: 16px; height: 16px; transition: transform 0.25s; }
+.btn-dark:hover svg { transform: translateX(3px); }
+.btn-ghost {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.75);
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.25s;
+}
+.btn-ghost:hover {
+  background: white;
+  border-color: white;
+  color: var(--mg-blue-deep);
+  transform: translateY(-2px);
+}
+.btn-ghost svg { width: 16px; height: 16px; transition: transform 0.25s; }
+.btn-ghost:hover svg { transform: translateX(3px); }
+.hero-visual { display: none; }
 /* WERTE-SÄULEN */
 .values-strip {
   background: var(--mg-blue-deep);
@@ -558,53 +573,54 @@ body.home-page .menu-toggle { color: white; }
 }
 
 @media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-text { padding-right: 0; }
-  .hero-visual { max-width: 600px; margin: 0 auto; }
+  .hero-new { min-height: clamp(540px, 72vh, 760px); }
+  .hero-new::before { background-position: 58% center; }
+  .hero-new::after {
+    background:
+      radial-gradient(ellipse at 12% 38%, rgba(0,49,74,0.90) 0%, rgba(0,49,74,0.76) 38%, rgba(0,49,74,0.24) 72%, transparent 100%),
+      linear-gradient(90deg, rgba(0,31,48,0.86) 0%, rgba(0,49,74,0.54) 48%, rgba(255,255,255,0.04) 100%);
+  }
+  .hero-text { width: min(590px, 70vw); }
   .values-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; }
   .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
   .intro-image { max-width: 480px; aspect-ratio: 5/4; }
   .news-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 640px) {
-  .hero-new { padding: 3rem 0 7rem; min-height: auto; }
+@media (max-width: 760px) {
+  .hero-new {
+    min-height: 640px;
+    padding: 3.4rem 0 7.5rem;
+  }
+  .hero-new::before {
+    background-size: auto 100%;
+    background-position: 60% center;
+    opacity: 0.9;
+  }
+  .hero-new::after {
+    background:
+      linear-gradient(180deg, rgba(0,49,74,0.50) 0%, rgba(0,49,74,0.18) 42%, rgba(0,31,48,0.42) 100%),
+      linear-gradient(90deg, rgba(0,31,48,0.78) 0%, rgba(0,49,74,0.48) 58%, rgba(0,49,74,0.12) 100%);
+  }
+  .hero-grid { align-items: flex-end; min-height: 470px; }
+  .hero-text {
+    width: 100%;
+    padding: 1.4rem;
+    border-left-width: 5px;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    background: rgba(0,49,74,0.86);
+  }
   .wave-top, .dots-tl, .dots-bm { display: none; }
-  .hero-headline { font-size: 2.4rem; }
+  .hero-headline { font-size: clamp(2.25rem, 11vw, 3.25rem); }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .btn-dark, .btn-ghost { justify-content: center; }
   .values-strip-inner { grid-template-columns: 1fr; }
   .news-grid { grid-template-columns: 1fr; }
   .intro-stats { grid-template-columns: 1fr; gap: 1rem; }
 }
-
-/* Feinschliff Header-Variante Bild 2 */
-body.home-page .header-inner { padding: 1.25rem 2rem; }
-body.home-page .logo-img { height: 74px; }
-body.home-page .bistum-logo { padding: 0.35rem 0; margin-right: 0; }
-body.home-page .bistum-logo-img { height: 58px; filter: brightness(0) invert(1); opacity: 0.95; }
-@media (max-width: 1024px) {
-  .hero-new { min-height: 640px; }
-  .hero-new::after {
-    background:
-      linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 38%, rgba(255,255,255,0.35) 72%),
-      linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,49,74,0.10));
-  }
-  .hero-content { padding-top: 5rem; }
+@media (min-width: 1440px) {
+  .hero-new { min-height: 760px; }
+  .hero-new::before { background-position: center 44%; }
 }
-@media (max-width: 640px) {
-  body.home-page .logo-img { height: 58px; }
-  .hero-new { min-height: 610px; padding: 0; }
-  .hero-new::before { background-position: 58% center; }
-  .hero-new::after { background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.86) 42%, rgba(255,255,255,0.30) 100%); }
-  .hero-content { padding: 3.5rem 1.35rem 12rem; }
-  .hero-kicker { font-size: 0.95rem; }
-  .hero-headline { font-size: clamp(2.8rem, 16vw, 4.4rem); max-width: 360px; }
-  .hero-ctas { flex-direction: column; align-items: flex-start; }
-  .btn-dark, .btn-ghost { width: 100%; justify-content: center; }
-  .hero-wave-bottom { height: 145px; }
-  .hero-wave-yellow { bottom: 82px; }
-}
-
 </style>
 </head>
 <body class="home-page">
@@ -622,8 +638,14 @@ body.home-page .bistum-logo-img { height: 58px; filter: brightness(0) invert(1);
       <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
     </nav>
     <div class="header-right">
-      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo" aria-label="Schulstiftung im Bistum Osnabrück">
-        <img src="images/bistum-osnabrueck-logo.png" alt="Schulstiftung im Bistum Osnabrück" class="bistum-logo-img">
+      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo">
+        <svg class="bistum-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M20 5 L20 35 M10 35 L30 35 M14 35 L14 18 L20 12 L26 18 L26 35 M16 22 L24 22 M16 28 L24 28"/>
+        </svg>
+        <div class="bistum-logo-text">
+          <small>Schulstiftung im</small>
+          <strong>BISTUM OSNABRÜCK</strong>
+        </div>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menü">
         <i data-lucide="menu" style="width:28px;height:28px"></i>
@@ -650,31 +672,34 @@ body.home-page .bistum-logo-img { height: 58px; filter: brightness(0) invert(1);
   </ul>
 </aside>
 
-<section class="hero-new" aria-label="Mariengymnasium Papenburg">
-  <div class="hero-decor" aria-hidden="true">
-    <svg class="wave-top" viewBox="0 0 540 150" fill="none" preserveAspectRatio="none">
-      <path d="M0 95 C 90 15, 170 15, 260 92 S 420 170, 540 58" stroke="#feea00" stroke-width="2.5" fill="none" opacity="0.62"/>
-      <path d="M0 118 C 100 38, 180 38, 275 110 S 430 185, 540 82" stroke="#feea00" stroke-width="1.4" fill="none" opacity="0.38"/>
+<section class="hero-new">
+  <div class="hero-decor">
+    <svg class="wave-top" viewBox="0 0 540 90" fill="none" preserveAspectRatio="none">
+      <path d="M0 45 Q 90 0, 180 45 T 360 45 T 540 45" stroke="#feea00" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
     </svg>
     <div class="dots-tl"></div>
     <div class="dots-bm"></div>
-    <svg class="hero-wave-yellow" viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
-      <path d="M0 45 C 210 0, 360 95, 565 46 S 900 0, 1090 48 S 1320 92, 1440 35" stroke="#feea00" stroke-width="2.2" fill="none" opacity="0.70"/>
-      <path d="M0 64 C 230 22, 365 112, 590 62 S 915 20, 1110 66 S 1325 112, 1440 55" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.55"/>
+    <svg class="hero-wave-yellow" viewBox="0 0 1440 50" fill="none" preserveAspectRatio="none">
+      <path d="M0 25 Q 240 0, 480 25 T 960 25 T 1440 25" stroke="#feea00" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
     </svg>
     <div class="hero-wave-bottom"></div>
   </div>
 
-  <div class="hero-content">
-    <span class="hero-kicker">Gemeinsam lernen.</span>
-    <h1 class="hero-headline">
-      Zukunft
-      <span class="accent-yellow">gestalten.</span>
-    </h1>
-    <p class="hero-subline">Bildung mit <strong>Herz</strong> und <strong>Vision</strong>.</p>
-    <div class="hero-ctas">
-      <a href="schulprofil.html" class="btn-dark">Unsere Schule <i data-lucide="arrow-right"></i></a>
-      <a href="anmeldung.html" class="btn-ghost">Anmeldung <i data-lucide="arrow-right"></i></a>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <h1 class="hero-headline">
+        Gemeinsam<br>lernen.
+        <span class="accent-yellow">Zukunft<br>gestalten.</span>
+      </h1>
+      <p class="hero-subline">Bildung mit <strong>Herz</strong> und <strong>Vision</strong>.</p>
+      <div class="hero-ctas">
+        <a href="schulprofil.html" class="btn-dark">Unsere Schule <i data-lucide="arrow-right"></i></a>
+        <a href="anmeldung.html" class="btn-ghost">Anmeldung <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img src="images/schule-aquarell.jpg" alt="Mariengymnasium Papenburg – Aquarell des Schulgebäudes">
     </div>
   </div>
 </section>
