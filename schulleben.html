@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schulleben – Mariengymnasium Papenburg</title>
+<meta name="description" content="AGs, Projekte, Wettbewerbe und Austauschprogramme am Mariengymnasium Papenburg – das pulsierende Schulleben.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* SCHULLEBEN-SPEZIFISCH */
+
+/* Filter Bar */
+.filter-bar {
+  background: var(--mg-paper);
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--mg-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  background: rgba(253, 251, 247, 0.95);
+}
+.filter-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.filter-btn {
+  background: white;
+  border: 1px solid var(--mg-gray-200);
+  padding: 0.6rem 1.3rem;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--mg-text-soft);
+  cursor: pointer;
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.filter-btn:hover { border-color: var(--mg-navy); color: var(--mg-navy); }
+.filter-btn.active {
+  background: var(--mg-navy);
+  border-color: var(--mg-navy);
+  color: white;
+}
+.filter-btn .count {
+  background: rgba(0,0,0,0.05);
+  padding: 0.1rem 0.5rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.filter-btn.active .count { background: rgba(255,255,255,0.2); color: var(--mg-gold-light); }
+.filter-btn svg { width: 14px; height: 14px; }
+
+/* Activity Grid */
+.activities-section { background: var(--mg-paper); padding: 4rem 0; }
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.activity-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--mg-gray-100);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+.activity-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--mg-gold-light);
+}
+.activity-img {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+.activity-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+.activity-card:hover .activity-img img { transform: scale(1.06); }
+.activity-cat {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: white;
+}
+.activity-cat.ag { background: #2563a8; }
+.activity-cat.wettbewerb { background: #c9a961; color: var(--mg-navy-deep); }
+.activity-cat.projekt { background: #8b5a9f; }
+.activity-cat.austausch { background: #d97757; }
+.activity-body { padding: 1.75rem; }
+.activity-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+.activity-body p {
+  color: var(--mg-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.activity-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mg-gray-100);
+  font-size: 0.82rem;
+  color: var(--mg-text-soft);
+}
+.activity-meta .day {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.activity-meta svg { width: 14px; height: 14px; }
+.activity-link {
+  color: var(--mg-navy);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap 0.2s;
+}
+.activity-card:hover .activity-link { gap: 0.5rem; color: var(--mg-gold-deep); }
+
+/* Editorial Story Section (für Austausch) */
+.story-section {
+  background: var(--mg-cream);
+  padding: 6rem 0;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.story-grid:last-child { margin-bottom: 0; }
+.story-grid:nth-child(even) .story-image { order: 2; }
+.story-image {
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+.story-image img { width: 100%; height: 100%; object-fit: cover; }
+.story-image::after {
+  content: attr(data-country);
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem;
+  background: rgba(255,255,255,0.95);
+  color: var(--mg-navy);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.story-content h3 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.story-content h3 em { color: var(--mg-gold); font-style: italic; }
+.story-content .eyebrow { margin-bottom: 1rem; }
+.story-content p {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--mg-text-soft);
+  margin-bottom: 1rem;
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--mg-text-soft);
+}
+.empty-state svg {
+  width: 48px; height: 48px;
+  color: var(--mg-gray-400);
+  margin: 0 auto 1rem;
+}
+.empty-state h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--mg-navy);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .activities-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .story-grid:nth-child(even) .story-image { order: 0; }
+}
+@media (max-width: 640px) {
+  .activities-grid { grid-template-columns: 1fr; }
+  .filter-inner { padding: 0 1rem; }
+  .filter-btn { padding: 0.5rem 1rem; font-size: 0.82rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
+           onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
+      <div class="logo-text">
+        <strong>Mariengymnasium</strong>
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link active">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Schulleben</span>
+    </div>
+    <span class="eyebrow">Schule ist mehr</span>
+    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Schul<em>leben.</em></h1>
+    <p class="lead">
+      Was wäre Schule ohne das, was zwischen den Stunden geschieht? AGs, Projekte,
+      Wettbewerbe und Begegnungen – das pulsierende Herz unseres Mariengymnasiums.
+    </p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" data-filter="all">
+      <i data-lucide="grid-3x3"></i> Alle <span class="count" id="count-all">0</span>
+    </button>
+    <button class="filter-btn" data-filter="ag">
+      AGs <span class="count" id="count-ag">0</span>
+    </button>
+    <button class="filter-btn" data-filter="wettbewerb">
+      Wettbewerbe <span class="count" id="count-wettbewerb">0</span>
+    </button>
+    <button class="filter-btn" data-filter="projekt">
+      Projekte <span class="count" id="count-projekt">0</span>
+    </button>
+    <button class="filter-btn" data-filter="austausch">
+      Austausch <span class="count" id="count-austausch">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- ACTIVITY GRID -->
+<section class="activities-section">
+  <div class="container">
+    <div class="activities-grid" id="activities-grid"></div>
+  </div>
+</section>
+
+<!-- AUSTAUSCH STORIES -->
+<section class="story-section" id="austausch">
+  <div class="container">
+    <div class="section-header center reveal" style="margin-bottom: 5rem;">
+      <span class="eyebrow center">Internationale Begegnungen</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Drei <em>Länder</em>, eine Gemeinschaft.</h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Unsere Austauschprogramme öffnen Horizonte – und schaffen Freundschaften,
+        die ein Leben lang halten.
+      </p>
+    </div>
+
+    <div class="story-grid reveal">
+      <div class="story-image" data-country="🇮🇹 Mottola, Italien">
+        <img src="https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=900&q=80" alt="Mottola, Italien">
+      </div>
+      <div class="story-content">
+        <span class="eyebrow">Austausch 01</span>
+        <h3>Mottola — <em>Italien</em></h3>
+        <p>
+          Seit vielen Jahren verbindet uns eine herzliche Partnerschaft mit dem
+          „Istituto di Istruzione Secondaria Superiore Lentini-Einstein" in Mottola,
+          Apulien. Schüler*innen erleben mediterrane Lebensart, italienische Sprache
+          und Kultur hautnah – und werden selbst zu Gastgeber*innen in Papenburg.
+        </p>
+        <a href="#" class="btn btn-outline">Mehr erfahren <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="story-grid reveal">
+      <div class="story-image" data-country="🇪🇸 Albaida, Spanien">
+        <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=80" alt="Albaida, Spanien">
+      </div>
+      <div class="story-content">
+        <span class="eyebrow">Austausch 02</span>
+        <h3>Albaida — <em>Spanien</em></h3>
+        <p>
+          Im Herzen Valencias liegt unsere Partnerschule in Albaida. Spanisch lernen
+          dort, wo es lebt – das ist das Versprechen dieses Austauschs. Kombiniert
+          mit gemeinsamen kulturellen Projekten und einer warmherzigen Aufnahme in
+          Gastfamilien wird der Aufenthalt zu einer prägenden Erfahrung.
+        </p>
+        <a href="#" class="btn btn-outline">Mehr erfahren <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="story-grid reveal">
+      <div class="story-image" data-country="🇮🇪 Cork, Irland">
+        <img src="https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=900&q=80" alt="Cork, Irland">
+      </div>
+      <div class="story-content">
+        <span class="eyebrow">Austausch 03</span>
+        <h3>Cork — <em>Irland</em></h3>
+        <p>
+          Englisch im Originalklang: Unser Cork-Programm bringt Schüler*innen für
+          mehrere Wochen in irische Gastfamilien und an eine Partnerschule.
+          Sprachpraxis, irische Lebensfreude und die rauhe Schönheit der Atlantikküste
+          verbinden sich zu einer unvergesslichen Erfahrung.
+        </p>
+        <a href="#" class="btn btn-outline">Mehr erfahren <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" style="background: var(--mg-cream-warm);">
+  <div class="container">
+    <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+      <span class="eyebrow center">Mitmachen</span>
+      <h2 class="display-2" style="margin: 1rem 0; color: var(--mg-navy);">Du suchst <em>deine</em> AG?</h2>
+      <p style="color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7;">
+        Im Sekretariat erhältst du den aktuellen AG-Plan mit Zeiten und Ansprechpartner*innen.
+        Quereinstieg ist meist jederzeit möglich.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-navy"><i data-lucide="download"></i> AG-Plan herunterladen</a>
+        <a href="aktuelles.html" class="btn btn-outline">Aktuelles aus dem Schulleben <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="#">Terminkalender</a></li>
+          <li><a href="#">Vorlagen für Eltern</a></li>
+          <li><a href="#">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+/* ==========================================================================
+   AKTIVITÄTEN-DATENBANK – einfach erweiterbar
+   ========================================================================== */
+const activities = [
+  // AGs
+  { id: 1, type: 'ag', typeLabel: 'AG', title: 'Schulorchester „Groovin\' Chicas"', desc: 'Klassische und moderne Musik im großen Ensemble – unter der Leitung von Jonas Gebbeken.', meta: 'Wöchentlich · Klasse 7–13', img: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80' },
+  { id: 2, type: 'ag', typeLabel: 'AG', title: 'Musical-AG', desc: 'Singen, Schauspielen, Bühnenpräsenz: Die Musical-AG bringt jährlich eigene Aufführungen auf die Bühne.', meta: 'Wöchentlich · alle Stufen', img: 'https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=600&q=80' },
+  { id: 3, type: 'ag', typeLabel: 'AG', title: 'Schach-AG', desc: 'Strategisches Denken, mentale Stärke, Turnierpraxis – mit erfahrenen Trainern und Kooperation zum Schachclub Papenburg.', meta: 'Wöchentlich · ab Klasse 5', img: 'https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=600&q=80' },
+  { id: 4, type: 'ag', typeLabel: 'AG', title: 'Fit in Technik', desc: 'Werkstatt, eigene Konstruktionen, Wettbewerbe: Die Technik-AG begeistert für MINT.', meta: 'Wöchentlich · Klasse 5–10', img: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=600&q=80' },
+  { id: 5, type: 'ag', typeLabel: 'AG', title: 'Schülerzeitung', desc: 'Texte, Layout, Redaktion: Sieben Schülerinnen und ein Lehrer – die wiederbelebte Schülerzeitung am MG.', meta: 'Wöchentlich', img: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80' },
+  { id: 6, type: 'ag', typeLabel: 'AG', title: 'Schulsanitäter', desc: 'Erste Hilfe als Berufung: Ausgebildete Schüler*innen sorgen für medizinische Sicherheit im Schulalltag.', meta: 'Wöchentlich · ab Klasse 8', img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80' },
+
+  // Wettbewerbe
+  { id: 7, type: 'wettbewerb', typeLabel: 'Wettbewerb', title: 'Jugend forscht', desc: 'Eigene Forschungsprojekte – mit mehrfachen Erfolgen bis ins Bundesfinale, besonders in Chemie und Biologie.', meta: 'Jährlich · Sek I & II', img: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=600&q=80' },
+  { id: 8, type: 'wettbewerb', typeLabel: 'Wettbewerb', title: 'Mathematik-Olympiade', desc: 'Knobeln, beweisen, lösen – die Mathe-Olympiade fordert die schärfsten Köpfe ab Klasse 5.', meta: 'Jährlich · alle Stufen', img: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80' },
+  { id: 9, type: 'wettbewerb', typeLabel: 'Wettbewerb', title: 'Schulschach-Wettbewerb', desc: 'Mehrfache Bezirksmeistertitel und Teilnahmen an den Niedersächsischen Landesmeisterschaften.', meta: 'Jährlich · Klasse 5–13', img: 'https://images.unsplash.com/photo-1528819622765-d6bcf132f793?auto=format&fit=crop&w=600&q=80' },
+  { id: 10, type: 'wettbewerb', typeLabel: 'Wettbewerb', title: 'Vorlesewettbewerb', desc: 'Stimme, Ausdruck, Bühnenmut: Der Vorlesewettbewerb der 6. Klassen ist eine schöne Tradition.', meta: 'Jährlich · Klasse 6', img: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=600&q=80' },
+  { id: 11, type: 'wettbewerb', typeLabel: 'Wettbewerb', title: 'Känguru-Wettbewerb', desc: 'Internationaler Mathe-Wettbewerb mit Knobel-Aufgaben – jedes Jahr nehmen hunderte MG-Schüler*innen teil.', meta: 'Jährlich · alle Stufen', img: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=80' },
+  { id: 12, type: 'wettbewerb', typeLabel: 'Wettbewerb', title: 'Junior.ING', desc: 'Wettbewerb der Ingenieurkammer Niedersachsen – die „Fit in Technik"-AG baut spektakuläre Modelle.', meta: 'Jährlich · Klasse 5–13', img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80' },
+
+  // Projekte
+  { id: 13, type: 'projekt', typeLabel: 'Projekt', title: 'Schöpfung bewahren', desc: 'Klimaschutz, Naturpflege, Nachhaltigkeit: Unser fächerübergreifender Projekttag setzt jedes Jahr neue Akzente.', meta: 'Jährlich · alle Stufen', img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80' },
+  { id: 14, type: 'projekt', typeLabel: 'Projekt', title: 'Klimamanagerinnen', desc: 'Schülerinnen, die Verantwortung übernehmen – Energiesparen, Bewusstsein schaffen, konkrete Maßnahmen umsetzen.', meta: 'Laufend', img: 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=600&q=80' },
+  { id: 15, type: 'projekt', typeLabel: 'Projekt', title: 'Schülerlotsen-Ausbildung', desc: 'Über 120 aktive Schülerlotsen sorgen für Verkehrssicherheit – ausgebildet in Kooperation mit der Polizei Papenburg.', meta: 'Halbjährlich · ab Klasse 8', img: 'https://images.unsplash.com/photo-1580508174046-170816f65662?auto=format&fit=crop&w=600&q=80' },
+  { id: 16, type: 'projekt', typeLabel: 'Projekt', title: 'Tag des Vorlesens', desc: 'Ein literarischer Tag, an dem Lesefreude im Mittelpunkt steht – mit Gästen, Workshops und Lesungen.', meta: 'Jährlich · Klasse 5–7', img: 'https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=600&q=80' },
+  { id: 17, type: 'projekt', typeLabel: 'Projekt', title: 'Friedenslicht aus Bethlehem', desc: 'Adventliche Tradition: Das Friedenslicht wird in alle Klassenräume getragen – ein stilles Zeichen der Hoffnung.', meta: 'Jährlich · Dezember', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=600&q=80' },
+  { id: 18, type: 'projekt', typeLabel: 'Projekt', title: 'Gesundheitstage', desc: 'Bewegung, Ernährung, mentale Gesundheit – ein abwechslungsreiches Programm für die ganze Schulgemeinschaft.', meta: 'Jährlich · alle Stufen', img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80' },
+
+  // Austausch
+  { id: 19, type: 'austausch', typeLabel: 'Austausch', title: 'Mottola, Italien', desc: 'Apulische Lebensart, italienische Sprachpraxis und herzliche Gastfreundschaft im Süden Italiens.', meta: 'Jährlich · Klasse 9–11', img: 'https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=600&q=80' },
+  { id: 20, type: 'austausch', typeLabel: 'Austausch', title: 'Albaida, Spanien', desc: 'Im Herzen Valencias gelegen – ein Austausch, der spanisches Lebensgefühl und Sprache verbindet.', meta: 'Jährlich · Klasse 9–11', img: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=600&q=80' },
+  { id: 21, type: 'austausch', typeLabel: 'Austausch', title: 'Cork, Irland', desc: 'Englisch im Originalklang – Sprachpraxis und irische Lebensfreude an der Atlantikküste.', meta: 'Jährlich · Klasse 9–11', img: 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=600&q=80' }
+];
+
+let activeFilter = 'all';
+
+function getFiltered() {
+  return activeFilter === 'all' ? activities : activities.filter(a => a.type === activeFilter);
+}
+
+function updateCounts() {
+  document.getElementById('count-all').textContent = activities.length;
+  document.getElementById('count-ag').textContent = activities.filter(a => a.type === 'ag').length;
+  document.getElementById('count-wettbewerb').textContent = activities.filter(a => a.type === 'wettbewerb').length;
+  document.getElementById('count-projekt').textContent = activities.filter(a => a.type === 'projekt').length;
+  document.getElementById('count-austausch').textContent = activities.filter(a => a.type === 'austausch').length;
+}
+
+function render() {
+  const grid = document.getElementById('activities-grid');
+  const items = getFiltered();
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty-state">
+      <i data-lucide="inbox"></i>
+      <h3>Keine Einträge gefunden</h3>
+      <p>Bitte wählen Sie einen anderen Filter.</p>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  grid.innerHTML = items.map(a => `
+    <article class="activity-card">
+      <div class="activity-img">
+        <span class="activity-cat ${a.type}">${a.typeLabel}</span>
+        <img src="${a.img}" alt="${a.title}" loading="lazy">
+      </div>
+      <div class="activity-body">
+        <h3>${a.title}</h3>
+        <p>${a.desc}</p>
+        <div class="activity-meta">
+          <span class="day"><i data-lucide="calendar"></i> ${a.meta}</span>
+          <span class="activity-link">Mehr <i data-lucide="arrow-right"></i></span>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  lucide.createIcons();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    render();
+    document.querySelector('.activities-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+updateCounts();
+render();
+</script>
+</body>
+</html>

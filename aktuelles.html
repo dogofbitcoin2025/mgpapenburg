@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktuelles – Mariengymnasium Papenburg</title>
+<meta name="description" content="Aktuelle Nachrichten, Berichte und Termine aus dem Schulleben des Mariengymnasiums Papenburg.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* AKTUELLES-SPEZIFISCH */
+.search-bar-wrap {
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--mg-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1.75rem 0;
+}
+.search-bar-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+.search-input { position: relative; display: flex; align-items: center; }
+.search-input svg {
+  position: absolute;
+  left: 1.25rem;
+  width: 18px; height: 18px;
+  color: var(--mg-text-soft);
+  pointer-events: none;
+}
+.search-input input {
+  width: 100%;
+  padding: 0.95rem 1.25rem 0.95rem 3.25rem;
+  border: 1px solid var(--mg-gray-200);
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: white;
+  transition: all 0.2s;
+}
+.search-input input:focus {
+  outline: none;
+  border-color: var(--mg-gold);
+  box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.1);
+}
+.filter-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.filter-pill {
+  background: white;
+  border: 1px solid var(--mg-gray-200);
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mg-text-soft);
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.filter-pill:hover { border-color: var(--mg-navy); color: var(--mg-navy); }
+.filter-pill.active {
+  background: var(--mg-navy);
+  border-color: var(--mg-navy);
+  color: white;
+}
+
+/* Featured */
+.featured-news { background: var(--mg-paper); padding: 4rem 0 1rem; }
+.featured-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--mg-gray-100);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+}
+.featured-card:hover {
+  box-shadow: var(--shadow-xl);
+  border-color: var(--mg-gold-light);
+}
+.featured-card-image {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+}
+.featured-card-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+.featured-card:hover .featured-card-image img { transform: scale(1.04); }
+.featured-card-image::before {
+  content: 'Aktueller Beitrag';
+  position: absolute;
+  top: 1.5rem; left: 1.5rem;
+  background: var(--mg-gold);
+  color: var(--mg-navy-deep);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  z-index: 2;
+}
+.featured-card-body {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.featured-card-meta {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mg-gold-deep);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.featured-card-meta span { color: var(--mg-text-soft); }
+.featured-card-body h2 {
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+.featured-card-body p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--mg-text-soft);
+  margin-bottom: 1.75rem;
+}
+
+/* Archive Grid */
+.news-archive { background: var(--mg-paper); padding: 3rem 0 5rem; }
+.news-grid-archive {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.news-card-archive {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--mg-gray-100);
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+.news-card-archive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--mg-gold-light);
+}
+.news-card-archive-img {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+.news-card-archive-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+.news-card-archive:hover .news-card-archive-img img { transform: scale(1.06); }
+.news-card-archive-cat {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: white;
+}
+.news-card-archive-cat.schulleben { background: #2563a8; }
+.news-card-archive-cat.wettbewerbe { background: #c9a961; color: var(--mg-navy-deep); }
+.news-card-archive-cat.kultur { background: #8b5a9f; }
+.news-card-archive-cat.sport { background: #2d9b6f; }
+.news-card-archive-cat.austausch { background: #d97757; }
+.news-card-archive-body { padding: 1.75rem; }
+.news-card-archive-meta {
+  font-size: 0.78rem;
+  color: var(--mg-text-soft);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+.news-card-archive-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1.25;
+  color: var(--mg-navy);
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+.news-card-archive-body p {
+  color: var(--mg-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.news-card-archive-link {
+  color: var(--mg-navy);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.news-card-archive-link svg { width: 14px; height: 14px; }
+.news-card-archive:hover .news-card-archive-link { gap: 0.6rem; color: var(--mg-gold-deep); }
+
+/* Modal */
+.news-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: rgba(10, 37, 64, 0.7);
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+.news-modal.active { display: flex; animation: fadeIn 0.25s ease; }
+.news-modal-inner {
+  background: white;
+  max-width: 800px;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  animation: fadeInUp 0.4s ease;
+}
+.news-modal-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  color: var(--mg-navy);
+  transition: all 0.2s;
+}
+.news-modal-close:hover { background: var(--mg-gold); color: var(--mg-navy-deep); transform: scale(1.05); }
+.news-modal-img { aspect-ratio: 16/9; overflow: hidden; }
+.news-modal-img img { width: 100%; height: 100%; object-fit: cover; }
+.news-modal-body { padding: 3rem; }
+.news-modal-meta {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mg-gold-deep);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.news-modal-body h2 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.news-modal-body p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--mg-text);
+  margin-bottom: 1.25rem;
+}
+
+/* Empty State */
+.empty-state-news {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--mg-text-soft);
+}
+.empty-state-news svg {
+  width: 56px; height: 56px;
+  color: var(--mg-gray-300);
+  margin: 0 auto 1.25rem;
+}
+.empty-state-news h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--mg-navy);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-card-body { padding: 2rem; }
+  .featured-card-body h2 { font-size: 1.7rem; }
+  .news-grid-archive { grid-template-columns: repeat(2, 1fr); }
+  .search-bar-inner { grid-template-columns: 1fr; }
+  .news-modal-body { padding: 2rem; }
+}
+@media (max-width: 640px) {
+  .news-grid-archive { grid-template-columns: 1fr; }
+  .news-modal { padding: 0; }
+  .news-modal-inner { border-radius: 0; min-height: 100vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
+           onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
+      <div class="logo-text">
+        <strong>Mariengymnasium</strong>
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link active">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Aktuelles</span>
+    </div>
+    <span class="eyebrow">Aus dem Schulleben</span>
+    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Aktu<em>elles.</em></h1>
+    <p class="lead">
+      Berichte, Erlebnisse und Geschichten aus unserem Schulalltag – frisch aus
+      dem Mariengymnasium und seinen Klassenzimmern, Konzertsälen und Sporthallen.
+    </p>
+  </div>
+</section>
+
+<!-- SEARCH & FILTER BAR -->
+<div class="search-bar-wrap">
+  <div class="search-bar-inner">
+    <div class="search-input">
+      <i data-lucide="search"></i>
+      <input type="text" id="searchInput" placeholder="Beiträge durchsuchen …">
+    </div>
+    <div class="filter-pills">
+      <button class="filter-pill active" data-cat="all">Alle</button>
+      <button class="filter-pill" data-cat="schulleben">Schulleben</button>
+      <button class="filter-pill" data-cat="wettbewerbe">Wettbewerbe</button>
+      <button class="filter-pill" data-cat="kultur">Kultur</button>
+      <button class="filter-pill" data-cat="sport">Sport</button>
+      <button class="filter-pill" data-cat="austausch">Austausch</button>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED -->
+<section class="featured-news" id="featured-section">
+  <div class="container-narrow">
+    <div id="featured-container"></div>
+  </div>
+</section>
+
+<!-- ARCHIVE GRID -->
+<section class="news-archive">
+  <div class="container">
+    <div class="news-grid-archive" id="news-grid"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="news-modal" id="newsModal">
+  <div class="news-modal-inner">
+    <button class="news-modal-close" id="modalClose" aria-label="Schließen"><i data-lucide="x"></i></button>
+    <div class="news-modal-img"><img id="modalImg" src="" alt=""></div>
+    <div class="news-modal-body">
+      <div class="news-modal-meta" id="modalMeta"></div>
+      <h2 id="modalTitle"></h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="#">Terminkalender</a></li>
+          <li><a href="#">Vorlagen für Eltern</a></li>
+          <li><a href="#">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+/* ==========================================================================
+   NEWS-DATENBANK – einfach erweiterbar
+   Neuen Beitrag am ANFANG der Liste einfügen.
+   Pflichtfelder: id, datum, autor, kategorie, kategorieLabel, titel, vorschau, bild, inhalt
+   Kategorien: 'schulleben' | 'wettbewerbe' | 'kultur' | 'sport' | 'austausch'
+   ========================================================================== */
+const newsData = [
+  {
+    id: 1,
+    datum: '23.02.2026',
+    autor: 'Schulleitung',
+    kategorie: 'schulleben',
+    kategorieLabel: 'Schulleben',
+    titel: 'Rosenmontag: Chaos im Comic-Universum',
+    vorschau: 'Am Rosenmontag verwandelte sich das Forum in eine bunte Comic-Welt. Klassen 5 bis 7 feierten gemeinsam ein fröhliches Karnevalsfest voller Kreativität und guter Laune.',
+    bild: 'https://images.unsplash.com/photo-1551446591-142875a901a1?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Wenn am Rosenmontag das Forum von Lachen, Musik und einem Kostümmeer erfüllt ist, dann ist klar: Karneval am Mariengymnasium ist mehr als nur ein Brauch – es ist eine kleine Tradition geworden.</p><p>In diesem Jahr stand das Fest unter dem Motto „Chaos im Comic-Universum". Die Klassen 5 bis 7 hatten sich in den Tagen zuvor schon kreativ vorbereitet: Superhelden, Manga-Figuren und Cartoon-Klassiker bevölkerten die Schule und sorgten für unzählige fotogene Momente.</p><p>Die SV hatte ein abwechslungsreiches Programm zusammengestellt – mit Tänzen, Spielen und einer Kostümprämierung. Großer Dank gilt allen, die diesen Vormittag möglich gemacht haben.</p>`
+  },
+  {
+    id: 2,
+    datum: '16.12.2025',
+    autor: 'Musikfachschaft',
+    kategorie: 'kultur',
+    kategorieLabel: 'Kultur',
+    titel: 'Adventskonzert in St. Antonius',
+    vorschau: 'Eine volle Kirche, warmes Licht, gespannte Stille – und dann die ersten Töne. 300 Zuhörer erlebten ein bewegendes Programm aus klassischem und modernem Repertoire.',
+    bild: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Das Adventskonzert ist eines der musikalischen Highlights im Jahreskreis unseres Mariengymnasiums. Auch 2025 öffnete die Pfarrkirche St. Antonius ihre Tore – und füllte sich bis in die letzten Reihen.</p><p>Schulorchester, Chor und unsere Bläsergruppe „Groovin' Chicas" präsentierten ein abwechslungsreiches Programm mit klassischer und zeitgenössischer Adventsmusik. Solistische Beiträge unserer Oberstufenschüler*innen rundeten den Abend ab.</p><p>Wir bedanken uns bei der Pfarrgemeinde St. Antonius für die wunderbare Gastfreundschaft sowie bei allen Mitwirkenden für ihren großen Einsatz.</p>`
+  },
+  {
+    id: 3,
+    datum: '10.11.2025',
+    autor: 'Schach-AG',
+    kategorie: 'schulleben',
+    kategorieLabel: 'Schulleben',
+    titel: '2. Schachnacht am MG',
+    vorschau: 'Eine spannende Nacht voller witziger Schachvarianten und kleiner Überraschungen mit 25 Schüler*innen aus den Klassen 5 bis 12.',
+    bild: 'https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Bauernumwandlung in einer schwarz-weißen Pizza? Klingt absurd, ist aber Teil der ungewöhnlichen Schachvarianten, die unsere Schach-AG-Leiter sich zur 2. Schachnacht ausgedacht hatten.</p><p>25 Schüler*innen aus den Klassen 5 bis 12 trafen sich an einem Freitagabend in der Schule, um bis tief in die Nacht zu spielen, zu lachen, zu rätseln. Neben „normalen" Partien gab es Bug House, Tandem-Schach und Crazyhouse.</p><p>Pizza und Pasta sorgten für die nötige Stärkung – und gegen drei Uhr morgens lag dann die Nacht so still über Papenburg, wie eben nur Schachspieler sie genießen können.</p>`
+  },
+  {
+    id: 4,
+    datum: '28.10.2025',
+    autor: 'Sportfachschaft',
+    kategorie: 'sport',
+    kategorieLabel: 'Sport',
+    titel: 'Volleyball-Bezirksmeister: MG holt den Titel',
+    vorschau: 'Unsere WK II-Mannschaft sicherte sich beim Bezirksentscheid in Meppen souverän den Titel und qualifizierte sich für das Landesfinale.',
+    bild: 'https://images.unsplash.com/photo-1594470117722-de4b9a02ebed?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Was für ein Tag! Unsere Volleyball-Mannschaft (WK II) reiste am Mittwoch nach Meppen – und kehrte als Bezirksmeister zurück.</p><p>In drei spannenden Partien gegen Mannschaften aus Lingen, Meppen und Sögel zeigten sich unsere Spielerinnen und Spieler in Topform. Besonders das Endspiel gegen das Windthorst-Gymnasium war ein echter Krimi: 25:23 im dritten Satz – knapper geht es kaum.</p><p>Nun geht es zum Landesentscheid nach Hannover. Wir drücken die Daumen!</p>`
+  },
+  {
+    id: 5,
+    datum: '15.10.2025',
+    autor: 'Austausch-Team',
+    kategorie: 'austausch',
+    kategorieLabel: 'Austausch',
+    titel: 'Mottola zu Gast: Italienische Begegnungen',
+    vorschau: '24 italienische Schüler*innen aus Mottola verbrachten eine Woche bei uns – mit Schulbesuch, Bremen-Ausflug und einem festlichen Abschiedsabend.',
+    bild: 'https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>„Buongiorno!" Eine Woche lang erklang das italienische Lebensgefühl in den Gängen unserer Schule. 24 Schüler*innen aus Mottola hatten den weiten Weg von Apulien nach Papenburg auf sich genommen.</p><p>Das Programm war abwechslungsreich: Schulbesuch, eine Stadtführung in Bremen, ein Besuch der Meyer-Werft sowie ein gemütliches gemeinsames Pizza-Backen waren nur einige Highlights.</p><p>Der Höhepunkt: ein Abschiedsabend mit italienisch-deutschem Buffet, Musik und vielen Tränen beim Abschied. Im Frühjahr 2026 reisen unsere Schüler*innen zum Gegenbesuch nach Mottola.</p>`
+  },
+  {
+    id: 6,
+    datum: '02.10.2025',
+    autor: 'Jugend-forscht-AG',
+    kategorie: 'wettbewerbe',
+    kategorieLabel: 'Wettbewerbe',
+    titel: 'Drei Anmeldungen bei Jugend forscht 2026',
+    vorschau: 'Drei Forscherteams aus Klasse 9 und 11 reichen ihre Projekte zum Regionalwettbewerb in Lingen ein – mit Themen aus Chemie, Physik und Technik.',
+    bild: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Mit drei Projekten ist das MG in diesem Jahr beim Regionalwettbewerb von Jugend forscht in Lingen vertreten. Die Themen reichen von der elektrochemischen Bestimmung von Schwermetallen im Trinkwasser über die Mechanik selbstfahrender Lastenfahrräder bis hin zu einer Analyse der Akustik unseres Forums.</p><p>Wir wünschen unseren Forscher*innen viel Erfolg – und drücken die Daumen, dass auch in diesem Jahr wieder ein Team den Sprung ins Bundesfinale schafft, wie zuletzt 2024.</p>`
+  },
+  {
+    id: 7,
+    datum: '20.09.2025',
+    autor: 'SV',
+    kategorie: 'schulleben',
+    kategorieLabel: 'Schulleben',
+    titel: 'Neue Schülervertretung gewählt',
+    vorschau: 'Bei der konstituierenden Sitzung wurde Lina Bauer (Q1) zur neuen Schulsprecherin gewählt. Ihr Schwerpunkt: mehr Nachhaltigkeit am MG.',
+    bild: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Die Schülervertretung des MG hat eine neue Spitze: Lina Bauer aus dem Jahrgang Q1 wurde zur Schulsprecherin gewählt. Ihre Stellvertreter sind Tom Klassen (10c) und Ayse Demir (Q2).</p><p>„Wir wollen die Stimme der Schüler*innen stärker einbringen – besonders bei Themen wie Nachhaltigkeit, Mensa-Angebot und Schulhof-Gestaltung", sagt Lina im ersten Interview. Erste Initiativen sind bereits in Planung: ein Fahrrad-Service-Tag und eine Klima-AG.</p><p>Wir wünschen der neuen SV viel Erfolg und freuen uns auf eine konstruktive Zusammenarbeit.</p>`
+  },
+  {
+    id: 8,
+    datum: '12.09.2025',
+    autor: 'Schulleitung',
+    kategorie: 'schulleben',
+    kategorieLabel: 'Schulleben',
+    titel: 'Einschulungsfeier der Klassen 5',
+    vorschau: '78 neue Fünftklässler*innen wurden bei einer feierlichen Einschulung in St. Antonius willkommen geheißen – ein Tag voller Vorfreude und neuer Begegnungen.',
+    bild: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Aufregung, Vorfreude, ein bisschen Lampenfieber: 78 Schüler*innen begannen am Mittwoch ihre Zeit am Mariengymnasium. Die feierliche Einschulung fand traditionell in der Pfarrkirche St. Antonius statt.</p><p>Schulleiter Michael Bloemer begrüßte die neuen Gesichter mit einer Ansprache, in der er den Wert von Gemeinschaft betonte. Musikalisch umrahmt wurde der Gottesdienst von unserem Schulchor.</p><p>Anschließend ging es zur ersten Stunde in die neuen Klassenräume – wo die Klassenleitungs-Tandems schon mit Begrüßungsspielen warteten. Wir freuen uns auf eine gute gemeinsame Zeit!</p>`
+  },
+  {
+    id: 9,
+    datum: '01.07.2025',
+    autor: 'Q2',
+    kategorie: 'kultur',
+    kategorieLabel: 'Kultur',
+    titel: 'Abiball 2025: Ein unvergesslicher Abend',
+    vorschau: '94 Abiturient*innen feierten in der Stadthalle ihren erfolgreichen Abschluss mit einem festlichen Ball – elegant, emotional und voller Erinnerungen.',
+    bild: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>Galadinner, Reden, Tanz – der Abiball 2025 war ein würdiger Abschluss für 94 Abiturient*innen, die zwölf bzw. dreizehn Jahre am MG verbracht haben.</p><p>Die Stadthalle Papenburg war stilvoll geschmückt, die Abiturient*innen erschienen in eleganten Roben und Anzügen. Höhepunkt war die Eröffnung durch den Walzer der Abi-Eröffnungsklasse – ein Anblick, der vielen Eltern Tränen in die Augen trieb.</p><p>Die Abizeitung „Abigail Christie – Mord in der MGP" sorgte für viele Lacher – ein liebevoller Rückblick auf zwölf gemeinsame Jahre.</p><p>Wir wünschen unseren Absolvent*innen alles Gute auf ihrem weiteren Weg!</p>`
+  },
+  {
+    id: 10,
+    datum: '15.05.2025',
+    autor: 'Schulleitung',
+    kategorie: 'schulleben',
+    kategorieLabel: 'Schulleben',
+    titel: 'Festakt: 190 Jahre Mariengymnasium',
+    vorschau: 'Mit Musik, Reden und einem Festempfang feierten wir das 190-jährige Bestehen unserer Schule – ein bewegender Moment für die gesamte Schulgemeinschaft.',
+    bild: 'https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=1200&q=80',
+    inhalt: `<p>190 Jahre – das ist ein Grund zum Feiern. Am 15. Mai begingen wir mit einem festlichen Akt im Forum unserer Schule den runden Geburtstag des Mariengymnasiums.</p><p>Geladen waren Vertreter*innen aus Politik, Kirche, Stadt und Region, ehemalige Schüler*innen und Lehrkräfte sowie Freunde und Förderer der Schule. In ihren Grußworten betonten alle Redner*innen die wichtige Rolle des MG für die Bildungslandschaft im Emsland.</p><p>Musikalisch umrahmt wurde der Festakt von Schülerinnen und Schülern, die ein eigens komponiertes Festlied uraufführten. Das Jubiläum begleitet uns durch das gesamte Jahr 2025 – mit weiteren Veranstaltungen, einem Schulfest und einem großen Ehemaligentreffen.</p>`
+  }
+];
+
+let activeCategory = 'all';
+let searchQuery = '';
+
+function getFiltered() {
+  return newsData.filter(n => {
+    const matchCat = activeCategory === 'all' || n.kategorie === activeCategory;
+    const q = searchQuery.toLowerCase().trim();
+    const matchSearch = !q ||
+      n.titel.toLowerCase().includes(q) ||
+      n.vorschau.toLowerCase().includes(q) ||
+      n.kategorieLabel.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+}
+
+function renderFeatured(items) {
+  const container = document.getElementById('featured-container');
+  const section = document.getElementById('featured-section');
+  if (items.length === 0 || activeCategory !== 'all' || searchQuery) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
+  const f = items[0];
+  container.innerHTML = `
+    <article class="featured-card" data-id="${f.id}">
+      <div class="featured-card-image">
+        <img src="${f.bild}" alt="${f.titel}">
+      </div>
+      <div class="featured-card-body">
+        <div class="featured-card-meta">${f.kategorieLabel} · <span>${f.datum} · ${f.autor}</span></div>
+        <h2>${f.titel}</h2>
+        <p>${f.vorschau}</p>
+        <span class="news-card-archive-link">Beitrag lesen <i data-lucide="arrow-right"></i></span>
+      </div>
+    </article>`;
+  lucide.createIcons();
+}
+
+function renderGrid(items) {
+  const grid = document.getElementById('news-grid');
+  const list = (activeCategory === 'all' && !searchQuery) ? items.slice(1) : items;
+  if (list.length === 0 && items.length === 0) {
+    grid.innerHTML = `<div class="empty-state-news">
+      <i data-lucide="search-x"></i>
+      <h3>Keine Beiträge gefunden</h3>
+      <p>Versuchen Sie eine andere Suche oder einen anderen Filter.</p>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  grid.innerHTML = list.map(n => `
+    <article class="news-card-archive" data-id="${n.id}">
+      <div class="news-card-archive-img">
+        <span class="news-card-archive-cat ${n.kategorie}">${n.kategorieLabel}</span>
+        <img src="${n.bild}" alt="${n.titel}" loading="lazy">
+      </div>
+      <div class="news-card-archive-body">
+        <div class="news-card-archive-meta">${n.datum} · ${n.autor}</div>
+        <h3>${n.titel}</h3>
+        <p>${n.vorschau}</p>
+        <span class="news-card-archive-link">Weiterlesen <i data-lucide="arrow-right"></i></span>
+      </div>
+    </article>`).join('');
+  lucide.createIcons();
+}
+
+function render() {
+  const items = getFiltered();
+  renderFeatured(items);
+  renderGrid(items);
+}
+
+// Filter
+document.querySelectorAll('.filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.cat;
+    render();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  render();
+});
+
+// Modal
+const modal = document.getElementById('newsModal');
+function openModal(id) {
+  const n = newsData.find(x => x.id === id);
+  if (!n) return;
+  document.getElementById('modalImg').src = n.bild;
+  document.getElementById('modalImg').alt = n.titel;
+  document.getElementById('modalMeta').textContent = `${n.kategorieLabel} · ${n.datum} · ${n.autor}`;
+  document.getElementById('modalTitle').textContent = n.titel;
+  document.getElementById('modalContent').innerHTML = n.inhalt;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  lucide.createIcons();
+}
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+// Click delegation
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('[data-id]');
+  if (card) openModal(parseInt(card.dataset.id));
+});
+
+render();
+</script>
+</body>
+</html>

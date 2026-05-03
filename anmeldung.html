@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anmeldung – Mariengymnasium Papenburg</title>
+<meta name="description" content="Anmeldung am Mariengymnasium Papenburg: Klasse 5, Online-Anmeldung und Oberstufe – alle Termine und Wege auf einer Seite.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ANMELDUNG-SPEZIFISCH */
+
+.way-section { background: var(--mg-paper); padding-top: 0; }
+
+.way-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: -3rem auto 4rem;
+  max-width: 1100px;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--mg-gray-200);
+  position: relative;
+  z-index: 10;
+}
+.way-tab {
+  background: transparent;
+  border: none;
+  padding: 1.5rem 1.5rem;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all 0.3s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.way-tab-icon {
+  width: 48px; height: 48px;
+  background: var(--mg-blue-soft);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--mg-navy);
+  transition: all 0.3s;
+}
+.way-tab-icon svg { width: 22px; height: 22px; }
+.way-tab-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+}
+.way-tab-sub {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--mg-text-soft);
+}
+.way-tab:hover { background: var(--mg-cream); }
+.way-tab.active { background: var(--mg-navy); }
+.way-tab.active .way-tab-icon { background: var(--mg-gold); }
+.way-tab.active .way-tab-title { color: white; }
+.way-tab.active .way-tab-sub { color: var(--mg-gold-light); }
+
+.way-content { display: none; }
+.way-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+.way-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+.way-hero-image {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+.way-hero-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.way-hero-content h2 { color: var(--mg-navy); margin-bottom: 1.5rem; }
+.way-hero-content .lead { font-size: 1.15rem; color: var(--mg-text); margin-bottom: 1.5rem; }
+.way-hero-content p { font-size: 1rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1rem; }
+
+/* Dates Card */
+.dates-card {
+  background: linear-gradient(135deg, var(--mg-navy-deep), var(--mg-navy));
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.dates-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--mg-gold), transparent);
+}
+.dates-card .eyebrow {
+  color: var(--mg-gold);
+  margin-bottom: 0.75rem;
+}
+.dates-card .eyebrow::before { background: var(--mg-gold); }
+.dates-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.dates-list { list-style: none; }
+.dates-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.95rem;
+}
+.dates-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.dates-list .day { font-weight: 500; color: white; }
+.dates-list .time {
+  color: var(--mg-gold-light);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Documents Grid */
+.documents-section { background: var(--mg-cream); padding: 5rem 0; }
+.documents-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.document-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 1px solid var(--mg-gray-100);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: all 0.3s;
+}
+.document-card:hover {
+  border-color: var(--mg-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.document-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-navy);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+}
+.document-icon svg { width: 26px; height: 26px; }
+.document-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.5rem;
+}
+.document-card p {
+  color: var(--mg-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Steps Section (für Online-Anmeldung) */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.step-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--mg-gray-100);
+  position: relative;
+  transition: all 0.3s;
+}
+.step-card:hover {
+  border-color: var(--mg-gold-light);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--mg-gold);
+  line-height: 1;
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+.step-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.7rem;
+}
+.step-card p {
+  color: var(--mg-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* Help Section */
+.help-section { background: var(--mg-paper); padding: 5rem 0; }
+.help-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.contact-info {
+  background: white;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-100);
+  box-shadow: var(--shadow-sm);
+}
+.contact-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--mg-gray-100);
+}
+.contact-row:last-child { border-bottom: none; padding-bottom: 0; }
+.contact-row:first-child { padding-top: 0; }
+.contact-icon {
+  width: 44px; height: 44px;
+  background: var(--mg-blue-soft);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--mg-navy);
+  flex-shrink: 0;
+}
+.contact-icon svg { width: 18px; height: 18px; }
+.contact-row strong {
+  display: block;
+  color: var(--mg-navy);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.contact-row a, .contact-row span {
+  color: var(--mg-text-soft);
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+.contact-row a:hover { color: var(--mg-gold-deep); }
+
+@media (max-width: 1024px) {
+  .way-tabs { grid-template-columns: 1fr; gap: 0.5rem; }
+  .way-tab { flex-direction: row; justify-content: flex-start; padding: 1rem 1.5rem; gap: 1rem; text-align: left; }
+  .way-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .documents-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .help-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 640px) {
+  .way-tabs { margin: -2rem auto 3rem; padding: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
+           onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
+      <div class="logo-text">
+        <strong>Mariengymnasium</strong>
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link active">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Anmeldung</span>
+    </div>
+    <span class="eyebrow">Schuljahr 2026/27</span>
+    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">An<em>meldung.</em></h1>
+    <p class="lead">
+      Drei Wege, eine neue Schulgemeinschaft: Wählen Sie den Weg, der zu Ihrer Situation passt.
+      Wir freuen uns darauf, Sie kennenzulernen.
+    </p>
+  </div>
+</section>
+
+<section class="way-section">
+  <div class="container">
+
+    <div class="way-tabs">
+      <button class="way-tab active" data-way="klasse5">
+        <div class="way-tab-icon"><i data-lucide="user-plus"></i></div>
+        <div class="way-tab-title">Klasse 5</div>
+        <div class="way-tab-sub">aus der Grundschule</div>
+      </button>
+      <button class="way-tab" data-way="online">
+        <div class="way-tab-icon"><i data-lucide="laptop"></i></div>
+        <div class="way-tab-title">Online-Anmeldung</div>
+        <div class="way-tab-sub">jederzeit von zu Hause</div>
+      </button>
+      <button class="way-tab" data-way="oberstufe">
+        <div class="way-tab-icon"><i data-lucide="graduation-cap"></i></div>
+        <div class="way-tab-title">Oberstufe</div>
+        <div class="way-tab-sub">Wechsel in Klasse 11</div>
+      </button>
+    </div>
+
+    <!-- WAY 1: KLASSE 5 -->
+    <div class="way-content active" id="way-klasse5">
+      <div class="way-hero-grid">
+        <div class="way-hero-image">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Schulanfänger">
+        </div>
+        <div class="way-hero-content">
+          <span class="eyebrow">Anmeldung Klasse 5</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Aus der <em>Grundschule</em> ans MG.</h2>
+          <p class="lead">
+            Drei Tage im Februar, drei Wege zum Mariengymnasium: Persönlich vor Ort
+            mit allen Unterlagen – persönlich begleitet von der Schulleitung.
+          </p>
+          <p>
+            Die Anmeldung für die 5. Klassen findet im Februar 2026 statt. Wir empfehlen
+            den persönlichen Termin, da Sie hier die Möglichkeit haben, alle Fragen direkt
+            zu klären und unsere Schule kennenzulernen.
+          </p>
+        </div>
+      </div>
+
+      <div class="dates-card" style="margin-bottom: 4rem;">
+        <span class="eyebrow">Persönliche Anmeldung</span>
+        <h3 style="margin-top: 0.75rem;">Februar 2026 in der Schule</h3>
+        <ul class="dates-list">
+          <li><span class="day">Mittwoch · 18.02.2026</span><span class="time">15 – 18 Uhr</span></li>
+          <li><span class="day">Donnerstag · 19.02.2026</span><span class="time">15 – 18 Uhr</span></li>
+          <li><span class="day">Freitag · 20.02.2026</span><span class="time">15 – 17 Uhr</span></li>
+        </ul>
+      </div>
+
+      <h3 class="display-3" style="color: var(--mg-navy); text-align: center; margin-bottom: 0.5rem;">Was Sie <em>mitbringen</em> sollten.</h3>
+      <p class="lead" style="margin: 0 auto 3rem; text-align: center;">Damit die Anmeldung schnell und reibungslos erfolgen kann.</p>
+
+      <div class="documents-grid">
+        <div class="document-card">
+          <div class="document-icon"><i data-lucide="file-text"></i></div>
+          <div>
+            <h4>Anmeldeformular</h4>
+            <p>Vollständig ausgefüllt – das Formular erhalten Sie über die Grundschule oder als Download auf dieser Seite.</p>
+          </div>
+        </div>
+        <div class="document-card">
+          <div class="document-icon"><i data-lucide="award"></i></div>
+          <div>
+            <h4>Halbjahreszeugnis Klasse 4</h4>
+            <p>Original und eine Kopie. Falls noch nicht vorhanden, kann der Übergabezeitpunkt mit der Schulleitung abgestimmt werden.</p>
+          </div>
+        </div>
+        <div class="document-card">
+          <div class="document-icon"><i data-lucide="user-check"></i></div>
+          <div>
+            <h4>Schulübergangsempfehlung</h4>
+            <p>Die Empfehlung der Grundschule – wichtig zur pädagogischen Einschätzung.</p>
+          </div>
+        </div>
+        <div class="document-card">
+          <div class="document-icon"><i data-lucide="id-card"></i></div>
+          <div>
+            <h4>Geburtsurkunde</h4>
+            <p>Original oder beglaubigte Kopie zur Identitätsfeststellung.</p>
+          </div>
+        </div>
+        <div class="document-card">
+          <div class="document-icon"><i data-lucide="syringe"></i></div>
+          <div>
+            <h4>Impfnachweis Masern</h4>
+            <p>Gemäß Masernschutzgesetz erforderlich vor Schulbeginn.</p>
+          </div>
+        </div>
+        <div class="document-card">
+          <div class="document-icon"><i data-lucide="users"></i></div>
+          <div>
+            <h4>Sorgerechtsnachweis</h4>
+            <p>Bei getrennt lebenden Eltern ggf. Nachweis des Sorgerechts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WAY 2: ONLINE -->
+    <div class="way-content" id="way-online">
+      <div class="way-hero-grid">
+        <div class="way-hero-image">
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=900&q=80" alt="Online-Anmeldung">
+        </div>
+        <div class="way-hero-content">
+          <span class="eyebrow">Online-Anmeldung</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Bequem von <em>zu Hause</em>.</h2>
+          <p class="lead">
+            Drei einfache Schritte – und Sie haben Ihr Kind vorangemeldet.
+            Persönlicher Termin findet später statt.
+          </p>
+          <p>
+            Über unser Online-Portal können Sie die Anmeldung Ihres Kindes vorbereiten
+            und uns vorab Daten und Unterlagen übermitteln. Der persönliche Termin
+            zur finalen Anmeldung mit Originalen ist trotzdem erforderlich.
+          </p>
+          <a href="#" class="btn btn-primary" style="margin-top: 1rem;">
+            Online-Anmeldung starten <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4>Daten erfassen</h4>
+          <p>Geben Sie über das Online-Formular die Stammdaten Ihres Kindes ein. Das dauert ca. 10 Minuten.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4>Dokumente hochladen</h4>
+          <p>Laden Sie Halbjahreszeugnis, Übergangsempfehlung und Impfnachweis als Scan oder Foto hoch.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4>Termin vereinbaren</h4>
+          <p>Wir bestätigen den Eingang per Mail und vereinbaren einen Termin zur finalen Anmeldung.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- WAY 3: OBERSTUFE -->
+    <div class="way-content" id="way-oberstufe">
+      <div class="way-hero-grid">
+        <div class="way-hero-image">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=80" alt="Oberstufe">
+        </div>
+        <div class="way-hero-content">
+          <span class="eyebrow">Wechsel in die Oberstufe</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Neu in <em>Klasse 11</em>.</h2>
+          <p class="lead">
+            Sie wollen die gymnasiale Oberstufe am MG besuchen?
+            Wir freuen uns auf Schüler*innen anderer Schulen, die zu uns wechseln.
+          </p>
+          <p>
+            Die Anmeldung für die Einführungsphase (Klasse 11) erfolgt nach
+            persönlicher Beratung mit unserer Oberstufenkoordinatorin Frau Schlarmann.
+            Bringen Sie Ihre letzten Zeugnisse mit – wir besprechen mit Ihnen Ihren
+            Bildungsweg und mögliche Schwerpunkte.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="tel:0496194700" class="btn btn-navy">
+              <i data-lucide="phone"></i> Beratungstermin
+            </a>
+            <a href="mailto:stefanie.kuhlemann@iserv-mgpapenburg.de" class="btn btn-outline">
+              <i data-lucide="mail"></i> E-Mail
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dates-card">
+        <span class="eyebrow">Beratung &amp; Anmeldung</span>
+        <h3 style="margin-top: 0.75rem;">So gehen wir vor</h3>
+        <ul class="dates-list">
+          <li><span class="day">1. Persönliche Beratung</span><span class="time">nach Vereinbarung</span></li>
+          <li><span class="day">2. Probesitzen im Unterricht</span><span class="time">optional</span></li>
+          <li><span class="day">3. Anmeldung mit Unterlagen</span><span class="time">vor Ort</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HELP SECTION -->
+<section class="help-section">
+  <div class="container">
+    <div class="help-grid">
+      <div>
+        <span class="eyebrow">Persönliche Beratung</span>
+        <h2 class="display-2" style="margin: 1rem 0 1.5rem;">Wir sind <em>für Sie</em> da.</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1rem;">
+          Sie haben Fragen zu Profilklassen, Fremdsprachen, Schulwegen oder einer
+          besonderen Situation Ihres Kindes? Wir nehmen uns Zeit für ein persönliches
+          Gespräch – telefonisch oder bei Ihnen vor Ort in der Schule.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 2rem;">
+          Auch beim Schnuppertag im Januar können Sie und Ihr Kind unsere Schule
+          unverbindlich kennenlernen.
+        </p>
+        <a href="schulprofil.html" class="btn btn-outline">Mehr über uns <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="contact-icon"><i data-lucide="phone"></i></div>
+          <div>
+            <strong>Sekretariat</strong>
+            <a href="tel:0496194700">04961 - 94700</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><i data-lucide="mail"></i></div>
+          <div>
+            <strong>E-Mail</strong>
+            <a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <strong>Adresse</strong>
+            <span>Am Stadtpark 29/31<br>26871 Papenburg</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><i data-lucide="calendar"></i></div>
+          <div>
+            <strong>Schnuppertag</strong>
+            <span>Januar 2026 – Termin auf Anfrage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="#">Terminkalender</a></li>
+          <li><a href="#">Vorlagen für Eltern</a></li>
+          <li><a href="#">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.way-tab');
+  const contents = document.querySelectorAll('.way-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const way = tab.dataset.way;
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('way-' + way).classList.add('active');
+      tab.closest('.way-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+</script>
+</body>
+</html>

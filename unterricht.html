@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unterricht – Mariengymnasium Papenburg</title>
+<meta name="description" content="Unser Unterricht von Klasse 5 bis 13: Profilklassen, Fächerkanon, Berufsorientierung und Abiturphase im Überblick.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* UNTERRICHT-SPEZIFISCH */
+
+/* Stage Tabs */
+.stage-section { background: var(--mg-paper); padding-top: 0; }
+.stage-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: -3rem auto 4rem;
+  max-width: 900px;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--mg-gray-200);
+  position: relative;
+  z-index: 10;
+}
+.stage-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1.25rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--mg-text-soft);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all 0.3s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.stage-tab:hover { color: var(--mg-navy); background: var(--mg-cream); }
+.stage-tab.active {
+  background: var(--mg-navy);
+  color: white;
+}
+.stage-tab.active .stage-tab-class { color: var(--mg-gold); }
+.stage-tab-name { font-size: 1rem; }
+.stage-tab-class {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--mg-gold);
+  letter-spacing: 0.02em;
+}
+
+/* Stage Content */
+.stage-content { display: none; }
+.stage-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+.stage-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.stage-hero-image {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+.stage-hero-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.stage-hero-image::after {
+  content: attr(data-class);
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: rgba(255,255,255,0.95);
+  color: var(--mg-navy);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.stage-hero-content h2 { color: var(--mg-navy); margin-bottom: 1.5rem; }
+.stage-hero-content .lead { font-size: 1.15rem; color: var(--mg-text); margin-bottom: 1.5rem; }
+.stage-hero-content p { font-size: 1.02rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1rem; }
+
+/* Feature Bar */
+.feature-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+.feature-item {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mg-gray-100);
+  display: flex;
+  gap: 1.25rem;
+  transition: all 0.3s;
+}
+.feature-item:hover {
+  border-color: var(--mg-gold-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.feature-item-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--mg-blue-soft);
+  color: var(--mg-navy);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+}
+.feature-item-icon svg { width: 22px; height: 22px; }
+.feature-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--mg-navy);
+  margin-bottom: 0.4rem;
+}
+.feature-item p { color: var(--mg-text-soft); line-height: 1.55; font-size: 0.92rem; }
+
+/* Profile Cards (Profilklassen) */
+.profiles {
+  margin-bottom: 5rem;
+}
+.profiles-header { margin-bottom: 2.5rem; }
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.profile-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+}
+.profile-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+.profile-card:hover img { transform: scale(1.05); }
+.profile-card-content {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(10, 37, 64, 0.95) 0%,
+    rgba(10, 37, 64, 0.6) 40%,
+    rgba(10, 37, 64, 0) 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  color: white;
+}
+.profile-card-content .eyebrow {
+  color: var(--mg-gold-light);
+  margin-bottom: 0.75rem;
+  font-size: 0.7rem;
+}
+.profile-card-content .eyebrow::before { background: var(--mg-gold); }
+.profile-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.profile-card p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease;
+}
+.profile-card:hover p { max-height: 100px; margin-top: 0.6rem; }
+
+/* Subjects Grid */
+.subjects-section { background: var(--mg-cream); padding: 5rem 0; }
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.subject-pill {
+  background: white;
+  padding: 1.25rem 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--mg-text);
+  border: 1px solid var(--mg-gray-100);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.subject-pill:hover {
+  border-color: var(--mg-gold);
+  color: var(--mg-navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.subject-pill svg { width: 16px; height: 16px; color: var(--mg-gold); }
+
+/* Schedule */
+.schedule-section { padding: 5rem 0; background: var(--mg-paper); }
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.schedule-table {
+  width: 100%;
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--mg-gray-100);
+}
+.schedule-table table { width: 100%; border-collapse: collapse; }
+.schedule-table th {
+  background: var(--mg-navy);
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.schedule-table th:first-child { color: var(--mg-gold); }
+.schedule-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--mg-gray-100);
+  font-size: 0.95rem;
+}
+.schedule-table td:first-child {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--mg-gold-deep);
+  font-size: 1.05rem;
+}
+.schedule-table tr:last-child td { border-bottom: none; }
+.schedule-table tr.break td { background: var(--mg-cream); color: var(--mg-text-soft); font-style: italic; font-size: 0.85rem; }
+
+@media (max-width: 1024px) {
+  .stage-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  .feature-bar { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .subject-grid { grid-template-columns: repeat(2, 1fr); }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .stage-tabs { flex-wrap: wrap; }
+  .stage-tab { flex: 1 1 calc(50% - 0.25rem); padding: 0.85rem 1rem; }
+  .stage-tab-name { font-size: 0.88rem; }
+  .stage-tabs { margin: -2rem auto 3rem; }
+}
+@media (max-width: 640px) {
+  .stage-tab { flex: 1 1 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="tel:0496194700"><i data-lucide="phone"></i> 04961 - 94700</a>
+      <a href="mailto:sekretariat@mgpapenburg.de"><i data-lucide="mail"></i> sekretariat@mgpapenburg.de</a>
+      <span><i data-lucide="map-pin"></i> Am Stadtpark 29/31, 26871 Papenburg</span>
+    </div>
+    <div class="topbar-socials">
+      <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://mgpapenburg.de/wp-content/uploads/2019/08/cropped-MG_Logo.png"
+           alt="Mariengymnasium Papenburg Logo" class="logo-img"
+           onerror="this.onerror=null; this.src='https://mgpapenburg.de/wp-content/uploads/2019/08/MG_Logo.png';">
+      <div class="logo-text">
+        <strong>Mariengymnasium</strong>
+        <small>Papenburg · Seit 1835</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
+      <div class="nav-item"><a href="unterricht.html" class="nav-link active">Unterricht</a></div>
+      <div class="nav-item"><a href="schulleben.html" class="nav-link">Schulleben</a></div>
+      <div class="nav-item"><a href="aktuelles.html" class="nav-link">Aktuelles</a></div>
+      <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
+    </nav>
+    <a href="anmeldung.html" class="cta-btn"><i data-lucide="user-plus"></i> <span>Jetzt anmelden</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><i data-lucide="menu" style="width:28px;height:28px"></i></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<aside class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <strong>Menü</strong>
+    <button id="mobileClose" style="background:none;border:none;cursor:pointer;color:var(--mg-navy)"><i data-lucide="x" style="width:24px;height:24px"></i></button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="schulprofil.html">Schulprofil</a></li>
+    <li><a href="unterricht.html">Unterricht</a></li>
+    <li><a href="schulleben.html">Schulleben</a></li>
+    <li><a href="aktuelles.html">Aktuelles</a></li>
+    <li><a href="anmeldung.html">Anmeldung</a></li>
+  </ul>
+</aside>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs">
+      <a href="index.html">Startseite</a>
+      <span class="sep">/</span>
+      <span>Unterricht</span>
+    </div>
+    <span class="eyebrow">Lernen am MG</span>
+    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Unter<em>richt.</em></h1>
+    <p class="lead">
+      Von der ersten Stunde in Klasse 5 bis zur Abiturprüfung in Klasse 13 –
+      neun Jahre Bildung, die Persönlichkeit formt und Türen öffnet.
+    </p>
+  </div>
+</section>
+
+<!-- STAGES MIT TAB-SYSTEM -->
+<section class="stage-section">
+  <div class="container">
+    <!-- Tab Buttons -->
+    <div class="stage-tabs">
+      <button class="stage-tab active" data-stage="unterstufe">
+        <span class="stage-tab-name">Unterstufe</span>
+        <span class="stage-tab-class">Klasse 5 – 6</span>
+      </button>
+      <button class="stage-tab" data-stage="mittelstufe">
+        <span class="stage-tab-name">Mittelstufe</span>
+        <span class="stage-tab-class">Klasse 7 – 10</span>
+      </button>
+      <button class="stage-tab" data-stage="oberstufe">
+        <span class="stage-tab-name">Oberstufe</span>
+        <span class="stage-tab-class">Klasse 11 – 13</span>
+      </button>
+    </div>
+
+    <!-- UNTERSTUFE -->
+    <div class="stage-content active" id="stage-unterstufe">
+      <div class="stage-hero">
+        <div class="stage-hero-image" data-class="Klasse 5–6">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+               alt="Junge Schüler*innen lernen gemeinsam">
+        </div>
+        <div class="stage-hero-content">
+          <span class="eyebrow">Ankommen &amp; Wachsen</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Der erste <em>Schritt</em> aufs Gymnasium.</h2>
+          <p class="lead">
+            In der Unterstufe geht es darum, anzukommen, sich wohlzufühlen und
+            Lernstrategien fürs Gymnasium zu entwickeln.
+          </p>
+          <p>
+            Ein behutsamer Übergang aus der Grundschule, intensive Klassenleitungen,
+            unsere Profilklassen Musik, Technik und Sport sowie die Wahl der zweiten
+            Fremdsprache prägen die ersten beiden Jahre.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-bar">
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="users"></i></div>
+          <div>
+            <h4>Klassenleitungs-Tandem</h4>
+            <p>Zwei Lehrkräfte begleiten die Klasse intensiv durch die ersten Jahre.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="languages"></i></div>
+          <div>
+            <h4>2. Fremdsprache</h4>
+            <p>Wahl ab Klasse 6: Französisch, Latein oder Spanisch nach Eignung.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="map"></i></div>
+          <div>
+            <h4>Schülerlotsen</h4>
+            <p>Sicherheit auf dem Schulweg – ausgebildet von der Polizei.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="profiles">
+        <div class="profiles-header" style="text-align: center;">
+          <span class="eyebrow center">Profilklassen ab Klasse 5</span>
+          <h3 class="display-3" style="margin-top: 1rem; color: var(--mg-navy);">Drei <em>Wege</em>, eine Leidenschaft.</h3>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80" alt="Musik">
+            <div class="profile-card-content">
+              <span class="eyebrow">Profil 01</span>
+              <h3>Musik</h3>
+              <p>Chorklasse mit erweitertem Musikunterricht – musikalische Förderung von der ersten Stunde an.</p>
+            </div>
+          </div>
+          <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=600&q=80" alt="Technik">
+            <div class="profile-card-content">
+              <span class="eyebrow">Profil 02</span>
+              <h3>Technik</h3>
+              <p>Mit „Fit in Technik" Werkstatterfahrung sammeln, eigene Ideen umsetzen und MINT-Talente entdecken.</p>
+            </div>
+          </div>
+          <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1530021232320-687d8e3dba54?auto=format&fit=crop&w=600&q=80" alt="Sport">
+            <div class="profile-card-content">
+              <span class="eyebrow">Profil 03</span>
+              <h3>Sport</h3>
+              <p>Bewegung als Schwerpunkt – mit erweitertem Sportangebot und außerschulischen Kooperationen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MITTELSTUFE -->
+    <div class="stage-content" id="stage-mittelstufe">
+      <div class="stage-hero">
+        <div class="stage-hero-image" data-class="Klasse 7–10">
+          <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80"
+               alt="Mittelstufenschüler*innen im Gespräch">
+        </div>
+        <div class="stage-hero-content">
+          <span class="eyebrow">Vertiefen &amp; Erweitern</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Wachsen mit <em>Anspruch</em> und Tiefe.</h2>
+          <p class="lead">
+            Die Mittelstufe ist die Zeit, in der Persönlichkeit, fachliches Können
+            und Verantwortungsbewusstsein entscheidend reifen.
+          </p>
+          <p>
+            Eine optionale dritte Fremdsprache, das zweiwöchige Betriebspraktikum
+            in Klasse 10, Austauschprogramme und vertiefte fachliche Anforderungen
+            bereiten gezielt auf die Oberstufe vor.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-bar">
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="briefcase"></i></div>
+          <div>
+            <h4>Betriebspraktikum</h4>
+            <p>Zwei Wochen Berufswelt in Klasse 10 – erste Einblicke in mögliche Karrierewege.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="globe-2"></i></div>
+          <div>
+            <h4>Austauschprogramme</h4>
+            <p>Mottola, Albaida, Cork – internationale Begegnungen für Sprache und Horizont.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="languages"></i></div>
+          <div>
+            <h4>3. Fremdsprache</h4>
+            <p>Optional ab Klasse 8 – Spanisch, Französisch oder Latein zur Vertiefung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBERSTUFE -->
+    <div class="stage-content" id="stage-oberstufe">
+      <div class="stage-hero">
+        <div class="stage-hero-image" data-class="Klasse 11–13">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80"
+               alt="Oberstufenschüler*innen im Lernlabor">
+        </div>
+        <div class="stage-hero-content">
+          <span class="eyebrow">Profilieren &amp; Abitur</span>
+          <h2 class="display-3" style="margin-top: 1rem;">Vorbereitung aufs <em>Leben</em>.</h2>
+          <p class="lead">
+            In der Oberstufe gestalten Schüler*innen ihren Bildungsweg zunehmend
+            selbst – und legen das Fundament für Studium und Beruf.
+          </p>
+          <p>
+            Einführungs-, Qualifikations- und Prüfungsphase, individuelle
+            Schwerpunktsetzungen, intensive Beratung durch die Oberstufenkoordination
+            und ein durchdachtes Konzept zur Berufsorientierung machen den Übergang
+            ins Leben nach der Schule planbar und sicher.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-bar">
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="graduation-cap"></i></div>
+          <div>
+            <h4>Einführungsphase</h4>
+            <p>Klasse 11 als Brücke: Methoden, Profile und Kurswahlen vorbereiten.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="trending-up"></i></div>
+          <div>
+            <h4>Qualifikationsphase</h4>
+            <p>Klassen 12 &amp; 13 mit Leistungs- und Grundkursen, Seminarfach und Klausuren.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item-icon"><i data-lucide="award"></i></div>
+          <div>
+            <h4>Abiturprüfung</h4>
+            <p>Vier schriftliche und eine mündliche Prüfung – als Tor zur Hochschule.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FÄCHER ÜBERSICHT -->
+<section class="subjects-section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Fächerkanon</span>
+      <h2 class="display-2" style="margin-top: 1rem;">Unsere <em>Fächer.</em></h2>
+      <p class="lead" style="margin: 1rem auto 0;">
+        Vielfalt, die zum Denken einlädt – von den Sprachen bis zu den Naturwissenschaften.
+      </p>
+    </div>
+
+    <div class="subject-grid">
+      <div class="subject-pill"><i data-lucide="book-open"></i> Deutsch</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Englisch</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Französisch</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Latein</div>
+      <div class="subject-pill"><i data-lucide="globe"></i> Spanisch</div>
+      <div class="subject-pill"><i data-lucide="calculator"></i> Mathematik</div>
+      <div class="subject-pill"><i data-lucide="atom"></i> Physik</div>
+      <div class="subject-pill"><i data-lucide="flask-conical"></i> Chemie</div>
+      <div class="subject-pill"><i data-lucide="leaf"></i> Biologie</div>
+      <div class="subject-pill"><i data-lucide="laptop"></i> Informatik</div>
+      <div class="subject-pill"><i data-lucide="map-pin"></i> Erdkunde</div>
+      <div class="subject-pill"><i data-lucide="landmark"></i> Geschichte</div>
+      <div class="subject-pill"><i data-lucide="users"></i> Politik</div>
+      <div class="subject-pill"><i data-lucide="heart"></i> Religion</div>
+      <div class="subject-pill"><i data-lucide="brain"></i> Werte &amp; Normen</div>
+      <div class="subject-pill"><i data-lucide="palette"></i> Kunst</div>
+      <div class="subject-pill"><i data-lucide="music"></i> Musik</div>
+      <div class="subject-pill"><i data-lucide="dumbbell"></i> Sport</div>
+      <div class="subject-pill"><i data-lucide="trending-up"></i> Wirtschaft</div>
+      <div class="subject-pill"><i data-lucide="message-square"></i> Seminarfach</div>
+    </div>
+  </div>
+</section>
+
+<!-- ZEITEN & TAGESABLAUF -->
+<section class="schedule-section">
+  <div class="container">
+    <div class="schedule-grid">
+      <div class="reveal">
+        <span class="eyebrow">Zeiten &amp; Regelungen</span>
+        <h2 class="display-2" style="margin: 1rem 0;">Ein <em>klar</em> strukturierter Tag.</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1.5rem;">
+          Unser Schultag beginnt um 8:05 Uhr und endet spätestens um 15:10 Uhr.
+          Eine 25-minütige Mittagspause bietet Raum für Cafeteria, Bewegung und Austausch.
+          Lange Pausen schaffen Luft zum Durchatmen, kurze Pausen den nötigen Wechsel.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 2rem;">
+          Wir bieten G9 – Abitur nach neun Schuljahren – mit dem klaren Ziel, jungen
+          Menschen Zeit zur Reife zu geben statt sie unter Druck zu setzen.
+        </p>
+        <a href="#" class="btn btn-outline">Vollständiger Stundenplan (PDF) <i data-lucide="download"></i></a>
+      </div>
+
+      <div class="schedule-table reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>Stunde</th>
+              <th>Zeit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1.</td><td>08:05 – 08:50</td></tr>
+            <tr><td>2.</td><td>08:50 – 09:35</td></tr>
+            <tr class="break"><td colspan="2">Pause</td></tr>
+            <tr><td>3.</td><td>09:55 – 10:40</td></tr>
+            <tr><td>4.</td><td>10:40 – 11:25</td></tr>
+            <tr class="break"><td colspan="2">Pause</td></tr>
+            <tr><td>5.</td><td>11:45 – 12:30</td></tr>
+            <tr><td>6.</td><td>12:30 – 13:15</td></tr>
+            <tr class="break"><td colspan="2">Mittagspause</td></tr>
+            <tr><td>7.</td><td>13:40 – 14:25</td></tr>
+            <tr><td>8.</td><td>14:25 – 15:10</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" style="background: var(--mg-cream-warm);">
+  <div class="container">
+    <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+      <span class="eyebrow center">Schnuppertag</span>
+      <h2 class="display-2" style="margin: 1rem 0; color: var(--mg-navy);">Unterricht <em>live</em> erleben.</h2>
+      <p style="color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7;">
+        Beim Schnuppertag im Januar können Viertklässler*innen drei Schnupperstunden
+        besuchen und unsere Schule kennenlernen.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="anmeldung.html" class="btn btn-navy"><i data-lucide="calendar"></i> Schnuppertag-Termine</a>
+        <a href="schulleben.html" class="btn btn-outline">Schulleben entdecken <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Mariengymnasium Papenburg</h4>
+        <p>Seit 1835 ein Ort der Bildung, Gemeinschaft und Werte – im Herzen Papenburgs, im Herzen des Emslands.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="#">Am Stadtpark 29/31<br>26871 Papenburg</a></li>
+          <li><a href="tel:0496194700">04961 - 94700</a></li>
+          <li><a href="mailto:sekretariat@mgpapenburg.de">sekretariat@mgpapenburg.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Schule</h5>
+        <ul>
+          <li><a href="schulprofil.html">Schulprofil</a></li>
+          <li><a href="unterricht.html">Unterricht</a></li>
+          <li><a href="schulleben.html">Schulleben</a></li>
+          <li><a href="aktuelles.html">Aktuelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="anmeldung.html">Anmeldung</a></li>
+          <li><a href="#">Terminkalender</a></li>
+          <li><a href="#">Vorlagen für Eltern</a></li>
+          <li><a href="#">IServ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mariengymnasium Papenburg · Alle Rechte vorbehalten</span>
+      <div class="footer-bottom-links">
+        <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+// Stage Tabs
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.stage-tab');
+  const contents = document.querySelectorAll('.stage-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const stage = tab.dataset.stage;
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('stage-' + stage).classList.add('active');
+      // Scroll to tabs (smooth)
+      tab.closest('.stage-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+</script>
+</body>
+</html>
