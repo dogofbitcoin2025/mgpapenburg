@@ -28,44 +28,48 @@ body.home-page .menu-toggle { color: white; }
 .bistum-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  color: white;
+  justify-content: center;
+  width: clamp(154px, 12vw, 210px);
+  height: clamp(52px, 4.2vw, 70px);
+  padding: 0.48rem 0.7rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.16);
   text-decoration: none;
-  margin-right: 0.5rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: var(--radius-sm);
-  transition: background 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-.bistum-logo:hover { background: rgba(255,255,255,0.06); }
-.bistum-logo svg.bistum-icon {
-  width: 36px; height: 36px;
-  color: var(--mg-yellow);
+.bistum-logo:hover {
+  transform: translateY(-1px);
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.20);
 }
-.bistum-logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
+.bistum-logo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-.bistum-logo-text small {
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
-  color: rgba(255,255,255,0.5);
-  font-weight: 700;
-  margin-bottom: 2px;
+.logo {
+  min-width: clamp(118px, 11vw, 178px);
 }
-.bistum-logo-text strong {
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: white;
+.logo-img {
+  height: clamp(58px, 5.2vw, 84px);
+  width: auto;
+  max-width: clamp(118px, 11vw, 178px);
+  object-fit: contain;
+  object-position: left center;
 }
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.header-inner {
+  min-height: clamp(84px, 7vw, 108px);
 }
 @media (max-width: 768px) {
-  .bistum-logo-text { display: none; }
+  .bistum-logo { width: 132px; height: 46px; padding: 0.38rem 0.55rem; border-radius: 14px; }
+  .logo-img { height: 54px; max-width: 124px; }
+  .header-inner { min-height: 76px; }
+}
+@media (max-width: 430px) {
+  .bistum-logo { width: 104px; height: 40px; padding: 0.32rem 0.45rem; }
+  .logo-img { height: 48px; max-width: 108px; }
 }
 
 /* HERO – Premium-Header: vollflächiges Aquarell, CI-Blau, runde organische Wellen */
@@ -698,7 +702,7 @@ body.home-page .menu-toggle { color: white; }
 <header class="header" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="images/MG_Logo.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
+      <img src="images/Logo-MG-original.png" alt="Mariengymnasium Papenburg Logo" class="logo-img">
     </a>
     <nav class="nav">
       <div class="nav-item"><a href="schulprofil.html" class="nav-link">Schulprofil</a></div>
@@ -708,14 +712,8 @@ body.home-page .menu-toggle { color: white; }
       <div class="nav-item"><a href="anmeldung.html" class="nav-link">Anmeldung</a></div>
     </nav>
     <div class="header-right">
-      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo">
-        <svg class="bistum-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2">
-          <path d="M20 5 L20 35 M10 35 L30 35 M14 35 L14 18 L20 12 L26 18 L26 35 M16 22 L24 22 M16 28 L24 28"/>
-        </svg>
-        <div class="bistum-logo-text">
-          <small>Schulstiftung im</small>
-          <strong>BISTUM OSNABRÜCK</strong>
-        </div>
+      <a href="https://www.bistum-osnabrueck.de" target="_blank" rel="noopener" class="bistum-logo" aria-label="Schulstiftung im Bistum Osnabrück">
+        <img src="images/web_schulstiftung_logo_farbe_rgb.png" alt="Schulstiftung im Bistum Osnabrück" class="bistum-logo-img">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menü">
         <i data-lucide="menu" style="width:28px;height:28px"></i>
