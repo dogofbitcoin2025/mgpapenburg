@@ -33,7 +33,7 @@ body { background: var(--mg-paper); }
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 .quick-card {
@@ -417,6 +417,86 @@ body { background: var(--mg-paper); }
   font-size: .9rem;
 }
 
+
+/* CURRICULUM MOBILITÄT */
+.mobility-section { background: #fff; }
+.mobility-shell {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-top: 2.5rem;
+}
+.mobility-intro-card {
+  border-radius: 30px;
+  background: var(--mg-blue-deep);
+  color: #fff;
+  padding: clamp(1.6rem, 3vw, 2.5rem);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 46px rgba(0,31,48,.14);
+}
+.mobility-intro-card::after {
+  content: '';
+  position: absolute;
+  right: -56px;
+  bottom: -56px;
+  width: 190px;
+  height: 190px;
+  border: 22px solid rgba(254,234,0,.24);
+  border-radius: 999px;
+}
+.mobility-intro-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 22px;
+  background: var(--mg-yellow);
+  color: var(--mg-blue-deep);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.2rem;
+}
+.mobility-intro-icon svg { width: 32px; height: 32px; }
+.mobility-intro-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.15;
+  margin-bottom: .75rem;
+}
+.mobility-intro-card p { color: rgba(255,255,255,.84); line-height: 1.65; margin: 0; position: relative; z-index: 1; }
+.mobility-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.mobility-card {
+  background: var(--mg-paper);
+  border: 1px solid var(--mg-gray-200);
+  border-radius: 28px;
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  box-shadow: 0 14px 34px rgba(0,31,48,.06);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.mobility-card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--mg-blue-deep);
+  border: 2px solid var(--mg-yellow);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+}
+.mobility-card-icon svg { width: 28px; height: 28px; }
+.mobility-card h3 { font-family: var(--font-display); font-weight: 800; color: var(--mg-blue-deep); margin-bottom: .55rem; }
+.mobility-card p { color: var(--mg-text-soft); line-height: 1.58; margin: 0 0 1rem; }
+.mobility-list { list-style: none; padding: 0; margin: .2rem 0 1.25rem; display: grid; gap: .5rem; }
+.mobility-list li { position: relative; padding-left: 1rem; color: var(--mg-text); font-size: .92rem; line-height: 1.45; }
+.mobility-list li::before { content: ''; width: 6px; height: 6px; border-radius: 999px; background: var(--mg-yellow); position: absolute; left: 0; top: .55em; }
+.mobility-link { margin-top: auto; align-self: flex-start; }
+@media (max-width: 1100px) { .quick-jump-inner { grid-template-columns: repeat(3, 1fr); } .mobility-shell { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .mobility-cards { grid-template-columns: 1fr; } }
+
 @media (max-width: 1024px) {
   .quick-jump-inner { grid-template-columns: repeat(2, 1fr); }
   .stage-columns { grid-template-columns: 1fr; }
@@ -695,6 +775,10 @@ body { background: var(--mg-paper); }
       <span class="quick-card-icon"><img src="images/icon-oberstufe.svg" alt="" aria-hidden="true"></span>
       <span><strong>Oberstufe</strong><span>Jahrgänge 11–13</span></span>
     </a>
+    <a href="#curriculum-mobilitaet" class="quick-card">
+      <span class="quick-card-icon"><i data-lucide="traffic-cone"></i></span>
+      <span><strong>Mobilität</strong><span>Lotsen & Abgefahren</span></span>
+    </a>
     <a href="#downloads" class="quick-card">
       <span class="quick-card-icon"><img src="images/icon-downloads.svg" alt="" aria-hidden="true"></span>
       <span><strong>Downloads</strong><span>Materialien & Formulare</span></span>
@@ -751,6 +835,7 @@ body { background: var(--mg-paper); }
           <div class="stage-card-actions">
             <a href="#downloads" class="stage-link" data-filter-link="mittelstufe">Materialien anzeigen <i data-lucide="arrow-right"></i></a>
             <a href="#mittelstufe-infos" class="stage-link">Infos Mittelstufe <i data-lucide="arrow-right"></i></a>
+            <a href="#curriculum-mobilitaet" class="stage-link">Curriculum Mobilität <i data-lucide="arrow-right"></i></a>
           </div>
         </div>
       </article>
@@ -1082,6 +1167,58 @@ body { background: var(--mg-paper); }
   </div>
 </section>
 
+<!-- CURRICULUM MOBILITÄT -->
+<section class="section-pad mobility-section" id="curriculum-mobilitaet">
+  <div class="container">
+    <div class="intro-copy">
+      <span class="eyebrow center">Curriculum Mobilität</span>
+      <h2 class="display-2" style="margin-top: 1rem; color: var(--mg-blue-deep);">Sicher unterwegs. <em>Verantwortung lernen.</em></h2>
+      <p>
+        Mobilität ist mehr als der Weg zur Schule: Im Unterricht und in Projekten lernen Schüler*innen, aufmerksam, rücksichtsvoll und verantwortungsbewusst am Verkehr teilzunehmen.
+      </p>
+    </div>
+
+    <div class="mobility-shell">
+      <article class="mobility-intro-card">
+        <div class="mobility-intro-icon"><i data-lucide="route"></i></div>
+        <h3>Verkehrserziehung als Teil schulischer Bildung</h3>
+        <p>
+          Das Curriculum Mobilität bündelt Projekte, die Sicherheit, Selbstständigkeit und Verantwortung stärken – besonders dort, wo Schüler*innen täglich unterwegs sind: zu Fuß, mit dem Fahrrad, mit dem Bus oder im Straßenverkehr.
+        </p>
+      </article>
+
+      <div class="mobility-cards">
+        <article class="mobility-card">
+          <div class="mobility-card-icon"><i data-lucide="badge-check"></i></div>
+          <h3>Schülerlotsenausbildung</h3>
+          <p>
+            Schülerlots*innen übernehmen sichtbar Verantwortung für andere und tragen zu einem sicheren Schulweg bei.
+          </p>
+          <ul class="mobility-list">
+            <li>Verantwortung im Schulalltag übernehmen</li>
+            <li>Regeln, Aufmerksamkeit und Rücksicht einüben</li>
+            <li>Gemeinschaft durch aktives Engagement stärken</li>
+          </ul>
+          <a href="https://mgpapenburg.de/schuelerlotsenausbildung/" target="_blank" rel="noopener" class="stage-link mobility-link">Alte Seite öffnen <i data-lucide="external-link"></i></a>
+        </article>
+
+        <article class="mobility-card">
+          <div class="mobility-card-icon"><i data-lucide="triangle-alert"></i></div>
+          <h3>Projekt „Abgefahren“</h3>
+          <p>
+            Das Projekt sensibilisiert für Risiken im Straßenverkehr und macht deutlich, warum umsichtiges Verhalten Leben schützen kann.
+          </p>
+          <ul class="mobility-list">
+            <li>Gefahren realistisch einschätzen</li>
+            <li>Konsequenzen riskanten Verhaltens verstehen</li>
+            <li>Sicherheit, Prävention und Verantwortung verbinden</li>
+          </ul>
+          <a href="https://mgpapenburg.de/projekt-abgefahren/" target="_blank" rel="noopener" class="stage-link mobility-link">Alte Seite öffnen <i data-lucide="external-link"></i></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- OBERSTUFE: TRANSPARENTER PROZESS OHNE PDFS -->
 <section class="section-pad upperstage-section" id="oberstufe-infos">
