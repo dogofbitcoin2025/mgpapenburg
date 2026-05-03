@@ -260,8 +260,8 @@ body { background: var(--mg-paper); }
 /* OBERSTUFE – visuelles Schaubild und kompakte Info-Karten */
 .upperstage-section { background: #fff; }
 .upperstage-flow {
-  margin: 3rem auto 2rem;
-  max-width: 1120px;
+  margin: 3rem auto 2.2rem;
+  max-width: 1160px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
@@ -278,7 +278,7 @@ body { background: var(--mg-paper); }
 }
 .upperstage-step::before {
   content: attr(data-step);
-  width: 42px; height: 42px;
+  width: 44px; height: 44px;
   border-radius: 999px;
   background: var(--mg-blue-deep);
   color: var(--mg-yellow);
@@ -286,7 +286,16 @@ body { background: var(--mg-paper); }
   place-items: center;
   font-weight: 800;
   font-family: var(--font-display);
+  font-size: .95rem;
+  letter-spacing: -.02em;
+  line-height: 1;
   margin-bottom: 1rem;
+}
+.upperstage-step[data-step="P1–P5"]::before {
+  content: 'Abi';
+  font-size: .82rem;
+  letter-spacing: .02em;
+  text-transform: uppercase;
 }
 .upperstage-step:not(:last-child)::after {
   content: '';
@@ -324,20 +333,31 @@ body { background: var(--mg-paper); }
   border-radius: 26px;
   padding: clamp(1.35rem, 2.5vw, 2rem);
   display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 1rem;
+  grid-template-columns: 62px 1fr;
+  gap: 1.1rem;
   align-items: start;
 }
 .upperstage-icon {
-  width: 54px; height: 54px;
-  border-radius: 18px;
-  background: var(--mg-yellow);
+  width: 62px; height: 62px;
+  border-radius: 999px;
+  background: #fff;
   color: var(--mg-blue-deep);
+  border: 2px solid var(--mg-yellow);
+  box-shadow: 0 10px 22px rgba(0,31,48,.08);
   display: grid;
   place-items: center;
   font-weight: 800;
+  position: relative;
 }
-.upperstage-icon svg { width: 24px; height: 24px; }
+.upperstage-icon::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 999px;
+  background: rgba(254,234,0,.16);
+  z-index: 0;
+}
+.upperstage-icon svg { width: 27px; height: 27px; position: relative; z-index: 1; stroke-width: 1.9; }
 .upperstage-info h3 {
   font-family: var(--font-display);
   font-weight: 800;
@@ -964,7 +984,7 @@ body { background: var(--mg-paper); }
       </article>
       <article class="upperstage-step" data-step="P1–P5">
         <h3>Abiturprüfung</h3>
-        <p>Vier schriftliche Prüfungen und eine mündliche Prüfung bilden den Abschluss der gymnasialen Oberstufe.</p>
+        <p>Die Prüfungsfächer P1 bis P5 münden in schriftliche und mündliche Prüfungen – transparent vorbereitet und begleitet.</p>
       </article>
       <article class="upperstage-step" data-step="✓">
         <h3>Abschluss</h3>
@@ -974,7 +994,7 @@ body { background: var(--mg-paper); }
 
     <div class="upperstage-grid">
       <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="route"></i></div>
+        <div class="upperstage-icon"><i data-lucide="map"></i></div>
         <div>
           <h3>Allgemeines</h3>
           <p>Jahrgang 11 führt in Methoden, Operatoren, Medien und Arbeitsfelder der Oberstufe ein. In den Jahrgängen 12 und 13 folgt der Unterricht im Kurssystem.</p>
@@ -982,7 +1002,7 @@ body { background: var(--mg-paper); }
         </div>
       </article>
       <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="languages"></i></div>
+        <div class="upperstage-icon"><i data-lucide="book-open-check"></i></div>
         <div>
           <h3>Einführungsphase</h3>
           <p>Die Klassen werden in der Regel neu zusammengesetzt. Englisch bleibt Pflichtfremdsprache; fortgeführte oder neu beginnende Fremdsprachen sind wichtige Wahlbausteine.</p>
@@ -990,7 +1010,7 @@ body { background: var(--mg-paper); }
         </div>
       </article>
       <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="network"></i></div>
+        <div class="upperstage-icon"><i data-lucide="workflow"></i></div>
         <div>
           <h3>Qualifikationsphase</h3>
           <p>Die Schülerinnen und Schüler wählen drei Kurse auf erhöhtem Niveau und zwei weitere Prüfungsfächer. Regelmäßig angeboten werden sprachliche, gesellschaftswissenschaftliche, naturwissenschaftliche und musisch-künstlerische Profile.</p>
@@ -998,7 +1018,7 @@ body { background: var(--mg-paper); }
         </div>
       </article>
       <article class="upperstage-info">
-        <div class="upperstage-icon"><i data-lucide="graduation-cap"></i></div>
+        <div class="upperstage-icon"><i data-lucide="badge-check"></i></div>
         <div>
           <h3>Abitur & Abschlüsse</h3>
           <p>Die Zulassung erfolgt nach vier Kurshalbjahren. Das Abitur setzt sich aus den Leistungen der Qualifikationsphase und den Prüfungsergebnissen zusammen.</p>
