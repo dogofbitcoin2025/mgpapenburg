@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unterricht – Mariengymnasium Papenburg</title>
-<meta name="description" content="Unser Unterricht von Klasse 5 bis 13: Profilklassen, Fächerkanon, Berufsorientierung und Abiturphase im Überblick.">
+<title>Fächer – Mariengymnasium Papenburg</title>
+<meta name="description" content="Fächer am Mariengymnasium Papenburg: schlanke Übersicht über Sprachen, Gesellschaftswissenschaften, MINT, Kultur, Religion und Sport.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -387,6 +387,58 @@
 @media (max-width: 900px) { .faecher-teaser { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .faecher-preview-grid { grid-template-columns: 1fr; } }
 
+
+/* FÄCHER-SEITE */
+.faecher-page-hero {
+  background: linear-gradient(135deg, rgba(0,49,74,0.98), rgba(0,31,48,0.98));
+  color: white;
+  padding: clamp(5rem, 9vw, 7rem) 0 clamp(4rem, 7vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.faecher-page-hero::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at 82% 22%, rgba(254,234,0,0.16), transparent 32%), linear-gradient(120deg, rgba(255,255,255,0.05), transparent 42%);
+}
+.faecher-page-hero-inner { position:relative; z-index:2; max-width: var(--max-width); margin:0 auto; padding:0 2rem; }
+.faecher-page-hero .eyebrow { color: var(--mg-yellow); }
+.faecher-page-hero .eyebrow::before { background: var(--mg-yellow); }
+.faecher-page-hero h1 { color:white; margin:1.25rem 0 1.25rem; max-width:900px; }
+.faecher-page-hero h1 em::after { background: var(--mg-yellow); opacity:.55; }
+.faecher-page-hero .lead { color: rgba(255,255,255,.86); max-width:760px; }
+.faecher-overview { background: var(--mg-paper); padding: clamp(4rem, 7vw, 6rem) 0; }
+.faecher-filter {
+  display:flex; justify-content:center; gap:.7rem; flex-wrap:wrap; margin: 0 auto 2.5rem;
+}
+.faecher-filter button {
+  border:1px solid var(--mg-gray-200); background:white; color:var(--mg-text-soft);
+  padding:.8rem 1.05rem; border-radius:999px; font-weight:800; cursor:pointer; transition:all .25s;
+}
+.faecher-filter button:hover, .faecher-filter button.active { background: var(--mg-blue-deep); border-color: var(--mg-blue-deep); color:white; }
+.faecher-filter button.active::before { content:'• '; color: var(--mg-yellow); }
+.faecher-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:1.2rem; }
+.fach-card {
+  background:white; border:1px solid var(--mg-gray-200); border-radius: var(--radius-lg);
+  padding:1.45rem; box-shadow:var(--shadow-sm); transition: transform .25s, box-shadow .25s, border-color .25s;
+  min-height:230px; display:flex; flex-direction:column;
+}
+.fach-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:rgba(254,234,0,.9); }
+.fach-head { display:flex; gap:1rem; align-items:center; margin-bottom:1rem; }
+.fach-icon {
+  width:58px; height:58px; border-radius:18px; background:var(--mg-blue-deep); color:var(--mg-yellow);
+  display:grid; place-items:center; flex:0 0 auto; box-shadow: inset 0 0 0 2px rgba(254,234,0,.35);
+}
+.fach-icon svg { width:28px; height:28px; }
+.fach-card h3 { font-family:var(--font-display); font-weight:800; color:var(--mg-blue); font-size:1.25rem; margin:0 0 .2rem; }
+.fach-cat { display:inline-flex; color:var(--mg-text-soft); font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.fach-card p { color:var(--mg-text-soft); line-height:1.65; font-size:.96rem; margin:0; }
+.faecher-note { margin-top:2rem; background:white; border:1px solid var(--mg-gray-200); border-left:6px solid var(--mg-yellow); border-radius: var(--radius-md); padding:1.3rem 1.5rem; color:var(--mg-text-soft); line-height:1.65; }
+.faecher-note strong { color:var(--mg-blue); }
+@media (max-width: 1050px) { .faecher-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 660px) { .faecher-grid { grid-template-columns: 1fr; } .fach-card { min-height:auto; } }
+
 </style>
 </head>
 <body>
@@ -443,332 +495,122 @@
 </aside>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-inner">
+<section class="faecher-page-hero">
+  <div class="faecher-page-hero-inner">
     <div class="breadcrumbs">
-      <a href="index.html">Startseite</a>
-      <span class="sep">/</span>
-      <span>Unterricht</span>
+      <a href="index.html">Startseite</a><span class="sep">/</span>
+      <a href="unterricht.html">Unterricht</a><span class="sep">/</span>
+      <span>Fächer</span>
     </div>
-    <span class="eyebrow">Lernen am MG</span>
-    <h1 class="display-1" style="margin-top: 1.25rem; color: white;">Unter<em>richt.</em></h1>
-    <p class="lead">
-      Von der ersten Stunde in Klasse 5 bis zur Abiturprüfung in Klasse 13 –
-      neun Jahre Bildung, die Persönlichkeit formt und Türen öffnet.
-    </p>
+    <span class="eyebrow">Fächerangebot</span>
+    <h1 class="display-1">Fächer am <em>Mariengymnasium.</em></h1>
+    <p class="lead">Eine klare Übersicht statt langer Fachseiten: kurze Erklärungen zeigen, worum es in den einzelnen Fächern geht und wie vielfältig Lernen am MG ist.</p>
   </div>
 </section>
 
-<!-- STAGES MIT TAB-SYSTEM -->
-<section class="stage-section">
+<section class="faecher-overview">
   <div class="container">
-    <!-- Tab Buttons -->
-    <div class="stage-tabs">
-      <button class="stage-tab active" data-stage="unterstufe">
-        <span class="stage-tab-name">Unterstufe</span>
-        <span class="stage-tab-class">Klasse 5 – 6</span>
-      </button>
-      <button class="stage-tab" data-stage="mittelstufe">
-        <span class="stage-tab-name">Mittelstufe</span>
-        <span class="stage-tab-class">Klasse 7 – 10</span>
-      </button>
-      <button class="stage-tab" data-stage="oberstufe">
-        <span class="stage-tab-name">Oberstufe</span>
-        <span class="stage-tab-class">Klasse 11 – 13</span>
-      </button>
+    <div class="section-header center reveal">
+      <span class="eyebrow center">Übersicht</span>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Vielfalt, die <em>Orientierung</em> gibt.</h2>
+      <p class="lead" style="margin:1rem auto 0;">Filtern Sie nach Fachbereichen oder sehen Sie alle Fächer auf einen Blick.</p>
     </div>
 
-    <!-- UNTERSTUFE -->
-    <div class="stage-content active" id="stage-unterstufe">
-      <div class="stage-hero">
-        <div class="stage-hero-image" data-class="Klasse 5–6">
-          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
-               alt="Junge Schüler*innen lernen gemeinsam">
-        </div>
-        <div class="stage-hero-content">
-          <span class="eyebrow">Ankommen &amp; Wachsen</span>
-          <h2 class="display-3" style="margin-top: 1rem;">Der erste <em>Schritt</em> aufs Gymnasium.</h2>
-          <p class="lead">
-            In der Unterstufe geht es darum, anzukommen, sich wohlzufühlen und
-            Lernstrategien fürs Gymnasium zu entwickeln.
-          </p>
-          <p>
-            Ein behutsamer Übergang aus der Grundschule, intensive Klassenleitungen,
-            unsere Profilklassen Musik, Technik und Sport sowie die Wahl der zweiten
-            Fremdsprache prägen die ersten beiden Jahre.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-bar">
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="users"></i></div>
-          <div>
-            <h4>Klassenleitungs-Tandem</h4>
-            <p>Zwei Lehrkräfte begleiten die Klasse intensiv durch die ersten Jahre.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="languages"></i></div>
-          <div>
-            <h4>2. Fremdsprache</h4>
-            <p>Wahl ab Klasse 6: Französisch, Latein oder Spanisch nach Eignung.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="map"></i></div>
-          <div>
-            <h4>Schülerlotsen</h4>
-            <p>Sicherheit auf dem Schulweg – ausgebildet von der Polizei.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="profiles">
-        <div class="profiles-header" style="text-align: center;">
-          <span class="eyebrow center">Profilklassen ab Klasse 5</span>
-          <h3 class="display-3" style="margin-top: 1rem; color: var(--mg-navy);">Drei <em>Wege</em>, eine Leidenschaft.</h3>
-        </div>
-
-        <div class="profile-grid">
-          <div class="profile-card">
-            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80" alt="Musik">
-            <div class="profile-card-content">
-              <span class="eyebrow">Profil 01</span>
-              <h3>Musik</h3>
-              <p>Chorklasse mit erweitertem Musikunterricht – musikalische Förderung von der ersten Stunde an.</p>
-            </div>
-          </div>
-          <div class="profile-card">
-            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=600&q=80" alt="Technik">
-            <div class="profile-card-content">
-              <span class="eyebrow">Profil 02</span>
-              <h3>Technik</h3>
-              <p>Mit „Fit in Technik" Werkstatterfahrung sammeln, eigene Ideen umsetzen und MINT-Talente entdecken.</p>
-            </div>
-          </div>
-          <div class="profile-card">
-            <img src="https://images.unsplash.com/photo-1530021232320-687d8e3dba54?auto=format&fit=crop&w=600&q=80" alt="Sport">
-            <div class="profile-card-content">
-              <span class="eyebrow">Profil 03</span>
-              <h3>Sport</h3>
-              <p>Bewegung als Schwerpunkt – mit erweitertem Sportangebot und außerschulischen Kooperationen.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="faecher-filter reveal" aria-label="Fächer filtern">
+      <button class="active" data-filter="all">Alle</button>
+      <button data-filter="sprachen">Sprachen</button>
+      <button data-filter="gesellschaft">Gesellschaft</button>
+      <button data-filter="mint">MINT</button>
+      <button data-filter="kultur">Kultur &amp; Werte</button>
+      <button data-filter="sport">Sport</button>
+      <button data-filter="oberstufe">Oberstufe</button>
     </div>
 
-    <!-- MITTELSTUFE -->
-    <div class="stage-content" id="stage-mittelstufe">
-      <div class="stage-hero">
-        <div class="stage-hero-image" data-class="Klasse 7–10">
-          <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80"
-               alt="Mittelstufenschüler*innen im Gespräch">
-        </div>
-        <div class="stage-hero-content">
-          <span class="eyebrow">Vertiefen &amp; Erweitern</span>
-          <h2 class="display-3" style="margin-top: 1rem;">Wachsen mit <em>Anspruch</em> und Tiefe.</h2>
-          <p class="lead">
-            Die Mittelstufe ist die Zeit, in der Persönlichkeit, fachliches Können
-            und Verantwortungsbewusstsein entscheidend reifen.
-          </p>
-          <p>
-            Eine optionale dritte Fremdsprache, das zweiwöchige Betriebspraktikum
-            in Klasse 10, Austauschprogramme und vertiefte fachliche Anforderungen
-            bereiten gezielt auf die Oberstufe vor.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-bar">
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="briefcase"></i></div>
-          <div>
-            <h4>Betriebspraktikum</h4>
-            <p>Zwei Wochen Berufswelt in Klasse 10 – erste Einblicke in mögliche Karrierewege.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="globe-2"></i></div>
-          <div>
-            <h4>Austauschprogramme</h4>
-            <p>Mottola, Albaida, Cork – internationale Begegnungen für Sprache und Horizont.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="languages"></i></div>
-          <div>
-            <h4>3. Fremdsprache</h4>
-            <p>Optional ab Klasse 8 – Spanisch, Französisch oder Latein zur Vertiefung.</p>
-          </div>
-        </div>
-      </div>
+    <div class="faecher-grid reveal">
+      <article class="fach-card" data-category="sprachen">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="book-open"></i></div><div><h3>Deutsch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <p>Lesen, schreiben, sprechen, verstehen: Deutsch stärkt Ausdruck, Urteilskraft und den sicheren Umgang mit Texten, Medien und Sprache.</p>
+      </article>
+      <article class="fach-card" data-category="sprachen">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="globe-2"></i></div><div><h3>Englisch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <p>Englisch öffnet internationale Perspektiven und fördert Kommunikation, Kulturverständnis und Medienkompetenz.</p>
+      </article>
+      <article class="fach-card" data-category="sprachen">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="messages-square"></i></div><div><h3>Französisch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <p>Französisch verbindet Sprache, Kultur und Begegnung – von Alltagssituationen bis zu europäischen Perspektiven.</p>
+      </article>
+      <article class="fach-card" data-category="sprachen">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="scroll-text"></i></div><div><h3>Latein</h3><span class="fach-cat">Sprachen</span></div></div>
+        <p>Latein schult Genauigkeit, Sprachbewusstsein und den Blick auf kulturelle Wurzeln Europas.</p>
+      </article>
+      <article class="fach-card" data-category="sprachen">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="languages"></i></div><div><h3>Spanisch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <p>Spanisch erweitert den sprachlichen Horizont und stärkt kommunikative Sicherheit in einer Weltsprache.</p>
+      </article>
+      <article class="fach-card" data-category="sprachen">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="message-circle-heart"></i></div><div><h3>DaZ</h3><span class="fach-cat">Sprachen</span></div></div>
+        <p>Deutsch als Zweitsprache unterstützt sprachliche Teilhabe und begleitet Schüler*innen beim sicheren Ankommen im Schulalltag.</p>
+      </article>
+      <article class="fach-card" data-category="gesellschaft">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="landmark"></i></div><div><h3>Geschichte</h3><span class="fach-cat">Gesellschaft</span></div></div>
+        <p>Geschichte hilft, Gegenwart zu verstehen: Quellen, Entwicklungen und Entscheidungen werden kritisch eingeordnet.</p>
+      </article>
+      <article class="fach-card" data-category="gesellschaft">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="newspaper"></i></div><div><h3>Politik-Wirtschaft</h3><span class="fach-cat">Gesellschaft</span></div></div>
+        <p>Politik-Wirtschaft macht gesellschaftliche, demokratische und ökonomische Zusammenhänge verständlich.</p>
+      </article>
+      <article class="fach-card" data-category="gesellschaft">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="map"></i></div><div><h3>Erdkunde</h3><span class="fach-cat">Gesellschaft</span></div></div>
+        <p>Erdkunde verbindet Räume, Menschen, Umwelt und globale Entwicklungen – vom Nahraum bis zur Welt.</p>
+      </article>
+      <article class="fach-card" data-category="kultur">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="cross"></i></div><div><h3>Religion</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <p>Religion fragt nach Sinn, Verantwortung, Glauben und christlichen Werten im Dialog mit der Lebenswelt.</p>
+      </article>
+      <article class="fach-card" data-category="kultur">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="brain"></i></div><div><h3>Werte & Normen</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <p>Werte und Normen stärkt ethisches Urteilen, Perspektivwechsel und verantwortliches Handeln.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="calculator"></i></div><div><h3>Mathematik</h3><span class="fach-cat">MINT</span></div></div>
+        <p>Mathematik schult logisches Denken, Problemlösen und den sicheren Umgang mit Strukturen und Modellen.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="leaf"></i></div><div><h3>Biologie</h3><span class="fach-cat">MINT</span></div></div>
+        <p>Biologie erklärt Leben, Gesundheit, Umwelt und Verantwortung für die Schöpfung und die eigene Zukunft.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="atom"></i></div><div><h3>Physik</h3><span class="fach-cat">MINT</span></div></div>
+        <p>Physik macht Naturphänomene verständlich – experimentell, modellhaft und mit Blick auf Technik und Alltag.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="flask-conical"></i></div><div><h3>Chemie</h3><span class="fach-cat">MINT</span></div></div>
+        <p>Chemie untersucht Stoffe, Reaktionen und Prozesse – vom Experiment bis zur verantwortlichen Anwendung.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="laptop"></i></div><div><h3>Informatik / Technik</h3><span class="fach-cat">MINT</span></div></div>
+        <p>Informatik und Technik fördern digitales Verständnis, kreatives Problemlösen und konstruktives Arbeiten.</p>
+      </article>
+      <article class="fach-card" data-category="kultur">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="palette"></i></div><div><h3>Kunst</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <p>Kunst eröffnet Räume für Wahrnehmung, Gestaltung, Kreativität und den bewussten Umgang mit Bildern.</p>
+      </article>
+      <article class="fach-card" data-category="kultur">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="music"></i></div><div><h3>Musik</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <p>Musik verbindet Praxis, Ausdruck und Kultur – vom gemeinsamen Musizieren bis zum reflektierten Hören.</p>
+      </article>
+      <article class="fach-card" data-category="sport">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="dumbbell"></i></div><div><h3>Sport</h3><span class="fach-cat">Sport</span></div></div>
+        <p>Sport stärkt Bewegung, Teamgeist, Gesundheit und Leistungsbereitschaft in fairer Gemeinschaft.</p>
+      </article>
+      <article class="fach-card" data-category="oberstufe">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="presentation"></i></div><div><h3>Seminarfach</h3><span class="fach-cat">Oberstufe</span></div></div>
+        <p>Das Seminarfach bereitet wissenschaftspropädeutisch auf Studium, Recherche, Präsentation und eigenständiges Arbeiten vor.</p>
+      </article>
     </div>
 
-    <!-- OBERSTUFE -->
-    <div class="stage-content" id="stage-oberstufe">
-      <div class="stage-hero">
-        <div class="stage-hero-image" data-class="Klasse 11–13">
-          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80"
-               alt="Oberstufenschüler*innen im Lernlabor">
-        </div>
-        <div class="stage-hero-content">
-          <span class="eyebrow">Profilieren &amp; Abitur</span>
-          <h2 class="display-3" style="margin-top: 1rem;">Vorbereitung aufs <em>Leben</em>.</h2>
-          <p class="lead">
-            In der Oberstufe gestalten Schüler*innen ihren Bildungsweg zunehmend
-            selbst – und legen das Fundament für Studium und Beruf.
-          </p>
-          <p>
-            Einführungs-, Qualifikations- und Prüfungsphase, individuelle
-            Schwerpunktsetzungen, intensive Beratung durch die Oberstufenkoordination
-            und ein durchdachtes Konzept zur Berufsorientierung machen den Übergang
-            ins Leben nach der Schule planbar und sicher.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-bar">
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="graduation-cap"></i></div>
-          <div>
-            <h4>Einführungsphase</h4>
-            <p>Klasse 11 als Brücke: Methoden, Profile und Kurswahlen vorbereiten.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="trending-up"></i></div>
-          <div>
-            <h4>Qualifikationsphase</h4>
-            <p>Klassen 12 &amp; 13 mit Leistungs- und Grundkursen, Seminarfach und Klausuren.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-item-icon"><i data-lucide="award"></i></div>
-          <div>
-            <h4>Abiturprüfung</h4>
-            <p>Vier schriftliche und eine mündliche Prüfung – als Tor zur Hochschule.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FÄCHER TEASER -->
-<section class="faecher-teaser-section" id="faecher">
-  <div class="container">
-    <div class="faecher-teaser reveal">
-      <div class="faecher-teaser-content">
-        <span class="eyebrow">Fächerangebot</span>
-        <h2 class="display-2" style="margin:1rem 0;color:var(--mg-blue);">Vielfalt klar <em>geordnet.</em></h2>
-        <p>
-          Sprachen, Gesellschaftswissenschaften, MINT, Kultur, Religion und Sport:
-          Das Fächerangebot ist auf einer eigenen Übersichtsseite schlank gebündelt –
-          mit kurzen Erklärungen statt langer Fachtexte.
-        </p>
-        <a href="faecher.html" class="btn btn-primary" style="margin-top:1.4rem;">
-          Fächer ansehen <i data-lucide="arrow-right"></i>
-        </a>
-      </div>
-      <div class="faecher-preview-grid" aria-label="Fächerbereiche">
-        <div class="faecher-preview-item"><div class="faecher-preview-icon"><i data-lucide="languages"></i></div><div><strong>Sprachen</strong><span>Deutsch, Englisch, Latein, Französisch, Spanisch</span></div></div>
-        <div class="faecher-preview-item"><div class="faecher-preview-icon"><i data-lucide="atom"></i></div><div><strong>MINT</strong><span>Mathematik, Naturwissenschaften, Informatik</span></div></div>
-        <div class="faecher-preview-item"><div class="faecher-preview-icon"><i data-lucide="landmark"></i></div><div><strong>Gesellschaft</strong><span>Geschichte, Politik-Wirtschaft, Erdkunde</span></div></div>
-        <div class="faecher-preview-item"><div class="faecher-preview-icon"><i data-lucide="palette"></i></div><div><strong>Kultur & Werte</strong><span>Kunst, Musik, Religion, Sport</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- BERUFS- UND STUDIENORIENTIERUNG TEASER -->
-<section class="bso-teaser-section">
-  <div class="container">
-    <div class="bso-teaser reveal">
-      <div class="bso-teaser-content">
-        <span class="eyebrow">Berufs- und Studienorientierung</span>
-        <h2 class="display-2">Den eigenen <em>Weg</em> finden.</h2>
-        <p>
-          Von ersten Einblicken in Klasse 10 über Praktikum, Selbsterkundung und Beratung
-          bis zur Studienwahl in der Oberstufe: Berufs- und Studienorientierung wird am MG
-          als roter Faden durch die Jahrgänge gedacht.
-        </p>
-        <a href="berufs-und-studienorientierung.html" class="btn btn-primary" style="margin-top: 1.4rem;">
-          Zur Orientierung <i data-lucide="arrow-right"></i>
-        </a>
-      </div>
-      <div class="bso-mini-steps" aria-label="Überblick Jahrgänge">
-        <div class="bso-mini-step"><strong>10</strong><span>Agentur für Arbeit und Betriebspraktikum</span></div>
-        <div class="bso-mini-step"><strong>11</strong><span>Selbsterkundung, Check-U und feste BSO-Stunde</span></div>
-        <div class="bso-mini-step"><strong>12</strong><span>Vortrag „Abitur und was dann?“ und Infotag</span></div>
-        <div class="bso-mini-step"><strong>13</strong><span>Studienzulassung, Beratungstest und Entscheidung</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ZEITEN & TAGESABLAUF -->
-<section class="schedule-section">
-  <div class="container">
-    <div class="schedule-grid">
-      <div class="reveal">
-        <span class="eyebrow">Zeiten &amp; Regelungen</span>
-        <h2 class="display-2" style="margin: 1rem 0;">Ein <em>klar</em> strukturierter Tag.</h2>
-        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1.5rem;">
-          Unser Schultag beginnt um 8:05 Uhr und endet spätestens um 15:10 Uhr.
-          Eine 25-minütige Mittagspause bietet Raum für Cafeteria, Bewegung und Austausch.
-          Lange Pausen schaffen Luft zum Durchatmen, kurze Pausen den nötigen Wechsel.
-        </p>
-        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 2rem;">
-          Wir bieten G9 – Abitur nach neun Schuljahren – mit dem klaren Ziel, jungen
-          Menschen Zeit zur Reife zu geben statt sie unter Druck zu setzen.
-        </p>
-        <a href="kontakt.html" class="btn btn-outline">Fragen zu Zeiten &amp; Regelungen <i data-lucide="arrow-right"></i></a>
-      </div>
-
-      <div class="schedule-table reveal">
-        <table>
-          <thead>
-            <tr>
-              <th>Stunde</th>
-              <th>Zeit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>1.</td><td>08:05 – 08:50</td></tr>
-            <tr><td>2.</td><td>08:50 – 09:35</td></tr>
-            <tr class="break"><td colspan="2">Pause</td></tr>
-            <tr><td>3.</td><td>09:55 – 10:40</td></tr>
-            <tr><td>4.</td><td>10:40 – 11:25</td></tr>
-            <tr class="break"><td colspan="2">Pause</td></tr>
-            <tr><td>5.</td><td>11:45 – 12:30</td></tr>
-            <tr><td>6.</td><td>12:30 – 13:15</td></tr>
-            <tr class="break"><td colspan="2">Mittagspause</td></tr>
-            <tr><td>7.</td><td>13:40 – 14:25</td></tr>
-            <tr><td>8.</td><td>14:25 – 15:10</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-banner" style="background: var(--mg-cream-warm);">
-  <div class="container">
-    <div style="max-width: 760px; margin: 0 auto; text-align: center;">
-      <span class="eyebrow center">Schnuppertag</span>
-      <h2 class="display-2" style="margin: 1rem 0; color: var(--mg-navy);">Unterricht <em>live</em> erleben.</h2>
-      <p style="color: var(--mg-text-soft); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7;">
-        Beim Schnuppertag im Januar können Viertklässler*innen drei Schnupperstunden
-        besuchen und unsere Schule kennenlernen.
-      </p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="anmeldung.html" class="btn btn-navy"><i data-lucide="calendar"></i> Schnuppertag-Termine</a>
-        <a href="schulleben.html" class="btn btn-outline">Schulleben entdecken <i data-lucide="arrow-right"></i></a>
-      </div>
+    <div class="faecher-note reveal">
+      <strong>Schlank gehalten:</strong> Die Seite ersetzt lange Fachtexte durch kurze Orientierungstexte. Besondere Projekte, Wettbewerbe oder Materialien können später gezielt ergänzt werden, ohne die Unterrichtsseite zu überladen.
     </div>
   </div>
 </section>
@@ -837,6 +679,24 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('stage-' + stage).classList.add('active');
       // Scroll to tabs (smooth)
       tab.closest('.stage-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.faecher-filter button');
+  const cards = document.querySelectorAll('.fach-card');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      buttons.forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+      cards.forEach(card => {
+        const show = filter === 'all' || card.dataset.category === filter;
+        card.style.display = show ? '' : 'none';
+      });
     });
   });
 });
