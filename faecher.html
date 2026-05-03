@@ -5,444 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fächer – Mariengymnasium Papenburg</title>
 <meta name="description" content="Fächer am Mariengymnasium Papenburg: schlanke Übersicht über Sprachen, Gesellschaftswissenschaften, MINT, Kultur, Religion und Sport.">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-
 <style>
-/* UNTERRICHT-SPEZIFISCH */
-
-/* Stage Tabs */
-.stage-section { background: var(--mg-paper); padding-top: 0; }
-.stage-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin: -3rem auto 4rem;
-  max-width: 900px;
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: 0.5rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--mg-gray-200);
-  position: relative;
-  z-index: 10;
+/* FÄCHER – neue schlanke Übersichtsseite im aktuellen Design */
+body { background: var(--mg-paper); }
+.page-hero.faecher-hero {
+  min-height: 430px;
+  background:
+    linear-gradient(90deg, rgba(0,49,74,0.97) 0%, rgba(0,49,74,0.85) 45%, rgba(0,49,74,0.42) 76%, rgba(0,49,74,0.22) 100%),
+    url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
 }
-.stage-tab {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 1.25rem 1.5rem;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--mg-text-soft);
-  cursor: pointer;
-  border-radius: var(--radius-md);
-  transition: all 0.3s;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-}
-.stage-tab:hover { color: var(--mg-navy); background: var(--mg-cream); }
-.stage-tab.active {
-  background: var(--mg-navy);
-  color: white;
-}
-.stage-tab.active .stage-tab-class { color: var(--mg-gold); }
-.stage-tab-name { font-size: 1rem; }
-.stage-tab-class {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 500;
-  font-style: italic;
-  color: var(--mg-gold);
-  letter-spacing: 0.02em;
-}
-
-/* Stage Content */
-.stage-content { display: none; }
-.stage-content.active { display: block; animation: fadeIn 0.5s ease; }
-
-.stage-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  margin-bottom: 5rem;
-}
-.stage-hero-image {
-  aspect-ratio: 4/5;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-}
-.stage-hero-image img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.stage-hero-image::after {
-  content: attr(data-class);
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  background: rgba(255,255,255,0.95);
-  color: var(--mg-navy);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-.stage-hero-content h2 { color: var(--mg-navy); margin-bottom: 1.5rem; }
-.stage-hero-content .lead { font-size: 1.15rem; color: var(--mg-text); margin-bottom: 1.5rem; }
-.stage-hero-content p { font-size: 1.02rem; line-height: 1.8; color: var(--mg-text-soft); margin-bottom: 1rem; }
-
-/* Feature Bar */
-.feature-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 5rem;
-}
-.feature-item {
-  background: white;
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--mg-gray-100);
-  display: flex;
-  gap: 1.25rem;
-  transition: all 0.3s;
-}
-.feature-item:hover {
-  border-color: var(--mg-gold-light);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-.feature-item-icon {
-  flex-shrink: 0;
-  width: 48px; height: 48px;
-  background: var(--mg-blue-soft);
-  color: var(--mg-navy);
-  border-radius: var(--radius-md);
-  display: grid;
-  place-items: center;
-}
-.feature-item-icon svg { width: 22px; height: 22px; }
-.feature-item h4 {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--mg-navy);
-  margin-bottom: 0.4rem;
-}
-.feature-item p { color: var(--mg-text-soft); line-height: 1.55; font-size: 0.92rem; }
-
-/* Profile Cards (Profilklassen) */
-.profiles {
-  margin-bottom: 5rem;
-}
-.profiles-header { margin-bottom: 2.5rem; }
-.profile-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-.profile-card {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  cursor: pointer;
-}
-.profile-card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s;
-}
-.profile-card:hover img { transform: scale(1.05); }
-.profile-card-content {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top,
-    rgba(10, 37, 64, 0.95) 0%,
-    rgba(10, 37, 64, 0.6) 40%,
-    rgba(10, 37, 64, 0) 70%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 2rem;
-  color: white;
-}
-.profile-card-content .eyebrow {
-  color: var(--mg-gold-light);
-  margin-bottom: 0.75rem;
-  font-size: 0.7rem;
-}
-.profile-card-content .eyebrow::before { background: var(--mg-gold); }
-.profile-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-.profile-card p {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.5;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, margin-top 0.4s ease;
-}
-.profile-card:hover p { max-height: 100px; margin-top: 0.6rem; }
-
-/* Subjects Grid */
-.subjects-section { background: var(--mg-cream); padding: 5rem 0; }
-.subject-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-.subject-pill {
-  background: white;
-  padding: 1.25rem 1rem;
-  border-radius: var(--radius-md);
-  text-align: center;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: var(--mg-text);
-  border: 1px solid var(--mg-gray-100);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.subject-pill:hover {
-  border-color: var(--mg-gold);
-  color: var(--mg-navy);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-.subject-pill svg { width: 16px; height: 16px; color: var(--mg-gold); }
-
-/* Schedule */
-.schedule-section { padding: 5rem 0; background: var(--mg-paper); }
-.schedule-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-.schedule-table {
-  width: 100%;
-  background: white;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--mg-gray-100);
-}
-.schedule-table table { width: 100%; border-collapse: collapse; }
-.schedule-table th {
-  background: var(--mg-navy);
-  color: white;
-  padding: 1rem 1.5rem;
-  text-align: left;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-.schedule-table th:first-child { color: var(--mg-gold); }
-.schedule-table td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--mg-gray-100);
-  font-size: 0.95rem;
-}
-.schedule-table td:first-child {
-  font-family: var(--font-display);
-  font-weight: 600;
-  color: var(--mg-gold-deep);
-  font-size: 1.05rem;
-}
-.schedule-table tr:last-child td { border-bottom: none; }
-.schedule-table tr.break td { background: var(--mg-cream); color: var(--mg-text-soft); font-style: italic; font-size: 0.85rem; }
-
-@media (max-width: 1024px) {
-  .stage-hero { grid-template-columns: 1fr; gap: 2.5rem; }
-  .feature-bar { grid-template-columns: 1fr; }
-  .profile-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-  .subject-grid { grid-template-columns: repeat(2, 1fr); }
-  .schedule-grid { grid-template-columns: 1fr; }
-  .stage-tabs { flex-wrap: wrap; }
-  .stage-tab { flex: 1 1 calc(50% - 0.25rem); padding: 0.85rem 1rem; }
-  .stage-tab-name { font-size: 0.88rem; }
-  .stage-tabs { margin: -2rem auto 3rem; }
-}
-@media (max-width: 640px) {
-  .stage-tab { flex: 1 1 100%; }
-}
-
-
-/* Berufsorientierung Teaser */
-.bso-teaser-section { background: white; padding: clamp(4rem, 7vw, 6rem) 0; }
-.bso-teaser {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 2.5rem;
-  align-items: center;
-  background: linear-gradient(135deg, var(--mg-blue-deep), var(--mg-blue));
-  border-radius: var(--radius-lg);
-  padding: clamp(2rem, 4vw, 3.6rem);
-  color: white;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-.bso-teaser::before {
-  content: '';
-  position: absolute;
-  right: -120px;
-  top: -140px;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(254,234,0,0.18), transparent 65%);
-}
-.bso-teaser-content { position: relative; z-index: 2; }
-.bso-teaser .eyebrow { color: var(--mg-yellow); }
-.bso-teaser .eyebrow::before { background: var(--mg-yellow); }
-.bso-teaser h2 { color: white; margin: 1rem 0 1rem; }
-.bso-teaser h2 em::after { background: var(--mg-yellow); opacity: 0.55; }
-.bso-teaser p { color: rgba(255,255,255,0.84); font-size: 1.05rem; line-height: 1.75; max-width: 640px; }
-.bso-mini-steps { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-.bso-mini-step {
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: var(--radius-md);
-  padding: 1.1rem;
-  backdrop-filter: blur(6px);
-}
-.bso-mini-step strong { display: block; color: var(--mg-yellow); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 0.25rem; }
-.bso-mini-step span { color: rgba(255,255,255,0.86); font-size: 0.88rem; line-height: 1.4; }
-@media (max-width: 900px) { .bso-teaser { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .bso-mini-steps { grid-template-columns: 1fr; } }
-
-
-/* Fächer-Teaser auf Unterrichtsseite */
-.faecher-teaser-section { background: var(--mg-cream); padding: clamp(4rem, 7vw, 6rem) 0; }
-.faecher-teaser {
-  background: white;
-  border: 1px solid var(--mg-gray-200);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: clamp(2rem, 4vw, 3.4rem);
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-.faecher-teaser::before {
-  content: '';
-  position: absolute;
-  right: -120px;
-  top: -160px;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(254,234,0,0.22), transparent 68%);
-}
-.faecher-teaser-content { position: relative; z-index: 2; }
-.faecher-teaser-content p { color: var(--mg-text-soft); font-size: 1.05rem; line-height: 1.75; max-width: 640px; }
-.faecher-preview-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-.faecher-preview-item {
-  border: 1px solid var(--mg-gray-200);
-  border-radius: var(--radius-md);
-  background: var(--mg-paper);
-  padding: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  min-height: 86px;
-}
-.faecher-preview-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
-  background: var(--mg-blue-deep);
-  color: var(--mg-yellow);
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  box-shadow: inset 0 0 0 2px rgba(254,234,0,0.35);
-}
-.faecher-preview-icon svg { width: 23px; height: 23px; }
-.faecher-preview-item strong { display:block; color: var(--mg-blue); font-family: var(--font-display); font-weight: 800; font-size: 1rem; }
-.faecher-preview-item span { color: var(--mg-text-soft); font-size: 0.86rem; }
-@media (max-width: 900px) { .faecher-teaser { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .faecher-preview-grid { grid-template-columns: 1fr; } }
-
-
-/* FÄCHER-SEITE */
-.faecher-page-hero {
-  background: linear-gradient(135deg, rgba(0,49,74,0.98), rgba(0,31,48,0.98));
-  color: white;
-  padding: clamp(5rem, 9vw, 7rem) 0 clamp(4rem, 7vw, 5rem);
-  position: relative;
-  overflow: hidden;
-}
-.faecher-page-hero::before {
-  content:'';
-  position:absolute;
-  inset:0;
-  background: radial-gradient(circle at 82% 22%, rgba(254,234,0,0.16), transparent 32%), linear-gradient(120deg, rgba(255,255,255,0.05), transparent 42%);
-}
-.faecher-page-hero-inner { position:relative; z-index:2; max-width: var(--max-width); margin:0 auto; padding:0 2rem; }
-.faecher-page-hero .eyebrow { color: var(--mg-yellow); }
-.faecher-page-hero .eyebrow::before { background: var(--mg-yellow); }
-.faecher-page-hero h1 { color:white; margin:1.25rem 0 1.25rem; max-width:900px; }
-.faecher-page-hero h1 em::after { background: var(--mg-yellow); opacity:.55; }
-.faecher-page-hero .lead { color: rgba(255,255,255,.86); max-width:760px; }
-.faecher-overview { background: var(--mg-paper); padding: clamp(4rem, 7vw, 6rem) 0; }
-.faecher-filter {
-  display:flex; justify-content:center; gap:.7rem; flex-wrap:wrap; margin: 0 auto 2.5rem;
-}
-.faecher-filter button {
-  border:1px solid var(--mg-gray-200); background:white; color:var(--mg-text-soft);
-  padding:.8rem 1.05rem; border-radius:999px; font-weight:800; cursor:pointer; transition:all .25s;
-}
-.faecher-filter button:hover, .faecher-filter button.active { background: var(--mg-blue-deep); border-color: var(--mg-blue-deep); color:white; }
-.faecher-filter button.active::before { content:'• '; color: var(--mg-yellow); }
-.faecher-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:1.2rem; }
-.fach-card {
-  background:white; border:1px solid var(--mg-gray-200); border-radius: var(--radius-lg);
-  padding:1.45rem; box-shadow:var(--shadow-sm); transition: transform .25s, box-shadow .25s, border-color .25s;
-  min-height:230px; display:flex; flex-direction:column;
-}
-.fach-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:rgba(254,234,0,.9); }
-.fach-head { display:flex; gap:1rem; align-items:center; margin-bottom:1rem; }
-.fach-icon {
-  width:58px; height:58px; border-radius:18px; background:var(--mg-blue-deep); color:var(--mg-yellow);
-  display:grid; place-items:center; flex:0 0 auto; box-shadow: inset 0 0 0 2px rgba(254,234,0,.35);
-}
+.faecher-quick { margin-top: -3.1rem; position: relative; z-index: 12; }
+.faecher-quick-inner { width:min(100%,1180px); margin:0 auto; padding:0 clamp(1rem,3vw,2rem); display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; }
+.filter-btn { border:1px solid var(--mg-gray-200); background:white; color:var(--mg-text-soft); border-radius:999px; padding:.85rem 1.1rem; font-weight:800; box-shadow:0 14px 34px rgba(0,31,48,.10); cursor:pointer; transition:.22s; }
+.filter-btn:hover, .filter-btn.active { background:var(--mg-blue-deep); border-color:var(--mg-blue-deep); color:white; transform:translateY(-2px); }
+.filter-btn.active::before { content:'• '; color:var(--mg-yellow); }
+.faecher-overview { padding:5rem 0; }
+.faecher-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.15rem; margin-top:2.5rem; }
+.fach-card { background:#fff; border:1px solid var(--mg-gray-200); border-radius:22px; padding:1.35rem; min-height:220px; box-shadow:0 14px 35px rgba(0,31,48,.07); transition:transform .25s, box-shadow .25s, border-color .25s; display:flex; flex-direction:column; }
+.fach-card:hover { transform:translateY(-4px); border-color:var(--mg-yellow); box-shadow:0 24px 58px rgba(0,31,48,.14); }
+.fach-card.is-hidden { display:none; }
+.fach-head { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+.fach-icon { width:58px; height:58px; border-radius:18px; background:var(--mg-blue-deep); color:var(--mg-yellow); display:grid; place-items:center; flex:0 0 auto; box-shadow: inset 0 0 0 2px rgba(254,234,0,.35); }
 .fach-icon svg { width:28px; height:28px; }
-.fach-card h3 { font-family:var(--font-display); font-weight:800; color:var(--mg-blue); font-size:1.25rem; margin:0 0 .2rem; }
-.fach-cat { display:inline-flex; color:var(--mg-text-soft); font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.fach-card h3 { font-family:var(--font-display); font-weight:800; color:var(--mg-blue-deep); font-size:1.25rem; margin:0 0 .2rem; }
+.fach-head span { color:var(--mg-text-soft); font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 .fach-card p { color:var(--mg-text-soft); line-height:1.65; font-size:.96rem; margin:0; }
-.faecher-note { margin-top:2rem; background:white; border:1px solid var(--mg-gray-200); border-left:6px solid var(--mg-yellow); border-radius: var(--radius-md); padding:1.3rem 1.5rem; color:var(--mg-text-soft); line-height:1.65; }
-.faecher-note strong { color:var(--mg-blue); }
-@media (max-width: 1050px) { .faecher-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 660px) { .faecher-grid { grid-template-columns: 1fr; } .fach-card { min-height:auto; } }
-
+.faecher-note { margin-top:2rem; background:#fff; border:1px solid var(--mg-gray-200); border-left:6px solid var(--mg-yellow); border-radius:18px; padding:1.25rem 1.4rem; color:var(--mg-text-soft); line-height:1.7; }
+.faecher-note strong { color:var(--mg-blue-deep); }
+@media (max-width: 640px) { .faecher-quick-inner { justify-content:flex-start; } .filter-btn { flex:1 1 auto; } }
 </style>
 </head>
 <body>
-
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-inner">
@@ -454,6 +51,7 @@
     <div class="topbar-socials">
       <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
       <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+      
     </div>
   </div>
 </div>
@@ -486,7 +84,6 @@
   <ul class="mobile-nav-list">
     <li><a href="schulprofil.html">Schulprofil</a></li>
     <li><a href="unterricht.html">Unterricht</a></li>
-          <li><a href="faecher.html">Fächer</a></li>
     <li><a href="faecher.html">Fächer</a></li>
     <li><a href="schulleben.html">Schulleben</a></li>
     <li><a href="aktuelles.html">Aktuelles</a></li>
@@ -494,127 +91,128 @@
   </ul>
 </aside>
 
-<!-- PAGE HERO -->
-<section class="faecher-page-hero">
-  <div class="faecher-page-hero-inner">
-    <div class="breadcrumbs">
-      <a href="index.html">Startseite</a><span class="sep">/</span>
-      <a href="unterricht.html">Unterricht</a><span class="sep">/</span>
-      <span>Fächer</span>
-    </div>
+
+<section class="page-hero faecher-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumbs"><a href="index.html">Startseite</a><span class="sep">/</span><a href="unterricht.html">Unterricht</a><span class="sep">/</span><span>Fächer</span></div>
     <span class="eyebrow">Fächerangebot</span>
-    <h1 class="display-1">Fächer am <em>Mariengymnasium.</em></h1>
+    <h1 class="display-1" style="margin-top:1.25rem;color:white;">Fächer am <em>Mariengymnasium.</em></h1>
     <p class="lead">Eine klare Übersicht statt langer Fachseiten: kurze Erklärungen zeigen, worum es in den einzelnen Fächern geht und wie vielfältig Lernen am MG ist.</p>
   </div>
 </section>
-
+<section class="faecher-quick" aria-label="Fächer filtern">
+  <div class="faecher-quick-inner">
+    <button class="filter-btn active" data-filter="all">Alle</button>
+    <button class="filter-btn" data-filter="sprachen">Sprachen</button>
+    <button class="filter-btn" data-filter="gesellschaft">Gesellschaft</button>
+    <button class="filter-btn" data-filter="mint">MINT</button>
+    <button class="filter-btn" data-filter="kultur">Kultur & Werte</button>
+    <button class="filter-btn" data-filter="sport">Sport</button>
+    <button class="filter-btn" data-filter="oberstufe">Oberstufe</button>
+  </div>
+</section>
 <section class="faecher-overview">
   <div class="container">
-    <div class="section-header center reveal">
+    <div class="intro-copy reveal" style="max-width:900px;margin:0 auto;text-align:center;">
       <span class="eyebrow center">Übersicht</span>
-      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue);">Vielfalt, die <em>Orientierung</em> gibt.</h2>
-      <p class="lead" style="margin:1rem auto 0;">Filtern Sie nach Fachbereichen oder sehen Sie alle Fächer auf einen Blick.</p>
+      <h2 class="display-2" style="margin-top:1rem;color:var(--mg-blue-deep);">Vielfalt, die <em>Orientierung</em> gibt.</h2>
+      <p style="color:var(--mg-text-soft);font-size:1.08rem;line-height:1.75;margin-top:1rem;">Filtern Sie nach Fachbereichen oder sehen Sie alle Fächer auf einen Blick. Die Texte sind bewusst kurz gehalten, damit die Seite übersichtlich bleibt.</p>
     </div>
-
-    <div class="faecher-filter reveal" aria-label="Fächer filtern">
-      <button class="active" data-filter="all">Alle</button>
-      <button data-filter="sprachen">Sprachen</button>
-      <button data-filter="gesellschaft">Gesellschaft</button>
-      <button data-filter="mint">MINT</button>
-      <button data-filter="kultur">Kultur &amp; Werte</button>
-      <button data-filter="sport">Sport</button>
-      <button data-filter="oberstufe">Oberstufe</button>
-    </div>
-
     <div class="faecher-grid reveal">
       <article class="fach-card" data-category="sprachen">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="book-open"></i></div><div><h3>Deutsch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="book-open"></i></div><div><h3>Deutsch</h3><span>Sprachen</span></div></div>
         <p>Lesen, schreiben, sprechen, verstehen: Deutsch stärkt Ausdruck, Urteilskraft und den sicheren Umgang mit Texten, Medien und Sprache.</p>
       </article>
       <article class="fach-card" data-category="sprachen">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="globe-2"></i></div><div><h3>Englisch</h3><span class="fach-cat">Sprachen</span></div></div>
-        <p>Englisch öffnet internationale Perspektiven und fördert Kommunikation, Kulturverständnis und Medienkompetenz.</p>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="globe-2"></i></div><div><h3>Englisch</h3><span>Sprachen</span></div></div>
+        <p>Englisch öffnet internationale Perspektiven und fördert Kommunikation, Kulturverständnis und Sicherheit in der Weltsprache.</p>
       </article>
       <article class="fach-card" data-category="sprachen">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="messages-square"></i></div><div><h3>Französisch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="messages-square"></i></div><div><h3>Französisch</h3><span>Sprachen</span></div></div>
         <p>Französisch verbindet Sprache, Kultur und Begegnung – von Alltagssituationen bis zu europäischen Perspektiven.</p>
       </article>
       <article class="fach-card" data-category="sprachen">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="scroll-text"></i></div><div><h3>Latein</h3><span class="fach-cat">Sprachen</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="scroll-text"></i></div><div><h3>Latein</h3><span>Sprachen</span></div></div>
         <p>Latein schult Genauigkeit, Sprachbewusstsein und den Blick auf kulturelle Wurzeln Europas.</p>
       </article>
       <article class="fach-card" data-category="sprachen">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="languages"></i></div><div><h3>Spanisch</h3><span class="fach-cat">Sprachen</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="languages"></i></div><div><h3>Spanisch</h3><span>Sprachen</span></div></div>
         <p>Spanisch erweitert den sprachlichen Horizont und stärkt kommunikative Sicherheit in einer Weltsprache.</p>
       </article>
       <article class="fach-card" data-category="sprachen">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="message-circle-heart"></i></div><div><h3>DaZ</h3><span class="fach-cat">Sprachen</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="message-circle-heart"></i></div><div><h3>DaZ</h3><span>Sprachen</span></div></div>
         <p>Deutsch als Zweitsprache unterstützt sprachliche Teilhabe und begleitet Schüler*innen beim sicheren Ankommen im Schulalltag.</p>
       </article>
       <article class="fach-card" data-category="gesellschaft">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="landmark"></i></div><div><h3>Geschichte</h3><span class="fach-cat">Gesellschaft</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="landmark"></i></div><div><h3>Geschichte</h3><span>Gesellschaft</span></div></div>
         <p>Geschichte hilft, Gegenwart zu verstehen: Quellen, Entwicklungen und Entscheidungen werden kritisch eingeordnet.</p>
       </article>
       <article class="fach-card" data-category="gesellschaft">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="newspaper"></i></div><div><h3>Politik-Wirtschaft</h3><span class="fach-cat">Gesellschaft</span></div></div>
-        <p>Politik-Wirtschaft macht gesellschaftliche, demokratische und ökonomische Zusammenhänge verständlich.</p>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="newspaper"></i></div><div><h3>Politik-Wirtschaft</h3><span>Gesellschaft</span></div></div>
+        <p>Politik-Wirtschaft macht demokratische, gesellschaftliche und ökonomische Zusammenhänge verständlich.</p>
       </article>
       <article class="fach-card" data-category="gesellschaft">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="map"></i></div><div><h3>Erdkunde</h3><span class="fach-cat">Gesellschaft</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="map"></i></div><div><h3>Erdkunde</h3><span>Gesellschaft</span></div></div>
         <p>Erdkunde verbindet Räume, Menschen, Umwelt und globale Entwicklungen – vom Nahraum bis zur Welt.</p>
       </article>
       <article class="fach-card" data-category="kultur">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="cross"></i></div><div><h3>Religion</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="cross"></i></div><div><h3>Religion</h3><span>Kultur & Werte</span></div></div>
         <p>Religion fragt nach Sinn, Verantwortung, Glauben und christlichen Werten im Dialog mit der Lebenswelt.</p>
       </article>
       <article class="fach-card" data-category="kultur">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="brain"></i></div><div><h3>Werte & Normen</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="brain"></i></div><div><h3>Werte & Normen</h3><span>Kultur & Werte</span></div></div>
         <p>Werte und Normen stärkt ethisches Urteilen, Perspektivwechsel und verantwortliches Handeln.</p>
       </article>
-      <article class="fach-card" data-category="mint">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="calculator"></i></div><div><h3>Mathematik</h3><span class="fach-cat">MINT</span></div></div>
-        <p>Mathematik schult logisches Denken, Problemlösen und den sicheren Umgang mit Strukturen und Modellen.</p>
-      </article>
-      <article class="fach-card" data-category="mint">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="leaf"></i></div><div><h3>Biologie</h3><span class="fach-cat">MINT</span></div></div>
-        <p>Biologie erklärt Leben, Gesundheit, Umwelt und Verantwortung für die Schöpfung und die eigene Zukunft.</p>
-      </article>
-      <article class="fach-card" data-category="mint">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="atom"></i></div><div><h3>Physik</h3><span class="fach-cat">MINT</span></div></div>
-        <p>Physik macht Naturphänomene verständlich – experimentell, modellhaft und mit Blick auf Technik und Alltag.</p>
-      </article>
-      <article class="fach-card" data-category="mint">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="flask-conical"></i></div><div><h3>Chemie</h3><span class="fach-cat">MINT</span></div></div>
-        <p>Chemie untersucht Stoffe, Reaktionen und Prozesse – vom Experiment bis zur verantwortlichen Anwendung.</p>
-      </article>
-      <article class="fach-card" data-category="mint">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="laptop"></i></div><div><h3>Informatik / Technik</h3><span class="fach-cat">MINT</span></div></div>
-        <p>Informatik und Technik fördern digitales Verständnis, kreatives Problemlösen und konstruktives Arbeiten.</p>
-      </article>
       <article class="fach-card" data-category="kultur">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="palette"></i></div><div><h3>Kunst</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="palette"></i></div><div><h3>Kunst</h3><span>Kultur & Werte</span></div></div>
         <p>Kunst eröffnet Räume für Wahrnehmung, Gestaltung, Kreativität und den bewussten Umgang mit Bildern.</p>
       </article>
       <article class="fach-card" data-category="kultur">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="music"></i></div><div><h3>Musik</h3><span class="fach-cat">Kultur & Werte</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="music"></i></div><div><h3>Musik</h3><span>Kultur & Werte</span></div></div>
         <p>Musik verbindet Praxis, Ausdruck und Kultur – vom gemeinsamen Musizieren bis zum reflektierten Hören.</p>
       </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="calculator"></i></div><div><h3>Mathematik</h3><span>MINT</span></div></div>
+        <p>Mathematik schult logisches Denken, Problemlösen und den sicheren Umgang mit Strukturen und Modellen.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="leaf"></i></div><div><h3>Biologie</h3><span>MINT</span></div></div>
+        <p>Biologie erklärt Leben, Gesundheit, Umwelt und Verantwortung für die Schöpfung und die eigene Zukunft.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="atom"></i></div><div><h3>Physik</h3><span>MINT</span></div></div>
+        <p>Physik macht Naturphänomene verständlich – experimentell, modellhaft und mit Blick auf Technik und Alltag.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="flask-conical"></i></div><div><h3>Chemie</h3><span>MINT</span></div></div>
+        <p>Chemie untersucht Stoffe, Reaktionen und Prozesse – vom Experiment bis zur verantwortlichen Anwendung.</p>
+      </article>
+      <article class="fach-card" data-category="mint">
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="laptop"></i></div><div><h3>Informatik / Technik</h3><span>MINT</span></div></div>
+        <p>Informatik und Technik fördern digitales Verständnis, kreatives Problemlösen und konstruktives Arbeiten.</p>
+      </article>
       <article class="fach-card" data-category="sport">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="dumbbell"></i></div><div><h3>Sport</h3><span class="fach-cat">Sport</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="dumbbell"></i></div><div><h3>Sport</h3><span>Sport</span></div></div>
         <p>Sport stärkt Bewegung, Teamgeist, Gesundheit und Leistungsbereitschaft in fairer Gemeinschaft.</p>
       </article>
       <article class="fach-card" data-category="oberstufe">
-        <div class="fach-head"><div class="fach-icon"><i data-lucide="presentation"></i></div><div><h3>Seminarfach</h3><span class="fach-cat">Oberstufe</span></div></div>
+        <div class="fach-head"><div class="fach-icon"><i data-lucide="presentation"></i></div><div><h3>Seminarfach</h3><span>Oberstufe</span></div></div>
         <p>Das Seminarfach bereitet wissenschaftspropädeutisch auf Studium, Recherche, Präsentation und eigenständiges Arbeiten vor.</p>
       </article>
     </div>
-
-    <div class="faecher-note reveal">
-      <strong>Schlank gehalten:</strong> Die Seite ersetzt lange Fachtexte durch kurze Orientierungstexte. Besondere Projekte, Wettbewerbe oder Materialien können später gezielt ergänzt werden, ohne die Unterrichtsseite zu überladen.
+    <div class="faecher-note reveal"><strong>Hinweis:</strong> Besondere Projekte, Profile oder Wahlmöglichkeiten stehen dort, wo sie für Eltern und Schüler*innen am schnellsten auffindbar sind – auf der Unterrichtsseite, in den Stufenbereichen oder bei den Downloads.</div>
+  </div>
+</section>
+<section class="cta-banner" style="background:var(--mg-cream-warm);">
+  <div class="container">
+    <div style="max-width:760px;margin:0 auto;text-align:center;">
+      <span class="eyebrow center">Zurück zum Unterricht</span>
+      <h2 class="display-2" style="margin:1rem 0;color:var(--mg-navy);">Alle Bereiche im <em>Überblick.</em></h2>
+      <p style="color:var(--mg-text-soft);font-size:1.1rem;margin-bottom:2.5rem;line-height:1.7;">Unterstufe, Mittelstufe, Oberstufe, Mobilität, Berufsorientierung und Downloads sind auf der Unterrichtsseite gebündelt.</p>
+      <a href="unterricht.html" class="btn btn-navy"><i data-lucide="arrow-left"></i> Zur Unterrichtsseite</a>
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
@@ -625,6 +223,7 @@
         <div class="footer-socials">
           <a href="https://www.instagram.com/mariengymnasium.papenburg/" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="https://www.facebook.com/Mariengymnasium-Papenburg-109449211226672" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          
         </div>
       </div>
       <div class="footer-col">
@@ -649,7 +248,7 @@
         <ul>
           <li><a href="anmeldung.html">Anmeldung</a></li>
           <li><a href="aktuelles.html">Aktuelles</a></li>
-          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="downloads/">Downloads</a></li>
           <li><a href="https://iserv-mgpapenburg.de" target="_blank" rel="noopener">IServ</a></li>
         </ul>
       </div>
@@ -663,30 +262,12 @@
   </div>
 </footer>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.js"></script>
 <script src="js/common.js"></script>
 <script>
-// Stage Tabs
 document.addEventListener('DOMContentLoaded', () => {
-  const tabs = document.querySelectorAll('.stage-tab');
-  const contents = document.querySelectorAll('.stage-content');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const stage = tab.dataset.stage;
-      tabs.forEach(t => t.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('stage-' + stage).classList.add('active');
-      // Scroll to tabs (smooth)
-      tab.closest('.stage-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.faecher-filter button');
+  const buttons = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.fach-card');
   buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -694,8 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
       buttons.forEach(b => b.classList.remove('active'));
       button.classList.add('active');
       cards.forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
-        card.style.display = show ? '' : 'none';
+        card.classList.toggle('is-hidden', filter !== 'all' && card.dataset.category !== filter);
       });
     });
   });
